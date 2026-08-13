@@ -1,2 +1,12 @@
-# docs-inscribe
-Public documentation for Universe Inscribe
+# Universe Inscribe documentation
+
+Public product documentation for [Universe Inscribe](https://inscribe.bitcoinuniverse.io), the Bitcoin-native creator, protocol, research, and transaction workspace.
+
+## Features
+
+- Create and manage Bitcoin-native inscriptions.
+- Explore protocol workspaces including Runes, BRC-20, Atomicals, ARC-20, Stamps, SRC-20, Alkanes, TAP, Drops, and OP_DROP.
+- Use focused Bitcoin tools for fees, transactions, assets, discovery, and safety.
+- Share public pages with [route-aware link previews](social-previews.md).
+
+Wallet-aware and private workspaces never publish balances, addresses, draft transactions, or account state in link previews.
