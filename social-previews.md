@@ -20,6 +20,8 @@ Portfolio, Watchlist, Activity, order, payment-recovery, wallet, and other user-
 
 An unchanged page keeps the same deterministic image URL. A material route, profile, or renderer change creates a new content-addressed URL so social caches can retrieve the new design without random cache busting.
 
+The public preview check also tolerates brief network or gateway interruptions. It retries a timed-out request or a temporary gateway response before reporting a failure, while still reporting invalid metadata, privacy mistakes, unavailable pages, and incorrect images immediately.
+
 ## Sharing a page
 
 Copy the full canonical URL from the browser and paste it into the destination app. Public sections, tools, and supported public entity pages can be shared directly. Private surfaces intentionally display neutral or suppressed previews.
