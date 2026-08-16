@@ -5,3 +5,8 @@ Inscribe releases use immutable backend and frontend container images. Before an
 If a required validation fails, no release artifact is published and no partial evidence is presented as a release. This keeps an incomplete build from being mistaken for a deployable version.
 
 Release evidence includes image identities, dependency inventories, and checks that the production artifact matches the approved source. It is designed to make a release traceable without exposing credentials or customer data.
+
+Browser route validation also treats an already-dismissed consent choice as the
+successful state. A consent control that disappears while the test is
+interacting with it does not block release evidence, while a control that
+remains visible after an interaction error still fails the validation.
