@@ -21,6 +21,12 @@ Core processes to agree on the finalized block hash. If either verifier is
 unavailable or disagrees, their readiness stays unavailable instead of falling
 back to a public blockchain provider.
 
+Their canonical index also runs on a private, loopback-only MySQL 8.4 service.
+Database migration is prepared beside the active service from a consistent
+snapshot, verified for the complete table set and custody rules, and promoted
+only with an exact release candidate. A database version label alone is never
+treated as protocol readiness.
+
 Atomicals NFT and Realm browsing uses one unified generation so NFT, Realm, Subrealm, lookup, and resolver views agree at the same chain checkpoint. Drops and OP_DROP use one canonical authority for artifact and token state. BLOCK-20 reads are derived from a self-hosted Bitcoin Ordinals projection rather than an unbounded legacy worker.
 
 ## Safety gates
