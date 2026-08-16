@@ -16,6 +16,11 @@ Empty results are shown only after a healthy source confirms that no records mat
 
 The production service uses independently monitored sources for OP-20, Drops and OP_DROP, ARC-20 and Atomicals, TAP on Dogecoin, BLOCK-20, ChainBloom, DUST-20, and other enabled explorers. Each source has its own liveness, readiness, freshness, network, schema, and checkpoint checks.
 
+Drops and OP_DROP additionally require two private, Universe-operated Bitcoin
+Core processes to agree on the finalized block hash. If either verifier is
+unavailable or disagrees, their readiness stays unavailable instead of falling
+back to a public blockchain provider.
+
 Atomicals NFT and Realm browsing uses one unified generation so NFT, Realm, Subrealm, lookup, and resolver views agree at the same chain checkpoint. Drops and OP_DROP use one canonical authority for artifact and token state. BLOCK-20 reads are derived from a self-hosted Bitcoin Ordinals projection rather than an unbounded legacy worker.
 
 ## Safety gates
