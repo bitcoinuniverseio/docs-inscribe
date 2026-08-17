@@ -27,6 +27,13 @@ snapshot, verified for the complete table set and custody rules, and promoted
 only with an exact release candidate. A database version label alone is never
 treated as protocol readiness.
 
+The Inscribe application database follows the same no-interruption rule. The
+serving MariaDB database keeps accepting writes while a private MySQL 8.4
+candidate is loaded and checked. Transactional change capture records the exact
+events present in the snapshot and uses committed replay receipts, so a retry
+cannot apply an acknowledged event twice. Traffic moves only after schema, row,
+health, drain, and smoke checks pass.
+
 Atomicals NFT and Realm browsing uses one unified generation so NFT, Realm, Subrealm, lookup, and resolver views agree at the same chain checkpoint. Drops and OP_DROP use one canonical authority for artifact and token state. BLOCK-20 reads are derived from a self-hosted Bitcoin Ordinals projection rather than an unbounded legacy worker.
 
 ## Safety gates
