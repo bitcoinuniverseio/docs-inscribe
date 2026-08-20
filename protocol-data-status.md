@@ -16,6 +16,17 @@ Empty results are shown only after a healthy source confirms that no records mat
 
 The production service uses independently monitored sources for OP-20, Drops and OP_DROP, ARC-20 and Atomicals, TAP on Dogecoin, BLOCK-20, ChainBloom, DUST-20, and other enabled explorers. Each source has its own liveness, readiness, freshness, network, schema, and checkpoint checks.
 
+Bitcoin fee, transaction, address, and UTXO reads use the Universe-operated
+Mempool service on the shared Indexers server. Inscription, content, Rune, and
+BRC-20 reads use Ord 0.22 on that same server. Inscribe reaches both services
+through persistent private tunnels, so node and indexer ports are never exposed
+to the browser and public blockchain providers are not used as fallbacks.
+
+Ord 0.29 is synchronized separately as a future parser and verification source.
+It remains in **Syncing** state and cannot serve production requests until its
+checkpoint reaches the Bitcoin tip and its representative responses pass the
+same integrity checks as the active Ord service.
+
 Drops and OP_DROP additionally require two private, Universe-operated Bitcoin
 Core processes to agree on the finalized block hash. If either verifier is
 unavailable or disagrees, their readiness stays unavailable instead of falling
