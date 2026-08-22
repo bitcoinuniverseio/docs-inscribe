@@ -11,5 +11,6 @@ Public product documentation for [Universe Inscribe](https://inscribe.bitcoinuni
 - Understand how Inscribe verifies [release artifacts](release-evidence.md) before they are published.
 - Understand live index availability through [protocol data status and recovery](protocol-data-status.md).
 - Operate the restricted [Inscribe Control Center](admin-control-center.md).
+- Learn how Inscribe [loads fast and shows inscription media](performance-and-media.md) from Universe infrastructure.
 
 Wallet-aware and private workspaces never publish balances, addresses, draft transactions, or account state in link previews.
