@@ -6,7 +6,7 @@ Universe Inscribe loads the workspace shell first and fills each section as its 
 
 - The app shell, navigation, and your current page appear before protocol data. Each page reserves its space while it loads, so content does not jump when lists and panels arrive.
 - Scripts and styles are compressed at build time and cached by your browser for a year under unique file names. A new release never mixes old and new files.
-- Icons, fonts, and the logo are small files served from Inscribe itself.
+- Icons, fonts, and logos are small files served from Inscribe itself, stored at the size they are shown.
 
 ## Protocol data
 
