@@ -22,6 +22,11 @@ BRC-20 reads use Ord 0.22 on that same server. Inscribe reaches both services
 through persistent private tunnels, so node and indexer ports are never exposed
 to the browser and public blockchain providers are not used as fallbacks.
 
+Browser fee, transaction, address, and UTXO requests stay on the Inscribe
+origin. The API relays only reviewed read paths to the private Mempool service,
+so wallet and payment screens never connect to an indexer or public explorer
+directly.
+
 Ord 0.29 is synchronized separately as a future parser and verification source.
 It remains in **Syncing** state and cannot serve production requests until its
 checkpoint reaches the Bitcoin tip and its representative responses pass the
