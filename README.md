@@ -7,6 +7,7 @@ Public product documentation for [Universe Inscribe](https://inscribe.bitcoinuni
 - Create and manage Bitcoin-native inscriptions.
 - Explore protocol workspaces including Runes, BRC-20, Atomicals, ARC-20, Stamps, SRC-20, Alkanes, TAP, Drops, and OP_DROP.
 - Use focused Bitcoin tools for fees, transactions, assets, discovery, and safety.
+- Keep asset-bearing outputs out of fee payments with [asset safety](asset-safety.md).
 - Share public pages with [route-aware link previews](social-previews.md).
 - Understand how Inscribe verifies [release artifacts](release-evidence.md) before they are published.
 - Understand live index availability through [protocol data status and recovery](protocol-data-status.md).
