@@ -18,6 +18,11 @@ Status labels distinguish healthy, syncing, degraded, unavailable, policy-disabl
 and not-configured states. A successful HTTP response alone is not treated as
 proof that a chain source or indexer is current.
 
+The Control Center also compares the Bitcoin node and index heights. It reports
+the index as syncing when the node is still rebuilding and sits behind the index,
+instead of showing a false healthy state. A short index delay behind a current
+node remains normal.
+
 ## Safe operations
 
 The workspace exposes only actions that can run safely on the server. Operations
