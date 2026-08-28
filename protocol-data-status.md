@@ -18,19 +18,20 @@ The production service uses independently monitored sources for OP-20, Drops and
 
 Bitcoin fee, transaction, address, and UTXO reads use the Universe-operated
 Mempool service on the shared Indexers server. Inscription, content, Rune, and
-BRC-20 reads use Ord 0.22 on that same server. Inscribe reaches both services
-through persistent private tunnels, so node and indexer ports are never exposed
-to the browser and public blockchain providers are not used as fallbacks.
+BRC-20 reads use the private Ord service on that same server. Inscribe reaches
+both services through persistent private tunnels, so node and indexer ports are
+never exposed to the browser and public blockchain providers are not used as
+fallbacks.
+
+The Ord service reports the block height it has reached. `/api/health` carries
+that height, the chain tip, and the difference between them for each source, so
+the difference between "not answering" and "still reading older blocks" is
+visible rather than inferred.
 
 Browser fee, transaction, address, and UTXO requests stay on the Inscribe
 origin. The API relays only reviewed read paths to the private Mempool service,
 so wallet and payment screens never connect to an indexer or public explorer
 directly.
-
-Ord 0.29 is synchronized separately as a future parser and verification source.
-It remains in **Syncing** state and cannot serve production requests until its
-checkpoint reaches the Bitcoin tip and its representative responses pass the
-same integrity checks as the active Ord service.
 
 Drops and OP_DROP additionally require two private, Universe-operated Bitcoin
 Core processes to agree on the finalized block hash. If either verifier is
@@ -51,6 +52,27 @@ cannot apply an acknowledged event twice. Traffic moves only after schema, row,
 health, drain, and smoke checks pass.
 
 Atomicals NFT and Realm browsing uses one unified generation so NFT, Realm, Subrealm, lookup, and resolver views agree at the same chain checkpoint. Drops and OP_DROP use one canonical authority for artifact and token state. BLOCK-20 reads are derived from a self-hosted Bitcoin Ordinals projection rather than an unbounded legacy worker.
+
+## What you see while a source is catching up or down
+
+The app does not reduce this to one word. When a source cannot answer:
+
+- The banner names the source and says that everything which does not read it
+  is working normally. It does not claim the wait is short.
+- "See what is affected" opens the service status panel. Each source shows its
+  state, the block it has reached against the chain tip, how many blocks behind
+  that leaves it, and the workspaces that read it. Sources that are answering
+  are listed too, so it is clear what is unaffected.
+- A feature an operator switched off is listed separately from a source that is
+  down, because those are different problems with different fixes.
+- Actions that write to the chain stay paused, and the reason names the source
+  and states that nothing already signed or broadcast is at risk. Reading,
+  drafting, and your wallet keep working.
+
+When a source is rebuilding its index, the panel shows how fast it is reading
+blocks, measured from the heights your browser has actually seen since you
+opened the page, and what that pace implies for the rest. Until there is enough
+measurement it says so rather than showing a completion time it cannot support.
 
 ## Safety gates
 
