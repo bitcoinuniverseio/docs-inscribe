@@ -10,7 +10,7 @@ Public product documentation for [Universe Inscribe](https://inscribe.bitcoinuni
 - Keep asset-bearing outputs out of fee payments with [asset safety](asset-safety.md).
 - Share public pages with [route-aware link previews](social-previews.md).
 - Understand how Inscribe verifies [release artifacts](release-evidence.md) before they are published.
-- Understand live index availability through [protocol data status and recovery](protocol-data-status.md).
+- Understand live index availability, and what the app shows while a source catches up, through [protocol data status and recovery](protocol-data-status.md).
 - Operate the restricted [Inscribe Control Center](admin-control-center.md).
 - Learn how Inscribe [loads fast and shows inscription media](performance-and-media.md) from Universe infrastructure.
 
