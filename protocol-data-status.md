@@ -74,6 +74,27 @@ blocks, measured from the heights your browser has actually seen since you
 opened the page, and what that pace implies for the rest. Until there is enough
 measurement it says so rather than showing a completion time it cannot support.
 
+## What the portfolio shows while a source is down
+
+The portfolio reads several independent sources: the Bitcoin node for your
+balance, the Ordinals index for inscriptions and Runes, and separate indexes
+for Mezcal, SRC-20, OP_DROP and OP_RETURN names. One of them being down does
+not empty the page; the rest still answer and what they report is still shown.
+
+When a source does not answer, the portfolio names it above your holdings and
+says that anything held there is missing from the page, that what is shown is
+everything the sources that did answer reported, and that nothing you own has
+changed. The header reads "Partial" rather than "Live" for as long as that is
+true.
+
+An empty portfolio is never presented as an answer while a source is silent.
+The page says that nothing was found in the sources that answered and that this
+is not a complete picture of what the address holds. "No assets found for this
+address" appears only when every source answered.
+
+This applies per source. If only the Ordinals index is behind, your Mezcal,
+SRC-20 and OP_DROP balances are still real numbers from indexes that answered.
+
 ## Getting back to an order you left
 
 Access to an order is a secret Inscribe keeps in the browser's memory and never
