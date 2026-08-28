@@ -1,19 +1,47 @@
 # Universe Inscribe documentation
 
-Public product documentation for [Universe Inscribe](https://inscribe.bitcoinuniverse.io), the Bitcoin-native creator, protocol, research, and transaction workspace.
+[Universe Inscribe](https://inscribe.bitcoinuniverse.io) is one workspace for creating, minting, managing, and recovering Bitcoin-native assets, from a first inscription to advanced transaction construction.
 
-## Features
+**[Open Inscribe](https://inscribe.bitcoinuniverse.io)** or start with [what the app shows you and when](protocol-data-status.md).
 
-- Create and manage Bitcoin-native inscriptions.
-- Explore protocol workspaces including Runes, BRC-20, Atomicals, ARC-20, Stamps, SRC-20, Alkanes, TAP, Drops, and OP_DROP.
-- Use focused Bitcoin tools for fees, transactions, assets, discovery, and safety.
-- Keep asset-bearing outputs out of fee payments with [asset safety](asset-safety.md).
-- Share public pages with [route-aware link previews](social-previews.md).
-- Understand how Inscribe verifies [release artifacts](release-evidence.md) before they are published.
-- Understand live index availability, and what the app shows while a source catches up, through [protocol data status and recovery](protocol-data-status.md).
-- See which sources answered for your portfolio, so an index being down is never shown as an empty wallet, described in [protocol data status and recovery](protocol-data-status.md).
-- Get back to an order after closing the tab, through the order list Home keeps for this browser, described in [protocol data status and recovery](protocol-data-status.md).
-- Operate the restricted [Inscribe Control Center](admin-control-center.md).
-- Learn how Inscribe [loads fast and shows inscription media](performance-and-media.md) from Universe infrastructure.
+## What you can do
 
-Wallet-aware and private workspaces never publish balances, addresses, draft transactions, or account state in link previews.
+- Create inscriptions from text or files, single or in batches, with the full cost laid out for review before you sign.
+- Work across protocol workspaces: Ordinals, BRC-20, Runes, Stamps, SRC-20, SRC-101, Atomicals, ARC-20, Alkanes, TAP, Drops, OP_DROP, BLOCK20, DUST20, Mezcal, and OP_RETURN.
+- See everything an address holds in one portfolio that separates spendable bitcoin from asset-bearing sats.
+- Build, split, and repair transactions with per-output asset classification before you sign.
+- Recover sats locked in inscription padding and return to orders your browser started, even after closing the tab.
+
+You do not need to connect a wallet to explore the app, read live protocol data, or understand what anything costs. A wallet is asked for only when an action needs a signature.
+
+## Why you can trust it
+
+- **Your assets are not fee fuel.** No Inscribe flow will pick an output holding an inscription, Rune, or token balance to pay a network fee. Read [asset safety](asset-safety.md).
+- **A source being down is never shown as an empty wallet.** Every read names its source, and the app tells you which source did not answer instead of showing you nothing. Read [protocol data status and recovery](protocol-data-status.md).
+- **Universe-operated infrastructure.** Blockchain reads come from Universe-owned nodes and indexes, not public third-party APIs, so the data path is accountable end to end.
+- **Verifiable releases.** Every production release is built from an exact commit with recorded evidence. Read [release evidence](release-evidence.md).
+
+## Wallets and addresses
+
+Inscribe connects to UniSat, Xverse, OKX, Wizz, and the Bitcoin Universe wallet. An Ordinals wallet keeps two addresses with different jobs: a payment address for spendable bitcoin and an Ordinals address for inscriptions and token balances. Inscribe reads both, keeps them apart, and signs each action from the address that actually holds what it moves. The [asset safety](asset-safety.md) page explains why the two balances are never added together.
+
+## When something fails
+
+- A protocol index that is down or catching up is named, with its height against the chain tip and what still works, in the service status panel. See [protocol data status and recovery](protocol-data-status.md).
+- An order interrupted by a closed tab appears again on Home in the order list this browser keeps. Nothing sensitive is stored: an order id, its workflow, and when it was recorded, never a key, address, or balance.
+- Sats locked in inscription padding can be recovered from the Recover Sats tool, which validates the chain and mempool state before calling anything recoverable.
+
+## Guides
+
+| Page | What it covers |
+| --- | --- |
+| [Asset safety](asset-safety.md) | How funding outputs are chosen, and why asset-bearing outputs are protected |
+| [Protocol data status and recovery](protocol-data-status.md) | Source health states, the status panel, portfolio source truth, order continuity |
+| [Performance and media](performance-and-media.md) | How the app loads fast and renders inscription media from Universe infrastructure |
+| [Release evidence](release-evidence.md) | How releases are built, sealed, and verified |
+| [Social previews](social-previews.md) | Route-aware link previews, and what is never published in them |
+| [Inscribe Control Center](admin-control-center.md) | The restricted operations surface |
+
+## Support
+
+Found a problem or missing answer? [Open an issue](https://github.com/bitcoinuniverseio/docs-inscribe/issues) on this repository. Wallet-aware and private workspaces never publish balances, addresses, draft transactions, or account state in link previews or anywhere else.
