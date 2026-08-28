@@ -26,3 +26,7 @@ Universe Inscribe loads the workspace shell first and fills each section as its 
 ## Light, dark, and mobile
 
 Every page works in light and dark themes and from 320 px phones to large desktops. Text in tables uses fixed-width digits so numbers stay aligned while they refresh.
+
+The light theme used to cost more than it should have on phones. It is built from several thousand rules that recolour the app's dark-first styling, and those rules were written in a form that made the browser consider all of them for nearly every element on the page. Each rule now identifies its target directly, so the browser only considers the ones that can apply.
+
+The rules select exactly the same elements as before, verified across Chromium, Firefox, and Safari's engine for every one of them, so nothing about the appearance changed. What changed is how much work a phone does to arrive at it: on the pages we measured, the time the browser spent blocked on styling fell by between a third and four fifths, and total main-thread work fell by between a third and two thirds. Heavier pages such as Tools benefit most, because the cost scaled with how much was on screen.
