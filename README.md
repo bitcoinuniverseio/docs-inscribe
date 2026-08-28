@@ -23,7 +23,7 @@ You do not need to connect a wallet to explore the app, read live protocol data,
 
 ## Wallets and addresses
 
-Inscribe connects to UniSat, Xverse, OKX, Wizz, and the Bitcoin Universe wallet. An Ordinals wallet keeps two addresses with different jobs: a payment address for spendable bitcoin and an Ordinals address for inscriptions and token balances. Inscribe reads both, keeps them apart, and signs each action from the address that actually holds what it moves. The [asset safety](asset-safety.md) page explains why the two balances are never added together.
+Inscribe connects to UniSat, Xverse, OKX, Wizz, and the Bitcoin Universe wallet. If Universe Wallet is not installed, its install action and the `/wallet` shortcut open the reviewed browser-store listing. The chooser keeps network, retry, and diagnostic controls under **Connection options** so the initial choice stays focused on wallet selection. An Ordinals wallet keeps two addresses with different jobs: a payment address for spendable bitcoin and an Ordinals address for inscriptions and token balances. Inscribe reads both, keeps them apart, and signs each action from the address that actually holds what it moves. The [asset safety](asset-safety.md) page explains why the two balances are never added together.
 
 ## When something fails
 
