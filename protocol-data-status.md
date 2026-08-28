@@ -74,6 +74,33 @@ blocks, measured from the heights your browser has actually seen since you
 opened the page, and what that pace implies for the rest. Until there is enough
 measurement it says so rather than showing a completion time it cannot support.
 
+## Getting back to an order you left
+
+Access to an order is a secret Inscribe keeps in the browser's memory and never
+writes to storage. That is what stops another site reading it, and it means a
+reload lets it go. Reopening an order asks your wallet to prove it owns the
+order before any payment detail is shown, or accepts an encrypted recovery kit
+if you saved one.
+
+Home lists the orders this browser started under "Orders you started in this
+browser", newest first, with the workflow, the order reference, and how long
+ago it was recorded. Opening one takes you to its status page, where the
+ownership check above runs. You can forget an entry at any time, and an order
+that finishes drops off on its own.
+
+The list is a set of references. It holds the order id, the workflow, and the
+time this browser saw it. It never holds the order secret, an address, an
+amount, or anything about your wallet, and it is not sent anywhere. It is kept
+to the 50 most recent orders and to 30 days.
+
+Because it cannot read an order without the secret, the list does not show a
+status. It tells you the order exists and how to reach it; the status page,
+after the ownership check, tells you where the order stands.
+
+An order started before this list existed still appears, because its reference
+was already in the browser. Those entries carry no time and say so rather than
+showing an age that would be wrong.
+
 ## Safety gates
 
 Some research protocols remain visible for documentation or controlled-network work while production actions stay disabled. Universe does not turn these features on merely to make a status page appear healthy. Mainnet writes require the protocol's network profile, independent authorization, authoritative index, transaction safety checks, and a verified readiness canary.

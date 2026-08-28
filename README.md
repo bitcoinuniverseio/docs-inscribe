@@ -11,6 +11,7 @@ Public product documentation for [Universe Inscribe](https://inscribe.bitcoinuni
 - Share public pages with [route-aware link previews](social-previews.md).
 - Understand how Inscribe verifies [release artifacts](release-evidence.md) before they are published.
 - Understand live index availability, and what the app shows while a source catches up, through [protocol data status and recovery](protocol-data-status.md).
+- Get back to an order after closing the tab, through the order list Home keeps for this browser, described in [protocol data status and recovery](protocol-data-status.md).
 - Operate the restricted [Inscribe Control Center](admin-control-center.md).
 - Learn how Inscribe [loads fast and shows inscription media](performance-and-media.md) from Universe infrastructure.
 
