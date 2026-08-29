@@ -127,6 +127,22 @@ An order started before this list existed still appears, because its reference
 was already in the browser. Those entries carry no time and say so rather than
 showing an age that would be wrong.
 
+## When a release lands while your tab is open
+
+Every screen in Inscribe loads as its own file, and a release replaces those
+files. A tab that has been open across a release asks for a file that is no
+longer on the server, and the screen you clicked does not open.
+
+Inscribe recognises that and says so, rather than reporting a crash: a new
+version was released, reload to fetch it. A dropped connection produces the
+same failure and the same fix, so the message covers both.
+
+Nothing you started is lost by the reload. The orders this browser recorded are
+listed on Home when it comes back, and your wallet reconnects the way it did
+before. Reopening an order still asks your wallet to prove it owns the order,
+as it does after any reload, because the order secret is only ever held in
+memory.
+
 ## Safety gates
 
 Some research protocols remain visible for documentation or controlled-network work while production actions stay disabled. Universe does not turn these features on merely to make a status page appear healthy. Mainnet writes require the protocol's network profile, independent authorization, authoritative index, transaction safety checks, and a verified readiness canary.
