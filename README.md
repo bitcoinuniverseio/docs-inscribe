@@ -6,7 +6,7 @@
 
 ## What you can do
 
-- Create inscriptions from text or files, single or in batches, with the full cost laid out for review before you sign.
+- Create inscriptions from text or files, single or in batches, with the full cost laid out for review before you sign. Read [what a transaction costs](what-it-costs.md).
 - Work across protocol workspaces: Ordinals, BRC-20, Runes, Stamps, SRC-20, SRC-101, Atomicals, ARC-20, Alkanes, TAP, Drops, OP_DROP, BLOCK20, DUST20, Mezcal, and OP_RETURN.
 - See everything an address holds in one portfolio that separates spendable bitcoin from asset-bearing sats.
 - Build, split, and repair transactions with per-output asset classification before you sign.
@@ -36,6 +36,7 @@ Inscribe connects to UniSat, Xverse, OKX, Wizz, and the Bitcoin Universe wallet.
 | Page | What it covers |
 | --- | --- |
 | [Where things live](workspaces.md) | Every workspace, what it is for, and the three fastest ways to reach one |
+| [What a transaction costs](what-it-costs.md) | The network fee, the service fee, the inscription output, and how a fee tier is chosen |
 | [Asset safety](asset-safety.md) | How funding outputs are chosen, and why asset-bearing outputs are protected |
 | [Protocol data status and recovery](protocol-data-status.md) | Source health states, the status panel, portfolio source truth, order continuity |
 | [Performance and media](performance-and-media.md) | How the app loads fast and renders inscription media from Universe infrastructure |
