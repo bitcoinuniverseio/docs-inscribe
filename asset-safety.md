@@ -56,6 +56,24 @@ When you send bitcoin through your wallet's own send screen, your wallet chooses
 the outputs, not Inscribe. Inscribe shows a warning where it can see a risk, but
 it cannot change that selection.
 
+### The warning before a wallet payment
+
+Immediately before your wallet opens, Inscribe scans the address the payment
+will come from and lists any outputs that hold assets:
+
+> **The address you are paying from holds assets.** Your wallet chooses which
+> outputs pay for this. If it spends one of these, the asset it carries goes
+> with it, and Inscribe cannot bring it back. Pay from an address that holds
+> only bitcoin, or pick the inputs yourself in your wallet before you approve.
+
+It lists the outpoint and what each output carries. It does not stop you. The
+wallet owns the selection, you may have a good reason to pay from that address,
+and an app that blocked you would be wrong more often than it was right.
+
+Only outputs the index positively identified appear. An output with an
+incomplete, stale, or out-of-network scan is not listed, and is also never
+picked automatically by the flows above.
+
 ## A note on addresses
 
 ![One wallet, two addresses. A payment address holds spendable bitcoin and pays
