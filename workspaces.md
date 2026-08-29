@@ -11,9 +11,11 @@ sidebar:
 - The paste box on Home. Paste an address, a txid, an inscription ID or a
   ticker and Inscribe opens the workspace that handles it.
 
-Every workspace also has a matching in-app guide under **Docs & Guides**, with
-the exact field names, the diagrams, and worked examples. This page is the map;
-those guides are the detail.
+Most workspaces also have a guide under **Docs & Guides** in the app, with the
+exact field names, the diagrams, and worked examples. This page is the map;
+those guides are the detail. Seven workspaces have no guide yet: ChainBloom,
+Witness Circles, Tandem, Patina, Atomicals NFTs, Atomicals Realms, and the
+Stamps protocol tab, though Stamps inscription is covered under Create.
 
 ## Create
 
