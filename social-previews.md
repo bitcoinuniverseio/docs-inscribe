@@ -6,7 +6,7 @@ Universe Inscribe gives every public, shareable destination a designed large-car
 
 - The real section, protocol, tool, or public asset name.
 - A concise description of the destination.
-- A authoritative URL that identifies that page or asset.
+- An authoritative URL that identifies that page or asset.
 - A 1200 × 630 image from the appropriate Universe Inscribe visual family.
 - Matching Open Graph and X metadata for social and messaging clients.
 

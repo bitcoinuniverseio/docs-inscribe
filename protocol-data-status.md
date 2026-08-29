@@ -51,7 +51,7 @@ events present in the snapshot and uses committed replay receipts, so a retry
 cannot apply an acknowledged event twice. Traffic moves only after schema, row,
 health, drain, and smoke checks pass.
 
-Atomicals NFT and Realm browsing uses one unified generation so NFT, Realm, Subrealm, lookup, and resolver views agree at the same chain checkpoint. Drops and OP_DROP use one authoritative authority for artifact and token state. BLOCK-20 reads are derived from a self-hosted Bitcoin Ordinals projection rather than an unbounded legacy worker.
+Atomicals NFT and Realm browsing uses one unified generation so NFT, Realm, Subrealm, lookup, and resolver views agree at the same chain checkpoint. Drops and OP_DROP use one authoritative source for artifact and token state. BLOCK-20 reads are derived from a self-hosted Bitcoin Ordinals projection rather than an unbounded legacy worker.
 
 ## What you see while a source is catching up or down
 
