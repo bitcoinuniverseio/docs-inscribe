@@ -17,7 +17,7 @@ asks for. So the pink has three jobs and three values:
 | --- | --- | --- |
 | Brand fill | Buttons and chips that carry a white label | 4.80:1 with white |
 | Brand text | Pink words on a page background | at least 4.5:1 on every surface |
-| Brand glow | Shadows, washes and focus rings | nothing readable sits on it |
+| Brand glow | Shadows, washes and focus rings | nothing readable sits on it, so the original pink stays |
 
 Muted secondary text follows the same rule. On the dark theme it resolves to a
 tier measured against the dark panels rather than to a grey that happens to
