@@ -58,6 +58,11 @@ it cannot change that selection.
 
 ## A note on addresses
 
+![One wallet, two addresses. A payment address holds spendable bitcoin and pays
+fees. An Ordinals address holds inscriptions, rune balances and token balances.
+Inscribe reads both, signs from whichever holds what it moves, and never adds
+the two together.](assets/two-addresses.svg)
+
 An Ordinals wallet keeps two addresses: a payment address for spendable bitcoin
 and a Taproot Ordinals address for inscriptions, Runes and token balances.
 Inscribe reads both when it shows your holdings, and a transfer is signed from

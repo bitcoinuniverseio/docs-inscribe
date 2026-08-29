@@ -2,7 +2,7 @@
 
 [Universe Inscribe](https://inscribe.bitcoinuniverse.io) is one workspace for creating, minting, managing, and recovering Bitcoin-native assets, from a first inscription to advanced transaction construction.
 
-**[Open Inscribe](https://inscribe.bitcoinuniverse.io)** or start with [what the app shows you and when](protocol-data-status.md).
+**[Open Inscribe](https://inscribe.bitcoinuniverse.io)**, find your way around with [where things live](workspaces.md), or start with [what the app shows you and when](protocol-data-status.md).
 
 ## What you can do
 
@@ -35,11 +35,13 @@ Inscribe connects to UniSat, Xverse, OKX, Wizz, and the Bitcoin Universe wallet.
 
 | Page | What it covers |
 | --- | --- |
+| [Where things live](workspaces.md) | Every workspace, what it is for, and the three fastest ways to reach one |
 | [Asset safety](asset-safety.md) | How funding outputs are chosen, and why asset-bearing outputs are protected |
 | [Protocol data status and recovery](protocol-data-status.md) | Source health states, the status panel, portfolio source truth, order continuity |
 | [Performance and media](performance-and-media.md) | How the app loads fast and renders inscription media from Universe infrastructure |
 | [Release evidence](release-evidence.md) | How releases are built, sealed, and verified |
 | [Social previews](social-previews.md) | Route-aware link previews, and what is never published in them |
+| [Accessibility](accessibility.md) | Contrast, themes, display controls, and what every release is checked against |
 | [Inscribe Control Center](admin-control-center.md) | The restricted operations surface |
 
 ## Support

@@ -97,6 +97,11 @@ SRC-20 and OP_DROP balances are still real numbers from indexes that answered.
 
 ## Getting back to an order you left
 
+![The life of a commit-address order. You see the full cost, you pay the commit
+address once, Universe detects the payment and broadcasts the reveal, and the
+reveal confirms. Closing the tab after paying does not lose the order. An order
+with no payment inside one hour expires.](assets/order-lifecycle.svg)
+
 Access to an order is a secret Inscribe keeps in the browser's memory and never
 writes to storage. That is what stops another site reading it, and it means a
 reload lets it go. Reopening an order asks your wallet to prove it owns the
