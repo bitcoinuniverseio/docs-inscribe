@@ -1,12 +1,12 @@
 # Route-aware link previews
 
-Universe Inscribe gives every public, shareable destination a designed large-card preview. The title, description, canonical URL, visual family, and image identify the page being shared instead of repeating a generic Bitcoin logo.
+Universe Inscribe gives every public, shareable destination a designed large-card preview. The title, description, authoritative URL, visual family, and image identify the page being shared instead of repeating a generic Bitcoin logo.
 
 ## What a shared link includes
 
 - The real section, protocol, tool, or public asset name.
 - A concise description of the destination.
-- A canonical URL that identifies that page or asset.
+- A authoritative URL that identifies that page or asset.
 - A 1200 × 630 image from the appropriate Universe Inscribe visual family.
 - Matching Open Graph and X metadata for social and messaging clients.
 
@@ -24,4 +24,4 @@ The public preview check also tolerates brief network or gateway interruptions. 
 
 ## Sharing a page
 
-Copy the full canonical URL from the browser and paste it into the destination app. Public sections, tools, and supported public entity pages can be shared directly. Private surfaces intentionally display neutral or suppressed previews.
+Copy the full authoritative URL from the browser and paste it into the destination app. Public sections, tools, and supported public entity pages can be shared directly. Private surfaces intentionally display neutral or suppressed previews.
