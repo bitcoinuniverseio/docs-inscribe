@@ -19,7 +19,7 @@ You do not need to connect a wallet to explore the app, read live protocol data,
 - **Your assets are not fee fuel.** No Inscribe flow will pick an output holding an inscription, Rune, or token balance to pay a network fee. Read [asset safety](asset-safety.md).
 - **A source being down is never shown as an empty wallet.** Every read names its source, and the app tells you which source did not answer instead of showing you nothing. Read [protocol data status and recovery](protocol-data-status.md).
 - **Universe-operated infrastructure.** Blockchain reads come from Universe-owned nodes and indexes, not public third-party APIs, so the data path is accountable end to end.
-- **Verifiable releases.** Every production release is built from an exact commit with recorded evidence. Read [release evidence](release-evidence.md).
+- **Verifiable releases.** Every production release is built from an exact commit with recorded evidence, and the footer of every page names the build you are looking at. Read [release evidence](release-evidence.md).
 
 ## Wallets and addresses
 

@@ -3,13 +3,18 @@
 Inscribe has one workspace per job. This page lists all of them, in the order
 the sidebar shows them, so you can find the right one without opening each.
 
-If you already know what you want to do, three routes are faster than the
+If you already know what you want to do, four routes are faster than the
 sidebar:
 
 - The search box in the header.
+- The **Mint** menu beside it, which lists every workspace that creates
+  something, with a line saying what each one does.
 - The command palette, `Ctrl` + `K` on Windows and Linux, `Cmd` + `K` on macOS.
 - The paste box on Home. Paste an address, a txid, an inscription ID or a
   ticker and Inscribe opens the workspace that handles it.
+
+All four read the same list, so a workspace appears in every one of them or in
+none, described the same way.
 
 Most workspaces also have a guide under **Docs & Guides** in the app, with the
 exact field names, the diagrams, and worked examples. This page is the map;
@@ -17,11 +22,11 @@ those guides are the detail. Seven workspaces have no guide yet: ChainBloom,
 Witness Circles, Tandem, Patina, Atomicals NFTs, Atomicals Realms, and the
 Stamps protocol tab, though Stamps inscription is covered under Create.
 
-## Create
+## Workspace
 
 | Workspace | What it is for |
 | --- | --- |
-| Home | Recent orders, live fees, and the paste box that routes you |
+| Home | The task picker, then live fees and unfinished work, then the paste box. The full catalogue, the protocol map and the live mempool view sit behind **Browse all workflows** |
 | Inscribe | Eight sub-tabs for putting content on Bitcoin: Text, Files, Names, Parent/Child, Delegate, Gallery, Stamps and Data Lab |
 | Ord Studio | Full inscription-envelope control: live HTML sandbox, templates, and the ord spec fields (pointer, parent, metadata, gzip, metaprotocol) |
 | AVM Studio | Build, test, deploy, call and verify Atomicals AVM contracts, with the academy alongside the editor |
@@ -30,7 +35,7 @@ Stamps protocol tab, though Stamps inscription is covered under Create.
 | Send Inscriptions | Move inscriptions or UTXOs you already hold |
 | Search Txt | Find text inscriptions by their content |
 
-## Your account
+## Account
 
 | Workspace | What it is for |
 | --- | --- |
@@ -46,7 +51,7 @@ Mint or Transfer form, then pay through one checkout. Read
 [How the protocol tabs work](https://inscribe.bitcoinuniverse.io/docs) in the
 app before your first one.
 
-**Ordinals family**
+**Ordinals**
 
 | Workspace | What it is for |
 | --- | --- |
@@ -54,7 +59,7 @@ app before your first one.
 | tap | Deploy, mint and transfer TAP tokens, or mint DMT tokens that claim block numbers. TAP transfers take two steps |
 | block-20 | Deploy, mint and transfer BLOCK-20 tokens. Each mint embeds the latest block hash, filled in at mint time |
 
-**Atomicals family**
+**Atomicals**
 
 | Workspace | What it is for |
 | --- | --- |
@@ -62,7 +67,7 @@ app before your first one.
 | atomicals nfts | Atomicals non-fungible assets |
 | atomicals realms | Names and sub-realms in the Atomicals namespace |
 
-**Stamps family**
+**Stamps**
 
 | Workspace | What it is for |
 | --- | --- |
