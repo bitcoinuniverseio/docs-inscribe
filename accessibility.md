@@ -59,7 +59,7 @@ Settings carries display controls that change how the app renders for you:
 - **Reduced motion** removes transitions and animation. The app also honours
   your operating system's reduced-motion setting without being asked. There is
   less to remove than there used to be: the app no longer runs decorative
-  animation at all. What moves is reporting something — content loading, a
+  animation at all. What moves is reporting something: content loading, a
   panel arriving, a transaction still waiting on the chain.
 - **Density** switches between compact, comfortable and spacious spacing.
 - **Enhanced focus rings** makes the keyboard focus outline heavier.
@@ -99,12 +99,33 @@ A run fails on any of these:
 
 - an axe violation at serious or critical impact, against the WCAG 2.0, 2.1 and
   2.2 A and AA rule sets;
+- text measured below AA against the surface actually painted behind it, with
+  every see-through layer composited first;
 - an interactive target whose pointer region is under 24 by 24 pixels, which is
   the WCAG 2.2 AA floor, measured on the label where a control is bound to one;
 - horizontal overflow on the document, the body, or the main region;
 - a cumulative layout shift above 0.05 on Home, Explore, Runes, Tools, Activity
   or Portfolio;
 - a runtime error in the browser console.
+
+## Two things that were hard to see
+
+Both were found by measuring the app as it renders rather than by reading the
+code, and both are worth naming because they are the kind of thing that hides
+in plain sight.
+
+**The mempool map labelled each protocol in that protocol's own colour**, on a
+tile tinted with the same colour. Green on green measured 3.03:1. The colour
+still tells you which protocol a tile is, through the tile and its heading
+band. The name on top of it is now plain page text, so it reads at full
+strength on every tile.
+
+**The map also shrank names to fit.** On a busy map a label could reach 7.4
+pixels, and on a narrow tile the transaction figures pushed the name out
+completely, leaving something like `9.6(11.4%`. Names never go below 11 pixels
+now. A tile spends its width on the name first, then the share, then the
+volume, and a tile too narrow for a readable name carries no text at all. Its
+colour identifies it, and hovering or tapping gives you the whole thing.
 
 ## Where it falls short
 
