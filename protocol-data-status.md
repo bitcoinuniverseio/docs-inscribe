@@ -7,6 +7,7 @@ Universe Inscribe keeps protocol construction tools separate from live discovery
 - **Healthy** means the configured source is reachable, on the correct network, structurally valid, and within its freshness limit.
 - **Syncing** means a replacement index is being built and has not yet been promoted for production reads.
 - **Stale** means the last verified generation is available but is too old to be represented as current.
+- **Tip not verified** means the source answered and reported the block it reached, but the chain tip could not be read. Reads and new actions that depend on current data stay paused until the comparison is available.
 - **Unavailable** means the source cannot currently provide trustworthy data. This state is never presented as an authoritative empty result.
 - **Disabled by policy** means the protocol is intentionally unavailable because its production safety requirements have not been satisfied.
 
@@ -25,8 +26,8 @@ fallbacks.
 
 The Ord service reports the block height it has reached. `/api/health` carries
 that height, the chain tip, and the difference between them for each source, so
-the difference between "not answering" and "still reading older blocks" is
-visible rather than inferred.
+the difference between "not answering," "answering without a readable chain
+tip," and "still reading older blocks" is visible rather than inferred.
 
 Browser fee, transaction, address, and UTXO requests stay on the Inscribe
 origin. The API relays only reviewed read paths to the private Mempool service,
