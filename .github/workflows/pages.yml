@@ -23,7 +23,7 @@ jobs:
     runs-on: [self-hosted, Linux, linux-ultra]
     steps:
       - uses: actions/checkout@v4
-      - uses: bitcoinuniverseio/universe-ci-actions/universe-node-env@main
+      - uses: bitcoinuniverseio/universe-ci-actions/universe-node-env@8e24bc760556caa5ec8c7c497baaad2e9adcc912 # v1
       - name: Install
         run: npm ci
       - name: Gates that must hold on the deployed commit

@@ -5,9 +5,8 @@ on:
     branches: [develop, main]
   pull_request:
 
-# This repository is public, so pull request jobs run on the organization's
-# ephemeral hosted fleet: fork pull requests must never reach the persistent
-# self-hosted machines.
+# This repository is public. Fork pull requests must never reach the
+# organisation-owned machines.
 permissions:
   contents: read
 
@@ -17,12 +16,14 @@ concurrency:
 
 jobs:
   checks:
-    runs-on: runs-on=${{ github.run_id }}-checks/runner=universe-hosted/cpu=2+8/env=production
+    # GitHub evaluates this condition before it assigns the job.
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: [self-hosted, Linux, X64, linux-ultra, playwright-chromium]
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: bitcoinuniverseio/universe-ci-actions/universe-node-env@main
+      - uses: bitcoinuniverseio/universe-ci-actions/universe-node-env@8e24bc760556caa5ec8c7c497baaad2e9adcc912 # v1
       - name: Install
         run: npm ci
       - name: Copy guard (long dash, banned word, marketing phrases)
@@ -44,7 +45,7 @@ jobs:
       - name: Machine-readable index exists
         run: test -s dist/llms.txt
       - name: Install a browser for the accessibility audit
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install chromium
       - name: Serve the built site
         run: npx astro preview --port 4323 &
       - name: Accessibility and horizontal overflow, every page, both themes
