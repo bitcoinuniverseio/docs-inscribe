@@ -1,0 +1,86 @@
+---
+title: Stamps family
+description: Bitcoin Stamps, SRC-20 and SRC-101. Data encoded into the UTXO set so it cannot be pruned, token deploys and mints, and permanent .sats and .btc domain names.
+protocols: [stamps, src20, src101]
+operations: [inscribe, deploy, mint, transfer]
+provenance:
+  owner: bitcoinuniverseio/inscribe
+  chain: Bitcoin
+  network: mainnet
+  release: Continuous, from a verified commit
+  lifecycle: All three are released and ungated
+  lastVerified: 2026-09-01
+---
+
+import ProtocolMatrix from '@components/ProtocolMatrix.astro';
+
+The Stamps family encodes data directly into the UTXO set rather than into witness data.
+That is the whole point of it: UTXO data cannot be pruned by a node, so the content cannot
+quietly stop being available.
+
+It is also why Stamps cost more per byte than an equivalent Ordinals inscription. You are
+paying for permanence in the most expensive place on Bitcoin.
+
+<ProtocolMatrix family="stamps" />
+
+## Bitcoin Stamps
+
+Images encoded straight into the UTXO set.
+
+| Property | Detail |
+| --- | --- |
+| Payload limit | 65,529 bytes |
+| Accepted types | One image: PNG, JPG, WEBP or GIF |
+| Operations | inscribe, transfer |
+| Address roles | Payment address only |
+
+Stamps can be created either from the **Stamps** sub-tab inside the Inscribe workspace or
+from the dedicated `/stamps` workspace, which also inspects existing stamps and shows a
+portfolio view.
+
+Workspace: `/stamps`. Released and ungated.
+
+## SRC-20
+
+Tokens in the Stamps family. Deploy, mint and transfer.
+
+The distinctive mechanic: **data lives in 330-satoshi P2WSH outputs**, and your wallet
+signs pre-built transactions rather than making a simple send. Expect the wallet screen to
+show a constructed transaction with several small outputs, not a single payment.
+
+330 satoshis is the dust threshold for P2WSH, so these outputs are as small as the network
+will relay.
+
+Workspace: `/src20`. Released and ungated.
+
+## SRC-101
+
+Permanent Bitcoin domain names ending in `.sats` or `.btc`.
+
+| Property | Detail |
+| --- | --- |
+| Operations | mint, transfer |
+| Funding | One signature |
+| Extras | Availability can be checked one name at a time or in a batch before you commit |
+
+A registration is permanent, so check the spelling of the name with more care than you
+think it needs.
+
+Workspace: `/src101`. Released and ungated.
+
+## Choosing between Stamps and Ordinals for an image
+
+| Property | Stamps | Ordinals |
+| --- | --- | --- |
+| Where the data lives | The UTXO set | Witness data |
+| Can a node prune it? | No | Yes, in principle |
+| Cost per byte | Higher | Lower |
+| Size ceiling | 65,529 bytes | No protocol cap, 4 MB upload limit in Inscribe |
+
+Use Stamps when unprunable permanence is the point. Use Ordinals otherwise.
+
+## Related
+
+- [Inscribe a file](/docs-inscribe/create/inscribe-a-file/)
+- [Deploy a token](/docs-inscribe/create/deploy-a-token/)
+- [Coverage matrix](/docs-inscribe/protocols/coverage/)

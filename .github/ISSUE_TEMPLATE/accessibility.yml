@@ -1,0 +1,35 @@
+name: Accessibility barrier
+description: Something on this site or in the app blocked you
+labels: [accessibility]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Say what you were doing and what you browse with. That is more useful
+        than a rule number.
+
+        Automated checks catch roughly a third to a half of real barriers, so a
+        report like this fills a genuine gap.
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Where
+      options:
+        - This documentation site
+        - The Inscribe application
+        - Both
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+    validations:
+      required: true
+  - type: input
+    id: tools
+    attributes:
+      label: What you browse with
+      placeholder: Firefox with NVDA, Safari with VoiceOver, keyboard only, 200% zoom
+    validations:
+      required: false
