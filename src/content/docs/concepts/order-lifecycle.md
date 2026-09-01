@@ -17,15 +17,12 @@ lose your money.
 
 ## The path, end to end
 
-<figure class="diagram" tabindex="0" role="group" aria-labelledby="life-fig-cap">
+<figure class="diagram" tabindex="0" aria-labelledby="life-fig-cap">
 <svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="life-t life-d">
   <title id="life-t">An Inscribe order from quote to wallet</title>
   <desc id="life-d">Six stages in order. First, Inscribe quotes the job and gives you one address to pay. Second, you pay that address, which is your only wallet signature for a typical order. Third, Universe watches the address and sees the payment, accepting it from the mempool without waiting for a confirmation. Fourth, Universe signs and broadcasts the reveal transaction using a key held only for this order. Fifth, a miner confirms the reveal. Sixth, the indexer and your wallet agree the asset exists, which is the only point Inscribe calls the order done. You act only in the first two stages. The status shown is Awaiting payment for stages one and two, Creation in progress for stages three to five, and Wallet visible at stage six.</desc>
-
   <text x="0" y="18" font-size="17" font-weight="700" fill="var(--d-ink)">Commit and reveal: two transactions, one signature from you</text>
-
   <line x1="46" y1="120" x2="754" y2="120" stroke="var(--d-rule)" stroke-width="2"/>
-
   <!-- Stage 1 -->
   <circle cx="46" cy="120" r="17" fill="var(--d-accent-fill)"/>
   <text x="46" y="126" text-anchor="middle" font-size="14" font-weight="700" font-family="monospace" fill="var(--d-accent-ink)">1</text>
@@ -33,7 +30,6 @@ lose your money.
   <text x="46" y="86" text-anchor="middle" font-size="11.5" fill="var(--d-muted)">One address,</text>
   <text x="46" y="100" text-anchor="middle" font-size="11.5" fill="var(--d-muted)">one amount</text>
   <text x="46" y="160" text-anchor="middle" font-size="11" font-weight="700" fill="var(--d-accent)">YOU</text>
-
   <!-- Stage 2 -->
   <circle cx="188" cy="120" r="17" fill="var(--d-accent-fill)"/>
   <text x="188" y="126" text-anchor="middle" font-size="14" font-weight="700" font-family="monospace" fill="var(--d-accent-ink)">2</text>
@@ -41,7 +37,6 @@ lose your money.
   <text x="188" y="86" text-anchor="middle" font-size="11.5" fill="var(--d-muted)">Your wallet opens</text>
   <text x="188" y="100" text-anchor="middle" font-size="11.5" fill="var(--d-muted)">once</text>
   <text x="188" y="160" text-anchor="middle" font-size="11" font-weight="700" fill="var(--d-accent)">YOU SIGN</text>
-
   <!-- Stage 3 -->
   <circle cx="330" cy="120" r="17" fill="var(--d-panel)" stroke="var(--d-rule)" stroke-width="2"/>
   <text x="330" y="126" text-anchor="middle" font-size="14" font-weight="700" font-family="monospace" fill="var(--d-ink)">3</text>
@@ -49,7 +44,6 @@ lose your money.
   <text x="330" y="86" text-anchor="middle" font-size="11.5" fill="var(--d-muted)">Checked every</text>
   <text x="330" y="100" text-anchor="middle" font-size="11.5" fill="var(--d-muted)">10 seconds</text>
   <text x="330" y="160" text-anchor="middle" font-size="11" fill="var(--d-muted)">UNIVERSE</text>
-
   <!-- Stage 4 -->
   <circle cx="472" cy="120" r="17" fill="var(--d-panel)" stroke="var(--d-rule)" stroke-width="2"/>
   <text x="472" y="126" text-anchor="middle" font-size="14" font-weight="700" font-family="monospace" fill="var(--d-ink)">4</text>
@@ -57,7 +51,6 @@ lose your money.
   <text x="472" y="86" text-anchor="middle" font-size="11.5" fill="var(--d-muted)">Signed with this</text>
   <text x="472" y="100" text-anchor="middle" font-size="11.5" fill="var(--d-muted)">order's own key</text>
   <text x="472" y="160" text-anchor="middle" font-size="11" fill="var(--d-muted)">UNIVERSE</text>
-
   <!-- Stage 5 -->
   <circle cx="614" cy="120" r="17" fill="var(--d-panel)" stroke="var(--d-rule)" stroke-width="2"/>
   <text x="614" y="126" text-anchor="middle" font-size="14" font-weight="700" font-family="monospace" fill="var(--d-ink)">5</text>
@@ -65,7 +58,6 @@ lose your money.
   <text x="614" y="86" text-anchor="middle" font-size="11.5" fill="var(--d-muted)">A miner includes</text>
   <text x="614" y="100" text-anchor="middle" font-size="11.5" fill="var(--d-muted)">the reveal</text>
   <text x="614" y="160" text-anchor="middle" font-size="11" fill="var(--d-muted)">BITCOIN</text>
-
   <!-- Stage 6 -->
   <circle cx="754" cy="120" r="17" fill="var(--d-ok)"/>
   <text x="754" y="126" text-anchor="middle" font-size="14" font-weight="700" font-family="monospace" fill="var(--d-accent-ink)">6</text>
@@ -73,20 +65,15 @@ lose your money.
   <text x="754" y="86" text-anchor="middle" font-size="11.5" fill="var(--d-muted)">Indexer and wallet</text>
   <text x="754" y="100" text-anchor="middle" font-size="11.5" fill="var(--d-muted)">both agree</text>
   <text x="754" y="160" text-anchor="middle" font-size="11" fill="var(--d-muted)">PROOF</text>
-
   <!-- Phase band -->
   <text x="0" y="204" font-size="12" font-weight="700" fill="var(--d-muted)">WHAT THE STATUS SAYS</text>
-
   <rect x="0" y="216" width="256" height="42" rx="5" fill="var(--d-panel)" stroke="var(--d-rule)" stroke-width="1.5"/>
   <text x="128" y="242" text-anchor="middle" font-size="13" font-weight="700" fill="var(--d-ink)">Awaiting payment</text>
-
   <rect x="264" y="216" width="416" height="42" rx="5" fill="var(--d-panel)" stroke="var(--d-rule)" stroke-width="1.5"/>
   <text x="472" y="236" text-anchor="middle" font-size="13" font-weight="700" fill="var(--d-ink)">Creation in progress</text>
   <text x="472" y="251" text-anchor="middle" font-size="11" fill="var(--d-muted)">waiting for chain, indexer, and wallet evidence</text>
-
   <rect x="688" y="216" width="112" height="42" rx="5" fill="var(--d-panel)" stroke="var(--d-ok)" stroke-width="2"/>
   <text x="744" y="242" text-anchor="middle" font-size="13" font-weight="700" fill="var(--d-ok)">Wallet visible</text>
-
   <!-- Notes -->
   <rect x="0" y="286" width="386" height="140" rx="6" fill="var(--d-panel)" stroke="var(--d-rule)" stroke-width="1.5"/>
   <text x="18" y="310" font-size="12" font-weight="700" fill="var(--d-accent)">CLOSING THE TAB AFTER STAGE 2</text>
@@ -96,7 +83,6 @@ lose your money.
   <text x="18" y="383" font-size="12.5" fill="var(--d-muted)">this browser started, and reopening one asks</text>
   <text x="18" y="400" font-size="12.5" fill="var(--d-muted)">your wallet to prove it owns the order before</text>
   <text x="18" y="417" font-size="12.5" fill="var(--d-muted)">any payment detail is shown.</text>
-
   <rect x="402" y="286" width="398" height="140" rx="6" fill="var(--d-panel)" stroke="var(--d-rule)" stroke-width="1.5"/>
   <text x="420" y="310" font-size="12" font-weight="700" fill="var(--d-accent)">THE HOUR ON THE SCREEN</text>
   <text x="420" y="332" font-size="12.5" fill="var(--d-muted)">is the life of the price, not the life of the</text>
