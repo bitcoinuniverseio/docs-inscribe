@@ -1,0 +1,78 @@
+---
+title: Other protocols
+description: DUST-20, ChainBloom and CAT-20, plus the workspaces in Inscribe that are not finished and are not documented as usable.
+protocols: [dust20, chainbloom, cat20]
+operations: [deploy, mint, inscribe, transfer]
+provenance:
+  owner: bitcoinuniverseio/inscribe
+  chain: Bitcoin
+  network: mainnet
+  release: Continuous, from a verified commit
+  lifecycle: DUST-20 is released. ChainBloom is released and a deployment must switch it on. CAT-20 is not released
+  lastVerified: 2026-09-01
+---
+
+import ProtocolMatrix from '@components/ProtocolMatrix.astro';
+
+Protocols that do not sit in one of the larger families.
+
+<ProtocolMatrix family="other" />
+
+## DUST-20
+
+Deploy, mint and transfer, with one idea at its centre: **the mint output satoshi value
+encodes the amount**. The value of the output is not padding, it is data.
+
+That makes the output size a protocol matter rather than a preference, so do not treat the
+546 and 330 satoshi choices here the way you would on an ordinary inscription.
+
+Workspace: `/dust20`. Released.
+
+## ChainBloom
+
+**Inscribe only.** A shared world grown one contribution at a time, where each contribution
+is an inscription.
+
+ChainBloom is one of the flows that chooses funding outputs on your behalf, so its fee
+inputs pass through the asset screening described in
+[asset safety](/docs-inscribe/concepts/asset-safety/).
+
+Workspace: `/chainbloom`. Released, and a deployment must switch it on.
+
+## CAT-20
+
+**Not released.** The production contract classifies CAT-20 as incomplete, and this is the
+one entry on the page where that has visible consequences you should plan around.
+
+CAT-20 transaction features **stay fail-closed** when the required Fractal data and signing
+dependencies are unavailable. Market discovery reports that dependency state directly
+rather than returning an empty market that would look like an answer.
+
+The workspace explores CAT-20 on Fractal, checks balances and prepares covenant mints, and
+you pick the network yourself. Treat all of it as unfinished.
+
+Workspace: `/cat20`. Not released.
+
+## Workspaces that are not finished
+
+Four more workspaces exist in the app and are classified as incomplete by the production
+contract. They are listed here so their absence from the rest of this site is a stated
+decision rather than an oversight:
+
+| Workspace | What it is meant to become |
+| --- | --- |
+| **Witness Circles** | Taproot outputs a group authorises together |
+| **Tandem** | Building and changing one object together, with a signed record of each change |
+| **Patina** | How long a value-carrying output has stayed where it is |
+| **Drop Pacts** | Designing and launching Drop Pact agreements, with a resumable tutorial |
+
+None of these are documented on this site as things you can rely on. Tandem does have one
+effect worth knowing even so: **Tandem state carriers cannot fund ordinary sends, mints,
+replacements or recovery plans at all**, which is a firmer restriction than the usual asset
+screening applies.
+
+## Related
+
+- [Status and lifecycle](/docs-inscribe/start/status/)
+- [Coverage matrix](/docs-inscribe/protocols/coverage/)
+- [Asset safety](/docs-inscribe/concepts/asset-safety/)

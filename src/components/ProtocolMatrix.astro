@@ -1,0 +1,137 @@
+---
+// The coverage matrix, rendered from data rather than typed.
+//
+// Every operation in this table comes from the Core protocol registry, and
+// every workspace column comes from a source check against the shipped app.
+// Neither is editable from a page. If a protocol is missing an operation
+// here, the registry does not record Inscribe implementing it.
+import coverage from '../data/protocol-coverage.json';
+import workspaces from '../data/workspaces.json';
+
+interface Props {
+  family?: string;
+}
+
+const { family } = Astro.props;
+
+const OPERATION_ORDER = ['inscribe', 'deploy', 'etch', 'mint', 'transfer'];
+
+const rows = coverage.inscribable
+  .filter((p) => family === undefined || p.family === family)
+  .map((p) => ({
+    ...p,
+    ops: OPERATION_ORDER.filter((op) => p.creation.includes(op)),
+    ws: workspaces.protocols[p.id] ?? null,
+  }));
+
+const caption =
+  family === undefined
+    ? `${rows.length} protocols, every creation operation Inscribe implements`
+    : `${rows.length} protocols in this family`;
+---
+
+<div class="table-scroll" tabindex="0" role="region" aria-label={caption}>
+  <table>
+    <caption class="sr-only">{caption}</caption>
+    <thead>
+      <tr>
+        <th scope="col">Protocol</th>
+        <th scope="col">Chain</th>
+        <th scope="col">Creation operations</th>
+        <th scope="col">Released</th>
+        <th scope="col">Workspace</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        rows.map((p) => (
+          <tr>
+            <th scope="row">
+              {p.name}
+              {p.aliases.length > 0 && <span class="alias">{p.aliases.join(', ')}</span>}
+            </th>
+            <td>{p.chain === 'bitcoin' ? 'Bitcoin' : 'Dogecoin'}</td>
+            <td>
+              {p.ops.map((op) => (
+                <span class="op">{op}</span>
+              ))}
+            </td>
+            <td>
+              {p.ws.production === 'core' && <span class="chip chip-yes">Released, ungated</span>}
+              {p.ws.production === 'enabled' && <span class="chip chip-yes">Released</span>}
+              {p.ws.production === 'incomplete' && <span class="chip chip-no">Not released</span>}
+              {p.ws.production === 'not-implemented' && <span class="chip chip-read">Read-only in Inscribe</span>}
+              {p.ws.gated === true && p.ws.production !== 'incomplete' && (
+                <span class="chip chip-gated">A build must switch it on</span>
+              )}
+            </td>
+            <td>
+              {p.ws.route === null ? (
+                <span class="none">None</span>
+              ) : (
+                <>
+                  <code>{p.ws.route}</code>
+                  {p.ws.sharedWith !== undefined && <span class="shared">inside {p.ws.workspace}</span>}
+                </>
+              )}
+            </td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .alias {
+    display: block;
+    font-weight: 400;
+    font-size: max(0.6875rem, 0.75em);
+    color: var(--bench-ink-muted);
+    font-family: var(--sl-font-mono);
+  }
+
+  .op {
+    display: inline-block;
+    margin: 0 0.25rem 0.25rem 0;
+    padding: 0.05rem 0.45rem;
+    border: 1px solid var(--bench-accent-edge);
+    border-radius: 3px;
+    background: var(--bench-accent-wash);
+    color: var(--bench-accent);
+    font-family: var(--sl-font-mono);
+    font-size: max(0.6875rem, 0.78em);
+    font-weight: 600;
+  }
+
+  td code {
+    white-space: nowrap;
+  }
+
+  .chip {
+    margin: 0 0.35rem 0.25rem 0;
+  }
+
+  .none {
+    color: var(--bench-ink-muted);
+  }
+
+  .shared {
+    display: block;
+    margin-top: 0.2rem;
+    font-size: max(0.6875rem, 0.75em);
+    color: var(--bench-ink-muted);
+  }
+</style>
