@@ -18,6 +18,18 @@ Status labels distinguish healthy, syncing, degraded, unavailable, policy-disabl
 and not-configured states. A successful HTTP response alone is not treated as
 proof that a chain source or indexer is current.
 
+## One view, three applications
+
+The Control Center combines state from Inscribe, Core, and the Explorer. Each
+application still owns its database, business rules, and operations. Inscribe
+requests typed data from private adapters and checks the shared contract before
+showing it. If an adapter is missing, stale, or uses a different contract
+version, the source is shown as unavailable instead of being guessed.
+
+Core and Explorer adapter routes are private. Signed service requests bind the
+method, route, query, body, time, and one-use nonce. Browser sessions never
+receive adapter keys and cannot call an adapter directly.
+
 The Control Center also compares the Bitcoin node and index heights. It reports
 the index as syncing when the node is still rebuilding and sits behind the index,
 instead of showing a false healthy state. A short index delay behind a current
@@ -33,6 +45,12 @@ Read-only and safe refresh actions can run directly. State-changing actions show
 a preview before execution. High-risk recovery actions require a second explicit
 confirmation. Every execution uses a unique action key and writes an audit record
 before the underlying operation begins.
+
+The Control Center cannot run shell commands, send arbitrary database queries,
+read server file paths, or call an unrestricted RPC method. It can start only the
+versioned operations published by the application that owns the work. A run keeps
+one correlation identifier across the Control Center and the owning application,
+so its result and audit trail can be checked together.
 
 ## Access and privacy
 
