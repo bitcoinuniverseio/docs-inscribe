@@ -1,0 +1,82 @@
+---
+title: Atomicals family
+description: Atomicals, ARC-20 coloured sats, Atomicals NFTs, Realms and Subrealms, and AVM Studio. What is released, what a deployment must switch on, and what is not finished.
+protocols: [atomicals, arc20, atomicals_nft, realms, subrealms, avm]
+operations: [deploy, mint, transfer]
+provenance:
+  owner: bitcoinuniverseio/inscribe
+  chain: Bitcoin
+  network: mainnet
+  release: Continuous, from a verified commit
+  lifecycle: Released, and a deployment must switch these on. AVM is not released
+  lastVerified: 2026-09-01
+---
+
+import ProtocolMatrix from '@components/ProtocolMatrix.astro';
+
+Atomicals is a family rather than a single protocol: coloured satoshis, non-fungible
+assets, a namespace, and a virtual machine.
+
+**Read the release column carefully on this page.** Every workspace here is behind a
+deployment gate, and one of them is not finished.
+
+<ProtocolMatrix family="atomicals" />
+
+## What "a deployment must switch it on" means here
+
+A gated workspace stays visible and reachable by its URL when its flag is off. What stops
+is reading, writing, payment and order recovery, so the page can be open and still refuse
+to act. It says which it is.
+
+The workspace stays visible on purpose: a missing workspace looks like a product that never
+had the feature.
+
+## ARC-20
+
+Coloured-sat tokens. Deploy, mint and transfer.
+
+The mechanic that makes ARC-20 different: **the satoshis are the tokens**. A balance is
+carried by the output value itself rather than by a separate ledger entry.
+
+The practical consequence for you is at signing time. **ARC-20 signs directly with your
+wallet and has no payment-address step**, so expect a transaction to approve rather than a
+commit address to pay.
+
+Workspace: `/arc20`. Released, and a deployment must switch it on.
+
+## Atomicals and Atomicals NFTs
+
+`/atomicals` carries the general operations panel. `/atomicals-nfts` handles non-fungible
+assets, with explore, portfolio, transfer and mint, plus modification and event operations.
+
+The production contract records the Atomicals family through its NFT and Realms entries
+rather than a general Atomicals one.
+
+Both are released, and a deployment must switch them on.
+
+## Realms and Subrealms
+
+Names in the Atomicals namespace. A realm is a top-level name; a subrealm sits under one.
+
+**Subrealms have no workspace of their own.** They are claimed and paid for inside the
+Realms workspace, which runs a claim and then a payment as two parts of one sequence rather
+than a single mint.
+
+Workspace: `/atomicals-realms` for both. Released, and a deployment must switch them on.
+
+## AVM Studio
+
+**Not released.** The production contract classifies AVM as incomplete.
+
+The workspace is reachable, and its contract editor and academy are usable for learning and
+experimentation. **Deploying a contract is not a released operation**, and the registry
+records `deploy` as the only operation for AVM, so there is nothing here you should plan a
+launch around.
+
+Workspace: `/avm-studio`. Not released.
+
+## Related
+
+- [Status and lifecycle](/docs-inscribe/start/status/), for what each release state means
+- [Coverage matrix](/docs-inscribe/protocols/coverage/)
+- [Mint a token](/docs-inscribe/create/mint-a-token/)
