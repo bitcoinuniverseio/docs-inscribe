@@ -1,0 +1,83 @@
+---
+title: OP_RETURN family
+description: OP-20 tokens and OP Names, OP_RETURN inscriptions, OP_DROP and Drops. The one protocol in Inscribe that implements all four creation operations.
+protocols: [op_return, op_drop, drops]
+operations: [inscribe, deploy, mint, transfer]
+provenance:
+  owner: bitcoinuniverseio/inscribe
+  chain: Bitcoin
+  network: mainnet
+  release: Continuous, from a verified commit
+  lifecycle: OP_RETURN inscriptions and OP-20 are released and ungated. Drops and OP_DROP are released, and a deployment must switch them on
+  lastVerified: 2026-09-01
+---
+
+import ProtocolMatrix from '@components/ProtocolMatrix.astro';
+
+Protocols that write their data into an OP_RETURN output or an OP_DROP script rather than
+into witness data or the UTXO set.
+
+<ProtocolMatrix family="op-return" />
+
+## OP-20 and OP_RETURN inscriptions
+
+One workspace, `/op-return`, covers two things the production contract tracks separately:
+free-form OP_RETURN inscriptions, and OP-20 tokens.
+
+**OP-20 is the only protocol in Inscribe with all four creation operations**: `deploy`,
+`mint`, `inscribe` and `transfer`. The same workspace also registers and transfers **OP
+Names**.
+
+| Property | Detail |
+| --- | --- |
+| Payload limit | 34,000 bytes, well above the 79-byte standard relay reference |
+| File path limit | 25,000 bytes |
+| Operations | inscribe, deploy, mint, transfer |
+| Service fee note | An `op_names` batch pays the flat 1,500 satoshis **once per name**, not once per order |
+
+That service fee behaviour is the exception worth remembering: for most flows the fee is
+charged once per order, and for an OP Names batch it is per name.
+
+Workspace: `/op-return`. Released and ungated.
+
+## Drops
+
+Confirmed data artifacts with stable IDs and on-chain proof.
+
+| Property | Detail |
+| --- | --- |
+| Payload limit | **256 bytes.** Drops are deliberately small |
+| Operations | inscribe, transfer |
+| The `/drops` workspace | Browsing verified Drops, read-only |
+| Where creation happens | Through the Inscribe workspace |
+
+**Drop Pacts** is a related surface for designing and launching Drop Pact agreements, with
+a resumable tutorial.
+
+Drops carries an unusual verification requirement: it needs **two independent
+Universe-operated Bitcoin processes to agree on the finalized block hash**. If either
+verifier is unavailable or they disagree, readiness stays unavailable rather than falling
+back to a public blockchain provider.
+
+Workspace: `/drops`. Released, and a deployment must switch it on.
+
+## OP_DROP
+
+Deploy, mint and transfer, where every operation is a compact JSON inscription and funding
+is **wallet-only**.
+
+OP_DROP appears repeatedly in the asset-safety screening, because several of its flows
+choose funding outputs on your behalf: order funding, settlement fee inputs, and ownership
+receipt inputs all pass through the classification described in
+[asset safety](/docs-inscribe/concepts/asset-safety/).
+
+Its service fee is quoted as its own total rather than as the flat amount.
+
+Workspace: `/op-drop`. Released, and a deployment must switch it on.
+
+## Related
+
+- [Deploy a token](/docs-inscribe/create/deploy-a-token/)
+- [Inscribe text](/docs-inscribe/create/inscribe-text/)
+- [Asset safety](/docs-inscribe/concepts/asset-safety/)
+- [Coverage matrix](/docs-inscribe/protocols/coverage/)

@@ -1,0 +1,225 @@
+{
+  "$comment": "What the shipped app actually exposes, checked against the Inscribe product source. protocol-coverage.json records which creation operations the Core protocol registry says Inscribe implements. This file records three further facts the registry does not carry: whether the protocol has a workspace of its own, what the product's own production contract classifies it as, and whether a deployment must switch it on. scripts/check-capability-truth.mjs fails the build if the two files disagree.",
+  "verifiedAgainst": {
+    "repository": "bitcoinuniverseio/inscribe",
+    "sourcePaths": [
+      "backend/data/protocol-operation-matrix.json",
+      "frontend/src/App.tsx",
+      "frontend/src/utils/dashboardRoutes.ts",
+      "frontend/src/features/deployment/deploymentFeatures.ts"
+    ],
+    "productionContractUpdated": "2026-08-10",
+    "verifiedOn": "2026-09-01"
+  },
+  "productionStates": {
+    "core": "Released, ungated, and covered by the release health and smoke contract. If one of these is broken, the release is broken.",
+    "enabled": "Released and intended for production. A deployment still decides whether to switch it on, so a given build may have it off.",
+    "incomplete": "Not released. The work exists in the codebase and is not finished. Treat it as unavailable, whatever a build flag says.",
+    "not-implemented": "Inscribe has no creation workspace for this protocol at all. It appears only in read-only surfaces."
+  },
+  "gatingNote": "A gated workspace stays visible and reachable by its URL when its deployment flag is off. What stops is reading, writing, payment and order recovery, so a page can be open and still refuse to act. Two surfaces are the exception and return the 404 page instead: Recover Sats, and the Dogecoin BlockPad.",
+  "protocols": {
+    "ordinals": {
+      "route": "/inscribe",
+      "workspace": "Inscribe",
+      "production": "core",
+      "gated": false,
+      "contractEntries": ["ordinals-inscriptions", "ordinals-collections"]
+    },
+    "stamps": {
+      "route": "/stamps",
+      "workspace": "Stamps",
+      "production": "core",
+      "gated": false,
+      "contractEntries": ["stamps"]
+    },
+    "brc20": {
+      "route": "/brc20",
+      "workspace": "brc-20",
+      "production": "core",
+      "gated": false,
+      "contractEntries": ["brc20"]
+    },
+    "src20": {
+      "route": "/src20",
+      "workspace": "src-20",
+      "production": "core",
+      "gated": false,
+      "contractEntries": ["src20"]
+    },
+    "src101": {
+      "route": "/src101",
+      "workspace": "src-101",
+      "production": "core",
+      "gated": false,
+      "contractEntries": ["src101"]
+    },
+    "runes": {
+      "route": "/runes",
+      "workspace": "Runes",
+      "production": "core",
+      "gated": false,
+      "contractEntries": ["runes"]
+    },
+    "mezcal": {
+      "route": "/mezcal",
+      "workspace": "Mezcal",
+      "production": "core",
+      "gated": false,
+      "contractEntries": ["mezcal"]
+    },
+    "tap": {
+      "route": "/tap",
+      "workspace": "TAP",
+      "production": "core",
+      "gated": false,
+      "contractEntries": ["tap"]
+    },
+    "op_return": {
+      "route": "/op-return",
+      "workspace": "OP_RETURN and OP-20",
+      "production": "core",
+      "gated": false,
+      "contractEntries": ["op-return-inscriptions", "op20"]
+    },
+
+    "alkanes": {
+      "route": "/alkanes",
+      "workspace": "Alkanes",
+      "production": "enabled",
+      "gated": false,
+      "contractEntries": ["alkanes"]
+    },
+    "block20": {
+      "route": "/block20",
+      "workspace": "BLOCK-20",
+      "production": "enabled",
+      "gated": false,
+      "contractEntries": ["block20"]
+    },
+    "dust20": {
+      "route": "/dust20",
+      "workspace": "DUST-20",
+      "production": "enabled",
+      "gated": false,
+      "contractEntries": ["dust20"]
+    },
+    "arc20": {
+      "route": "/arc20",
+      "workspace": "arc-20",
+      "production": "enabled",
+      "gated": true,
+      "contractEntries": ["arc20"]
+    },
+    "atomicals": {
+      "route": "/atomicals",
+      "workspace": "Atomicals",
+      "production": "enabled",
+      "gated": true,
+      "contractEntries": ["atomicals-nfts", "atomicals-realms"],
+      "note": "The production contract records the Atomicals family through its NFT and Realms entries rather than a general Atomicals one."
+    },
+    "atomicals_nft": {
+      "route": "/atomicals-nfts",
+      "workspace": "Atomicals NFTs",
+      "production": "enabled",
+      "gated": true,
+      "contractEntries": ["atomicals-nfts"]
+    },
+    "realms": {
+      "route": "/atomicals-realms",
+      "workspace": "Atomicals Realms",
+      "production": "enabled",
+      "gated": true,
+      "contractEntries": ["atomicals-realms"]
+    },
+    "subrealms": {
+      "route": "/atomicals-realms",
+      "workspace": "Atomicals Realms",
+      "production": "enabled",
+      "gated": true,
+      "sharedWith": "realms",
+      "contractEntries": ["atomicals-realms"],
+      "note": "Subrealms have no workspace of their own. They are claimed and paid for inside the Realms workspace, which is where the production contract records those operations."
+    },
+    "drops": {
+      "route": "/drops",
+      "workspace": "Drops",
+      "production": "enabled",
+      "gated": true,
+      "contractEntries": ["drops", "drop-pacts"]
+    },
+    "op_drop": {
+      "route": "/op-drop",
+      "workspace": "op-drop",
+      "production": "enabled",
+      "gated": true,
+      "contractEntries": ["op-drop"]
+    },
+    "chainbloom": {
+      "route": "/chainbloom",
+      "workspace": "ChainBloom",
+      "production": "enabled",
+      "gated": true,
+      "contractEntries": ["chainbloom"]
+    },
+    "tap_doge": {
+      "route": "/tap-doge",
+      "workspace": "TAP on Doge",
+      "production": "enabled",
+      "gated": true,
+      "contractEntries": ["doge-tap"]
+    },
+    "doginals": {
+      "route": "/tap-doge",
+      "workspace": "TAP on Doge",
+      "production": "enabled",
+      "gated": true,
+      "sharedWith": "tap_doge",
+      "contractEntries": ["doginals"],
+      "note": "Doginals have no workspace of their own. Their orders run through the Dogecoin feature that also serves TAP on Doge."
+    },
+
+    "cat20": {
+      "route": "/cat20",
+      "workspace": "CAT-20",
+      "production": "incomplete",
+      "gated": true,
+      "contractEntries": ["cat20"],
+      "note": "Not released. The workspace is reachable and its transaction features stay fail-closed while the required Fractal data and signing dependencies are unavailable."
+    },
+    "avm": {
+      "route": "/avm-studio",
+      "workspace": "AVM Studio",
+      "production": "incomplete",
+      "gated": true,
+      "contractEntries": ["avm"],
+      "note": "Not released. The contract editor and academy are reachable, but deploying a contract is not a released operation."
+    },
+
+    "bitmap": {
+      "route": null,
+      "workspace": null,
+      "production": "not-implemented",
+      "gated": false,
+      "contractEntries": [],
+      "note": "No creation workspace. Bitmap appears in Inscribe only in read-only surfaces: portfolio classification, inscription search, and the asset inventory for an output."
+    },
+    "unat": {
+      "route": null,
+      "workspace": null,
+      "production": "not-implemented",
+      "gated": false,
+      "contractEntries": [],
+      "note": "No creation workspace. UNAT appears in Inscribe only in read-only surfaces: portfolio classification, inscription search, and the asset inventory for an output."
+    },
+    "drc20": {
+      "route": null,
+      "workspace": null,
+      "production": "not-implemented",
+      "gated": false,
+      "contractEntries": [],
+      "note": "No creation workspace. DRC-20 appears in Inscribe only in read-only surfaces: portfolio classification and the asset inventory for an output."
+    }
+  }
+}

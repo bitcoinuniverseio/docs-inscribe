@@ -1,0 +1,23 @@
+name: Something is missing
+description: A page you looked for does not exist
+labels: [documentation]
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: What were you trying to do
+    validations:
+      required: true
+  - type: textarea
+    id: looked
+    attributes:
+      label: Where did you look
+      description: Which pages or search terms you tried. This helps as much as the request itself.
+    validations:
+      required: false
+  - type: textarea
+    id: expected
+    attributes:
+      label: What should the page have told you
+    validations:
+      required: true

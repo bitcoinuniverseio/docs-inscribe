@@ -1,0 +1,114 @@
+---
+title: Coverage matrix
+description: Every protocol Inscribe implements a creation operation for, which operations, whether it is released, and where its workspace lives. Generated from the Bitcoin Universe protocol registry.
+provenance:
+  owner: bitcoinuniverseio/core
+  sourcePath: backend/packages/ecosystem-contracts/lib/protocols.js
+  chain: Bitcoin and Dogecoin
+  network: mainnet
+  release: Registry snapshot from core commit 15dd03b5
+  lifecycle: Generated, not hand-written
+  lastVerified: 2026-09-01
+---
+
+import ProtocolMatrix from '@components/ProtocolMatrix.astro';
+import coverage from '@data/protocol-coverage.json';
+
+This table is generated from the Bitcoin Universe protocol registry, which is itself
+generated from the protocol contracts module in Core. The operations listed for each
+protocol are exactly the ones the registry records Inscribe implementing. Nothing here is
+typed by hand, and the build fails if a page on this site claims an operation the registry
+does not carry.
+
+<ul class="bench-stats">
+  <li>
+    <span class="figure">{coverage.counts.protocolsTotal}</span>
+    <span class="label">protocols in the registry</span>
+  </li>
+  <li>
+    <span class="figure">{coverage.counts.protocolsWithInscribeSurface}</span>
+    <span class="label">with a creation surface in Inscribe</span>
+  </li>
+  <li>
+    <span class="figure">{coverage.counts.protocolsWithoutInscribeSurface}</span>
+    <span class="label">with none, so not creatable here at all</span>
+  </li>
+</ul>
+
+## Creation is not trading
+
+A protocol being creatable in Inscribe says nothing about whether it is tradeable in Core,
+and the reverse is also true. They are separate surfaces with separate availability, and
+this site never imports one to imply the other.
+
+Of the protocols below, the registry records marketplace availability across four
+different states, including read-only and feature-gated. None of that changes what you can
+make here. For trading availability, read the Core documentation on the
+[central platform](https://docs.bitcoinuniverse.io).
+
+## The matrix
+
+<ProtocolMatrix />
+
+## Reading the columns
+
+**Creation operations** are the registry's own words:
+
+| Operation | What it does |
+| --- | --- |
+| `inscribe` | Write content onto the chain as an inscription |
+| `deploy` | Create a new token, defining its ticker and supply |
+| `etch` | Create a new rune, the Runes equivalent of a deploy |
+| `mint` | Claim an amount of an existing token or rune |
+| `transfer` | Move an asset you already hold to another address |
+
+**Released** carries Inscribe's own production classification. See
+[status and lifecycle](/docs-inscribe/start/status/) for what each state means. In short:
+released and ungated is available; released means a deployment decides; not released means
+do not rely on it; read-only means Inscribe recognises the protocol but cannot create it.
+
+**Workspace** is where the operation lives in the app. Three protocols with a registry
+surface have no workspace of their own and are handled inside another one, which is noted
+in the cell.
+
+## What is not creatable here
+
+Eleven protocols in the registry have no creation surface in Inscribe at all. They appear
+in Bitcoin Universe elsewhere, in discovery and wallet surfaces, but there is no way to
+make one here:
+
+<div class="table-scroll" tabindex="0" role="region" aria-label="Protocols with no creation surface in Inscribe">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Protocol</th>
+        <th scope="col">Chain</th>
+        <th scope="col">Surfaces it does appear on</th>
+      </tr>
+    </thead>
+    <tbody>
+      {coverage.notInscribable.map((p) => (
+        <tr>
+          <th scope="row">{p.name}</th>
+          <td>{p.chain}</td>
+          <td>{p.surfaces.join(', ')}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+## Provenance
+
+| Field | Value |
+| --- | --- |
+| Registry source | `{coverage.provenance.repository}` |
+| Source path | `{coverage.provenance.sourcePath}` |
+| Source commit | `{coverage.provenance.sourceCommit}` |
+| Snapshot generated | {coverage.provenance.registryCommittedAt} |
+
+## Related
+
+- [Status and lifecycle](/docs-inscribe/start/status/)
+- [Workspace map](/docs-inscribe/reference/workspaces/)
+- [Ordinals family](/docs-inscribe/protocols/ordinals-family/)
