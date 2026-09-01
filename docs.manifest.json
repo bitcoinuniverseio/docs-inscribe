@@ -4,31 +4,67 @@
   "name": "Universe Inscribe documentation",
   "classification": "product-docs",
   "repository": "bitcoinuniverseio/docs-inscribe",
-  "documentationUrl": "https://docs.bitcoinuniverse.io/products/inscribe/",
-  "docsRoot": ".",
+  "documentationUrl": "https://bitcoinuniverseio.github.io/docs-inscribe/",
+  "docsRoot": "src/content/docs",
   "sourceRef": "main",
-  "releasedRef": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+  "releasedRef": "c433c6aeb43cdf4c31a0d3651cca61d03d645707",
   "releaseVersion": "continuous",
   "lifecycle": "stable",
   "chains": [
     {
       "chain": "bitcoin",
-      "networks": [
-        "mainnet"
-      ]
+      "networks": ["mainnet"]
+    },
+    {
+      "chain": "dogecoin",
+      "networks": ["mainnet"]
     }
   ],
-  "audiences": [
-    "user",
-    "collector",
-    "app-developer"
+  "protocols": [
+    "ordinals",
+    "brc20",
+    "tap",
+    "block20",
+    "bitmap",
+    "unat",
+    "runes",
+    "mezcal",
+    "alkanes",
+    "stamps",
+    "src20",
+    "src101",
+    "atomicals",
+    "arc20",
+    "atomicals-nft",
+    "realms",
+    "subrealms",
+    "avm",
+    "op-return",
+    "op-drop",
+    "drops",
+    "cat20",
+    "dust20",
+    "chainbloom",
+    "doginals",
+    "drc20",
+    "tap-doge"
   ],
-  "owners": [
-    "bitcoinuniverseio"
+  "audiences": ["user", "collector", "app-developer"],
+  "owners": ["bitcoinuniverseio"],
+  "redirects": [
+    { "from": "/workspaces", "to": "/docs-inscribe/reference/workspaces/" },
+    { "from": "/what-it-costs", "to": "/docs-inscribe/concepts/what-it-costs/" },
+    { "from": "/asset-safety", "to": "/docs-inscribe/concepts/asset-safety/" },
+    { "from": "/protocol-data-status", "to": "/docs-inscribe/concepts/source-freshness/" },
+    { "from": "/accessibility", "to": "/docs-inscribe/about/accessibility/" },
+    { "from": "/performance-and-media", "to": "/docs-inscribe/about/performance-and-media/" },
+    { "from": "/release-evidence", "to": "/docs-inscribe/about/release-evidence/" },
+    { "from": "/social-previews", "to": "/docs-inscribe/about/social-previews/" },
+    { "from": "/admin-control-center", "to": "/docs-inscribe/about/control-center/" }
   ],
   "lastVerified": {
-    "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
-    "timestamp": "2026-09-01T02:00:00Z"
+    "commit": "c433c6aeb43cdf4c31a0d3651cca61d03d645707",
+    "timestamp": "2026-09-01T12:00:00Z"
   },
   "securityClassification": "public"
 }

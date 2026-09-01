@@ -1,0 +1,73 @@
+---
+// Starlight's PageTitle, with the source provenance strip attached under it.
+//
+// Provenance belongs at the top of a page rather than in a footer: a reader
+// deciding whether to trust an instruction that spends money should not have
+// to reach the bottom of the page to find out which release it describes and
+// when anyone last checked it.
+import Default from '@astrojs/starlight/components/PageTitle.astro';
+
+const { entry, id } = Astro.locals.starlightRoute;
+const p = entry.data.provenance;
+
+// A page that declares `ownHeading` renders its own h1 inside its content,
+// because its design puts the headline inside a composed hero rather than
+// above it. Rendering Starlight's as well would give the document two h1
+// elements and therefore no single top-level heading.
+const ownHeading = entry.data.ownHeading === true;
+
+const editBase = 'https://github.com/bitcoinuniverseio/docs-inscribe/edit/main/src/content/docs/';
+const sourceFile = entry.filePath?.replace(/^src\/content\/docs\//, '') ?? `${id}.md`;
+
+const fields = p === undefined
+  ? []
+  : [
+      p.owner && { term: 'Owning repository', value: p.owner },
+      p.sourcePath && { term: 'Source', value: p.sourcePath },
+      p.chain && { term: 'Chain', value: p.chain },
+      p.network && { term: 'Network', value: p.network },
+      p.release && { term: 'Applies to', value: p.release },
+      p.lifecycle && { term: 'Lifecycle', value: p.lifecycle },
+      p.lastVerified && { term: 'Last verified', value: asDate(p.lastVerified) },
+    ].filter(Boolean);
+
+// YAML turns a bare 2026-09-01 into a Date. Render either form as one ISO day.
+function asDate(value: string | Date): string {
+  return value instanceof Date ? value.toISOString().slice(0, 10) : value;
+}
+---
+
+{ownHeading ? null : <Default><slot /></Default>}
+
+{
+  fields.length > 0 && (
+    <aside class="provenance" aria-label="Source provenance for this page">
+      <dl>
+        {fields.map((f) => (
+          <div>
+            <dt>{f.term}</dt>
+            <dd>{f.value}</dd>
+          </div>
+        ))}
+      </dl>
+      <p class="links">
+        <a href={`${editBase}${sourceFile}`}>Edit this page on GitHub</a>
+        <span aria-hidden="true"> / </span>
+        <a href="https://docs.bitcoinuniverse.io">Bitcoin Universe documentation</a>
+      </p>
+    </aside>
+  )
+}
+
+<style>
+  .provenance .links {
+    margin: 0.75rem 0 0;
+    padding-top: 0.6rem;
+    border-top: 1px solid var(--bench-rule);
+    font-size: 0.8125rem;
+  }
+
+  .provenance .links a {
+    color: var(--bench-accent);
+  }
+</style>

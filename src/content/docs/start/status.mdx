@@ -1,0 +1,122 @@
+---
+title: Status and lifecycle
+description: What is released, what a deployment must switch on, what is not finished, and which chains and networks Inscribe writes to today.
+provenance:
+  owner: bitcoinuniverseio/inscribe
+  sourcePath: backend/data/protocol-operation-matrix.json
+  chain: Bitcoin, and Dogecoin protocols behind a release gate
+  network: mainnet
+  release: Continuous, from a verified commit
+  lifecycle: Stable
+  lastVerified: 2026-09-01
+---
+
+import workspaces from '@data/workspaces.json';
+import coverage from '@data/protocol-coverage.json';
+
+export const byState = (state) =>
+  Object.entries(workspaces.protocols)
+    .filter(([, w]) => w.production === state)
+    .map(([id]) => coverage.inscribable.find((p) => p.id === id)?.name ?? id)
+    .sort();
+
+## The product
+
+| Property | Value |
+| --- | --- |
+| Lifecycle | Stable |
+| Versioning | Continuous. There is no version number to quote; each release is built from an exact commit with recorded evidence |
+| Chains | Bitcoin, and Dogecoin protocols behind a release gate |
+| Network you can spend on | Bitcoin mainnet |
+| Custody | None. Nothing is held on your behalf |
+
+The build you are looking at is named in the footer of every page of the app itself. See
+[release evidence](/docs-inscribe/about/release-evidence/) for how a release is sealed and
+what is checked before one is published.
+
+## What "released" means here
+
+Inscribe's own production contract classifies every protocol surface. This site uses those
+words rather than inventing softer ones.
+
+| State | What it means for you |
+| --- | --- |
+| **Released, ungated** | Available. Covered by the release health and smoke checks, so if it is broken the release is broken |
+| **Released** | Available in principle. A deployment still decides whether to switch it on, so a given build may have it off |
+| **Not released** | Do not rely on it. The work exists in the codebase and is not finished |
+| **Read-only in Inscribe** | The protocol is recognised and shown in your portfolio, but Inscribe has no workspace for creating it |
+
+### Released and ungated
+
+The eleven surfaces the release contract treats as core:
+
+<p>{byState('core').join(', ')}.</p>
+
+These cover the everyday cases: inscriptions and collections, BRC-20, Runes, Stamps,
+SRC-20, SRC-101, TAP, OP_RETURN inscriptions, OP-20 and Mezcal.
+
+### Released, but a deployment decides
+
+<p>{byState('enabled').join(', ')}.</p>
+
+A gated workspace stays visible and reachable by its URL when its flag is off. What stops
+is reading, writing, payment and order recovery, so the page can be open and still refuse
+to act. It says which it is. Two surfaces are the exception and return the 404 page
+instead: **Recover Sats**, and the **Dogecoin BlockPad**.
+
+The reason a workspace stays visible rather than disappearing: a missing workspace looks
+like a product that never had the feature.
+
+### Not released
+
+<p>{byState('incomplete').join(', ')}.</p>
+
+These are reachable in the app and are not finished. CAT-20's transaction features stay
+fail-closed while the Fractal data and signing dependencies they need are unavailable, and
+market discovery reports that dependency state directly rather than returning an empty
+market that looks like an answer. AVM Studio's editor and academy are usable; deploying a
+contract is not a released operation.
+
+Alongside them, four workspaces the app carries are also unfinished and are not documented
+on this site as things you can rely on: **Witness Circles**, **Tandem**, **Patina**, and
+the RBF operation inside Witness Circles, which is unrelated to the fee-bumping tools that
+are released.
+
+### Recognised but not creatable
+
+<p>{byState('not-implemented').join(', ')}.</p>
+
+These appear in your portfolio, in inscription search, and in the asset inventory for an
+output. Inscribe has no workspace for making them.
+
+## Chains and networks
+
+| Chain | Network | What you can do |
+| --- | --- | --- |
+| Bitcoin | mainnet | Everything on this site |
+| Dogecoin | mainnet | TAP on Doge and Doginals, where a deployment has switched the Dogecoin feature on |
+
+Inscribe also has non-mainnet modes used in development. This documentation describes
+mainnet, because that is the network where a mistake costs money.
+
+## Live service status
+
+Release state is not the same as whether a source is answering right now. The app reports
+that itself: the service status panel names each source, the block it has reached against
+the chain tip, and the workspaces that read it.
+
+Read [where the data comes from](/docs-inscribe/concepts/source-freshness/) for the six
+states a source can be in and what each one blocks.
+
+## How this page stays true
+
+The lists above are generated from two data files in this repository, one derived from the
+Bitcoin Universe protocol registry and one checked against Inscribe's own production
+contract. A build fails if a page claims an operation the registry does not record, or if
+a protocol is marked as unreleased without saying what a reader sees instead.
+
+## Related
+
+- [Coverage matrix](/docs-inscribe/protocols/coverage/)
+- [Release evidence](/docs-inscribe/about/release-evidence/)
+- [Changelog](/docs-inscribe/about/changelog/)

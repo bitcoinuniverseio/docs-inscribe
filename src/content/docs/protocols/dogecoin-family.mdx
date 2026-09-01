@@ -1,0 +1,75 @@
+---
+title: Dogecoin protocols
+description: TAP on Doge, Doginals and DRC-20. The only non-Bitcoin chain Inscribe writes to, what a shared workspace means, and which one has no creation surface.
+protocols: [tap_doge, doginals, drc20]
+operations: [inscribe, mint]
+provenance:
+  owner: bitcoinuniverseio/inscribe
+  chain: Dogecoin
+  network: mainnet
+  release: Continuous, from a verified commit
+  lifecycle: TAP on Doge and Doginals are released, and a deployment must switch the Dogecoin feature on. DRC-20 has no creation surface
+  lastVerified: 2026-09-01
+---
+
+import ProtocolMatrix from '@components/ProtocolMatrix.astro';
+
+Dogecoin is the only chain other than Bitcoin that Inscribe writes to. Everything here sits
+behind one deployment gate.
+
+<ProtocolMatrix family="dogecoin" />
+
+## One workspace, two protocols
+
+**TAP on Doge** and **Doginals** share the `/tap-doge` workspace. Doginals have no
+workspace of their own; their orders run through the same Dogecoin feature.
+
+The production contract records them as two separate entries, both released:
+
+| Contract entry | Operations it covers |
+| --- | --- |
+| `doge-tap` | explore, portfolio, mint preview, mint, reveal, status |
+| `doginals` | preview, inscribe, reveal, status |
+
+So the workspace mints TAP tokens indexed on Dogecoin, including Doge DMT blocks, and
+inscribes Doginals, and both are the same gate.
+
+## What the gate does here
+
+Most gated workspaces stay visible and refuse to act. The Dogecoin feature has one surface
+that behaves differently: **the Dogecoin BlockPad returns the 404 page** when the feature
+is off, rather than loading and refusing.
+
+If you reach a 404 at that route, the feature is off in this deployment. It is not a broken
+link.
+
+## TAP on Doge
+
+**Mint only.** The registry records `mint` and nothing else, so Inscribe cannot deploy or
+transfer a TAP token on Dogecoin for you, even though it can do all three on Bitcoin.
+
+## Doginals
+
+**Inscribe only.** The registry records `inscribe` and nothing else. You can create a
+Doginal; you cannot transfer one from Inscribe.
+
+## DRC-20
+
+**No creation surface in Inscribe.** The registry records a `mint` operation, and there is
+no workspace implementing it.
+
+DRC-20 does appear in read-only surfaces: portfolio classification, and the asset inventory
+for an output. As with Bitmap and UNAT on Bitcoin, that recognition still does useful work,
+because the safety screening will not spend a DRC-20 output to pay a fee.
+
+## Before you use any of this
+
+Dogecoin mainnet is real money on a different chain. Your Bitcoin wallet addresses do not
+apply, the fee market is different, and the assets are indexed separately from anything on
+Bitcoin.
+
+## Related
+
+- [Status and lifecycle](/docs-inscribe/start/status/)
+- [Coverage matrix](/docs-inscribe/protocols/coverage/)
+- [Mint a token](/docs-inscribe/create/mint-a-token/)
