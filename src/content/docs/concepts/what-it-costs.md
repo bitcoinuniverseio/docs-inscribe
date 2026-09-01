@@ -18,36 +18,29 @@ This page explains the numbers on that screen.
 
 ## The three parts of a total
 
-<figure class="diagram" tabindex="0" role="group" aria-labelledby="quote-fig-cap">
+<figure class="diagram" tabindex="0" aria-labelledby="quote-fig-cap">
 <svg viewBox="0 0 800 430" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="quote-t quote-d">
   <title id="quote-t">What each satoshi in an Inscribe quote pays for</title>
   <desc id="quote-d">A worked example of a 3,546 satoshi total, split into three parts. The network fee of 1,500 satoshis goes to miners and is the fee rate times the transaction size. The service fee of 1,500 satoshis is a flat charge for the order. The inscription output of 546 satoshis is not a fee: it is the satoshi your inscription sits on, and it stays in your wallet. Only the first two parts are fees. All three are paid as one amount to one address.</desc>
-
   <text x="0" y="18" font-size="17" font-weight="700" fill="var(--d-ink)">A worked example: a small inscription at 10 sat/vB</text>
   <text x="0" y="40" font-size="13" fill="var(--d-muted)">A reveal transaction of about 150 virtual bytes. Your numbers scale with size and rate.</text>
-
   <rect x="0" y="66" width="330" height="58" fill="var(--d-panel)" stroke="var(--d-rule)" stroke-width="1.5"/>
   <rect x="330" y="66" width="330" height="58" fill="var(--d-panel)" stroke="var(--d-rule)" stroke-width="1.5"/>
   <rect x="660" y="66" width="120" height="58" fill="var(--d-panel)" stroke="var(--d-ok)" stroke-width="2"/>
-
   <rect x="0" y="66" width="330" height="6" fill="var(--d-accent-fill)"/>
   <rect x="330" y="66" width="330" height="6" fill="var(--d-accent-fill)"/>
   <rect x="660" y="66" width="120" height="6" fill="var(--d-ok)"/>
-
   <text x="165" y="102" text-anchor="middle" font-size="15" font-weight="700" fill="var(--d-ink)" font-family="monospace">1,500 sats</text>
   <text x="495" y="102" text-anchor="middle" font-size="15" font-weight="700" fill="var(--d-ink)" font-family="monospace">1,500 sats</text>
   <text x="720" y="102" text-anchor="middle" font-size="15" font-weight="700" fill="var(--d-ink)" font-family="monospace">546</text>
-
   <text x="165" y="118" text-anchor="middle" font-size="11" fill="var(--d-muted)">42 percent</text>
   <text x="495" y="118" text-anchor="middle" font-size="11" fill="var(--d-muted)">42 percent</text>
   <text x="720" y="118" text-anchor="middle" font-size="11" fill="var(--d-muted)">16 percent</text>
-
   <g stroke="var(--d-rule)" stroke-width="1.5" fill="none">
     <path d="M165 124 V 150"/>
     <path d="M495 124 V 150"/>
     <path d="M720 124 V 150"/>
   </g>
-
   <text x="0" y="170" font-size="14" font-weight="700" fill="var(--d-accent)">Network fee</text>
   <text x="0" y="190" font-size="12.5" fill="var(--d-ink)">Paid to miners.</text>
   <text x="0" y="207" font-size="12.5" fill="var(--d-muted)">Your fee rate times the size of</text>
@@ -55,7 +48,6 @@ This page explains the numbers on that screen.
   <text x="0" y="239" font-size="12.5" fill="var(--d-muted)">costs more because it is bigger,</text>
   <text x="0" y="255" font-size="12.5" fill="var(--d-muted)">not because Inscribe charges</text>
   <text x="0" y="271" font-size="12.5" fill="var(--d-muted)">more for it.</text>
-
   <text x="330" y="170" font-size="14" font-weight="700" fill="var(--d-accent)">Service fee</text>
   <text x="330" y="190" font-size="12.5" fill="var(--d-ink)">Paid to Universe.</text>
   <text x="330" y="207" font-size="12.5" fill="var(--d-muted)">A flat 1,500 sats for most</text>
@@ -63,7 +55,6 @@ This page explains the numbers on that screen.
   <text x="330" y="239" font-size="12.5" fill="var(--d-muted)">Some flows differ and say so.</text>
   <text x="330" y="255" font-size="12.5" fill="var(--d-muted)">Fee-bump and asset recovery</text>
   <text x="330" y="271" font-size="12.5" fill="var(--d-muted)">charge nothing.</text>
-
   <text x="660" y="170" font-size="14" font-weight="700" fill="var(--d-ok)">Inscription output</text>
   <text x="660" y="190" font-size="12.5" fill="var(--d-ink)">Stays yours.</text>
   <text x="660" y="207" font-size="12.5" fill="var(--d-muted)">Your inscription lives</text>
@@ -71,12 +62,10 @@ This page explains the numbers on that screen.
   <text x="660" y="239" font-size="12.5" fill="var(--d-muted)">satoshi needs an output</text>
   <text x="660" y="255" font-size="12.5" fill="var(--d-muted)">of its own. You own it</text>
   <text x="660" y="271" font-size="12.5" fill="var(--d-muted)">after it confirms.</text>
-
   <path d="M0 300 H 655" stroke="var(--d-accent-fill)" stroke-width="3"/>
   <path d="M665 300 H 780" stroke="var(--d-ok)" stroke-width="3"/>
   <text x="327" y="322" text-anchor="middle" font-size="13" font-weight="700" fill="var(--d-accent)">These two are fees. They are spent.</text>
   <text x="722" y="322" text-anchor="middle" font-size="13" font-weight="700" fill="var(--d-ok)">Not a fee.</text>
-
   <rect x="0" y="346" width="780" height="62" rx="6" fill="var(--d-panel)" stroke="var(--d-rule)" stroke-width="1.5"/>
   <text x="18" y="372" font-size="12" font-weight="700" fill="var(--d-muted)">TOTAL YOU PAY</text>
   <text x="18" y="394" font-size="12.5" fill="var(--d-muted)">One amount, to one address the order gives you.</text>
