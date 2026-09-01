@@ -74,7 +74,7 @@ const ALL_ROUTES = [
   '/about/control-center/',
   '/about/changelog/',
   '/about/migration/',
-  '/404/',
+  '/__a11y-not-found-probe__/',
 ];
 
 const routes =
@@ -105,7 +105,7 @@ for (const colorScheme of SCHEMES) {
       // The 404 page has to answer 404. Auditing it still matters, because
       // whoever lands there is already lost, but asserting a 200 on it would
       // be asserting the wrong thing.
-      const expected = route === '/404/' ? 404 : 200;
+      const expected = route === '/__a11y-not-found-probe__/' ? 404 : 200;
       if (response === null || response.status() !== expected) {
         failures.push(
           `${colorScheme} ${width} ${route}: expected ${expected}, got ${response?.status() ?? 'no response'}`,
