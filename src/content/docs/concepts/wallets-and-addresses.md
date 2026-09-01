@@ -15,19 +15,15 @@ certainly has two Bitcoin addresses, and they do different jobs.
 
 ## One wallet, two addresses
 
-<figure class="diagram" tabindex="0" role="group" aria-labelledby="addr-fig-cap">
+<figure class="diagram" tabindex="0" aria-labelledby="addr-fig-cap">
 <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="addr-t addr-d">
   <title id="addr-t">A payment address and an Ordinals address, and what each holds</title>
   <desc id="addr-d">One wallet contains two addresses. The payment address holds spendable bitcoin and is what pays network fees and funds orders. The Ordinals address is a Taproot address that holds inscriptions, rune balances and token balances. Inscribe reads both, signs each action from the address that holds what it moves, and never adds the two balances together, because satoshis sitting at an Ordinals address are not spendable money.</desc>
-
   <text x="0" y="18" font-size="17" font-weight="700" fill="var(--d-ink)">One wallet. Two addresses. Two jobs.</text>
-
   <rect x="0" y="40" width="800" height="46" rx="6" fill="var(--d-panel)" stroke="var(--d-rule)" stroke-width="1.5"/>
   <text x="400" y="69" text-anchor="middle" font-size="14" font-weight="700" fill="var(--d-ink)">Your wallet</text>
-
   <path d="M240 86 V 108 H 160 V 128" stroke="var(--d-rule)" stroke-width="1.5" fill="none"/>
   <path d="M560 86 V 108 H 640 V 128" stroke="var(--d-rule)" stroke-width="1.5" fill="none"/>
-
   <!-- Payment -->
   <rect x="0" y="128" width="380" height="196" rx="6" fill="var(--d-panel)" stroke="var(--d-accent-fill)" stroke-width="2"/>
   <rect x="0" y="128" width="380" height="6" fill="var(--d-accent-fill)"/>
@@ -38,7 +34,6 @@ certainly has two Bitcoin addresses, and they do different jobs.
   <text x="20" y="256" font-size="12.5" fill="var(--d-muted)">It pays network fees and funds orders.</text>
   <text x="20" y="286" font-size="12" font-weight="700" fill="var(--d-muted)">USED FOR</text>
   <text x="20" y="306" font-size="12.5" fill="var(--d-ink)">Paying the commit address. Covering fees.</text>
-
   <!-- Ordinals -->
   <rect x="420" y="128" width="380" height="196" rx="6" fill="var(--d-panel)" stroke="var(--d-ok)" stroke-width="2"/>
   <rect x="420" y="128" width="380" height="6" fill="var(--d-ok)"/>
@@ -49,7 +44,6 @@ certainly has two Bitcoin addresses, and they do different jobs.
   <text x="440" y="256" font-size="12.5" fill="var(--d-muted)">Its satoshis are carrying assets.</text>
   <text x="440" y="286" font-size="12" font-weight="700" fill="var(--d-muted)">USED FOR</text>
   <text x="440" y="306" font-size="12.5" fill="var(--d-ink)">Receiving assets. Signing transfers of them.</text>
-
   <rect x="0" y="342" width="800" height="52" rx="6" fill="var(--d-panel)" stroke="var(--d-rule)" stroke-width="1.5"/>
   <text x="400" y="366" text-anchor="middle" font-size="13.5" font-weight="700" fill="var(--d-ink)">The two balances are never added together.</text>
   <text x="400" y="385" text-anchor="middle" font-size="12.5" fill="var(--d-muted)">Adding them would tell you that you can spend money you cannot.</text>
