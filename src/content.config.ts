@@ -3,15 +3,18 @@ import { docsLoader } from '@astrojs/starlight/loaders'
 import { docsSchema } from '@astrojs/starlight/schema'
 
 const provenance = z
-  .object({
-    owner: z.string().optional(),
-    sourcePath: z.string().optional(),
-    chain: z.string().optional(),
-    network: z.string().optional(),
-    release: z.string().optional(),
-    lifecycle: z.string().optional(),
-    lastVerified: z.union([z.string(), z.date()]).optional(),
-  })
+  .union([
+    z.boolean(),
+    z.object({
+      owner: z.string().optional(),
+      sourcePath: z.string().optional(),
+      chain: z.string().optional(),
+      network: z.string().optional(),
+      release: z.string().optional(),
+      lifecycle: z.string().optional(),
+      lastVerified: z.union([z.string(), z.date()]).optional(),
+    }),
+  ])
   .optional();
 
 // Provenance every material page carries. The PageTitle override renders the

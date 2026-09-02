@@ -1,24 +1,10 @@
 ---
-<<<<<<<< HEAD:src/content/docs/reference/social-previews.md
 title: 'Social previews'
 description: 'Route-aware preview images and the noindex rules for private surfaces.'
 category: reference
 lastVerified: 2026-09-01
 ---
 # Route-aware link previews
-========
-title: Link previews
-description: "Route-aware previews for public pages, and what is never published in one."
-provenance:
-  owner: bitcoinuniverseio/inscribe
-  chain: Bitcoin
-  network: mainnet
-  release: Continuous, from a verified commit
-  lifecycle: Stable
-  lastVerified: 2026-09-01
----
-
->>>>>>>> f81b73edc3d97beddafed9ab57fbf3530bd423ec:src/content/docs/about/social-previews.md
 
 Universe Inscribe gives every public, shareable destination a designed large-card preview. The title, description, authoritative URL, visual family, and image identify the page being shared instead of repeating a generic Bitcoin logo.
 
