@@ -16,8 +16,16 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  route:
+    uses: ./.github/workflows/route.yml
+    secrets: inherit
+    with:
+      plan: '{"checks":"browser"}'
+      config_ref: b7ec516812bcab9cce5a8280034c61082c9e62bd
+
   checks:
-    runs-on: runs-on=${{ github.run_id }}-checks/runner=universe-hosted/cpu=2+8/env=production
+    needs: route
+    runs-on: ${{ fromJSON(needs.route.outputs.targets).checks }}
     steps:
       - uses: actions/checkout@v4
         with:
