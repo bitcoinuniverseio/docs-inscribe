@@ -1,0 +1,64 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro'
+import ScreenshotFrame from '../../components/ScreenshotFrame.astro'
+import { loadManifest } from '@universe/inscribe-learning'
+
+export function getStaticPaths() {
+  const manifest = loadManifest()
+  return manifest.walkthroughs.map((w) => ({ params: { id: w.id } }))
+}
+
+const { id } = Astro.params
+const manifest = loadManifest()
+const walkthrough = manifest.walkthroughs.find((w) => w.id === id)
+if (!walkthrough) {
+  return Astro.redirect('/visual-guides/')
+}
+const workflow = manifest.workflows.find((w) => w.id === walkthrough.workflowId)
+const steps = Array.from({ length: walkthrough.steps }, (_, i) => i + 1)
+---
+
+<StarlightPage frontmatter={{ title: walkthrough.title, description: `Deterministic walkthrough of ${walkthrough.title}, captured from the real Inscribe app.`, slug: `visual-guides/${walkthrough.id}` }}>
+  <p class="ins-provenance">
+    <span><strong>App commit:</strong> {walkthrough.captureCommit.slice(0, 12)}</span>
+    <span><strong>Fixture version:</strong> {walkthrough.fixtureVersion}</span>
+    <span><strong>Captured:</strong> {walkthrough.lastCapturedAt?.slice(0, 10)}</span>
+    <span><strong>Report a mismatch:</strong> <a href="https://github.com/bitcoinuniverseio/docs-inscribe/issues/new?template=screenshot-mismatch.md">open an issue</a></span>
+  </p>
+
+  {workflow && (
+    <p>
+      Workflow: {workflow.title} · workspace /{workflow.workspace}. Open it in the app when you are ready:
+      <a href={`https://inscribe.bitcoinuniverse.io/${workflow.workspace}`}>/{workflow.workspace}</a>. Opening a
+      documentation link can never create an order or sign anything.
+    </p>
+  )}
+
+  <ol>
+    {steps.map((step) => (
+      <li>
+        <h2>Step {step}</h2>
+        <ScreenshotFrame
+          src={`../../walkthroughs/${walkthrough.id}/step-${String(step).padStart(2, '0')}.webp`}
+          alt={`Step ${step} of ${walkthrough.title}`}
+          caption={`Step ${step}: ${walkthrough.title}`}
+          width={1200}
+          height={780}
+        />
+      </li>
+    ))}
+  </ol>
+
+  <section class="ins-lab">
+    <h2>Text alternative</h2>
+    <p>
+      The full step-by-step text for this workflow lives in the static guides, which are the source of truth for every
+      instruction:
+      {workflow && workflow.guides.map((g) => {
+        const guide = manifest.guides.find((x) => x.id === g)
+        return guide ? ` <a href="${guide.publicPath ?? '/' + (guide.category === 'start' ? 'first-inscription' : 'workspaces') + '/'}">${guide.title}</a>.` : ''
+      }).join('')}
+    </p>
+    <p><a href={`/practice/?scenario=${walkthrough.practiceScenarioId ?? ''}`}>Practice this workflow safely</a></p>
+  </section>
+</StarlightPage>

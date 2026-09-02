@@ -26,10 +26,10 @@ jobs:
       - uses: bitcoinuniverseio/universe-ci-actions/universe-node-env@main
       - name: Install
         run: npm ci
-      - name: Gates that must hold on the deployed commit
-        run: npm test
       - name: Build
         run: npm run build
+      - name: Gates that must hold on the deployed commit
+        run: npm test
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

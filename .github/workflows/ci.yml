@@ -33,30 +33,24 @@ jobs:
       - uses: bitcoinuniverseio/universe-ci-actions/universe-node-env@main
       - name: Install
         run: npm ci
-      - name: Copy guard (long dash, banned word, marketing phrases)
-        run: npm run check:copy
-      - name: Public-safety scan (private hostnames, IPs, secret shapes)
-        run: npm run check:public-safety
-      - name: Capability truth (registry agrees with the shipped app)
-        run: npm run check:capabilities
-      - name: Manifest agrees with the build
-        run: npm run check:manifest
-      - name: Markdown lint
-        run: npm run check:markdown
-      - name: Build (validates every internal link and anchor)
+      - name: Build
         run: npm run build
+      - name: Quality gates and learning suite
+        run: npm test
       - name: Search index exists
         run: test -f dist/pagefind/pagefind.js
       - name: Sitemap exists
         run: test -f dist/sitemap-index.xml
       - name: Machine-readable index exists
         run: test -s dist/llms.txt
-      - name: Install a browser for the accessibility audit
+      - name: Install a browser for audits
         run: npx playwright install --with-deps chromium
-      - name: Serve the built site
-        run: npx astro preview --port 4323 &
-      - name: Accessibility and horizontal overflow, every page, both themes
-        run: npx wait-on http://localhost:4323/docs-inscribe/ && npm run check:a11y
+      - name: Accessibility and horizontal overflow audit
+        run: npm run check:a11y
+      - name: E2E and reflow audit
+        run: npm run test:e2e
+      - name: Offline service worker audit
+        run: npm run check:offline
       - name: Secret scan (full history)
         uses: trufflesecurity/trufflehog@v3.90.5
         with:

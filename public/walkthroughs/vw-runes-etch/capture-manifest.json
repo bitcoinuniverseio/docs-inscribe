@@ -1,0 +1,34 @@
+{
+  "walkthroughId": "vw-runes-etch",
+  "appCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+  "capturedAt": "2026-09-02T20:33:18.051Z",
+  "fixtureVersion": "1",
+  "steps": 3,
+  "altTexts": [
+    "The Runes workspace with the etch action",
+    "The etch form with symbol, divisibility, and pre-mined amount",
+    "The etch payment summary with the service fee itemized"
+  ],
+  "stepInstructions": [
+    "Open the runes workspace and choose Etch to declare a new rune.",
+    "Set symbol, divisibility, and any pre-mined amount. These are permanent declarations.",
+    "Check the payment summary: pay-to-anchor chain fees plus the flat service fee, itemized separately."
+  ],
+  "files": [
+    {
+      "path": "step-01.webp",
+      "sha256": "f17f84018fddacb8b0ab66072cbdca33fe0bc342385e25fca89054e64005e23b",
+      "bytes": 39582
+    },
+    {
+      "path": "step-02.webp",
+      "sha256": "f17f84018fddacb8b0ab66072cbdca33fe0bc342385e25fca89054e64005e23b",
+      "bytes": 39582
+    },
+    {
+      "path": "step-03.webp",
+      "sha256": "14d44170081bb41884d4d04a4c2425041082c9967eb36df2b58c3df845ef3082",
+      "bytes": 36842
+    }
+  ]
+}

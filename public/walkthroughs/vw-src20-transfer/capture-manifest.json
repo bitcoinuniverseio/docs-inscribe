@@ -1,0 +1,34 @@
+{
+  "walkthroughId": "vw-src20-transfer",
+  "appCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+  "capturedAt": "2026-09-02T20:33:18.059Z",
+  "fixtureVersion": "1",
+  "steps": 3,
+  "altTexts": [
+    "The src20 workspace opened with the transfer action selected",
+    "The transfer form fields for src20",
+    "The review end of the transfer flow for src20"
+  ],
+  "stepInstructions": [
+    "Open /src20 with the transfer action. The workspace shows its form with the action preselected.",
+    "Fill the form fields. Every field shows the values that drive the quote; the fixture environment has no live fees, and the app says so.",
+    "The end of the form holds the fee and review sections. Nothing is signed in this capture environment; the live app shows its own review here."
+  ],
+  "files": [
+    {
+      "path": "step-01.webp",
+      "sha256": "9e030491b9ea430580eab1044378208b47d219a2d677a4e84b59174f328d63a3",
+      "bytes": 37498
+    },
+    {
+      "path": "step-02.webp",
+      "sha256": "9e030491b9ea430580eab1044378208b47d219a2d677a4e84b59174f328d63a3",
+      "bytes": 37498
+    },
+    {
+      "path": "step-03.webp",
+      "sha256": "00bda58a27ca614070ba178d7a7cb20d88e241ad2fe2b334c3ecf0f0d9b1dea0",
+      "bytes": 35876
+    }
+  ]
+}
