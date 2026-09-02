@@ -20,7 +20,17 @@ lose your money.
 <figure class="diagram" tabindex="0" aria-labelledby="life-fig-cap">
 <svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="life-t life-d">
   <title id="life-t">An Inscribe order from quote to wallet</title>
-  <desc id="life-d">Six stages in order. First, Inscribe quotes the job and gives you one address to pay. Second, you pay that address, which is your only wallet signature for a typical order. Third, Universe watches the address and sees the payment, accepting it from the mempool without waiting for a confirmation. Fourth, Universe signs and broadcasts the reveal transaction using a key held only for this order. Fifth, a miner confirms the reveal. Sixth, the indexer and your wallet agree the asset exists, which is the only point Inscribe calls the order done. You act only in the first two stages. The status shown is Awaiting payment for stages one and two, Creation in progress for stages three to five, and Wallet visible at stage six.</desc>
+  <desc id="life-d">
+    Six stages in order. First, Inscribe quotes the job and gives you one address to pay.
+    Second, you pay that address, which is your only wallet signature for a typical order.
+    Third, Universe watches the address and sees the payment, accepting it from the mempool
+    without waiting for a confirmation. Fourth, Universe signs and broadcasts the reveal
+    transaction using a key held only for this order. Fifth, a miner confirms the reveal.
+    Sixth, the indexer and your wallet agree the asset exists, which is the only point
+    Inscribe calls the order done. You act only in the first two stages. The status shown is
+    Awaiting payment for stages one and two, Creation in progress for stages three to five,
+    and Wallet visible at stage six.
+  </desc>
   <text x="0" y="18" font-size="17" font-weight="700" fill="var(--d-ink)">Commit and reveal: two transactions, one signature from you</text>
   <line x1="46" y1="120" x2="754" y2="120" stroke="var(--d-rule)" stroke-width="2"/>
   <!-- Stage 1 -->

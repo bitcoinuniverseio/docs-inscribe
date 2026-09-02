@@ -1,21 +1,13 @@
 {
-  // Markdown lint for prose that also renders through Starlight.
   "config": {
-    "default": true,
-    // Line length is not enforced: chain literals, tables, and URLs make a
-    // hard wrap counterproductive, and Prettier-style reflow is not used.
-    "MD013": false,
-    // Starlight supplies the H1 from frontmatter; body headings start at H2.
-    "MD025": false,
-    "MD041": false,
-    // Inline HTML is used deliberately in the README (logo alignment) and
-    // in MDX pages (components).
+    "MD013": { "line_length": 480, "code_blocks": false, "tables": false },
     "MD033": false,
-    // Duplicate sibling headings never occur; duplicate headings across
-    // sections (e.g. "Related") are intended structure.
+    "MD041": false,
     "MD024": { "siblings_only": true },
-    // Bare URLs inside code fences are examples, not links.
-    "MD034": false
+    "MD036": false,
+    "MD025": false,
+    "MD026": false
   },
-  "ignores": ["node_modules", "dist", ".astro"]
+  "globs": ["src/content/**/*.{md,mdx}", "*.md"],
+  "ignores": ["node_modules", "dist"]
 }

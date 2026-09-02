@@ -1,71 +1,119 @@
 #!/usr/bin/env node
-// Public-safety scan: this repository is public and its subject is a private
-// product source tree. No tracked text file may carry private infrastructure
-// detail, an internal route, or anything shaped like a credential. Patterns
-// are assembled indirectly so this file never fails against itself.
-import { execSync } from 'node:child_process';
-import { readFileSync } from 'node:fs';
+// Public-safety scan.
+//
+// The wallet source is private. This documentation is public. Anything that
+// leaks a private hostname, an internal address, an operational runbook detail,
+// or a credential shape out of that source is a disclosure, not a typo.
+//
+// Run: node scripts/check-public-safety.mjs
 
-const TEXT_EXTENSIONS = /\.(md|mdx|ts|tsx|js|mjs|cjs|jsx|json|css|html|astro|yml|yaml|toml|txt|svg)$/i;
+import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { join, relative, resolve, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const BANNED_PATTERNS = [
-  // Infrastructure hostnames and host providers.
-  'aHN0Z3IuY2xvdWQ=',
-  'c3J2NzQ3ODkw',
-  'dW5pdmVyc2UtaW5kZXhlcg==',
-  'dW5pdmVyc2UtcHJvZHVjdGlvbg==',
-  'bmV0Y3Vw',
-  'aG9zdGluZ2Vy',
-  // Infrastructure IP addresses.
-  'ODIuMjkuMTczLjQ3',
-  'NjUuMTA4LjE5Ny4xNjg=',
-  'MTU5LjE5NS4xMDkuNzY=',
-  'MTUyLjUzLjkyLjI1MQ==',
-  'MTQ4LjExMy4yMDQuNDk=',
-  'MTg4LjY4LjQyLjY1',
-  // Secret-shaped strings.
-  'Z2hwXw==',
-  'Z2l0aHViX3BhdA==',
-  'QVdTX1NFQ1JFVA==',
-  'QkVHSU4gT1BFTlNTSCBQUklWQVRFIEtFWQ==',
-  'QkVHSU4gUlNBIFBSSVZBVEUgS0VZ',
-].map((encoded) => Buffer.from(encoded, 'base64').toString('utf8'));
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const problems = [];
 
-// Ports that only exist behind the private network. 127.0.0.1 alone is fine
-// (local preview instructions); a private service port beside it is not.
-const PRIVATE_PORT_PATTERN = /\b(?:127\.0\.0\.1|localhost):(?:8890|2087|9090|818\d)\b/;
+const ALLOWED_HOSTS = new Set([
+  'bitcoinuniverse.io',
+  'docs.bitcoinuniverse.io',
+  'inscribe.bitcoinuniverse.io',
+  'github.com',
+  'bitcoinuniverseio.github.io',
+  'chromewebstore.google.com',
+  'json-schema.org',
+  'docs.astro.build',
+  'astro.build',
+  'nodejs.org',
+  'www.w3.org',
+  'fonts.googleapis.com',
+  'creativecommons.org',
+  'developer.mozilla.org',
+  'www.sitemaps.org',
+  // The JSON-LD vocabulary identifier. Declared, never fetched.
+  'schema.org',
+  // Local development only. Never a destination in published content.
+  'localhost',
+]);
 
-const files = execSync('git ls-files', { encoding: 'utf8' })
-  .split('\n')
-  .filter((f) => f && TEXT_EXTENSIONS.test(f) && !f.startsWith('scripts/check-public-safety'));
+const RULES = [
+  {
+    name: 'private IPv4 address',
+    re: /\b(?:10|127)\.\d{1,3}\.\d{1,3}\.\d{1,3}\b|\b192\.168\.\d{1,3}\.\d{1,3}\b|\b172\.(?:1[6-9]|2\d|3[01])\.\d{1,3}\.\d{1,3}\b/,
+  },
+  { name: 'GitHub token shape', re: /\bgh[pousr]_[A-Za-z0-9]{16,}\b/ },
+  { name: 'AWS access key shape', re: /\bAKIA[0-9A-Z]{16}\b/ },
+  { name: 'private key block', re: /-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/ },
+  { name: 'bearer token assignment', re: /\b(?:authorization|api[_-]?key|secret|password)\s*[:=]\s*["'][^"'\s]{12,}["']/i },
+  { name: 'internal admin route', re: /\/(?:__internal|internal-admin|_ops|ops-runbook)\b/i },
+  { name: 'env file contents', re: /^\s*(?:export\s+)?[A-Z][A-Z0-9_]{6,}=(?!\s*$)\S+/m },
+  {
+    name: 'a real-looking mainnet address in an example',
+    // Examples must be visibly truncated. A full-length address invites someone
+    // to paste it, and a documentation example is never a destination.
+    re: /\b(?:bc1[qp][ac-hj-np-z02-9]{38,}|[13][a-km-zA-HJ-NP-Z1-9]{32,34})\b/,
+  },
+];
 
-let failures = 0;
-for (const file of files) {
-  let content;
+const TEXT_EXT = /\.(md|mdx|astro|css|mjs|js|ts|json|yml|yaml|txt|html)$/;
+
+function walk(dir, out = []) {
+  let entries;
   try {
-    content = readFileSync(file, 'utf8');
+    entries = readdirSync(dir);
   } catch {
-    continue;
+    return out;
   }
-  content.split('\n').forEach((line, i) => {
-    const lower = line.toLowerCase();
-    for (const pattern of BANNED_PATTERNS) {
-      if (lower.includes(pattern.toLowerCase())) {
-        console.error(
-          `${file}:${i + 1}: private infrastructure or secret pattern "${pattern}" is not allowed in public docs`,
-        );
-        failures += 1;
+  for (const name of entries) {
+    if (name === 'node_modules' || name === '.git' || name === 'dist' || name === '.astro') continue;
+    const full = join(dir, name);
+    if (statSync(full).isDirectory()) walk(full, out);
+    else if (TEXT_EXT.test(name)) out.push(full);
+  }
+  return out;
+}
+
+const files = [
+  ...walk(join(root, 'src')),
+  ...walk(join(root, '.github')),
+  ...['README.md', 'CONTRIBUTING.md', 'SECURITY.md', 'SUPPORT.md', 'llms.txt', 'docs.manifest.json']
+    .map((f) => join(root, f))
+    .filter((f) => {
+      try {
+        statSync(f);
+        return true;
+      } catch {
+        return false;
       }
+    }),
+];
+
+const hostRe = /https?:\/\/([a-z0-9.-]+)/gi;
+
+for (const file of files) {
+  const rel = relative(root, file).split('\\').join('/');
+  const text = readFileSync(file, 'utf8');
+  const lines = text.split('\n');
+
+  lines.forEach((line, i) => {
+    const at = `${rel}:${i + 1}`;
+    for (const rule of RULES) {
+      if (rule.re.test(line)) problems.push(`${at} looks like a ${rule.name}.`);
     }
-    if (PRIVATE_PORT_PATTERN.test(line)) {
-      console.error(`${file}:${i + 1}: private service port is not allowed in public docs`);
-      failures += 1;
+    for (const m of line.matchAll(hostRe)) {
+      const host = m[1].toLowerCase();
+      if (!ALLOWED_HOSTS.has(host)) {
+        problems.push(`${at} links to an unlisted host: ${host}. Add it to ALLOWED_HOSTS if it is public and intended.`);
+      }
     }
   });
 }
 
-if (failures > 0) {
-  console.error(`public-safety scan failed with ${failures} finding(s)`);
+if (problems.length) {
+  process.stderr.write(`Public safety: ${problems.length} problem(s).\n\n`);
+  for (const p of problems) process.stderr.write(`  ${p}\n`);
+  process.stderr.write('\n');
   process.exit(1);
 }
-console.log(`public-safety scan passed for ${files.length} files`);
+
+process.stdout.write(`Public safety pass. ${files.length} files checked.\n`);

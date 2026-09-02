@@ -1,0 +1,19 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro'
+import RecoveryNavigator from '../../islands/RecoveryNavigator'
+import { loadManifest } from '@universe/inscribe-learning'
+
+const manifest = loadManifest()
+---
+
+<StarlightPage frontmatter={{ title: 'Recovery Navigator', description: 'Answer a few questions about your situation and get a diagnosis with the exact next action, stop conditions, and what not to do.', slug: 'recovery/navigator' }}>
+  <noscript>
+    <section class="ins-lab">
+      <h2>Recovery without JavaScript</h2>
+      <p>The interactive navigator needs JavaScript. The authoritative static reference is the <a href="/safety/order-recovery/">order recovery guide</a>, which lists every interrupted state with its next action.</p>
+      <p><strong>Standing rules:</strong> never pay twice on a hunch; top up differences, never repeat totals; a confirmed transaction is final for everyone; never publish a recovery kit; never act on stale data.</p>
+      <p>The navigator covers {manifest.recovery.outcomes.length} terminal states, from unpaid orders to irreversible wrong-address sends.</p>
+    </section>
+  </noscript>
+  <RecoveryNavigator client:visible />
+</StarlightPage>
