@@ -23,6 +23,11 @@ function countContentPages(dir) {
 
 const pageCount = countContentPages(docsDir)
 
+import { execFileSync } from 'node:child_process'
+if (!existsSync(distDir) || !existsSync(join(distDir, 'corpus.jsonl'))) {
+  execFileSync('npm', ['run', 'build'], { stdio: 'inherit', cwd: root })
+}
+
 for (const artifact of ['llms.txt', 'llms-full.txt', 'corpus.jsonl', 'skill.md', 'learning-manifest.json']) {
   if (!existsSync(join(distDir, artifact))) problems.push(`dist/${artifact} is missing (run the generator after the build)`)
 }
