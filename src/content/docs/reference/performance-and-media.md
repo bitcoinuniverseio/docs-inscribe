@@ -1,10 +1,24 @@
 ---
+<<<<<<<< HEAD:src/content/docs/reference/performance-and-media.md
 title: 'Performance and media'
 description: 'Load order, caching windows, and where media is served from.'
 category: reference
 lastVerified: 2026-09-01
 ---
 # Speed and media delivery
+========
+title: Speed and media
+description: "What loads first, how protocol data is cached, and how inscription media is rendered from Universe infrastructure."
+provenance:
+  owner: bitcoinuniverseio/inscribe
+  chain: Bitcoin
+  network: mainnet
+  release: Continuous, from a verified commit
+  lifecycle: Stable
+  lastVerified: 2026-09-01
+---
+
+>>>>>>>> f81b73edc3d97beddafed9ab57fbf3530bd423ec:src/content/docs/about/performance-and-media.md
 
 Universe Inscribe loads the workspace shell first and fills each section as its data arrives. This page explains what you can expect and where the data and media come from.
 

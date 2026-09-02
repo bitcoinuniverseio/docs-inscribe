@@ -1,0 +1,68 @@
+---
+title: Runes family
+description: Runes, Mezcal and Alkanes. Etching and minting runes, how Mezcal differs, and why Alkanes is mint-only in Inscribe.
+protocols: [runes, mezcal, alkanes]
+operations: [etch, mint, transfer]
+provenance:
+  owner: bitcoinuniverseio/inscribe
+  chain: Bitcoin
+  network: mainnet
+  release: Continuous, from a verified commit
+  lifecycle: Runes and Mezcal are released and ungated. Alkanes is released
+  lastVerified: 2026-09-01
+---
+
+import ProtocolMatrix from '@components/ProtocolMatrix.astro';
+
+Fungible tokens that live in transaction outputs rather than in inscriptions, tracked by
+their own indexes.
+
+<ProtocolMatrix family="runes" />
+
+## Runes
+
+The main protocol here. Etch a new rune, mint an open one, or split a balance across
+outputs.
+
+An etch fixes the name, divisibility, premine and mint terms permanently. Read
+[etch a rune](/docs-inscribe/create/etch-a-rune/) before you do one.
+
+Runes rounds fee rates to whole satoshis under some conditions, which is one reason the
+Normal and Fast tiers can show the same number. That is expected, not a fault.
+
+Workspace: `/runes`. Released and ungated.
+
+## Mezcal
+
+The same three operations, etch, mint and transfer, written differently: **Mezcal writes
+JSON records into OP_RETURN outputs instead of runestones**, and it runs on its own index.
+
+Two practical consequences:
+
+- A name on Mezcal and the same name on Runes are different assets.
+- **Mezcal quotes its own service fee** rather than the flat 1,500 satoshis. The
+  confirmation screen shows the amount that applies.
+
+Workspace: `/mezcal`. Released and ungated.
+
+## Alkanes
+
+**Mint only.** The registry records a `mint` operation for Alkanes and nothing else, so
+Inscribe cannot etch or transfer one for you.
+
+What the workspace does well is show you what is being contested: it ranks Alkane tokens by
+live mempool minting, so you can see demand as it happens, and lets you mint by ID.
+
+Workspace: `/alkanes`. Released.
+
+## Runes (Native)
+
+The registry carries a separate **Runes (Native)** protocol with no inscribe surface at
+all. It appears in the main and wallet surfaces of Bitcoin Universe, and there is no way to
+create one in Inscribe.
+
+## Related
+
+- [Etch a rune](/docs-inscribe/create/etch-a-rune/)
+- [Mint a token](/docs-inscribe/create/mint-a-token/)
+- [Coverage matrix](/docs-inscribe/protocols/coverage/)
