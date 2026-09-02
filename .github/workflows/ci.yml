@@ -21,7 +21,7 @@ jobs:
     secrets: inherit
     with:
       plan: '{"checks":"browser"}'
-      config_ref: 1dd19289af21f4f6be01f874390a180b3af8bb38
+      config_ref: fb59548bbe6f27a7c8a43cf93967f89c99de2795
 
   checks:
     needs: route
