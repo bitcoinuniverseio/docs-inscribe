@@ -22,7 +22,7 @@ function walk(dir) {
 function check(file) {
   pages += 1
   const source = readFileSync(file, 'utf8')
-  const match = /^---\n([\s\S]*?)\n---/.exec(source)
+  const match = /^---\r?\n([\s\S]*?)\r?\n---/.exec(source)
   const rel = file.slice(root.length + 1)
   if (!match) {
     problems.push(`${rel}: missing frontmatter`)
@@ -32,7 +32,7 @@ function check(file) {
   if (!/^title:/m.test(fm)) problems.push(`${rel}: missing title`)
   if (!/^description:/m.test(fm)) problems.push(`${rel}: missing description`)
   const noProvenance = /^provenance:\s*false$/m.test(fm)
-  if (!noProvenance && !/^lastVerified:\s*\d{4}-\d{2}-\d{2}/m.test(fm)) {
+  if (!noProvenance && !/^\s*lastVerified:\s*['"]?\d{4}-\d{2}-\d{2}/m.test(fm)) {
     problems.push(`${rel}: missing lastVerified date`)
   }
   if (/\bTODO\b|\bTBD\b|\bplaceholder\b/i.test(source)) {

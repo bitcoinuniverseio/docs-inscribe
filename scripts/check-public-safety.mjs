@@ -29,6 +29,7 @@ const ALLOWED_HOSTS = new Set([
   'fonts.googleapis.com',
   'creativecommons.org',
   'developer.mozilla.org',
+  'www.sitemaps.org',
   // The JSON-LD vocabulary identifier. Declared, never fetched.
   'schema.org',
   // Local development only. Never a destination in published content.

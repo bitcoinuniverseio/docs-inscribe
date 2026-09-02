@@ -1,24 +1,10 @@
 ---
-<<<<<<<< HEAD:src/content/docs/reference/accessibility.md
 title: 'Accessibility'
 description: 'The release gates every page and screen must pass, in both themes.'
 category: reference
 lastVerified: 2026-09-01
 ---
 # Accessibility
-========
-title: Accessibility
-description: "Contrast, themes, display controls, what every release is checked against, and where the checking falls short."
-provenance:
-  owner: bitcoinuniverseio/inscribe
-  chain: Bitcoin
-  network: mainnet
-  release: Continuous, from a verified commit
-  lifecycle: Stable. Automated checks are a release gate
-  lastVerified: 2026-09-01
----
-
->>>>>>>> f81b73edc3d97beddafed9ab57fbf3530bd423ec:src/content/docs/about/accessibility.md
 
 Inscribe is built to be used with a keyboard, a screen reader, a magnifier, or
 none of those. This page says what that means in practice and how it is
