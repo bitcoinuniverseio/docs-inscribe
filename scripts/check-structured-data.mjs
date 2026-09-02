@@ -19,9 +19,10 @@ function walkHtml(dir, out = []) {
   return out
 }
 
+import { execFileSync } from 'node:child_process'
+
 if (!existsSync(distDir)) {
-  console.error('check-structured-data: dist/ is missing; run the build first')
-  process.exit(1)
+  execFileSync('npm', ['run', 'build'], { stdio: 'inherit', cwd: root })
 }
 
 const htmlFiles = walkHtml(distDir)
