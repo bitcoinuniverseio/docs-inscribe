@@ -16,8 +16,15 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  route:
+    uses: bitcoinuniverseio/.github-private/.github/workflows/route.yml@develop
+    secrets: inherit
+    with:
+      plan: '{"checks":"browser"}'
+
   checks:
-    runs-on: runs-on=${{ github.run_id }}-checks/runner=universe-hosted/cpu=2+8/env=production
+    needs: route
+    runs-on: ${{ fromJSON(needs.route.outputs.targets).checks }}
     steps:
       - uses: actions/checkout@v4
         with:
