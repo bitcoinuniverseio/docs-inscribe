@@ -1,0 +1,44 @@
+/* Content layer: article typography inside Starlight's content pane. */
+
+.main-pane {
+  --sl-content-width: 48rem;
+}
+
+.main-pane blockquote {
+  border-left: 3px solid var(--ins-accent);
+  background: var(--ins-surface);
+  padding: 0.5rem 1rem;
+  border-radius: 0 var(--ins-radius) var(--ins-radius) 0;
+}
+
+.main-pane table {
+  display: table;
+  width: 100%;
+  font-size: 0.95rem;
+}
+
+.main-pane th {
+  background: var(--ins-surface-2);
+}
+
+.main-pane code {
+  font-family: var(--ins-font-mono);
+  font-size: 0.88em;
+}
+
+/* Wide tables scroll inside their own frame instead of pushing the page
+   sideways at 320px (applied by the rehype plugin). */
+.table-scroll {
+  overflow-x: auto;
+  border: var(--ins-frame);
+  border-radius: var(--ins-radius);
+}
+
+/* Starlight aside tones mapped onto the semantic palette */
+.starlight-aside .starlight-aside__title {
+  color: var(--ins-ink);
+}
+.starlight-aside--note { border-color: var(--ins-accent); }
+.starlight-aside--tip { border-color: var(--ins-success); }
+.starlight-aside--caution { border-color: var(--ins-warning); }
+.starlight-aside--danger { border-color: var(--ins-danger); }

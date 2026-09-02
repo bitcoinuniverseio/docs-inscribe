@@ -1,0 +1,337 @@
+{
+  "$comment": "Recovery Navigator decision table. Owned by the public documentation and generated into the shared manifest. Every branch terminates in an outcome id listed in outcomes. The navigator never claims that an absent result means zero and never asks a user to publish a recovery capability.",
+  "entry": "q-payment-made",
+  "questions": [
+    {
+      "id": "q-payment-made",
+      "question": "Did a payment already leave your wallet for this order?",
+      "options": [
+        { "value": "no", "label": "No, nothing was paid yet", "next": "q-unpaid-quote" },
+        { "value": "yes", "label": "Yes, a payment was sent", "next": "q-amount" }
+      ]
+    },
+    {
+      "id": "q-unpaid-quote",
+      "question": "Has the price quote on the order expired?",
+      "options": [
+        { "value": "no", "label": "No, the quote is still current", "next": "q-source-health-unpaid" },
+        { "value": "yes", "label": "Yes, the quote timer ran out", "next": "outcome:recovery-expired-quote" }
+      ]
+    },
+    {
+      "id": "q-source-health-unpaid",
+      "question": "What does the live status page say about the services this order depends on?",
+      "options": [
+        { "value": "healthy", "label": "Healthy", "next": "outcome:recovery-unpaid-order" },
+        { "value": "stale_or_down", "label": "Stale, syncing, or unavailable", "next": "outcome:recovery-source-stale" }
+      ]
+    },
+    {
+      "id": "q-amount",
+      "question": "Was the paid amount exact, below, or above the quoted total?",
+      "options": [
+        { "value": "exact", "label": "Exact", "next": "q-payment-visible" },
+        { "value": "below", "label": "Below the quote", "next": "q-repair-available" },
+        { "value": "above", "label": "Above the quote", "next": "outcome:recovery-overpayment" }
+      ]
+    },
+    {
+      "id": "q-repair-available",
+      "question": "Does the order page offer a top-up or repair action?",
+      "options": [
+        { "value": "yes", "label": "Yes, a top-up action is offered", "next": "outcome:recovery-underpayment-topup" },
+        { "value": "no", "label": "No repair action is offered", "next": "outcome:recovery-underpayment-contact" }
+      ]
+    },
+    {
+      "id": "q-payment-visible",
+      "question": "Can you see the payment transaction in your wallet history or on a block explorer?",
+      "options": [
+        { "value": "no", "label": "No, nothing is visible", "next": "q-source-health-payment" },
+        { "value": "yes", "label": "Yes, the transaction is visible", "next": "q-confirming" }
+      ]
+    },
+    {
+      "id": "q-source-health-payment",
+      "question": "What does the live status page say right now?",
+      "options": [
+        { "value": "healthy", "label": "Healthy", "next": "outcome:recovery-payment-not-detected" },
+        { "value": "stale_or_down", "label": "Stale, syncing, or unavailable", "next": "outcome:recovery-source-stale" }
+      ]
+    },
+    {
+      "id": "q-confirming",
+      "question": "Is the payment confirming normally, or is it stuck unconfirmed?",
+      "options": [
+        { "value": "confirming", "label": "Confirming or already confirmed", "next": "q-order-visible" },
+        { "value": "stuck", "label": "Stuck unconfirmed for a long time", "next": "q-stuck-which" }
+      ]
+    },
+    {
+      "id": "q-stuck-which",
+      "question": "Which transaction is stuck?",
+      "options": [
+        { "value": "payment", "label": "The payment to the order commit address", "next": "outcome:recovery-stuck-payment" },
+        { "value": "own", "label": "A reveal or transfer transaction I signed", "next": "q-reveal-failed" }
+      ]
+    },
+    {
+      "id": "q-reveal-failed",
+      "question": "Does the order page show the reveal step failed or timed out?",
+      "options": [
+        { "value": "yes", "label": "Yes, the reveal failed", "next": "outcome:recovery-failed-reveal" },
+        { "value": "no", "label": "No, the reveal did not fail", "next": "q-padding" }
+      ]
+    },
+    {
+      "id": "q-padding",
+      "question": "Were padding satoshis involved, for example a recover-sats notice on the order?",
+      "options": [
+        { "value": "yes", "label": "Yes, padding satoshis are involved", "next": "outcome:recovery-padding-recoverable" },
+        { "value": "no", "label": "No padding is involved", "next": "q-wrong-address" }
+      ]
+    },
+    {
+      "id": "q-wrong-address",
+      "question": "Did you review and sign a transaction that sent assets to an address you did not intend?",
+      "options": [
+        { "value": "yes", "label": "Yes, I signed a transaction to the wrong address", "next": "outcome:recovery-wrong-address" },
+        { "value": "no", "label": "No, every destination was correct", "next": "outcome:recovery-stuck-user-tx" }
+      ]
+    },
+    {
+      "id": "q-order-visible",
+      "question": "Does the order still appear in the in-app order list or on the order page?",
+      "options": [
+        { "value": "yes", "label": "Yes, the order is visible", "next": "q-quote-expiry" },
+        { "value": "no", "label": "No, the order is gone after a reload or a new tab", "next": "outcome:recovery-closed-tab" }
+      ]
+    },
+    {
+      "id": "q-quote-expiry",
+      "question": "Did the price quote expire before or after your payment?",
+      "options": [
+        { "value": "before", "label": "The quote expired before I paid", "next": "outcome:recovery-late-payment" },
+        { "value": "after", "label": "The quote expired after I paid, or it never expired", "next": "q-order-url" }
+      ]
+    },
+    {
+      "id": "q-order-url",
+      "question": "Do you have the exact order URL, for example from the order list or a bookmark?",
+      "options": [
+        { "value": "yes", "label": "Yes, I have the order URL", "next": "q-recovery-kit" },
+        { "value": "no", "label": "No, I never saved it", "next": "outcome:recovery-closed-tab" }
+      ]
+    },
+    {
+      "id": "q-recovery-kit",
+      "question": "Do you have the encrypted recovery kit file that was offered when the order was created?",
+      "options": [
+        { "value": "yes", "label": "Yes, I have the recovery kit", "next": "q-same-wallet" },
+        { "value": "no", "label": "No kit was saved", "next": "outcome:recovery-closed-tab" }
+      ]
+    },
+    {
+      "id": "q-same-wallet",
+      "question": "Can you still open the same wallet on the same network that made the payment?",
+      "options": [
+        { "value": "yes", "label": "Yes, same wallet and network", "next": "outcome:recovery-order-in-progress" },
+        { "value": "no", "label": "No, the wallet or network changed", "next": "outcome:recovery-closed-tab" }
+      ]
+    }
+  ],
+  "outcomes": [
+    {
+      "id": "recovery-unpaid-order",
+      "title": "Unpaid order, quote still current",
+      "diagnosis": "The order exists, nothing was paid, and the price quote is still current.",
+      "reversibility": "recoverable",
+      "doNotPayAgain": false,
+      "stopConditions": ["Do not pay from a different wallet than the one you plan to hold from without checking the two-address model first."],
+      "nextAction": "Open the order URL and complete the payment for the exact quoted amount before the timer runs out.",
+      "evidence": ["Screenshot the quote amount and timer before paying."],
+      "whatNotToDo": ["Do not pay a guessed amount. Pay exactly the quoted total."],
+      "guideId": "pub-order-recovery"
+    },
+    {
+      "id": "recovery-expired-quote",
+      "title": "Quote expired before payment",
+      "diagnosis": "The price quote expired before any payment was made. The old amount is no longer valid.",
+      "reversibility": "action_required",
+      "doNotPayAgain": false,
+      "stopConditions": ["Do not pay the expired amount. Fee rates move and the old total is wrong."],
+      "nextAction": "Open the order page and request a fresh quote, then pay the new exact total.",
+      "evidence": ["Note the old quote amount and the new quote amount."],
+      "whatNotToDo": ["Do not pay the expired quote. It will underpay or overpay."],
+      "guideId": "pub-what-it-costs"
+    },
+    {
+      "id": "recovery-payment-not-detected",
+      "title": "Payment sent but not yet detected",
+      "diagnosis": "A payment left your wallet and services are healthy, but the order has not detected it yet.",
+      "reversibility": "wait",
+      "doNotPayAgain": true,
+      "stopConditions": ["Do not send a second payment. A second payment is a second order amount, not a repair."],
+      "nextAction": "Wait at least one confirmation window, then reload the order page. Detection catches up after the payment confirms.",
+      "evidence": ["Save the payment transaction id from your wallet.", "Screenshot the order page payment status."],
+      "whatNotToDo": ["Do not send another full payment. Detection is not the same as absence."],
+      "guideId": "pub-order-recovery"
+    },
+    {
+      "id": "recovery-underpayment-topup",
+      "title": "Underpayment with a top-up action offered",
+      "diagnosis": "The payment was below the quoted total and the order page offers a top-up.",
+      "reversibility": "action_required",
+      "doNotPayAgain": true,
+      "stopConditions": ["Never send the full quoted amount again. Pay only the exact remaining difference the order page shows."],
+      "nextAction": "Use the top-up action on the order page and pay exactly the difference it displays.",
+      "evidence": ["Screenshot the top-up amount before paying it."],
+      "whatNotToDo": ["Do not send a second full payment. The order would be overpaid, and overpayment recovery is slower."],
+      "guideId": "pub-order-recovery"
+    },
+    {
+      "id": "recovery-underpayment-contact",
+      "title": "Underpayment without a repair action",
+      "diagnosis": "The payment was below the quoted total and the order page offers no top-up action.",
+      "reversibility": "action_required",
+      "doNotPayAgain": true,
+      "stopConditions": ["Do not guess a difference amount and send it without the order page asking for it."],
+      "nextAction": "Stop and open a support request with the order evidence. Do not send more funds until the order page or support asks for an exact amount.",
+      "evidence": ["Payment transaction id.", "Order URL.", "Quoted amount and paid amount."],
+      "whatNotToDo": ["Do not send another full payment."],
+      "guideId": "pub-order-recovery"
+    },
+    {
+      "id": "recovery-overpayment",
+      "title": "Overpayment",
+      "diagnosis": "More than the quoted total was paid. The order completes on the quoted terms.",
+      "reversibility": "wait",
+      "doNotPayAgain": true,
+      "stopConditions": ["Do not send correcting payments. Let the order finish and gather evidence."],
+      "nextAction": "Let the order complete, then follow the refund path documented in the recovery guide with your payment evidence.",
+      "evidence": ["Payment transaction id.", "Quoted amount and paid amount.", "Order URL."],
+      "whatNotToDo": ["Do not send further payments to correct an overpayment."],
+      "guideId": "pub-order-recovery"
+    },
+    {
+      "id": "recovery-stuck-payment",
+      "title": "Payment transaction stuck",
+      "diagnosis": "The payment to the order commit address is stuck unconfirmed.",
+      "reversibility": "wait",
+      "doNotPayAgain": true,
+      "stopConditions": ["Do not send a second payment for the same order."],
+      "nextAction": "If your wallet supports fee bumping (RBF), bump the payment fee. Otherwise wait; the order detects the payment whenever it confirms.",
+      "evidence": ["Payment transaction id.", "Fee rate the payment used.", "Current recommended fee rate."],
+      "whatNotToDo": ["Do not broadcast a duplicate payment. Two confirmations pay for one order and the difference is not automatic."],
+      "guideId": "pub-order-recovery"
+    },
+    {
+      "id": "recovery-stuck-user-tx",
+      "title": "Your own transaction is stuck",
+      "diagnosis": "A reveal or transfer transaction you signed is stuck unconfirmed.",
+      "reversibility": "action_required",
+      "doNotPayAgain": false,
+      "stopConditions": ["Do not rebuild the same transaction with a lower fee."],
+      "nextAction": "Open the tx replace workspace and bump the fee with replace-by-fee, or wait if the wallet cannot bump.",
+      "evidence": ["Stuck transaction id.", "Original fee rate."],
+      "whatNotToDo": ["Do not double-spend the same inputs carelessly. Use replace-by-fee so the same transaction replaces itself."],
+      "guideId": "pub-order-recovery"
+    },
+    {
+      "id": "recovery-closed-tab",
+      "title": "Order access lost",
+      "diagnosis": "The order is no longer reachable in this browser: the tab was closed, the URL is missing, or the wallet context changed.",
+      "reversibility": "recoverable",
+      "doNotPayAgain": true,
+      "stopConditions": ["Do not create a new order to replace the lost one before checking the browser order list."],
+      "nextAction": "Check the in-app browser order list first (it keeps recent orders locally), then restore the order URL from the encrypted recovery kit if you saved one.",
+      "evidence": ["Approximate time the order was created.", "Payment transaction id if paid.", "Recovery kit file if saved."],
+      "whatNotToDo": ["Do not pay anything new until the original order state is known."],
+      "guideId": "pub-order-recovery"
+    },
+    {
+      "id": "recovery-late-payment",
+      "title": "Payment arrived after the quote expired",
+      "diagnosis": "The payment was made after the price quote expired, so the order may not match the paid amount.",
+      "reversibility": "action_required",
+      "doNotPayAgain": true,
+      "stopConditions": ["Do not send further payments to fix the mismatch."],
+      "nextAction": "Open the order page and check how the late payment was applied, then follow the documented late-payment path with your evidence.",
+      "evidence": ["Payment transaction id and timestamp.", "Quote expiry time.", "Order URL."],
+      "whatNotToDo": ["Do not assume the order will complete on the old terms."],
+      "guideId": "pub-order-recovery"
+    },
+    {
+      "id": "recovery-padding-recoverable",
+      "title": "Padding satoshis can be recovered",
+      "diagnosis": "Padding satoshis from this order are recoverable through the recover-sats workspace.",
+      "reversibility": "recoverable",
+      "doNotPayAgain": false,
+      "stopConditions": ["Do not spend the UTXO holding the padding satoshis as a normal fee input before recovering."],
+      "nextAction": "Open the recover-sats workspace with the same wallet and network and follow the recovery prompt.",
+      "evidence": ["The UTXO or order that reported recoverable satoshis."],
+      "whatNotToDo": ["Do not ignore an asset-bearing warning when spending inputs. Check what each input holds first."],
+      "guideId": "pub-asset-safety"
+    },
+    {
+      "id": "recovery-failed-reveal",
+      "title": "Reveal failed and can be retried",
+      "diagnosis": "The commit confirmed but the reveal step failed. The reveal can be retried from the order.",
+      "reversibility": "action_required",
+      "doNotPayAgain": true,
+      "stopConditions": ["Do not create a new order. The paid commit still belongs to this one."],
+      "nextAction": "Open the order page and use the retry reveal action at a current fee rate.",
+      "evidence": ["Order URL.", "Commit transaction id.", "The failure reason the order page shows."],
+      "whatNotToDo": ["Do not pay a second time. The reveal reuses the paid commit."],
+      "guideId": "pub-order-recovery"
+    },
+    {
+      "id": "recovery-deployment-disabled",
+      "title": "Recovery surface is disabled in this deployment",
+      "diagnosis": "The recovery tool for this situation exists in the app source but the current deployment keeps it switched off.",
+      "reversibility": "unknown",
+      "doNotPayAgain": true,
+      "stopConditions": ["Do not paste recovery material anywhere public."],
+      "nextAction": "Keep your evidence and open a support request. The workspace is not available in this release, so nothing can be done from the public site.",
+      "evidence": ["Order URL.", "Payment transaction id.", "What the app showed instead of the workspace."],
+      "whatNotToDo": ["Do not trust third-party recovery services. There is no sanctioned external recovery tool."],
+      "guideId": "pub-order-recovery"
+    },
+    {
+      "id": "recovery-source-stale",
+      "title": "Live sources cannot establish the state",
+      "diagnosis": "The services this answer depends on are stale, syncing, or unavailable. No state can be established right now.",
+      "reversibility": "wait",
+      "doNotPayAgain": true,
+      "stopConditions": ["Do not treat an empty result as proof that nothing happened."],
+      "nextAction": "Wait for the live status page to report healthy again, then answer the questions again. Nothing needs to be paid in the meantime.",
+      "evidence": ["A screenshot of the live status page with its timestamp."],
+      "whatNotToDo": ["Do not make payments or repairs based on data a stale source cannot confirm."],
+      "guideId": "pub-protocol-data-status"
+    },
+    {
+      "id": "recovery-wrong-address",
+      "title": "Signed transaction to the wrong address",
+      "diagnosis": "A transaction was correctly signed exactly as instructed and it moved assets to an address that was not intended. A confirmed Bitcoin transaction cannot be reversed.",
+      "reversibility": "irreversible",
+      "doNotPayAgain": true,
+      "stopConditions": ["Do not pay anyone claiming they can reverse a confirmed transaction. No operator can."],
+      "nextAction": "If the destination is your own address on another wallet, recover it from that wallet. Otherwise treat the amount as lost and review the pre-sign checklist before the next transaction.",
+      "evidence": ["Transaction id.", "Destination address.", "What the wallet confirmation showed."],
+      "whatNotToDo": ["Never publish a recovery capability or seed phrase to ask for help.", "Do not trust reversal services."],
+      "guideId": "pub-asset-safety"
+    },
+    {
+      "id": "recovery-order-in-progress",
+      "title": "Order is progressing normally",
+      "diagnosis": "Payment detected and the order is moving through its stages. No repair is needed.",
+      "reversibility": "wait",
+      "doNotPayAgain": true,
+      "stopConditions": ["Do not interfere with an order that is already revealing."],
+      "nextAction": "Keep the order page open or save its URL, and let the lifecycle finish. Check the walkthrough for what each stage looks like.",
+      "evidence": ["Order URL.", "Payment transaction id."],
+      "whatNotToDo": ["Do not close the tab in a way that loses the order URL before saving it."],
+      "guideId": "pub-order-recovery"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "walkthroughId": "vw-op-return-transfer",
+  "appCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+  "capturedAt": "2026-09-02T20:33:18.071Z",
+  "fixtureVersion": "1",
+  "steps": 3,
+  "altTexts": [
+    "The op-return workspace opened with the transfer action selected",
+    "The transfer form fields for op_return",
+    "The review end of the transfer flow for op_return"
+  ],
+  "stepInstructions": [
+    "Open /op-return with the transfer action. The workspace shows its form with the action preselected.",
+    "Fill the form fields. Every field shows the values that drive the quote; the fixture environment has no live fees, and the app says so.",
+    "The end of the form holds the fee and review sections. Nothing is signed in this capture environment; the live app shows its own review here."
+  ],
+  "files": [
+    {
+      "path": "step-01.webp",
+      "sha256": "e455eabe49cac42a4071bf3bc0a5ffb9809fe414c1a5557ee971b318293e3876",
+      "bytes": 40020
+    },
+    {
+      "path": "step-02.webp",
+      "sha256": "e455eabe49cac42a4071bf3bc0a5ffb9809fe414c1a5557ee971b318293e3876",
+      "bytes": 40020
+    },
+    {
+      "path": "step-03.webp",
+      "sha256": "e455eabe49cac42a4071bf3bc0a5ffb9809fe414c1a5557ee971b318293e3876",
+      "bytes": 40020
+    }
+  ]
+}
