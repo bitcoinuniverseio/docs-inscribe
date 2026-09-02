@@ -1,0 +1,84 @@
+---
+title: Ordinals family
+description: Ordinals inscriptions, BRC-20, TAP, BLOCK-20, Bitmap and UNAT. What each does, what Inscribe can create, and the two that are recognised but not creatable.
+protocols: [ordinals, brc20, tap, block20, bitmap, unat]
+operations: [inscribe, deploy, mint, transfer]
+provenance:
+  owner: bitcoinuniverseio/inscribe
+  chain: Bitcoin
+  network: mainnet
+  release: Continuous, from a verified commit
+  lifecycle: Ordinals, BRC-20 and TAP are released and ungated. BLOCK-20 is released
+  lastVerified: 2026-09-01
+---
+
+import ProtocolMatrix from '@components/ProtocolMatrix.astro';
+
+Everything in this family is built on Ordinals inscriptions: content written into the
+witness of a Bitcoin transaction and tracked to a particular satoshi.
+
+<ProtocolMatrix family="ordinals" />
+
+## Ordinals
+
+The base layer for the rest. An inscription is content on a satoshi, and that satoshi lives
+in an output of its own.
+
+The **Inscribe** workspace at `/inscribe` has eight sub-tabs: Text, Files, Names,
+Parent/Child, Delegate, Gallery, Stamps and Data Lab. **Ord Studio** at `/ord-studio` gives
+full inscription-envelope control, with a live HTML sandbox, templates, and the ord
+specification fields including pointer, parent, metadata, gzip and metaprotocol.
+
+Start with [your first inscription](/docs-inscribe/start/first-inscription/), then
+[inscribe a file](/docs-inscribe/create/inscribe-a-file/) and
+[create a collection](/docs-inscribe/create/collections/).
+
+## BRC-20
+
+Tokens defined by JSON text inscriptions. Deploy fixes the ticker, supply and per-mint
+limit; mint claims an amount; transfer moves a balance.
+
+Inscribe supports 4-byte tickers, 5-byte self-issuance, and brc2.0.
+
+Workspace: `/brc20`. Released and ungated.
+
+## TAP
+
+Tokens with a two-step transfer. A TAP transfer is an inscription authorising the move,
+then the move itself, so a transfer that stops halfway has not moved anything.
+
+The TAP workspace also mints **DMT** tokens, which claim block numbers, and carries an
+airdrop, a private mint and a blockpad.
+
+Workspace: `/tap`. Released and ungated.
+
+## BLOCK-20
+
+Deploy, mint and transfer, with one distinctive rule: **every mint embeds the latest block
+hash**, filled in at mint time rather than by you. That ties each mint to the chain state
+it was made against.
+
+Workspace: `/block20`. Released.
+
+## Bitmap and UNAT
+
+Both are recorded in the protocol registry as transferable, and **neither has a creation or
+transfer workspace in Inscribe**.
+
+What they do have is recognition. Both appear in:
+
+- your **Portfolio**, classified by protocol;
+- **inscription search**;
+- the **asset inventory** for an output, so the safety screening knows an output carrying
+  one is not plain bitcoin.
+
+That last point is the useful one: Inscribe will not spend a Bitmap or UNAT output to pay a
+fee, even though it cannot create or move one for you.
+
+To transfer either, use a tool that supports it.
+
+## Related
+
+- [Coverage matrix](/docs-inscribe/protocols/coverage/)
+- [Deploy a token](/docs-inscribe/create/deploy-a-token/)
+- [Transfer an asset](/docs-inscribe/create/transfer-an-asset/)

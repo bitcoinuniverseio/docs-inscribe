@@ -114,4 +114,12 @@ export default defineConfig({
   build: {
     inlineStylesheets: 'auto',
   },
+  vite: {
+    resolve: {
+      alias: {
+        '@data': new URL('./src/data', import.meta.url).pathname,
+        '@components': new URL('./src/components', import.meta.url).pathname,
+      },
+    },
+  },
 })
