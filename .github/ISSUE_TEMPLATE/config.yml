@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Something went wrong with my order
+    url: https://bitcoinuniverseio.github.io/docs-inscribe/manage/recovery/
+    about: Recovery routes covers unpaid, underpaid, stuck and interrupted orders. If you have already paid, do not pay again.
+  - name: Security vulnerability
+    url: https://github.com/bitcoinuniverseio/docs-inscribe/security/advisories/new
+    about: Report privately. Do not open a public issue.
+  - name: Bitcoin Universe documentation
+    url: https://docs.bitcoinuniverse.io
+    about: The central platform, including Core and trading availability.

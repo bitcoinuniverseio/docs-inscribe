@@ -1,0 +1,39 @@
+name: Something here is wrong
+description: A page describes behaviour the product does not have
+labels: [inaccuracy]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This documentation describes software that spends money irreversibly, so
+        an inaccuracy has a cost. Thank you for reporting one.
+
+        If this is a security problem, or a page that could cause someone to lose
+        assets, do not file it here. Use the private channel in SECURITY.md.
+  - type: input
+    id: page
+    attributes:
+      label: Which page
+      placeholder: https://bitcoinuniverseio.github.io/docs-inscribe/concepts/what-it-costs/
+    validations:
+      required: true
+  - type: textarea
+    id: claim
+    attributes:
+      label: What the page says
+      description: Quote it, so the wrong sentence can be found.
+    validations:
+      required: true
+  - type: textarea
+    id: reality
+    attributes:
+      label: What the product actually does
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: How you know
+      description: A transaction id, a screenshot of the app, or steps to reproduce. This is worth more than a description.
+    validations:
+      required: false
