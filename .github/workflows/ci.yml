@@ -33,10 +33,10 @@ jobs:
       - uses: bitcoinuniverseio/universe-ci-actions/universe-node-env@main
       - name: Install
         run: npm ci
-      - name: Quality gates and learning suite
-        run: npm test
       - name: Build
         run: npm run build
+      - name: Quality gates and learning suite
+        run: npm test
       - name: Search index exists
         run: test -f dist/pagefind/pagefind.js
       - name: Sitemap exists
