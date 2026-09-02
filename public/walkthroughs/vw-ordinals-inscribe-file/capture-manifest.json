@@ -1,0 +1,34 @@
+{
+  "walkthroughId": "vw-ordinals-inscribe-file",
+  "appCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+  "capturedAt": "2026-09-02T20:33:18.049Z",
+  "fixtureVersion": "1",
+  "steps": 3,
+  "altTexts": [
+    "The Inscribe workspace with the File sub-tab selected",
+    "The file input with size and estimated cost area",
+    "The fee and review sections for a file inscription"
+  ],
+  "stepInstructions": [
+    "Select the File sub-tab. The form accepts images, audio, video, models, and other binary content.",
+    "Choose a file. Cost scales with size: the quote area shows the reveal fee growing with bytes.",
+    "Review the fee tier and the quote before paying. Large files are expensive at high fee rates: read the number."
+  ],
+  "files": [
+    {
+      "path": "step-01.webp",
+      "sha256": "aa66560a0aa4c2a2fc7d14900a2e52746003ba8ca7f13b7cb25c80d53a9af2ff",
+      "bytes": 50900
+    },
+    {
+      "path": "step-02.webp",
+      "sha256": "7e2a2753e8b80c30bf78389bf3c2425c9b8a6899de310a9f903a2e75e440f171",
+      "bytes": 51106
+    },
+    {
+      "path": "step-03.webp",
+      "sha256": "d9c6bdf37f29fd9170ceab19661cb5712c6fcb32de3d4507ac58065baef18471",
+      "bytes": 38834
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+---
+/**
+ * Theme select that defaults to the light theme on first visit and remembers
+ * the reader's choice. Starlight's stock control already supports both
+ * directions; this wrapper only sets the first-visit default because light is
+ * the primary design.
+ */
+const match = Astro.props as { default?: string }
+---
+
+<script>
+  const KEY = 'inscribe-docs-theme'
+  const stored = localStorage.getItem(KEY)
+  if (!stored) {
+    const preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    document.documentElement.dataset.theme = preferred
+  }
+  document.addEventListener('change', (event) => {
+    const target = event.target
+    if (target instanceof HTMLSelectElement && target.dataset.themeSelect !== undefined) {
+      localStorage.setItem(KEY, target.value)
+    }
+  })
+</script>

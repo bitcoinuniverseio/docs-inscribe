@@ -1,0 +1,175 @@
+{
+  "$comment": "Protocol creation facts owned by the public documentation. Values are restricted to what the referenced public pages and the capability registry establish. Fee models reference the shared estimator models. Never state a value here that the cited source does not establish.",
+  "facts": {
+    "ordinals": {
+      "feeModel": "commit_reveal",
+      "outputValue": "Inscription outputs keep 546 sats of postage that stays owned by the user and moves with the asset.",
+      "transferModel": "Regular Bitcoin transfer of the inscribed satoshi; parent inscriptions can be referenced by children.",
+      "batch": true,
+      "collection": true,
+      "parent": true,
+      "contentRestrictions": [],
+      "dependencies": ["index-ordinals"],
+      "sources": [
+        { "path": "what-it-costs.md", "proves": "commit and reveal cost anatomy and postage" },
+        { "path": "workspaces.md", "proves": "batch, parent, delegate, and gallery support in the Inscribe workspace" }
+      ]
+    },
+    "stamps": {
+      "feeModel": "stamp_olga",
+      "outputValue": "Stamp chains spend their dust as fees by design; no postage stays behind.",
+      "transferModel": "Stamp transfers move SRC-20 linked stamp UTXOs.",
+      "batch": false,
+      "collection": false,
+      "parent": false,
+      "contentRestrictions": ["Images only", "Counterparty-compatible stamp encoding"],
+      "dependencies": ["index-stamps"],
+      "sources": [
+        { "path": "workspaces.md", "proves": "stamps workspace scope and image-only restriction" }
+      ]
+    },
+    "brc20": {
+      "feeModel": "commit_reveal",
+      "outputValue": "Inscription outputs keep 546 sats of postage that stays owned by the user.",
+      "transferModel": "Inscription transfer then send; the transfer must be indexed before further moves.",
+      "batch": false,
+      "collection": false,
+      "parent": false,
+      "contentRestrictions": ["BRC-20 JSON payloads", "Ticker rules enforced by the indexers"],
+      "dependencies": ["index-brc20"],
+      "sources": [
+        { "path": "workspaces.md", "proves": "BRC-20 deploy, mint, and transfer scope" }
+      ]
+    },
+    "src20": {
+      "feeModel": "src20",
+      "outputValue": "SRC-20 data outputs are dust that the protocol spends as fees.",
+      "transferModel": "UTXO-based stamp transfer.",
+      "batch": true,
+      "collection": false,
+      "parent": false,
+      "contentRestrictions": ["SRC-20 JSON payloads", "Ticker rules enforced by the indexer"],
+      "dependencies": ["index-stamps"],
+      "sources": [
+        { "path": "workspaces.md", "proves": "SRC-20 deploy, mint, and transfer scope" }
+      ]
+    },
+    "runes": {
+      "feeModel": "keyless_p2a",
+      "outputValue": "Receiver outputs keep at least dust value that stays owned by the user.",
+      "transferModel": "Runes move in Bitcoin outputs with a runestone payload; etching declares the token.",
+      "batch": true,
+      "collection": false,
+      "parent": false,
+      "contentRestrictions": ["Rune ticker and divisibility rules"],
+      "dependencies": ["index-runes"],
+      "sources": [
+        { "path": "workspaces.md", "proves": "Runes etch, mint, and transfer scope" }
+      ]
+    },
+    "mezcal": {
+      "feeModel": "commit_reveal",
+      "outputValue": "Receiver outputs keep at least dust value that stays owned by the user.",
+      "transferModel": "Mezcal transfers carry an op-return or envelope payload.",
+      "batch": false,
+      "collection": false,
+      "parent": false,
+      "contentRestrictions": ["Mezcal ticker rules"],
+      "dependencies": ["index-mezcal"],
+      "sources": [
+        { "path": "workspaces.md", "proves": "Mezcal etch, mint, and transfer scope" }
+      ]
+    },
+    "tap": {
+      "feeModel": "commit_reveal",
+      "outputValue": "Protocol outputs keep at least dust value that stays owned by the user.",
+      "transferModel": "TAP transfers move assets with a tap envelope and separate transfer signature.",
+      "batch": false,
+      "collection": false,
+      "parent": false,
+      "contentRestrictions": ["TAP protocol JSON"],
+      "dependencies": ["index-tap"],
+      "sources": [
+        { "path": "workspaces.md", "proves": "TAP deploy, mint, and transfer scope" }
+      ]
+    },
+    "op_return": {
+      "feeModel": "direct",
+      "outputValue": "OP_RETURN outputs are unspendable; their value is spent as fees.",
+      "transferModel": "Data is carried in an unspendable output; assets are not represented.",
+      "batch": false,
+      "collection": false,
+      "parent": false,
+      "contentRestrictions": ["80 byte op-return data limit", "Data is permanently public"],
+      "dependencies": [],
+      "sources": [
+        { "path": "workspaces.md", "proves": "OP_RETURN data publication scope" }
+      ]
+    },
+    "op_drop": {
+      "feeModel": "commit_reveal",
+      "outputValue": "BIP-110 drop outputs keep at least dust value that stays owned by the user.",
+      "transferModel": "Drop tokens move as inscribed outputs under BIP-110.",
+      "batch": false,
+      "collection": false,
+      "parent": false,
+      "contentRestrictions": ["BIP-110 payload rules"],
+      "dependencies": ["index-drops-and-opdrop"],
+      "sources": [
+        { "path": "workspaces.md", "proves": "OP_DROP deploy and mint scope" }
+      ]
+    },
+    "alkanes": {
+      "feeModel": "keyless_p2a",
+      "outputValue": "Receiver outputs keep at least dust value that stays owned by the user.",
+      "transferModel": "Alkanes move with ProtorunesRFC0033 transfer payloads.",
+      "batch": true,
+      "collection": false,
+      "parent": false,
+      "contentRestrictions": ["Alkanes block and message rules"],
+      "dependencies": ["index-alkanes"],
+      "sources": [
+        { "path": "workspaces.md", "proves": "Alkanes mint scope" }
+      ]
+    },
+    "arc20": {
+      "feeModel": "direct",
+      "outputValue": "ARC-20 units live in the output value itself; splitting controls how much moves.",
+      "transferModel": "ARC-20 units move as satoshi units of the mint output.",
+      "batch": false,
+      "collection": false,
+      "parent": false,
+      "contentRestrictions": ["Deployment ticker rules", "One mint per output"],
+      "dependencies": ["index-atomicals"],
+      "sources": [
+        { "path": "workspaces.md", "proves": "ARC-20 deploy, mint, and transfer scope" }
+      ]
+    },
+    "block20": {
+      "feeModel": "commit_reveal",
+      "outputValue": "Inscription outputs keep at least dust value that stays owned by the user.",
+      "transferModel": "BLOCK-20 transfers move inscribed outputs.",
+      "batch": false,
+      "collection": false,
+      "parent": false,
+      "contentRestrictions": ["BLOCK-20 payload rules"],
+      "dependencies": ["index-block20"],
+      "sources": [
+        { "path": "workspaces.md", "proves": "BLOCK-20 deploy, mint, and transfer scope" }
+      ]
+    },
+    "dust20": {
+      "feeModel": "commit_reveal",
+      "outputValue": "Inscription outputs keep at least dust value that stays owned by the user.",
+      "transferModel": "DUST-20 transfers move inscribed outputs.",
+      "batch": false,
+      "collection": false,
+      "parent": false,
+      "contentRestrictions": ["DUST-20 payload rules"],
+      "dependencies": ["index-dust20"],
+      "sources": [
+        { "path": "workspaces.md", "proves": "DUST-20 deploy and mint scope" }
+      ]
+    }
+  }
+}

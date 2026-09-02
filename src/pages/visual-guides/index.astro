@@ -1,0 +1,24 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro'
+import { loadManifest } from '@universe/inscribe-learning'
+
+const manifest = loadManifest()
+---
+
+<StarlightPage frontmatter={{ title: 'Visual walkthrough library', description: 'Deterministic captures of the real Inscribe interface, one walkthrough per core workflow, each with text equivalents and a safe practice route.', slug: 'visual-guides' }}>
+  <p>
+    Every capture is generated from a declared deterministic state of the real application, pinned to an exact app
+    commit and fixture version. Captures are refreshed automatically when the app changes; an outdated screenshot
+    fails the build instead of shipping. Essential instructions always exist as text next to the images.
+  </p>
+  <ul class="ins-entry-grid">
+    {manifest.walkthroughs.map((w) => (
+      <li key={w.id}>
+        <a href={w.path}>
+          <span class="ins-entry__title">{w.title}</span>
+          <span class="ins-entry__desc">{w.steps} steps · app commit {w.captureCommit.slice(0, 12)} · <a href={`/practice/?scenario=${w.practiceScenarioId ?? ''}`}>practice it</a></span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</StarlightPage>

@@ -1,0 +1,21 @@
+{
+  "$comment": "Practice scenario registry owned by the public documentation. The Safe Practice Studio implements every scenario listed here and the manifest proof requires each id to resolve.",
+  "scenarios": [
+    { "id": "ps-ordinals-inscribe-text", "title": "First text inscription", "workflowId": "wf-ordinals-inscribe", "path": "/practice/?scenario=ps-ordinals-inscribe-text", "goal": "inscribe_text" },
+    { "id": "ps-ordinals-inscribe-file", "title": "First file inscription", "workflowId": "wf-ordinals-inscribe-file", "path": "/practice/?scenario=ps-ordinals-inscribe-file", "goal": "inscribe_file" },
+    { "id": "ps-ordinals-batch", "title": "Batch creation", "workflowId": "wf-ordinals-inscribe-batch", "path": "/practice/?scenario=ps-ordinals-batch", "goal": "batch" },
+    { "id": "ps-ordinals-collection", "title": "Collection and parent selection", "workflowId": "wf-ordinals-collection", "path": "/practice/?scenario=ps-ordinals-collection", "goal": "collection" },
+    { "id": "ps-brc20-deploy", "title": "Token deployment", "workflowId": "wf-brc20-deploy", "path": "/practice/?scenario=ps-brc20-deploy", "goal": "deploy_token" },
+    { "id": "ps-brc20-mint", "title": "Token minting", "workflowId": "wf-brc20-mint", "path": "/practice/?scenario=ps-brc20-mint", "goal": "mint_token" },
+    { "id": "ps-runes-etch", "title": "Rune etching", "workflowId": "wf-runes-etch", "path": "/practice/?scenario=ps-runes-etch", "goal": "etch_rune" },
+    { "id": "ps-transfer", "title": "Asset transfer", "workflowId": "wf-ordinals-transfer", "path": "/practice/?scenario=ps-transfer", "goal": "transfer_asset" },
+    { "id": "ps-quote-review", "title": "Reviewing a quote", "workflowId": "wf-ordinals-inscribe", "path": "/practice/?scenario=ps-quote-review", "goal": "learn_free" },
+    { "id": "ps-wallet-review", "title": "Reviewing a wallet transaction", "workflowId": "wf-ordinals-inscribe", "path": "/practice/?scenario=ps-wallet-review", "goal": "learn_free" },
+    { "id": "ps-order-lifecycle", "title": "Order created to completed", "workflowId": "wf-ordinals-inscribe", "path": "/practice/?scenario=ps-order-lifecycle", "goal": "learn_free" },
+    { "id": "ps-underpayment", "title": "Underpayment", "workflowId": "wf-ordinals-inscribe", "path": "/practice/?scenario=ps-underpayment", "goal": "recover_order" },
+    { "id": "ps-stuck-payment", "title": "Stuck payment", "workflowId": "wf-ordinals-inscribe", "path": "/practice/?scenario=ps-stuck-payment", "goal": "recover_order" },
+    { "id": "ps-closed-tab-recovery", "title": "Closed tab recovery", "workflowId": "wf-ordinals-inscribe", "path": "/practice/?scenario=ps-closed-tab-recovery", "goal": "recover_order" },
+    { "id": "ps-utxo-warning", "title": "Asset-bearing UTXO warning", "workflowId": "wf-ordinals-inscribe", "path": "/practice/?scenario=ps-utxo-warning", "goal": "learn_free" },
+    { "id": "ps-recoverability", "title": "Recoverable versus irreversible outcomes", "workflowId": "wf-ordinals-inscribe", "path": "/practice/?scenario=ps-recoverability", "goal": "learn_free" }
+  ]
+}
