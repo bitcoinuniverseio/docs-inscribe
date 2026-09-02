@@ -1,0 +1,21 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro'
+import ProtocolLab from '../../islands/ProtocolLab'
+import { loadManifest } from '@universe/inscribe-learning'
+
+const manifest = loadManifest()
+const released = manifest.protocols.filter((p) => p.state.implemented && p.state.enabled)
+---
+
+<StarlightPage frontmatter={{ title: 'Protocol Decision Lab', description: 'Which verified Inscribe workflow fits your scenario, and what materially changes between the valid choices.', slug: 'labs/protocols' }}>
+  <noscript>
+    <section class="ins-lab">
+      <h2>Protocol facts without JavaScript</h2>
+      <p>The interactive filters need JavaScript. The authoritative static comparison is the <a href="/create/workspaces/">workspace map</a> and the released protocol list below.</p>
+      <ul>
+        {released.map((p) => <li><strong>{p.label}</strong> ({p.id}): workspace /{p.workspace}, operations {p.operations.join(', ') || 'view only'}, {p.state.enabled ? 'released' : 'deployment controlled'}</li>)}
+      </ul>
+    </section>
+  </noscript>
+  <ProtocolLab client:visible />
+</StarlightPage>

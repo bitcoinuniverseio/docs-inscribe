@@ -1,0 +1,22 @@
+---
+/** A framed screenshot with a caption naming the screen and the user goal. */
+interface Props {
+  src: string
+  alt: string
+  caption: string
+  width?: number
+  height?: number
+  loading?: 'lazy' | 'eager'
+}
+const { src, alt, caption, width, height, loading = 'lazy' } = Astro.props
+---
+
+<figure class="ins-frame">
+  <div class="ins-frame__bar" aria-hidden="true">
+    <span class="ins-frame__dot"></span>
+    <span class="ins-frame__dot"></span>
+    <span class="ins-frame__dot"></span>
+  </div>
+  <img src={src} alt={alt} width={width} height={height} loading={loading} decoding="async" />
+  <figcaption>{caption}</figcaption>
+</figure>

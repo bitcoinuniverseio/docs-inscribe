@@ -1,0 +1,19 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro'
+import TransactionLab from '../../islands/TransactionLab'
+---
+
+<StarlightPage frontmatter={{ title: 'Transaction Review and UTXO Safety Lab', description: 'Fee anatomy from the shared estimator, sanitized transaction fixtures, wallet-review practice, and safety exercises.', slug: 'labs/transaction-review' }}>
+  <noscript>
+    <section class="ins-lab">
+      <h2>Safety fundamentals without JavaScript</h2>
+      <p>The interactive lab needs JavaScript. The static guides cover the same ground:</p>
+      <ul>
+        <li><a href="/create/what-it-costs/">What a transaction costs</a></li>
+        <li><a href="/safety/asset-safety/">Asset and UTXO safety</a></li>
+        <li><a href="/safety/order-recovery/">Order recovery</a></li>
+      </ul>
+    </section>
+  </noscript>
+  <TransactionLab client:visible />
+</StarlightPage>

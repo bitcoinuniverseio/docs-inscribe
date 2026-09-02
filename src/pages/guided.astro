@@ -1,0 +1,31 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro'
+import Planner from '../islands/Planner'
+import { loadManifest } from '@universe/inscribe-learning'
+
+const manifest = loadManifest()
+---
+
+<StarlightPage frontmatter={{ title: 'Guided action planner', description: 'Answer a few questions and get an evidence-backed plan for your exact goal: workflow, stages, costs, safety checks, and a safe handoff into Inscribe.', slug: 'guided' }}>
+  <noscript>
+    <section class="ins-lab">
+      <h2>Plan without JavaScript</h2>
+      <p>
+        The interactive planner needs JavaScript. The same routes are documented statically: pick your goal and read
+        the full guide with every cost and safety check spelled out.
+      </p>
+      <ul>
+        <li><a href="/create/first-inscription/">Your first inscription</a></li>
+        <li><a href="/create/what-it-costs/">What a transaction costs</a></li>
+        <li><a href="/create/workspaces/">The workspace map: every creation surface</a></li>
+        <li><a href="/safety/asset-safety/">Asset and UTXO safety before you sign</a></li>
+        <li><a href="/safety/order-recovery/">Order recovery: every interrupted state</a></li>
+      </ul>
+      <p>
+        Actionable workflows covered by the planner right now:
+        {manifest.workflows.filter((w) => w.state.actionable).map((w) => ` ${w.title};`)}
+      </p>
+    </section>
+  </noscript>
+  <Planner client:visible />
+</StarlightPage>

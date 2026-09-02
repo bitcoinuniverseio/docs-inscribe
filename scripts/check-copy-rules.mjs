@@ -1,91 +1,112 @@
 #!/usr/bin/env node
-// Repository copy guard: rejects the long horizontal dash character
-// (U+2014), one banned marketing word, and a list of generic marketing and
-// assistant-voice phrases, in tracked source and documentation files. Every
-// pattern is constructed indirectly so this file never holds one literally
-// and never fails against itself.
-import { execSync } from 'node:child_process';
-import { readFileSync } from 'node:fs';
+// Copy rules for docs-inscribe, enforced rather than trusted.
+//
+// The wallet product enforces the same rules on its own interface copy and its
+// store listing. Documentation that drifts from them starts describing a
+// different product than the one the reader is holding.
+//
+// Run: node scripts/check-copy-rules.mjs
 
-const TEXT_EXTENSIONS = /\.(md|mdx|ts|tsx|js|mjs|cjs|jsx|json|css|html|astro|yml|yaml|toml|txt|svg)$/i;
-const LONG_DASH = String.fromCharCode(0x2014);
-const BANNED_WORD = new RegExp('\\b' + ['can', 'oni', 'cal'].join('') + '\\b', 'i');
+import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { join, relative, resolve, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-// Generic marketing and assistant-voice phrases. Each one says nothing a
-// reader can check, which is the opposite of what this product is for.
-// Base64 so this guard does not trip over its own rule list.
-const BANNED_PHRASES = [
-  'dW5sb2NrIHRoZSBmdXR1cmU=',
-  'c2VhbWxlc3MgZXhwZXJpZW5jZQ==',
-  'cmV2b2x1dGlvbmFyeQ==',
-  'Z2FtZS1jaGFuZ2luZw==',
-  'Y3V0dGluZy1lZGdl',
-  'bmV4dC1nZW5lcmF0aW9u',
-  'cmVkZWZpbmUgb3duZXJzaGlw',
-  'ZW5kbGVzcyBwb3NzaWJpbGl0aWVz',
-  'dW5sZWFzaCBjcmVhdGl2aXR5',
-  'dGhlIGZ1dHVyZSBpcyBoZXJl',
-  'ZW1iYXJrIG9uIGEgam91cm5leQ==',
-  'b25lLXN0b3A=',
-  'cG93ZXJmdWwgcGxhdGZvcm0=',
-  'aW5ub3ZhdGl2ZSBlY29zeXN0ZW0=',
-  'ZWZmb3J0bGVzc2x5',
-  'd29ybGQtY2xhc3M=',
-  'YmVzdC1pbi1jbGFzcw==',
-  'c3RhdGUtb2YtdGhlLWFydA==',
-  'c3VwZXJjaGFyZ2U=',
-  'ZGVsdmUgaW50bw==',
-  'Zm9tbw==',
-  'Y29taW5nIHNvb24=',
-]
-  .map((encoded) => Buffer.from(encoded, 'base64').toString('utf8'))
-  .map((phrase) => ({
-    phrase,
-    // Every phrase is letters, spaces and hyphens only, none of which are
-    // regular expression metacharacters, so no escaping is needed. The word
-    // boundaries stop a short entry from matching inside an integrity hash.
-    pattern: new RegExp('\\b' + phrase + '\\b', 'i'),
-  }));
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const problems = [];
 
-const files = execSync('git ls-files', { encoding: 'utf8' })
-  .split('\n')
-  .filter((f) => f && TEXT_EXTENSIONS.test(f) && !f.startsWith('scripts/check-copy-rules'));
+const SCAN_DIRS = ['src', 'scripts', '.github'];
+const SCAN_FILES = ['README.md', 'CONTRIBUTING.md', 'SECURITY.md', 'SUPPORT.md', 'llms.txt'];
+const TEXT_EXT = /\.(md|mdx|astro|css|mjs|js|ts|json|yml|yaml|txt|html)$/;
 
-let failures = 0;
-for (const file of files) {
-  let content;
+// Rule 1: the em dash is prohibited outright, in every file, including code.
+const EM_DASH = /\u2014/;
+
+// Rule 2: one word is prohibited in prose. The HTML rel attribute is required
+// markup and is allowed.
+const BANNED_WORD = /\bcanonical(ly|ise|ize|ised|ized)?\b/i;
+const BANNED_WORD_ALLOWED = /rel=["']?canonical|canonical-url|"canonical"/i;
+
+// Rule 3: claims a wallet cannot keep, and marketing register.
+const UNVERIFIABLE = [
+  /\b(?:the\s+)?(?:most|best|fastest|safest|easiest|leading|world['\u2019]s)\s+\w+\s+wallet\b/i,
+  /\b100%\s+(?:safe|secure|private|guaranteed)\b/i,
+  /\bunhackable\b/i,
+  /\bmilitary[- ]grade\b/i,
+  /\bbank[- ]grade\s+security\b/i,
+  /\bnever\s+lose\s+(?:your\s+)?(?:funds|money|coins)\b/i,
+  /\bguarantee[sd]?\s+(?:your\s+)?(?:safety|security|funds)\b/i,
+  /\bcoming\s+soon\b/i,
+  /\bTODO\b/,
+  /\bTBD\b/,
+  /\bplaceholder\b/i,
+  /\blorem ipsum\b/i,
+];
+// "coming soon" is quotable when reporting what the product itself displays.
+const UNVERIFIABLE_ALLOWED = /shown as coming soon|marked coming soon|reading .?coming soon|`Coming soon`|\*\*coming soon\*\*|as \*\*coming soon\*\*|says? coming soon/i;
+
+// Rule 4: no emoji anywhere. Status is carried by words.
+const EMOJI =
+  /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}\u{FE0F}\u{1F000}-\u{1F0FF}]/u;
+
+function walk(dir, out = []) {
+  let entries;
   try {
-    content = readFileSync(file, 'utf8');
+    entries = readdirSync(dir);
   } catch {
-    continue;
+    return out;
   }
-  // CONTRIBUTING.md has to name the banned word in order to tell a contributor
-  // not to use it. A rule nobody can state is a rule nobody can follow, so this
-  // one file is exempt from the word check and from nothing else.
-  const mayNameTheWord = file === 'CONTRIBUTING.md';
+  for (const name of entries) {
+    if (name === 'node_modules' || name === '.git' || name === 'dist' || name === '.astro') continue;
+    const full = join(dir, name);
+    if (statSync(full).isDirectory()) walk(full, out);
+    else if (TEXT_EXT.test(name)) out.push(full);
+  }
+  return out;
+}
 
-  content.split('\n').forEach((line, i) => {
-    if (line.includes(LONG_DASH)) {
-      console.error(`${file}:${i + 1}: long dash character U+2014 is not allowed`);
-      failures += 1;
+const files = [
+  ...SCAN_DIRS.flatMap((d) => walk(join(root, d))),
+  ...SCAN_FILES.map((f) => join(root, f)).filter((f) => {
+    try {
+      statSync(f);
+      return true;
+    } catch {
+      return false;
     }
-    if (!mayNameTheWord && BANNED_WORD.test(line)) {
-      console.error(`${file}:${i + 1}: banned word is not allowed`);
-      failures += 1;
+  }),
+];
+
+for (const file of files) {
+  const rel = relative(root, file).split('\\').join('/');
+  const lines = readFileSync(file, 'utf8').split('\n');
+  lines.forEach((line, i) => {
+    const at = `${rel}:${i + 1}`;
+    if (EM_DASH.test(line)) {
+      problems.push(`${at} contains an em dash. Use a comma, a colon, a period, or parentheses.`);
     }
-    for (const entry of BANNED_PHRASES) {
-      if (entry.pattern.test(line)) {
-        console.error(
-          `${file}:${i + 1}: generic marketing phrase "${entry.phrase}" is not allowed`,
-        );
-        failures += 1;
+    if (BANNED_WORD.test(line) && !BANNED_WORD_ALLOWED.test(line)) {
+      problems.push(
+        `${at} uses the prohibited word. Say authoritative, owning, official, or the source of truth.`,
+      );
+    }
+    if (EMOJI.test(line)) {
+      problems.push(`${at} contains an emoji. Status is carried by words, not pictures.`);
+    }
+    if (rel.endsWith('.md') || rel.endsWith('.mdx') || rel === 'llms.txt') {
+      for (const pattern of UNVERIFIABLE) {
+        if (pattern.test(line) && !UNVERIFIABLE_ALLOWED.test(line)) {
+          problems.push(`${at} matches a prohibited claim or filler pattern: ${pattern}`);
+        }
       }
     }
   });
 }
 
-if (failures > 0) {
-  console.error(`copy guard failed with ${failures} finding(s)`);
+if (problems.length) {
+  process.stderr.write(`Copy rules: ${problems.length} problem(s).\n\n`);
+  for (const p of problems) process.stderr.write(`  ${p}\n`);
+  process.stderr.write('\n');
   process.exit(1);
 }
-console.log(`copy guard passed for ${files.length} files`);
+
+process.stdout.write(`Copy rules pass. ${files.length} files checked.\n`);

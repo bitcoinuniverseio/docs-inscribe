@@ -1,0 +1,34 @@
+{
+  "walkthroughId": "vw-op-return-mint",
+  "appCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+  "capturedAt": "2026-09-02T20:33:18.070Z",
+  "fixtureVersion": "1",
+  "steps": 3,
+  "altTexts": [
+    "The op-return workspace opened with the mint action selected",
+    "The mint form fields for op_return",
+    "The review end of the mint flow for op_return"
+  ],
+  "stepInstructions": [
+    "Open /op-return with the mint action. The workspace shows its form with the action preselected.",
+    "Fill the form fields. Every field shows the values that drive the quote; the fixture environment has no live fees, and the app says so.",
+    "The end of the form holds the fee and review sections. Nothing is signed in this capture environment; the live app shows its own review here."
+  ],
+  "files": [
+    {
+      "path": "step-01.webp",
+      "sha256": "b495b82f4190d5c7ce7aef138c606ca75009471b27dd76e18bc081ab6cf551ad",
+      "bytes": 38564
+    },
+    {
+      "path": "step-02.webp",
+      "sha256": "b495b82f4190d5c7ce7aef138c606ca75009471b27dd76e18bc081ab6cf551ad",
+      "bytes": 38564
+    },
+    {
+      "path": "step-03.webp",
+      "sha256": "b495b82f4190d5c7ce7aef138c606ca75009471b27dd76e18bc081ab6cf551ad",
+      "bytes": 38564
+    }
+  ]
+}
