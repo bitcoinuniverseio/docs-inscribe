@@ -2,36 +2,59 @@
   "name": "docs-inscribe",
   "version": "1.0.0",
   "private": true,
-  "description": "Public documentation for Universe Inscribe, the Bitcoin Universe creation studio",
+  "description": "The Bitcoin creation learning environment for Inscribe: guided planning, protocol decisions, safe practice, visual walkthroughs, transaction safety, and recovery",
   "type": "module",
   "engines": {
     "node": ">=24 <25"
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/generate-machine-readable.mjs",
     "preview": "astro preview",
     "check:copy": "node scripts/check-copy-rules.mjs",
     "check:public-safety": "node scripts/check-public-safety.mjs",
-    "check:capabilities": "node scripts/check-capability-truth.mjs",
     "check:manifest": "node scripts/check-manifest.mjs",
-    "check:markdown": "markdownlint-cli2 \"src/content/docs/**/*.{md,mdx}\" \"*.md\"",
+    "check:learning-manifest": "node scripts/check-learning-manifest.mjs",
+    "check:app-intents": "node scripts/check-app-intents.mjs",
+    "check:visual-coverage": "node scripts/check-visual-coverage.mjs",
+    "check:media-freshness": "node scripts/check-media-freshness.mjs",
+    "check:practice-safety": "node scripts/check-practice-safety.mjs",
+    "check:structured-data": "node scripts/check-structured-data.mjs",
+    "check:machine-readable": "node scripts/check-machine-readable.mjs",
+    "check:markdown": "markdownlint-cli2 \"src/content/**/*.{md,mdx}\" \"*.md\"",
     "check:a11y": "node scripts/check-accessibility.mjs",
-    "test": "npm run check:copy && npm run check:public-safety && npm run check:capabilities && npm run check:manifest && npm run check:markdown"
+    "check:offline": "node scripts/check-offline.mjs",
+    "test:learning": "node --test vendor-tests/*.test.mjs",
+    "test:e2e": "node scripts/test-e2e.mjs",
+    "llms": "node scripts/generate-machine-readable.mjs",
+    "test": "npm run check:copy && npm run check:public-safety && npm run check:manifest && npm run check:learning-manifest && npm run check:app-intents && npm run check:visual-coverage && npm run check:media-freshness && npm run check:practice-safety && npm run check:structured-data && npm run check:machine-readable && npm run check:markdown && npm run test:learning",
+    "serve:dist": "node scripts/serve-dist.mjs"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^7.3.0",
-    "@astrojs/starlight": "^0.41.10",
-    "@fontsource-variable/inter": "^5.2.8",
-    "@fontsource-variable/jetbrains-mono": "^5.2.8",
-    "astro": "^7.2.9",
+    "@astrojs/react": "^4.4.0",
+    "@astrojs/sitemap": "^3.6.0",
+    "@astrojs/starlight": "^0.41.11",
+    "@fontsource-variable/inter": "^5.2.5",
+    "@fontsource-variable/jetbrains-mono": "^5.2.5",
+    "@universe/inscribe-learning": "file:vendor/inscribe-learning-0.1.0.tgz",
+    "astro": "^7.2.10",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
     "sharp": "^0.35.4",
-    "starlight-links-validator": "^0.25.3"
+    "starlight-links-validator": "^0.25.3",
+    "unist-util-visit": "^5.1.0"
   },
   "devDependencies": {
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
     "axe-core": "^4.13.0",
     "markdownlint-cli2": "^0.23.2",
     "playwright": "^1.62.1",
     "wait-on": "^9.1.0"
+  },
+  "overrides": {
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
   }
 }

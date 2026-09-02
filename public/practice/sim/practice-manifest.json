@@ -1,0 +1,78 @@
+{
+  "scenarioIds": [
+    "ps-ordinals-inscribe-text",
+    "ps-ordinals-inscribe-file",
+    "ps-ordinals-batch",
+    "ps-ordinals-collection",
+    "ps-brc20-deploy",
+    "ps-brc20-mint",
+    "ps-runes-etch",
+    "ps-transfer",
+    "ps-quote-review",
+    "ps-wallet-review",
+    "ps-order-lifecycle",
+    "ps-underpayment",
+    "ps-stuck-payment",
+    "ps-closed-tab-recovery",
+    "ps-utxo-warning",
+    "ps-recoverability"
+  ],
+  "safetyClean": true,
+  "generatedAt": "2026-09-02T19:39:28.588Z",
+  "sourceCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+  "shellGzipBytes": 186372,
+  "shellBudgetBytes": 256000,
+  "fileCount": 10,
+  "files": [
+    {
+      "path": "assets\\practice-1xY8dcla.js",
+      "sha256": "0c79f7a87387caf7a35368698d1dc6adc849f362fe07c3d01fcf916247b6a383",
+      "bytes": 511493
+    },
+    {
+      "path": "assets\\practice-uk46-aB8.css",
+      "sha256": "5c92e02500d02ac71be61c8c37a2fbde32d7cf99b5679196c0c73999c1196edc",
+      "bytes": 322695
+    },
+    {
+      "path": "assets\\rolldown-runtime-CbXtAM7H.js",
+      "sha256": "bbf7c5086ae414dc3f33777e3eebf16ea8631325b8bb4690d25091c03567f31a",
+      "bytes": 589
+    },
+    {
+      "path": "assets\\translations.zh-DxwhgMDp.js",
+      "sha256": "367671c5a94ad166927063240d0ef5eb45efddec55bd60e4937e7e7094c79c04",
+      "bytes": 89931
+    },
+    {
+      "path": "assets\\vendor-D5Sw-AYA.js",
+      "sha256": "f3725145a6bbf9fa3b6fbaadd763092fdc2f02ac4c749b6cae8f970ebc070aed",
+      "bytes": 229789
+    },
+    {
+      "path": "fonts\\inter-latin-ext-wght-normal.woff2",
+      "sha256": "34b9c504cab7a73e37b746343a449132e56cf7b5481af2cb81dc74dcff25c956",
+      "bytes": 85068
+    },
+    {
+      "path": "fonts\\inter-latin-wght-normal.woff2",
+      "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+      "bytes": 48256
+    },
+    {
+      "path": "fonts\\jetbrains-mono-latin-ext-wght-normal.woff2",
+      "sha256": "79bfdab9ba467e26eea4122e6f2567e188dd8a09a8c730d501fc487c4ab99c6e",
+      "bytes": 15196
+    },
+    {
+      "path": "fonts\\jetbrains-mono-latin-wght-normal.woff2",
+      "sha256": "18be452724bfdc236c074ca94a249a7f41a86752c7d04ab258ce9ed5651f6a7e",
+      "bytes": 40404
+    },
+    {
+      "path": "practice.html",
+      "sha256": "a75cb254d4330a39b521128d46b7e1204bcfb9ece48e6a6f0985f4760d6c8e54",
+      "bytes": 1234
+    }
+  ]
+}

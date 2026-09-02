@@ -1,0 +1,57 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro'
+import LearningPassport from '../islands/LearningPassport'
+import { loadManifest } from '@universe/inscribe-learning'
+
+const manifest = loadManifest()
+const params = Astro.url.searchParams
+const requested = params.get('scenario')
+const scenario = manifest.practiceScenarios.find((s) => s.id === requested) ?? null
+const scenarios = manifest.practiceScenarios
+---
+
+<StarlightPage frontmatter={{ title: 'Practice Studio', description: 'The real Inscribe interface against deterministic fixtures: no wallet, no network, no transactions. Learn every workflow before real money moves.', slug: 'practice' }}>
+  <div class="ins-sim-banner" role="status">
+    Simulation. Nothing you do here can create a transaction, touch a wallet, or reach the network.
+  </div>
+
+  <p>
+    The Practice Studio runs the actual Inscribe interface components against a fixed, deterministic fixture set.
+    It is built from the app itself, source-locked to commit
+    <code>{manifest.sourceCommits.inscribe.slice(0, 12)}</code>, and served from this documentation origin with a
+    content security policy that forbids any network connection. Closing it leaves nothing behind except your
+    scenario completion marks.
+  </p>
+
+  {scenario && <p><strong>Requested scenario:</strong> {scenario.title}</p>}
+
+  {scenario ? (
+    <p>
+      <a class="ins-btn ins-btn--primary" href={`/practice/sim/?scenario=${scenario.id}`}>Start "{scenario.title}"</a>
+    </p>
+  ) : (
+    <section aria-labelledby="scenarios">
+      <h2 id="scenarios">Scenarios</h2>
+      <ul class="ins-entry-grid">
+        {scenarios.map((s) => (
+          <li key={s.id}>
+            <a href={`/practice/sim/?scenario=${s.id}`}>
+              <span class="ins-entry__title">{s.title}</span>
+              <span class="ins-entry__desc">Deterministic start, guided steps, one unsafe choice explained, reset any time.</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  <section aria-labelledby="passport">
+    <h2 id="passport">Learning Passport</h2>
+    <p>
+      Your practice and reading progress lives only in this browser. Export it as a passport to carry it to another
+      device or into the in-app Docs, and import one to merge it back. The format holds guide ids, step ids, and
+      timestamps, and nothing else.
+    </p>
+    <LearningPassport client:visible />
+  </section>
+</StarlightPage>

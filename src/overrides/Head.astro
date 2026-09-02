@@ -1,0 +1,35 @@
+---
+import Default from '@astrojs/starlight/components/Head.astro'
+
+interface Props {
+  title: string
+  description: string
+  frontmatter?: Record<string, unknown>
+  [key: string]: unknown
+}
+const { frontmatter = {}, ...props } = Astro.props
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: props.title,
+  description: props.description,
+  ...(frontmatter.lastVerified
+    ? { dateModified: new Date(String(frontmatter.lastVerified)).toISOString() }
+    : {}),
+  author: { '@type': 'Organization', name: 'Bitcoin Universe' },
+  publisher: { '@type': 'Organization', name: 'Bitcoin Universe' },
+}
+---
+
+<Default {...(props as never)} />
+<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+<script>
+  if ('serviceWorker' in navigator && location.protocol === 'https:') {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/docs-inscribe/sw.js').catch(() => {
+        /* offline pack is an enhancement; the site works without it */
+      })
+    })
+  }
+</script>

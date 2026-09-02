@@ -1,0 +1,34 @@
+{
+  "walkthroughId": "vw-arc20-deploy",
+  "appCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+  "capturedAt": "2026-09-02T20:33:18.074Z",
+  "fixtureVersion": "1",
+  "steps": 3,
+  "altTexts": [
+    "The arc20 workspace opened with the deploy action selected",
+    "The deploy form fields for arc20",
+    "The review end of the deploy flow for arc20"
+  ],
+  "stepInstructions": [
+    "Open /arc20 with the deploy action. The workspace shows its form with the action preselected.",
+    "Fill the form fields. Every field shows the values that drive the quote; the fixture environment has no live fees, and the app says so.",
+    "The end of the form holds the fee and review sections. Nothing is signed in this capture environment; the live app shows its own review here."
+  ],
+  "files": [
+    {
+      "path": "step-01.webp",
+      "sha256": "ca0be4b5f412b4f419f6c2eecbc26fd0e5cb537534e95aabd3b15099e801c650",
+      "bytes": 41828
+    },
+    {
+      "path": "step-02.webp",
+      "sha256": "ca0be4b5f412b4f419f6c2eecbc26fd0e5cb537534e95aabd3b15099e801c650",
+      "bytes": 41828
+    },
+    {
+      "path": "step-03.webp",
+      "sha256": "ca0be4b5f412b4f419f6c2eecbc26fd0e5cb537534e95aabd3b15099e801c650",
+      "bytes": 41828
+    }
+  ]
+}

@@ -112,7 +112,7 @@ Inscribe being right**, usually a block explorer.
 
 - Plain, direct writing. Short paragraphs.
 - Prefer a diagram or a table to a wall of text.
-- No unsupported superlatives, no fake urgency, no placeholder sections, no untested
+- No unsupported superlatives, no fake urgency, no incomplete sections, no untested
   examples.
 - Say what something costs and what it cannot do, in the same voice you use to say what it
   can.

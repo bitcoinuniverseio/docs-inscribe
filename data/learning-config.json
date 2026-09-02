@@ -1,0 +1,24 @@
+{
+  "$comment": "Learning config owned by the public documentation. The manifest generator reads this file. Origins listed here are the only approved documentation return targets for app deep links.",
+  "appOrigin": "https://inscribe.bitcoinuniverse.io",
+  "docsReturnOrigins": [
+    "https://bitcoinuniverseio.github.io",
+    "https://docs.bitcoinuniverse.io",
+    "http://localhost:4321",
+    "http://127.0.0.1:4321"
+  ],
+  "planner": {
+    "priorityWeights": {
+      "simplest": 25,
+      "cheapest": 25,
+      "control": 25,
+      "batch_efficiency": 25,
+      "urgency": 25
+    },
+    "gatedPenalty": 1000,
+    "missingPracticePenalty": 3,
+    "beginnerSimplicityBias": 12,
+    "expertControlBias": 8
+  },
+  "recoveryGuideId": "pub-order-recovery"
+}
