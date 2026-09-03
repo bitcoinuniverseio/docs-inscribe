@@ -10,10 +10,10 @@ const manifest = loadManifest()
   <noscript>
     <section class="ins-lab">
       <h2>Recovery without JavaScript</h2>
-      <p>The interactive navigator needs JavaScript. The authoritative static reference is the <a href="/safety/order-recovery/">order recovery guide</a>, which lists every interrupted state with its next action.</p>
+      <p>The interactive navigator needs JavaScript. The authoritative static reference is the <a href="/docs-inscribe/safety/order-recovery/">order recovery guide</a>, which lists every interrupted state with its next action.</p>
       <p><strong>Standing rules:</strong> never pay twice on a hunch; top up differences, never repeat totals; a confirmed transaction is final for everyone; never publish a recovery kit; never act on stale data.</p>
       <p>The navigator covers {manifest.recovery.outcomes.length} terminal states, from unpaid orders to irreversible wrong-address sends.</p>
     </section>
   </noscript>
-  <RecoveryNavigator client:visible />
+  <RecoveryNavigator client:load />
 </StarlightPage>

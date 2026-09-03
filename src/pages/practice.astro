@@ -15,6 +15,13 @@ const scenarios = manifest.practiceScenarios
     Simulation. Nothing you do here can create a transaction, touch a wallet, or reach the network.
   </div>
 
+  <div id="scenario-request-banner" class="ins-sim-banner" style="display: none; background: var(--ins-accent-soft); border-color: var(--ins-accent); color: var(--ins-accent-ink);" role="region" aria-label="Requested practice scenario">
+    <p style="margin: 0; display: flex; align-items: center; justify-content: space-between; width: 100%; flex-wrap: wrap; gap: 0.5rem;">
+      <span><strong>Requested scenario:</strong> <span id="scenario-request-name"></span></span>
+      <a id="scenario-request-btn" class="ins-btn ins-btn--primary" href="#">Start scenario</a>
+    </p>
+  </div>
+
   <p>
     The Practice Studio runs the actual Inscribe interface components against a fixed, deterministic fixture set.
     It is built from the app itself, source-locked to commit
@@ -27,7 +34,7 @@ const scenarios = manifest.practiceScenarios
 
   {scenario ? (
     <p>
-      <a class="ins-btn ins-btn--primary" href={`/practice/sim/?scenario=${scenario.id}`}>Start "{scenario.title}"</a>
+      <a class="ins-btn ins-btn--primary" href={`/docs-inscribe/practice/sim/?scenario=${scenario.id}`}>Start "{scenario.title}"</a>
     </p>
   ) : (
     <section aria-labelledby="scenarios">
@@ -35,7 +42,7 @@ const scenarios = manifest.practiceScenarios
       <ul class="ins-entry-grid">
         {scenarios.map((s) => (
           <li key={s.id}>
-            <a href={`/practice/sim/?scenario=${s.id}`}>
+            <a href={`/docs-inscribe/practice/sim/?scenario=${s.id}`}>
               <span class="ins-entry__title">{s.title}</span>
               <span class="ins-entry__desc">Deterministic start, guided steps, one unsafe choice explained, reset any time.</span>
             </a>
@@ -52,6 +59,23 @@ const scenarios = manifest.practiceScenarios
       device or into the in-app Docs, and import one to merge it back. The format holds guide ids, step ids, and
       timestamps, and nothing else.
     </p>
-    <LearningPassport client:visible />
+    <LearningPassport client:load />
   </section>
+
+  <script is:inline>
+    (() => {
+      const params = new URLSearchParams(window.location.search);
+      const scenarioId = params.get('scenario');
+      if (!scenarioId) return;
+      const banner = document.getElementById('scenario-request-banner');
+      const nameEl = document.getElementById('scenario-request-name');
+      const btnEl = document.getElementById('scenario-request-btn');
+      if (banner && nameEl && btnEl) {
+        nameEl.textContent = scenarioId;
+        btnEl.setAttribute('href', `/docs-inscribe/practice/sim/?scenario=${encodeURIComponent(scenarioId)}`);
+        btnEl.textContent = `Launch "${scenarioId}"`;
+        banner.style.display = 'block';
+      }
+    })();
+  </script>
 </StarlightPage>

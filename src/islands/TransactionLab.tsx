@@ -127,34 +127,38 @@ export default function TransactionLab() {
       <section className="ins-lab" aria-labelledby="lab-estimate">
         <h3 id="lab-estimate">Cost preview</h3>
         <div className="ins-lab__filters">
-          <label>
-            Workflow
+          <label style={{ gridColumn: '1 / -1' }}>
+            <span>Workflow</span>
             <select value={workflowId} onChange={(e) => setWorkflowId(e.target.value)} data-testid="estimate-workflow">
               {WORKFLOW_OPTIONS.map((w) => <option key={w.value} value={w.value}>{w.label}</option>)}
             </select>
           </label>
           <label>
-            Content size (bytes)
+            <span>Content size (bytes)</span>
             <input type="number" min={1} max={4000000} value={bytes} onChange={(e) => setBytes(Math.max(1, Number(e.target.value) || 1))}
               aria-describedby="lab-bytes-hint" />
-            <span id="lab-bytes-hint" style={{ fontWeight: 400 }}>size only; no file leaves this page</span>
+            <span id="lab-bytes-hint" className="ins-lab__hint">size only; no file leaves this page</span>
           </label>
           <label>
-            Items
-            <input type="number" min={1} max={1000} value={count} onChange={(e) => setCount(Math.max(1, Number(e.target.value) || 1))} />
+            <span>Items</span>
+            <input type="number" min={1} max={1000} value={count} onChange={(e) => setCount(Math.max(1, Number(e.target.value) || 1))}
+              aria-describedby="lab-items-hint" />
+            <span id="lab-items-hint" className="ins-lab__hint">batch or token mint count</span>
           </label>
           <label>
-            Fee rate (sat/vB)
+            <span>Fee rate (sat/vB)</span>
             <input type="number" min={0.01} step={0.01} value={rate} onChange={(e) => setRate(Number(e.target.value) || 1)}
               aria-describedby="lab-rate-hint" />
-            <span id="lab-rate-hint" style={{ fontWeight: 400 }}>enter the rate you see in the app</span>
+            <span id="lab-rate-hint" className="ins-lab__hint">enter the rate you see in the app</span>
           </label>
           <label>
-            Rate kind
-            <select value={rateKind} onChange={(e) => setRateKind(e.target.value as 'user_entered' | 'offline_snapshot')}>
+            <span>Rate kind</span>
+            <select value={rateKind} onChange={(e) => setRateKind(e.target.value as 'user_entered' | 'offline_snapshot')}
+              aria-describedby="lab-ratekind-hint">
               <option value="user_entered">Entered by me</option>
               <option value="offline_snapshot">Offline snapshot</option>
             </select>
+            <span id="lab-ratekind-hint" className="ins-lab__hint">source for estimation preview</span>
           </label>
         </div>
 
