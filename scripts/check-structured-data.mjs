@@ -22,7 +22,8 @@ function walkHtml(dir, out = []) {
 import { execFileSync } from 'node:child_process'
 
 if (!existsSync(distDir)) {
-  execFileSync('npm', ['run', 'build'], { stdio: 'inherit', cwd: root })
+  const npmCmd = process.platform === 'win32' ? 'npm.cmd' : 'npm'
+  execFileSync(npmCmd, ['run', 'build'], { stdio: 'inherit', cwd: root })
 }
 
 const htmlFiles = walkHtml(distDir)

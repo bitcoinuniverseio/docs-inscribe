@@ -24,8 +24,9 @@ function countContentPages(dir) {
 const pageCount = countContentPages(docsDir)
 
 import { execFileSync } from 'node:child_process'
-if (!existsSync(distDir) || !existsSync(join(distDir, 'corpus.jsonl'))) {
-  execFileSync('npm', ['run', 'build'], { stdio: 'inherit', cwd: root })
+if (!existsSync(distDir)) {
+  const npmCmd = process.platform === 'win32' ? 'npm.cmd' : 'npm'
+  execFileSync(npmCmd, ['run', 'build'], { stdio: 'inherit', cwd: root })
 }
 
 for (const artifact of ['llms.txt', 'llms-full.txt', 'corpus.jsonl', 'skill.md', 'learning-manifest.json']) {
