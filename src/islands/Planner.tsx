@@ -226,7 +226,7 @@ function Choice({ name, value, label, hint, checked, onChange, type = 'radio' }:
       <input type={type} name={name} value={value} checked={checked} onChange={onChange} />
       <span>
         <strong>{label}</strong>
-        {hint ? <><br /><span style={{ color: 'var(--ins-ink-3)', fontSize: '0.9rem' }}>{hint}</span></> : null}
+        {hint ? <span style={{ color: 'var(--ins-ink-3)', fontSize: '0.9rem', display: 'block', marginTop: '0.15rem' }}>{hint}</span> : null}
       </span>
     </label>
   )
@@ -432,21 +432,24 @@ function PlanResult({ result, onRestart }: { result: PlannerResult; onRestart: (
           <h4>Cost components</h4>
           <p>
             {COST_DESCRIPTION[workflow.feeModel] ?? 'The in-app quote shows every component.'}
-            {' '}The final in-app quote is authoritative. The <a href="/labs/transaction-review/">Transaction Review Lab</a> shows how each component works.
+            {' '}The final in-app quote is authoritative. The <a href="/docs-inscribe/labs/transaction-review/">Transaction Review Lab</a> shows how each component works.
           </p>
 
           <h4>Learn it, then do it</h4>
           <ul>
-            {workflow.walkthroughId && <li><a href={`/visual-guides/${workflow.walkthroughId}/`}>Visual walkthrough</a></li>}
-            {workflow.practiceScenarioId && <li><a href={`/practice/?scenario=${workflow.practiceScenarioId}`}>Practice this safely first</a></li>}
+            {workflow.walkthroughId && <li><a href={`/docs-inscribe/visual-guides/${workflow.walkthroughId}/`}>Visual walkthrough</a></li>}
+            {workflow.practiceScenarioId && <li><a href={`/docs-inscribe/practice/?scenario=${workflow.practiceScenarioId}`}>Practice this safely first</a></li>}
             {workflow.guides.map((g) => {
               const guide = manifest.guides.find((x) => x.id === g)
               if (!guide) return null
-              if (guide.surface === 'public') return <li key={g}><a href={guide.publicPath}>{guide.title}</a></li>
+              if (guide.surface === 'public') {
+                const target = guide.publicPath.startsWith('/docs-inscribe') ? guide.publicPath : `/docs-inscribe${guide.publicPath.startsWith('/') ? guide.publicPath : '/' + guide.publicPath}`
+                return <li key={g}><a href={target}>{guide.title}</a></li>
+              }
               const section = guide.category === 'start' ? 'first-inscription' : 'workspaces'
-              return <li key={g}><a href={`/${section}/#${g}`}>{guide.title} (in-app guide)</a></li>
+              return <li key={g}><a href={`/docs-inscribe/${section}/#${g}`}>{guide.title} (in-app guide)</a></li>
             })}
-            <li><a href="/recovery/navigator/">Recovery route if the workflow is interrupted</a></li>
+            <li><a href="/docs-inscribe/recovery/navigator/">Recovery route if the workflow is interrupted</a></li>
           </ul>
 
           <p>
@@ -476,7 +479,7 @@ function PlanResult({ result, onRestart }: { result: PlannerResult; onRestart: (
               <h4>{alt.workflow.title}</h4>
               <p>
                 Selected by: {alt.scoreBreakdown.filter((b) => b.value > 0).map((b) => b.rule).join(', ')}.
-                {' '}<a href={`/guided/?goal=${alt.workflow.goal}&protocol=${alt.workflow.protocolId}`}>Plan this instead</a>
+                {' '}<a href={`/docs-inscribe/guided/?goal=${alt.workflow.goal}&protocol=${alt.workflow.protocolId}`}>Plan this instead</a>
               </p>
             </article>
           ))}

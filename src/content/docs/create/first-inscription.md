@@ -8,7 +8,7 @@ lastVerified: 2026-09-02
 
 You need a Bitcoin wallet with sats available on mainnet, and about ten minutes. The app uses a two-address model: a payment address that funds transactions and an ordinals address that holds inscriptions. Both are yours; both live in your wallet.
 
-A practice run in the [Practice Studio](/practice/) costs nothing and shows every screen before you touch real funds.
+A practice run in the [Practice Studio](/docs-inscribe/practice/) costs nothing and shows every screen before you touch real funds.
 
 ## The short version
 

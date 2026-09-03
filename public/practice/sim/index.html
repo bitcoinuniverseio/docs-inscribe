@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--
+      Practice build: a simulation that must never reach a network. The CSP
+      makes any connection attempt a policy violation, and src/practice/net
+      patches fetch, XHR, WebSocket, and EventSource to refuse them outright.
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; frame-ancestors 'none'"
+    />
+    <title>Inscribe Practice Studio (simulation)</title>
+    <script type="module" crossorigin src="/docs-inscribe/practice/sim/assets/practice-1xY8dcla.js"></script>
+    <link rel="modulepreload" crossorigin href="/docs-inscribe/practice/sim/assets/rolldown-runtime-CbXtAM7H.js">
+    <link rel="modulepreload" crossorigin href="/docs-inscribe/practice/sim/assets/vendor-D5Sw-AYA.js">
+    <link rel="stylesheet" crossorigin href="/docs-inscribe/practice/sim/assets/practice-uk46-aB8.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

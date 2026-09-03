@@ -16,13 +16,13 @@ Inscribe is the creation studio of the Bitcoin Universe ecosystem. From one app 
 
 ## Three ways in
 
-1. **Plan it.** The [Guided planner](/guided/) asks what you want to make and returns an evidence-backed plan: the workflow, the protocol, the stages, the costs, and the safety checks. Every recommendation names the rule that selected it.
-2. **Practice it.** The [Practice Studio](/practice/) runs the real Inscribe interface against deterministic fixtures. No wallet, no network, no transactions: a simulation that cannot spend anything.
+1. **Plan it.** The [Guided planner](/docs-inscribe/guided/) asks what you want to make and returns an evidence-backed plan: the workflow, the protocol, the stages, the costs, and the safety checks. Every recommendation names the rule that selected it.
+2. **Practice it.** The [Practice Studio](/docs-inscribe/practice/) runs the real Inscribe interface against deterministic fixtures. No wallet, no network, no transactions: a simulation that cannot spend anything.
 3. **Do it.** Every plan and every guide ends with a safe handoff into the live workspace, where the app still shows its own review and confirmation flow.
 
 ## Know before you sign
 
-Two facts govern every workflow. First, Bitcoin transactions are irreversible: a confirmed payment cannot be undone by anyone. Second, a fee and your money are different things: the [cost anatomy](/create/what-it-costs/) separates the network fee, the service fee, and the output value that stays owned by you.
+Two facts govern every workflow. First, Bitcoin transactions are irreversible: a confirmed payment cannot be undone by anyone. Second, a fee and your money are different things: the [cost anatomy](/docs-inscribe/create/what-it-costs/) separates the network fee, the service fee, and the output value that stays owned by you.
 
 ## If something goes wrong
 
