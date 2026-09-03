@@ -16,7 +16,9 @@ import { chromium } from 'playwright';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const axeSource = readFileSync(resolve(root, 'node_modules/axe-core/axe.min.js'), 'utf8');
 
-const ORIGIN = process.env.PREVIEW_ORIGIN ?? 'http://localhost:4323';
+// One preview port per run so concurrent jobs on a shared runner host never collide.
+const PORT = process.env.PREVIEW_PORT ?? String(20000 + (Number(process.env.GITHUB_RUN_ID ?? process.pid) % 20000));
+const ORIGIN = process.env.PREVIEW_ORIGIN ?? `http://localhost:${PORT}`;
 const BASE = '/docs-inscribe';
 
 let spawnedServer = null;
@@ -32,7 +34,7 @@ try {
 
 if (!sitemapText) {
   spawnedServer = spawn('node', [join(root, 'scripts', 'serve-dist.mjs')], {
-    env: { ...process.env, PORT: '4323' },
+    env: { ...process.env, PORT },
     stdio: 'ignore',
   });
   await new Promise((r) => setTimeout(r, 1500));
