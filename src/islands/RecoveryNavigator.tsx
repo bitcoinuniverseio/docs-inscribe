@@ -88,7 +88,7 @@ export default function RecoveryNavigator() {
                   onChange={() => set(current.id, option.value)}
                   data-testid={`recovery-${current.id}-${option.value}`}
                 />
-                <span>{option.label}</span>
+                <span><strong>{option.label}</strong></span>
               </label>
             ))}
           </div>
@@ -122,9 +122,9 @@ export default function RecoveryNavigator() {
           <ul>{outcome.whatNotToDo.map((s, i) => <li key={i}>{s}</li>)}</ul>
           <p>
             What live status can establish is source health and order state, never a promise about confirmations.
-            {outcome.guideId && <> Full detail: <a href={`/safety/order-recovery/`}>the recovery guide</a>.</>}
+            {outcome.guideId && <> Full detail: <a href="/docs-inscribe/safety/order-recovery/">the recovery guide</a>.</>}
             {' '}
-            <a href={`/practice/?scenario=ps-closed-tab-recovery`}>Practice recovery safely</a>.
+            <a href="/docs-inscribe/practice/?scenario=ps-closed-tab-recovery">Practice recovery safely</a>.
           </p>
           <p className="ins-provenance">
             <span><strong>Source:</strong> the recovery decision table owned by this documentation</span>

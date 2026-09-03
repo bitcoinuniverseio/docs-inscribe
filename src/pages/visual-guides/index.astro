@@ -12,13 +12,23 @@ const manifest = loadManifest()
     fails the build instead of shipping. Essential instructions always exist as text next to the images.
   </p>
   <ul class="ins-entry-grid">
-    {manifest.walkthroughs.map((w) => (
-      <li key={w.id}>
-        <a href={w.path}>
-          <span class="ins-entry__title">{w.title}</span>
-          <span class="ins-entry__desc">{w.steps} steps · app commit {w.captureCommit.slice(0, 12)} · <a href={`/practice/?scenario=${w.practiceScenarioId ?? ''}`}>practice it</a></span>
-        </a>
-      </li>
-    ))}
+    {manifest.walkthroughs.map((w) => {
+      const targetPath = w.path.startsWith('/docs-inscribe') ? w.path : `/docs-inscribe${w.path.startsWith('/') ? w.path : '/' + w.path}`
+      return (
+        <li key={w.id}>
+          <div>
+            <a href={targetPath} style="display: block; text-decoration: none;">
+              <span class="ins-entry__title">{w.title}</span>
+              <span class="ins-entry__desc">{w.steps} steps · app commit {w.captureCommit.slice(0, 12)}</span>
+            </a>
+            {w.practiceScenarioId && (
+              <span style="display: block; font-size: 0.85rem; margin-top: 0.35rem;">
+                <a href={`/docs-inscribe/practice/?scenario=${w.practiceScenarioId}`}>Practice it safely &rarr;</a>
+              </span>
+            )}
+          </div>
+        </li>
+      )
+    })}
   </ul>
 </StarlightPage>
