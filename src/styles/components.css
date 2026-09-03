@@ -416,14 +416,18 @@ ul[data-testid="protocol-matches"] > li::marker {
   list-style: none;
 }
 .ins-entry-grid a {
-  display: grid;
-  gap: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.35rem;
   padding: 1rem 1.1rem;
   border: var(--ins-frame);
   border-radius: var(--ins-radius-lg);
   background: var(--ins-surface);
   color: var(--ins-ink);
   text-decoration: none;
+  height: 100%;
+  box-sizing: border-box;
   transition: border-color var(--ins-duration) ease;
 }
 .ins-entry-grid a:hover {
@@ -431,10 +435,15 @@ ul[data-testid="protocol-matches"] > li::marker {
 }
 .ins-entry-grid .ins-entry__title {
   font-weight: 700;
+  display: block;
+  line-height: 1.35;
+  color: var(--ins-ink);
 }
 .ins-entry-grid .ins-entry__desc {
   font-size: var(--ins-text-sm);
   color: var(--ins-ink-3);
+  display: block;
+  line-height: 1.4;
 }
 
 /* Forced colors: badges keep their labels, borders carry the state */
