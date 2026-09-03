@@ -56,11 +56,11 @@ const steps = Array.from({ length: walkthrough.steps }, (_, i) => i + 1)
       instruction:
       {workflow && workflow.guides.map((g) => {
         const guide = manifest.guides.find((x) => x.id === g)
-        if (!guide) return ''
+        if (!guide) return null
         const raw = guide.publicPath ?? '/' + (guide.category === 'start' ? 'first-inscription' : 'workspaces') + '/'
         const target = raw.startsWith('/docs-inscribe') ? raw : `/docs-inscribe${raw.startsWith('/') ? raw : '/' + raw}`
-        return ` <a href="${target}">${guide.title}</a>.`
-      }).join('')}
+        return <> <a href={target}>{guide.title}</a>.</>
+      })}
     </p>
     <p><a href={`/docs-inscribe/practice/?scenario=${walkthrough.practiceScenarioId ?? ''}`}>Practice this workflow safely</a></p>
   </section>
