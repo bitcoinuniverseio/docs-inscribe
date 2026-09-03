@@ -94,11 +94,11 @@ export default function ProtocolLab() {
           Collections
         </label>
         <a className="ins-btn" href={shareUrl}>Share this view</a>
-        <a className="ins-btn" href={`/guided/?protocol=${selected[0] ?? 'help_me_choose'}`}>Open the planner</a>
+        <a className="ins-btn" href={`/docs-inscribe/guided/?protocol=${selected[0] ?? 'help_me_choose'}`}>Open the planner</a>
       </div>
 
       <h3>Matching protocols ({result.matches.length})</h3>
-      <ul data-testid="protocol-matches">
+      <ul data-testid="protocol-matches" className="ins-choice-list">
         {result.matches.map(({ protocol, matched }) => (
           <li key={protocol.id} style={{ marginBottom: '0.5rem' }}>
             <label className="ins-choice">
