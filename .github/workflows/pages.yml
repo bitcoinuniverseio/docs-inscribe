@@ -20,7 +20,7 @@ jobs:
     # actions/upload-artifact, which makes the Pages upload fail after a
     # successful build. This workflow runs only for trusted main pushes or a
     # maintainer dispatch, so the organization-owned Linux fleet is safe here.
-    runs-on: [self-hosted, linux, x64, universe, gcp, universe-gcp-large]
+    runs-on: [self-hosted, linux, x64, universe-super]
     steps:
       - uses: actions/checkout@v4
       - uses: bitcoinuniverseio/universe-ci-actions/universe-node-env@main
@@ -36,7 +36,7 @@ jobs:
           path: dist
   deploy:
     needs: build
-    runs-on: [self-hosted, linux, x64, universe, gcp, universe-gcp-medium]
+    runs-on: [self-hosted, linux, x64, universe-super]
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
