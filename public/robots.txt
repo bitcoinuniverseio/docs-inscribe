@@ -1,0 +1,5 @@
+# Public documentation for Universe Inscribe. Everything here is meant to be read.
+User-agent: *
+Allow: /
+
+Sitemap: https://bitcoinuniverseio.github.io/docs-inscribe/sitemap.xml

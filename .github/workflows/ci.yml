@@ -1,0 +1,51 @@
+name: ci
+
+on:
+  push:
+    branches: [develop, main]
+  pull_request:
+
+# This repository is public, so pull request jobs run on the organization's
+# ephemeral hosted fleet: fork pull requests must never reach the persistent
+# self-hosted machines.
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    runs-on: [self-hosted, linux, x64, universe-super]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: bitcoinuniverseio/universe-ci-actions/universe-node-env@main
+      - name: Install
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Quality gates and learning suite
+        run: npm test
+      - name: Search index exists
+        run: test -f dist/pagefind/pagefind.js
+      - name: Sitemap exists
+        run: test -f dist/sitemap-index.xml
+      - name: Machine-readable index exists
+        run: test -s dist/llms.txt
+      - name: Install a browser for audits
+        run: npx playwright install --with-deps chromium
+      - name: Accessibility and horizontal overflow audit
+        run: npm run check:a11y
+      - name: E2E and reflow audit
+        run: npm run test:e2e
+      - name: Offline service worker audit
+        run: npm run check:offline
+      - name: Secret scan (full history)
+        uses: trufflesecurity/trufflehog@v3.90.5
+        with:
+          base: ''
+          head: ''
+          extra_args: --only-verified

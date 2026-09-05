@@ -1,0 +1,728 @@
+/*
+ * Inscribe documentation: the workshop bench.
+ *
+ * Inscribe is where things get made, and the money spent making them cannot
+ * be recalled. So the surface is a maker's bench: a warm dark neutral base,
+ * one bright amber that means "work in progress, do not walk away", and
+ * numbers set in a face where a column of satoshis lines up.
+ *
+ * Every colour is a named role. Nothing in a component names a hue. Both
+ * themes were measured against the surface actually painted behind them
+ * before they were written down; the ratio is recorded beside each value so
+ * a later edit has to answer for it.
+ */
+
+/* Dark is the default: a bench under a lamp. */
+:root {
+  /* Ground */
+  --bench-bg: #15120d;
+  --bench-surface: #1d1913;
+  --bench-raised: #26211a;
+  --bench-sunken: #100e0a;
+
+  /* Rules and edges */
+  --bench-rule: #322c23; /* decorative separators */
+  --bench-edge: #776c5b; /* meaningful boundaries, 3.40:1 on surface */
+
+  /* Ink */
+  --bench-ink: #f6f1e7; /* 16.59:1 on bg */
+  --bench-ink-muted: #b5aa96; /* 8.14:1 on bg, 6.96:1 on raised */
+
+  /* The one accent: work in progress */
+  --bench-accent: #ffb13d; /* 10.33:1 on bg */
+  --bench-accent-fill: #ffb13d;
+  --bench-accent-on-fill: #1a1409; /* 10.11:1 on the fill */
+  --bench-accent-wash: rgba(255, 177, 61, 0.12);
+  --bench-accent-edge: rgba(255, 177, 61, 0.4);
+
+  /* States */
+  --bench-ok: #69d98b; /* 9.91:1 on surface */
+  --bench-warn: #ffc24d; /* 10.89:1 on surface */
+  --bench-stop: #ff8a80; /* 7.66:1 on surface */
+  --bench-note: #7fc4ff; /* 9.36:1 on surface */
+  --bench-ok-wash: rgba(105, 217, 139, 0.1);
+  --bench-warn-wash: rgba(255, 194, 77, 0.1);
+  --bench-stop-wash: rgba(255, 138, 128, 0.1);
+  --bench-note-wash: rgba(127, 196, 255, 0.1);
+
+  /* Starlight roles */
+  --sl-color-accent: #b06d10;
+  --sl-color-accent-low: #3a2708;
+  --sl-color-accent-high: var(--bench-accent);
+  --sl-color-white: var(--bench-ink);
+  --sl-color-gray-1: #ebe5d9;
+  --sl-color-gray-2: #cdc4b2;
+  --sl-color-gray-3: var(--bench-ink-muted);
+  --sl-color-gray-4: #7d7364;
+  --sl-color-gray-5: #4a4238;
+  --sl-color-gray-6: var(--bench-raised);
+  --sl-color-gray-7: var(--bench-surface);
+  --sl-color-black: var(--bench-bg);
+  --sl-color-text-accent: var(--bench-accent);
+  --sl-color-bg-nav: var(--bench-surface);
+  --sl-color-bg-sidebar: var(--bench-bg);
+  --sl-color-hairline: var(--bench-rule);
+  --sl-color-hairline-light: var(--bench-rule);
+  --sl-color-hairline-shade: var(--bench-rule);
+}
+
+/* Light is the same bench by daylight: warm paper, not a bleached sheet. */
+:root[data-theme='light'] {
+  --bench-bg: #faf6ee;
+  --bench-surface: #ffffff;
+  --bench-raised: #f1eadc;
+  --bench-sunken: #efe8d9;
+
+  --bench-rule: #e0d7c6;
+  --bench-edge: #867c6c; /* 3.81:1 on bg */
+
+  --bench-ink: #1a1610; /* 16.71:1 on bg */
+  --bench-ink-muted: #5c5343; /* 7.02:1 on bg, 6.33:1 on raised */
+
+  --bench-accent: #7e4a00; /* 6.80:1 on bg, 6.12:1 on raised */
+  --bench-accent-fill: #8a5000;
+  --bench-accent-on-fill: #ffffff; /* 6.51:1 on the fill */
+  --bench-accent-wash: rgba(138, 80, 0, 0.08);
+  --bench-accent-edge: rgba(138, 80, 0, 0.35);
+
+  --bench-ok: #1f6b3a; /* 6.05:1 on bg */
+  --bench-warn: #7a4f00; /* 6.61:1 on bg */
+  --bench-stop: #a32217; /* 6.96:1 on bg */
+  --bench-note: #12557e; /* 7.42:1 on bg */
+  --bench-ok-wash: rgba(31, 107, 58, 0.08);
+  --bench-warn-wash: rgba(122, 79, 0, 0.08);
+  --bench-stop-wash: rgba(163, 34, 23, 0.08);
+  --bench-note-wash: rgba(18, 85, 126, 0.08);
+
+  --sl-color-accent: #8a5000;
+  --sl-color-accent-low: #f3e6d2;
+  --sl-color-accent-high: #5c3600;
+  --sl-color-white: var(--bench-ink);
+  --sl-color-gray-1: #241f17;
+  --sl-color-gray-2: #3d362b;
+  --sl-color-gray-3: var(--bench-ink-muted);
+  --sl-color-gray-4: #6e6454;
+  --sl-color-gray-5: #c9bfad;
+  --sl-color-gray-6: var(--bench-raised);
+  --sl-color-gray-7: #f7f2e8;
+  --sl-color-black: var(--bench-bg);
+  --sl-color-text-accent: var(--bench-accent);
+  --sl-color-bg-nav: var(--bench-surface);
+  --sl-color-bg-sidebar: var(--bench-bg);
+  --sl-color-hairline: var(--bench-rule);
+  --sl-color-hairline-light: var(--bench-rule);
+  --sl-color-hairline-shade: var(--bench-rule);
+}
+
+:root {
+  --sl-font: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --sl-font-mono: 'JetBrains Mono Variable', ui-monospace, 'Cascadia Mono', 'Menlo', monospace;
+  --sl-content-width: 50rem;
+  --sl-text-code: 0.875rem;
+}
+
+body {
+  background-color: var(--bench-bg);
+  color: var(--bench-ink);
+}
+
+/* Nothing renders below 11px. The smallest text on this site is on the pages
+   that tell you an asset is at risk, which is the worst possible place for it. */
+small,
+.sl-markdown-content small {
+  font-size: max(0.6875rem, 0.8em);
+}
+
+/* ---- Focus: heavy, warm, never removed ---- */
+:focus-visible {
+  outline: 3px solid var(--bench-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ---- The bench edge: a thin amber rule under the header ---- */
+.header {
+  border-bottom: 1px solid var(--bench-rule);
+  box-shadow: inset 0 -3px 0 -1px var(--bench-accent-edge);
+}
+
+/* ---- Wide content scrolls inside itself, never the page ---- */
+.table-scroll {
+  overflow-x: auto;
+  max-width: 100%;
+  border: 1px solid var(--bench-rule);
+  border-radius: 6px;
+}
+
+.table-scroll:focus-visible {
+  outline: 3px solid var(--bench-accent);
+  outline-offset: 2px;
+}
+
+.sl-markdown-content .table-scroll > table {
+  margin: 0;
+  border: 0;
+}
+
+/* ---- Tables read as a ledger ---- */
+.sl-markdown-content table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.9375rem;
+}
+
+.sl-markdown-content th {
+  background: var(--bench-raised);
+  text-align: left;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.sl-markdown-content th,
+.sl-markdown-content td {
+  border-bottom: 1px solid var(--bench-rule);
+  padding: 0.5rem 0.75rem;
+  vertical-align: top;
+}
+
+.sl-markdown-content tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+/* Figures line up in a column, always. */
+.sl-markdown-content td code,
+.sl-markdown-content .receipt,
+.num {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+/* ================================================================
+   Step-numbered procedures: a visible sequence, not a list
+   ================================================================
+   A procedure that spends money is read once, in order, with a finger on
+   the current line. So the steps carry a rail and a stamped number rather
+   than a bullet, and each step is a block you can stop at.
+*/
+.steps {
+  list-style: none;
+  margin: 1.75rem 0;
+  padding: 0 0 0 2.75rem;
+  counter-reset: bench-step;
+  position: relative;
+}
+
+.steps > li {
+  position: relative;
+  margin: 0 0 1.5rem;
+  padding: 0 0 0 0.25rem;
+  counter-increment: bench-step;
+}
+
+.steps > li::before {
+  content: counter(bench-step);
+  position: absolute;
+  left: -2.75rem;
+  top: 0;
+  width: 1.875rem;
+  height: 1.875rem;
+  border-radius: 50%;
+  background: var(--bench-accent-fill);
+  color: var(--bench-accent-on-fill);
+  font-family: var(--sl-font-mono);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  display: grid;
+  place-items: center;
+}
+
+/* The rail joins the steps. It stops at the last number rather than running
+   off the end of the sequence. */
+.steps > li::after {
+  content: '';
+  position: absolute;
+  left: calc(-2.75rem + 0.9375rem - 1px);
+  top: 1.875rem;
+  bottom: -1.5rem;
+  width: 2px;
+  background: var(--bench-rule);
+}
+
+.steps > li:last-child::after {
+  display: none;
+}
+
+.steps > li > :first-child {
+  margin-top: 0;
+}
+
+.steps > li > p:first-child strong:first-child {
+  color: var(--bench-ink);
+}
+
+.steps h3,
+.steps h4 {
+  margin-top: 0;
+  font-size: 1.0625rem;
+}
+
+@media (max-width: 30rem) {
+  .steps {
+    padding-left: 2.25rem;
+  }
+
+  .steps > li::before {
+    left: -2.25rem;
+    width: 1.625rem;
+    height: 1.625rem;
+    font-size: 0.8125rem;
+  }
+
+  .steps > li::after {
+    left: calc(-2.25rem + 0.8125rem - 1px);
+    top: 1.625rem;
+  }
+}
+
+/* ================================================================
+   Receipts: an itemised cost, set like a paper till roll
+   ================================================================ */
+.receipt {
+  margin: 1.5rem 0;
+  border: 1px solid var(--bench-edge);
+  border-radius: 6px;
+  background: var(--bench-surface);
+  overflow: hidden;
+}
+
+.receipt-title {
+  margin: 0;
+  padding: 0.625rem 1rem;
+  background: var(--bench-raised);
+  border-bottom: 1px solid var(--bench-rule);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--bench-ink-muted);
+}
+
+.receipt table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+  font-size: 0.9375rem;
+}
+
+.receipt th,
+.receipt td {
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--bench-rule);
+  vertical-align: top;
+}
+
+.receipt thead th {
+  background: transparent;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--bench-ink-muted);
+}
+
+.receipt td.figure,
+.receipt th.figure {
+  text-align: right;
+  font-family: var(--sl-font-mono);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.receipt tbody tr:last-child td {
+  border-bottom: 1px solid var(--bench-edge);
+}
+
+.receipt tfoot td {
+  border-bottom: 0;
+  font-weight: 700;
+  background: var(--bench-accent-wash);
+}
+
+.receipt tfoot td.figure {
+  color: var(--bench-ink);
+}
+
+.receipt .note {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: max(0.6875rem, 0.8125em);
+  color: var(--bench-ink-muted);
+  font-weight: 400;
+  white-space: normal;
+}
+
+/* A line that is not a fee is marked as such, because the total is the only
+   number a reader remembers and it is not all fee. */
+.receipt tr.not-a-fee td:first-child::after {
+  content: 'not a fee';
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.05rem 0.4rem;
+  border: 1px solid var(--bench-ok);
+  border-radius: 999px;
+  font-size: max(0.6875rem, 0.7em);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--bench-ok);
+  vertical-align: 0.1em;
+}
+
+/* ================================================================
+   Fact strips: provenance on every material page
+   ================================================================ */
+.provenance {
+  margin: 0 0 2rem;
+  padding: 0.875rem 1rem;
+  border: 1px solid var(--bench-rule);
+  border-left: 3px solid var(--bench-accent-fill);
+  border-radius: 4px;
+  background: var(--bench-surface);
+  font-size: 0.8125rem;
+  color: var(--bench-ink-muted);
+}
+
+.provenance dl {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 0.5rem 1.25rem;
+  margin: 0;
+}
+
+.provenance dt {
+  font-size: max(0.6875rem, 0.75em);
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--bench-ink-muted);
+  margin: 0;
+}
+
+.provenance dd {
+  margin: 0.1rem 0 0;
+  color: var(--bench-ink);
+  font-family: var(--sl-font-mono);
+  font-size: 0.8125rem;
+  word-break: break-word;
+}
+
+/* ================================================================
+   Diagrams
+   ================================================================ */
+.diagram {
+  margin: 1.75rem 0;
+  padding: 1rem;
+  border: 1px solid var(--bench-rule);
+  border-radius: 6px;
+  background: var(--bench-surface);
+  overflow-x: auto;
+}
+
+.diagram svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-width: 34rem;
+  max-width: 100%;
+}
+
+.diagram figcaption {
+  margin-top: 0.875rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--bench-rule);
+  font-size: 0.8125rem;
+  color: var(--bench-ink-muted);
+}
+
+.diagram:focus-visible {
+  outline: 3px solid var(--bench-accent);
+  outline-offset: 2px;
+}
+
+/* Diagram ink follows the theme, so one drawing serves both. */
+.diagram svg {
+  --d-bg: var(--bench-surface);
+  --d-panel: var(--bench-raised);
+  --d-rule: var(--bench-edge);
+  --d-ink: var(--bench-ink);
+  --d-muted: var(--bench-ink-muted);
+  --d-accent: var(--bench-accent);
+  --d-accent-ink: var(--bench-accent-on-fill);
+  --d-accent-fill: var(--bench-accent-fill);
+  --d-ok: var(--bench-ok);
+  --d-stop: var(--bench-stop);
+}
+
+/* ================================================================
+   Availability chips
+   ================================================================ */
+.chip {
+  display: inline-block;
+  padding: 0.05rem 0.45rem;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  font-size: max(0.6875rem, 0.75em);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.chip-yes {
+  color: var(--bench-ok);
+  background: var(--bench-ok-wash);
+}
+
+.chip-gated {
+  color: var(--bench-warn);
+  background: var(--bench-warn-wash);
+}
+
+.chip-no {
+  color: var(--bench-stop);
+  background: var(--bench-stop-wash);
+}
+
+.chip-read {
+  color: var(--bench-note);
+  background: var(--bench-note-wash);
+}
+
+/* ================================================================
+   Homepage
+   ================================================================ */
+.bench-hero {
+  margin: 0 0 3rem;
+  padding: 2.5rem 0 0;
+}
+
+.bench-kicker {
+  display: inline-block;
+  margin: 0 0 1rem;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--bench-accent-edge);
+  border-radius: 999px;
+  background: var(--bench-accent-wash);
+  color: var(--bench-accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.bench-hero h1 {
+  font-size: clamp(2rem, 6vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 0 1rem;
+}
+
+.bench-hero .lede {
+  font-size: clamp(1.0625rem, 2.4vw, 1.25rem);
+  line-height: 1.55;
+  color: var(--bench-ink-muted);
+  max-width: 44ch;
+  margin: 0 0 1.75rem;
+}
+
+.bench-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0 0 2rem;
+}
+
+.bench-actions a {
+  display: inline-block;
+  padding: 0.6rem 1.1rem;
+  border-radius: 5px;
+  border: 1px solid var(--bench-edge);
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--bench-ink);
+}
+
+.bench-actions a.primary {
+  background: var(--bench-accent-fill);
+  border-color: var(--bench-accent-fill);
+  color: var(--bench-accent-on-fill);
+}
+
+.bench-actions a:hover {
+  border-color: var(--bench-accent);
+}
+
+.bench-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 2.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.bench-card {
+  margin: 0;
+  padding: 1.125rem;
+  border: 1px solid var(--bench-rule);
+  border-radius: 6px;
+  background: var(--bench-surface);
+}
+
+.bench-card h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1rem;
+}
+
+.bench-card h3 a {
+  text-decoration: none;
+  color: var(--bench-ink);
+}
+
+.bench-card h3 a:hover {
+  color: var(--bench-accent);
+  text-decoration: underline;
+}
+
+.bench-card p {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--bench-ink-muted);
+}
+
+/* A stat strip, set in the ledger face. */
+.bench-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: 1px;
+  margin: 2rem 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--bench-rule);
+  border-radius: 6px;
+  background: var(--bench-rule);
+  overflow: hidden;
+}
+
+.bench-stats > li {
+  margin: 0;
+  padding: 0.875rem 1rem;
+  background: var(--bench-surface);
+}
+
+.bench-stats .figure {
+  display: block;
+  font-family: var(--sl-font-mono);
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--bench-accent);
+  line-height: 1.1;
+}
+
+.bench-stats .label {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: max(0.6875rem, 0.75rem);
+  color: var(--bench-ink-muted);
+}
+
+/* ---- Reduced motion is honoured without being asked ---- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---- 320px: nothing may push the page sideways ---- */
+@media (max-width: 30rem) {
+  .bench-hero {
+    padding-top: 1.5rem;
+  }
+
+  .diagram {
+    padding: 0.625rem;
+  }
+}
+
+/* ================================================================
+   Glossary: a real definition list
+   ================================================================
+   Bold-term-then-paragraph is the Markdown idiom for a glossary and it is not
+   a list to anything reading the structure. These are dt and dd, so the terms
+   stay out of the table of contents and a screen reader can move term to term.
+*/
+.sl-markdown-content .glossary {
+  margin: 1.5rem 0;
+  padding: 0;
+}
+
+.sl-markdown-content .glossary dt {
+  margin: 1.25rem 0 0;
+  padding-left: 0.75rem;
+  border-left: 3px solid var(--bench-accent-fill);
+  font-weight: 600;
+  color: var(--bench-ink);
+}
+
+.sl-markdown-content .glossary dt:first-child {
+  margin-top: 0;
+}
+
+.sl-markdown-content .glossary dd {
+  margin: 0.35rem 0 0 0.75rem;
+  padding-left: 0.75rem;
+  border-left: 1px solid var(--bench-rule);
+  color: var(--bench-ink-muted);
+  line-height: 1.6;
+}
+
+/* Inline code inherits the colour of whatever it sits in, and inside muted
+   prose that put the muted ink on the code background: 4.3:1 in dark, under
+   the 4.5:1 floor. Code is content, so it gets full-strength ink wherever it
+   appears rather than inheriting a de-emphasised colour. */
+.sl-markdown-content :not(pre) > code {
+  color: var(--bench-ink);
+}
+
+/* Starlight makes a table its own scroll container (display:block with
+   overflow:auto). Wrapped in the focusable region this site adds, that leaves
+   two nested scrollers, and the inner one has no keyboard access: axe reports
+   it as scrollable-region-focusable on every page with a table wider than a
+   phone.
+   The wrapper is the scroller. The table goes back to being a table, sized to
+   its content so the wrapper has something to scroll. */
+.table-scroll > table {
+  display: table;
+  overflow: visible;
+  width: max-content;
+  min-width: 100%;
+  margin: 0;
+  border: 0;
+}
+
+/* Starlight makes a wide table its own scroll container. Wrapped in the
+   focusable region above, that leaves two nested scrollers and the inner one
+   is not reachable from the keyboard, which axe reports as
+   scrollable-region-focusable. The wrapper is the scroller; the table inside
+   it is a plain table that is allowed to be wider than the column. */
+.table-scroll > table {
+  display: table;
+  overflow: visible;
+  width: max-content;
+  min-width: 100%;
+  max-width: none;
+}

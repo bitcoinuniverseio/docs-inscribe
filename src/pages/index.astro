@@ -1,0 +1,74 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro'
+import type { Props } from '@astrojs/starlight/props'
+---
+
+<StarlightPage frontmatter={{ title: 'Inscribe documentation', description: 'Plan, practice, create, and recover Bitcoin digital artifacts: the learning environment around the Inscribe studio.', slug: 'index' }} {...(Astro.props as Props)}>
+  <section class="ins-hero">
+    <p class="ins-badge ins-badge--released">All released workspaces covered</p>
+    <h1>Make something on Bitcoin and know exactly what you are doing.</h1>
+    <p class="ins-hero__lede">
+      Inscribe turns the public documentation from an article library into a learning environment: a guided planner,
+      a protocol decision lab, a safe practice studio built from the real interface, visual walkthroughs, a
+      transaction safety lab, and a recovery navigator that tells you the next move when something stops moving.
+    </p>
+    <ul class="ins-entry-grid">
+      <li>
+        <a href="/docs-inscribe/guided/">
+          <span class="ins-entry__title">What are you trying to make?</span>
+          <span class="ins-entry__desc">Answer a few questions; get an evidence-backed plan with every cost and safety check named.</span>
+        </a>
+      </li>
+      <li>
+        <a href="/docs-inscribe/practice/">
+          <span class="ins-entry__title">Practice without spending</span>
+          <span class="ins-entry__desc">The real Inscribe interface against fixtures. No wallet, no network, no transactions.</span>
+        </a>
+      </li>
+      <li>
+        <a href="/docs-inscribe/visual-guides/">
+          <span class="ins-entry__title">See every screen</span>
+          <span class="ins-entry__desc">Deterministic walkthrough captures, one per released workspace, with text equivalents.</span>
+        </a>
+      </li>
+      <li>
+        <a href="/docs-inscribe/labs/protocols/">
+          <span class="ins-entry__title">Protocol Decision Lab</span>
+          <span class="ins-entry__desc">Which verified workflow fits your scenario, and what materially changes between valid choices.</span>
+        </a>
+      </li>
+      <li>
+        <a href="/docs-inscribe/labs/transaction-review/">
+          <span class="ins-entry__title">Transaction Review Lab</span>
+          <span class="ins-entry__desc">Fee anatomy, transaction dissection, and wallet-review practice before real money moves.</span>
+        </a>
+      </li>
+      <li>
+        <a href="/docs-inscribe/recovery/navigator/">
+          <span class="ins-entry__title">Something went wrong</span>
+          <span class="ins-entry__desc">The Recovery Navigator turns your situation into a diagnosis and a next action.</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="release-state">
+    <h2 id="release-state">Released, deployment controlled, and read only are different things</h2>
+    <p>
+      This documentation never calls a capability available when it is merely present in code. Every workflow in the
+      planner and every row in the protocol lab carries three separate states: whether it is implemented, whether the
+      current deployment enables it, and whether the live sources are healthy right now. When a live status cannot be
+      reached, the site shows <strong>unknown</strong>, never a blank or a zero.
+    </p>
+  </section>
+
+  <section aria-labelledby="traditional">
+    <h2 id="traditional">Prefer plain documentation?</h2>
+    <p>
+      Every interactive surface rests on static guides that read without JavaScript. Start with
+      <a href="/docs-inscribe/start/what-you-can-create/">what you can create</a>, then read
+      <a href="/docs-inscribe/create/what-it-costs/">what a transaction costs</a> and
+      <a href="/docs-inscribe/safety/asset-safety/">how asset safety works</a>.
+    </p>
+  </section>
+</StarlightPage>

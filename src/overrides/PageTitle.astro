@@ -1,0 +1,16 @@
+---
+import type { Props } from '@astrojs/starlight/props'
+
+/** Renders the page title, then the provenance strip when frontmatter carries verification data. */
+const { frontmatter = {} } = Astro.props ?? {}
+const verified = frontmatter.lastVerified as string | undefined
+---
+
+<h1 id="_top">{frontmatter.title}</h1>
+{verified && (
+  <p class="ins-provenance">
+    <span><strong>Verified:</strong> {verified}</span>
+    <span><strong>Source:</strong> <a class="ins-print-url" href="https://github.com/bitcoinuniverseio/docs-inscribe">docs-inscribe</a> on the develop branch</span>
+    <span><strong>Authoritative quote:</strong> always the live app</span>
+  </p>
+)}
