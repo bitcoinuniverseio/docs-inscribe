@@ -1,0 +1,31 @@
+---
+import { READINESS_LABEL, HEALTH_LABEL } from '@universe/inscribe-learning'
+import type { ReadinessState, HealthState } from '@universe/inscribe-learning'
+
+interface Props {
+  readiness?: ReadinessState
+  health?: HealthState
+  extra?: string
+}
+const { readiness, health, extra } = Astro.props
+
+const READINESS_CLASS: Record<ReadinessState, string> = {
+  ready: 'ins-badge--released',
+  gated: 'ins-badge--gated',
+  incomplete: 'ins-badge--incomplete',
+  read_only: 'ins-badge--readonly',
+  unknown: 'ins-badge--unknown',
+}
+const HEALTH_CLASS: Record<HealthState, string> = {
+  healthy: 'ins-badge--healthy',
+  degraded: 'ins-badge--degraded',
+  stale: 'ins-badge--stale',
+  unavailable: 'ins-badge--unavailable',
+  disabled: 'ins-badge--unavailable',
+  unknown: 'ins-badge--unknown',
+}
+---
+
+{readiness && <span class={`ins-badge ${READINESS_CLASS[readiness]}`}>{READINESS_LABEL[readiness]}</span>}
+{health && <span class={`ins-badge ${HEALTH_CLASS[health]}`}>{HEALTH_LABEL[health]}</span>}
+{extra && <span class="ins-badge ins-badge--unknown">{extra}</span>}

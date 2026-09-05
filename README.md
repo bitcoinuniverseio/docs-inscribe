@@ -1,51 +1,142 @@
-# Universe Inscribe documentation
+# Universe Inscribe Documentation
 
-[Universe Inscribe](https://inscribe.bitcoinuniverse.io) is one workspace for creating, minting, managing, and recovering Bitcoin-native assets, from a first inscription to advanced transaction construction.
+Welcome to the official interactive documentation and learning environment for [Universe Inscribe](https://inscribe.bitcoinuniverse.io).
 
-**[Open Inscribe](https://inscribe.bitcoinuniverse.io)**, find your way around with [where things live](workspaces.md), or start with [what the app shows you and when](protocol-data-status.md).
+Live documentation site: **[https://bitcoinuniverseio.github.io/docs-inscribe/](https://bitcoinuniverseio.github.io/docs-inscribe/)**
 
-## What you can do
+---
 
-- Create inscriptions from text or files, single or in batches, with the full cost laid out for review before you sign. Read [what a transaction costs](what-it-costs.md).
-- Work across protocol workspaces: Ordinals, BRC-20, Runes, Stamps, SRC-20, SRC-101, Atomicals, ARC-20, Alkanes, TAP, Drops, OP_DROP, BLOCK20, DUST20, Mezcal, and OP_RETURN.
-- See everything an address holds in one portfolio that separates spendable bitcoin from asset-bearing sats.
-- Build, split, and repair transactions with per-output asset classification before you sign.
-- Recover sats locked in inscription padding and return to orders your browser started, even after closing the tab.
+## Overview
 
-You do not need to connect a wallet to explore the app, read live protocol data, or understand what anything costs. A wallet is asked for only when an action needs a signature.
+Universe Inscribe is a comprehensive workspace for creating, minting, managing, and recovering Bitcoin-native assets, spanning Ordinals, Runes, BRC-20, Atomicals (ARC-20), Stamps (SRC-20), Taproot Assets, and OP_RETURN.
 
-## Why you can trust it
+This repository powers the visual, task-oriented learning platform that accompanies the Inscribe application. It transforms traditional static documentation into an active learning studio with deterministic simulations, interactive decision engines, real-time fee estimators, and verifiable walkthroughs.
 
-- **Your assets are not fee fuel.** No Inscribe flow will pick an output holding an inscription, Rune, or token balance to pay a network fee. Read [asset safety](asset-safety.md).
-- **A source being down is never shown as an empty wallet.** Every read names its source, and the app tells you which source did not answer instead of showing you nothing. Read [protocol data status and recovery](protocol-data-status.md).
-- **Universe-operated infrastructure.** Blockchain reads come from Universe-owned nodes and indexes, not public third-party APIs, so the data path is accountable end to end.
-- **Verifiable releases.** Every production release is built from an exact commit with recorded evidence, and the footer of every page names the build you are looking at. Read [release evidence](release-evidence.md).
+---
 
-## Wallets and addresses
+## Interactive Learning Surfaces
 
-Inscribe connects to UniSat, Xverse, OKX, Wizz, and the Bitcoin Universe wallet. If Universe Wallet is not installed, its install action and the `/wallet` shortcut open the reviewed browser-store listing. The chooser keeps network, retry, and diagnostic controls under **Connection options** so the initial choice stays focused on wallet selection. An Ordinals wallet keeps two addresses with different jobs: a payment address for spendable bitcoin and an Ordinals address for inscriptions and token balances. Inscribe reads both, keeps them apart, and signs each action from the address that actually holds what it moves. The [asset safety](asset-safety.md) page explains why the two balances are never added together.
+The documentation site provides nine interactive learning products built directly from the application contracts:
 
-## When something fails
+1. **[Guided Action Planner](https://bitcoinuniverseio.github.io/docs-inscribe/guided/)** (`/guided/`): Tailors an evidence-backed plan to your goal, protocol choices, cost breakdowns, and safety criteria with deterministic app handoffs.
+2. **[Protocol Decision Lab](https://bitcoinuniverseio.github.io/docs-inscribe/labs/protocols/)** (`/labs/protocols/`): Interactive comparison matrix across 27 Bitcoin protocols with filtering by efficiency, immutability, indexer dependencies, and safety rules.
+3. **[Practice Studio](https://bitcoinuniverseio.github.io/docs-inscribe/practice/)** (`/practice/`): Network-free simulation runtime mirroring the live Inscribe app against deterministic fixtures. Practice etching Runes, minting tokens, and inscribing files with zero satoshis at risk.
+4. **[Visual Walkthrough Library](https://bitcoinuniverseio.github.io/docs-inscribe/visual-guides/)** (`/visual-guides/`): 41 high-fidelity step-by-step walkthroughs covering 14 workspaces with synchronized UI captures pinned to app commits.
+5. **[Transaction Review Lab](https://bitcoinuniverseio.github.io/docs-inscribe/labs/transaction-review/)** (`/labs/transaction-review/`): Transparent fee anatomy breaking down miner fees (sat/vB), reveal outputs, postage, padding, and service fees for single and batch orders.
+6. **[Recovery Navigator](https://bitcoinuniverseio.github.io/docs-inscribe/recovery/navigator/)** (`/recovery/navigator/`): Interactive diagnostic guide for 16 interrupted or stuck states, including mempool purging, RBF bumping, CPFP acceleration, and padding recovery.
+7. **Contextual App Handoff**: URL-safe intent encoding contract enabling seamless transition from documentation articles into pre-filled workspace sessions on [Inscribe](https://inscribe.bitcoinuniverse.io).
+8. **Machine-Readable Surfaces**: Verified documentation corpus available for agent discovery at [`/llms.txt`](https://bitcoinuniverseio.github.io/docs-inscribe/llms.txt), [`/llms-full.txt`](https://bitcoinuniverseio.github.io/docs-inscribe/llms-full.txt), and [`/corpus.jsonl`](https://bitcoinuniverseio.github.io/docs-inscribe/corpus.jsonl).
+9. **Offline Learning Pack**: Local-first Progressive Web App (PWA) with service worker precaching for complete offline access to guides and interactive runtimes.
 
-- A protocol index that is down or catching up is named, with its height against the chain tip and what still works, in the service status panel. See [protocol data status and recovery](protocol-data-status.md).
-- An order interrupted by a closed tab appears again on Home in the order list this browser keeps. Nothing sensitive is stored: an order id, its workflow, and when it was recorded, never a key, address, or balance.
-- Sats locked in inscription padding can be recovered from the Recover Sats tool, which validates the chain and mempool state before calling anything recoverable.
+---
 
-## Guides
+## Core Guides & Reference
 
-| Page | What it covers |
-| --- | --- |
-| [Where things live](workspaces.md) | Every workspace, what it is for, and the three fastest ways to reach one |
-| [What a transaction costs](what-it-costs.md) | The network fee, the service fee, the inscription output, and how a fee tier is chosen |
-| [Asset safety](asset-safety.md) | How funding outputs are chosen, and why asset-bearing outputs are protected |
-| [Protocol data status and recovery](protocol-data-status.md) | Source health states, the status panel, portfolio source truth, order continuity |
-| [Performance and media](performance-and-media.md) | How the app loads fast and renders inscription media from Universe infrastructure |
-| [Release evidence](release-evidence.md) | How releases are built, sealed, and verified |
-| [Candidate workspace repairs](candidate-repair-status.md) | Local repair status, result meanings, and integration checks still outstanding; not a deployed release |
-| [Social previews](social-previews.md) | Route-aware link previews, and what is never published in them |
-| [Accessibility](accessibility.md) | Contrast, themes, display controls, and what every release is checked against |
-| [Inscribe Control Center](admin-control-center.md) | The restricted operations surface |
+[Candidate workspace repairs](candidate-repair-status.md) records local verification and outstanding integration checks. It is not a deployed release.
 
-## Support
+| Section | Description |
+| :--- | :--- |
+| **[Start Here](https://bitcoinuniverseio.github.io/docs-inscribe/start/what-inscribe-is/)** | What Inscribe is, what you can create, and what to know before spending sats |
+| **[First Inscription](https://bitcoinuniverseio.github.io/docs-inscribe/create/first-inscription/)** | End-to-end tutorial from wallet connection to confirmed inscription |
+| **[What It Costs](https://bitcoinuniverseio.github.io/docs-inscribe/create/what-it-costs/)** | Complete cost anatomy: network fee, service fee, and postage output |
+| **[Workspace Map](https://bitcoinuniverseio.github.io/docs-inscribe/create/workspaces/)** | Directory of every creation, minting, batch, and management workspace |
+| **[Asset Safety](https://bitcoinuniverseio.github.io/docs-inscribe/safety/asset-safety/)** | UTXO classification rules preventing valuable assets from being used as fee fuel |
+| **[Order Recovery](https://bitcoinuniverseio.github.io/docs-inscribe/safety/order-recovery/)** | Step-by-step resolution for every interrupted or unconfirmed order state |
+| **[Protocol Coverage](https://bitcoinuniverseio.github.io/docs-inscribe/protocols/coverage/)** | Authoritative status of all 27 supported protocols |
+| **[Accessibility](https://bitcoinuniverseio.github.io/docs-inscribe/about/accessibility/)** | WCAG AA compliance evidence, contrast guarantees, and responsive behavior down to 320px |
 
-Found a problem or missing answer? [Open an issue](https://github.com/bitcoinuniverseio/docs-inscribe/issues) on this repository. Wallet-aware and private workspaces never publish balances, addresses, draft transactions, or account state in link previews or anywhere else.
+---
+
+## Repository Structure
+
+```text
+docs-inscribe/
+├── data/                  # Learning manifests and protocol metadata
+├── public/                # Static assets, machine-readable texts, and offline service worker
+│   ├── llms.txt           # Compact machine-readable corpus summary
+│   ├── llms-full.txt      # Full machine-readable documentation text
+│   ├── corpus.jsonl       # Structured JSONL corpus for retrieval systems
+│   └── practice/sim/      # Network-isolated Practice Studio simulation bundle
+├── scripts/               # Automated verification and quality gate scripts
+├── src/
+│   ├── content/docs/      # Starlight markdown documentation articles
+│   ├── islands/           # Interactive React islands (Planner, Labs, Navigator)
+│   ├── pages/             # Astro standalone learning surface routes
+│   └── styles/            # Theme, typography, and component stylesheet
+├── vendor/                # Vendored contracts from @universe/inscribe-learning
+└── astro.config.mjs       # Astro + Starlight configuration
+```
+
+---
+
+## Local Development
+
+### Prerequisites
+
+- Node.js >= 20.0.0
+- npm >= 10.0.0
+
+### Setup & Running
+
+```bash
+# Clone the repository
+git clone https://github.com/bitcoinuniverseio/docs-inscribe.git
+cd docs-inscribe
+
+# Install dependencies
+npm install
+
+# Start local development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build locally
+npm run preview
+```
+
+---
+
+## Quality Gates & Verification
+
+Every pull request and build runs an automated test suite enforcing strict editorial, security, and accessibility standards:
+
+```bash
+# Run all core verification suites
+npm test
+
+# Run Playwright end-to-end browser tests
+npm run test:e2e
+
+# Run automated WCAG AA accessibility audit across all 99 pages
+npm run check:a11y
+
+# Run markdown style validation
+npm run check:markdown
+```
+
+### Invariants Enforced by CI
+
+- **Zero Accessibility Violations:** All 99 pages must pass axe-core audits with 0 violations in both light and dark themes at 320px viewport width.
+- **Zero Secret Disclosures:** Automated scanning checks for credentials, private keys, private IP addresses, and non-public hostnames.
+- **Network Isolation:** The Practice Studio build is audited to ensure zero network call surfaces exist in the simulation bundle.
+- **Copy Standards:** Strict linting prevents prohibited characters (no em dashes) and banned terminology.
+
+---
+
+## Contributing
+
+We welcome contributions to documentation clarity, technical accuracy, and learning tools. Please read [CONTRIBUTING.md](CONTRIBUTING.md) for development workflows, style guidelines, and submission requirements.
+
+---
+
+## Security
+
+For security vulnerability disclosures, please review [SECURITY.md](SECURITY.md). Never submit sensitive details, private keys, or wallet seed phrases in public issues.
+
+---
+
+## License
+
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.

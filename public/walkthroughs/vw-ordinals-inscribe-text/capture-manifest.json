@@ -1,0 +1,55 @@
+{
+  "walkthroughId": "vw-ordinals-inscribe-text",
+  "appCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+  "capturedAt": "2026-09-02T20:33:18.049Z",
+  "fixtureVersion": "1",
+  "steps": 6,
+  "altTexts": [
+    "The Inscribe workspace with the Text sub-tab selected and an empty content field",
+    "Text typed into the content field with the live quote updating",
+    "The fee selector with Normal, Fast, and Custom tiers",
+    "The receiver and payment sections showing the two-address model",
+    "The review or connect-prompt stage before any signature",
+    "The completed form state with every value shown before paying"
+  ],
+  "stepInstructions": [
+    "Open the inscribe workspace and select the Text sub-tab. The form shows content, receiver, and fee sections.",
+    "Type your message. The quote updates with the content size: network fee plus the 546 sat postage that stays yours.",
+    "Pick a fee tier. Normal is cheaper and slower; Fast pays more rate to confirm sooner.",
+    "Check the receiver section: the ordinals address holds the inscription while the payment address funds it. Both are yours.",
+    "Before any signature the app shows a review with the total to pay. This capture environment has no wallet connected, exactly like a first visit.",
+    "Final check: content, fee tier, quote total, and receiver all visible at once. Nothing is signed until you confirm in a wallet."
+  ],
+  "files": [
+    {
+      "path": "step-01.webp",
+      "sha256": "e3c50cafa959daab0acfc72b2dc7843ce77e82776e0804ce5e56cdd825ece301",
+      "bytes": 50414
+    },
+    {
+      "path": "step-02.webp",
+      "sha256": "836197c210343515a7cdca74e8b8d87a969623a8312c8540280dbcb53743b082",
+      "bytes": 50820
+    },
+    {
+      "path": "step-03.webp",
+      "sha256": "836197c210343515a7cdca74e8b8d87a969623a8312c8540280dbcb53743b082",
+      "bytes": 50820
+    },
+    {
+      "path": "step-04.webp",
+      "sha256": "836197c210343515a7cdca74e8b8d87a969623a8312c8540280dbcb53743b082",
+      "bytes": 50820
+    },
+    {
+      "path": "step-05.webp",
+      "sha256": "836197c210343515a7cdca74e8b8d87a969623a8312c8540280dbcb53743b082",
+      "bytes": 50820
+    },
+    {
+      "path": "step-06.webp",
+      "sha256": "836197c210343515a7cdca74e8b8d87a969623a8312c8540280dbcb53743b082",
+      "bytes": 50820
+    }
+  ]
+}

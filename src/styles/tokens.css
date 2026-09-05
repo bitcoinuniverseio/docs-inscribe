@@ -1,0 +1,162 @@
+/*
+  Inscribe documentation design tokens: the Bitcoin Creation Studio system.
+
+  Source of truth is the established Universe and Inscribe brand: warm neutral
+  surfaces, graphite structural rules, controlled bitcoin-orange emphasis, and
+  semantic states that never rely on hue alone. Light is the primary theme;
+  dark is a full-parity translation, not an afterthought. Layers:
+  tokens (this file) -> base -> components -> content.
+*/
+
+:root {
+  --ins-font: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --ins-font-mono: 'JetBrains Mono Variable', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Warm neutral surfaces, light primary */
+  --ins-paper: #faf7f2;
+  --ins-surface: #ffffff;
+  --ins-surface-2: #f4efe7;
+  --ins-surface-3: #ece5d8;
+  --ins-line: #ddd3c4;
+  --ins-line-strong: #c4b8a4;
+
+  /* Graphite text */
+  --ins-ink: #26241f;
+  --ins-ink-2: #4d4a43;
+  --ins-ink-3: #6e6a61;
+
+  /* Controlled bitcoin-orange emphasis */
+  --ins-accent: #b35500;
+  --ins-accent-strong: #944600;
+  --ins-accent-soft: #f7e3cc;
+  --ins-accent-ink: #6b3504;
+
+  /* Semantic states: never hue-only, always paired with a label */
+  --ins-success: #1e7a46;
+  --ins-success-soft: #dff0e5;
+  --ins-warning: #9a6b00;
+  --ins-warning-soft: #f6ecd0;
+  --ins-danger: #b3321c;
+  --ins-danger-soft: #f8e2dc;
+  --ins-unavailable: #6e6a61;
+  --ins-unavailable-soft: #eceae4;
+  --ins-gated: #7a5aa8;
+  --ins-gated-soft: #ece4f6;
+  --ins-stale: #a06a00;
+  --ins-stale-soft: #f4ead2;
+  --ins-unknown: #5d6b74;
+  --ins-unknown-soft: #e7ebee;
+
+  --ins-radius: 4px;
+  --ins-radius-lg: 8px;
+  --ins-frame: 1px solid var(--ins-line);
+  --ins-frame-strong: 2px solid var(--ins-ink);
+
+  /* Typography scale */
+  --ins-text-sm: 0.875rem;
+  --ins-text-base: 1rem;
+  --ins-text-lg: 1.125rem;
+
+  /* Starlight variable mapping: light theme values */
+  --sl-font: var(--ins-font);
+  --sl-font-mono: var(--ins-font-mono);
+  --sl-color-white: #1d1b17;
+  --sl-color-black: #faf7f2;
+  --sl-color-gray-1: #2c2a24;
+  --sl-color-gray-2: #4d4a43;
+  --sl-color-gray-3: #6e6a61;
+  --sl-color-gray-4: #948f84;
+  --sl-color-gray-5: #cfc7b8;
+  --sl-color-gray-6: #f4efe7;
+  --sl-color-gray-7: #faf7f2;
+  --sl-color-bg: var(--ins-paper);
+  --sl-color-bg-nav: var(--ins-paper);
+  --sl-color-bg-sidebar: var(--ins-paper);
+  --sl-color-bg-accent: var(--ins-surface-2);
+  --sl-color-bg-accent-cover: var(--ins-surface-3);
+  --sl-color-bg-overlay: #ffffffee;
+  --sl-color-border: var(--ins-line);
+  --sl-color-border-accent: var(--ins-accent);
+  --sl-color-text: var(--ins-ink);
+  --sl-color-text-accent: var(--ins-accent-strong);
+  --sl-color-text-accent-hover: var(--ins-accent-ink);
+  --sl-color-text-heading: var(--ins-ink);
+  --sl-color-text-muted: var(--ins-ink-3);
+  --sl-color-step-current: var(--ins-accent);
+  --sl-color-backdrop: #26241fd9;
+  --sl-color-hairline-shade: var(--ins-line);
+  --sl-color-hairline: var(--ins-line);
+  --sl-color-text-nav-link: var(--ins-ink-2);
+  --sl-color-text-nav-link-hover: var(--ins-ink);
+  --sl-color-text-step-number: var(--ins-ink-3);
+
+  --sl-text-body: 1.0625rem;
+  --sl-line-height: 1.7;
+  --sl-content-width: 48rem;
+}
+
+/* Dark: full parity translation of the same system */
+:root[data-theme='dark'] {
+  --ins-paper: #171613;
+  --ins-surface: #1f1d19;
+  --ins-surface-2: #262420;
+  --ins-surface-3: #2f2c26;
+  --ins-line: #3a362f;
+  --ins-line-strong: #4d483f;
+
+  --ins-ink: #f0ece4;
+  --ins-ink-2: #c9c4b8;
+  --ins-ink-3: #99948a;
+
+  --ins-accent: #e88b34;
+  --ins-accent-strong: #f0a45c;
+  --ins-accent-soft: #3a2a17;
+  --ins-accent-ink: #f6c894;
+
+  --ins-success: #55c387;
+  --ins-success-soft: #1b2e23;
+  --ins-warning: #e3b34c;
+  --ins-warning-soft: #332a15;
+  --ins-danger: #ef8069;
+  --ins-danger-soft: #3a211b;
+  --ins-unavailable: #99948a;
+  --ins-unavailable-soft: #2a2823;
+  --ins-gated: #b79ae0;
+  --ins-gated-soft: #272033;
+  --ins-stale: #dfa64e;
+  --ins-stale-soft: #2f2614;
+  --ins-unknown: #8fa0ab;
+  --ins-unknown-soft: #1f2529;
+
+  --sl-color-white: #f0ece4;
+  --sl-color-black: #171613;
+  --sl-color-gray-1: #e2ddd2;
+  --sl-color-gray-2: #c9c4b8;
+  --sl-color-gray-3: #99948a;
+  --sl-color-gray-4: #6e6a61;
+  --sl-color-gray-5: #44403a;
+  --sl-color-gray-6: #262420;
+  --sl-color-gray-7: #1f1d19;
+  --sl-color-bg: var(--ins-paper);
+  --sl-color-bg-nav: var(--ins-paper);
+  --sl-color-bg-sidebar: var(--ins-paper);
+  --sl-color-bg-accent: var(--ins-surface-2);
+  --sl-color-bg-accent-cover: var(--ins-surface-3);
+  --sl-color-bg-overlay: #1f1d19ee;
+  --sl-color-text: var(--ins-ink);
+  --sl-color-text-accent: var(--ins-accent);
+  --sl-color-text-accent-hover: var(--ins-accent-strong);
+  --sl-color-text-heading: var(--ins-ink);
+  --sl-color-text-muted: var(--ins-ink-3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    scroll-behavior: auto !important;
+    --ins-duration: 0ms;
+  }
+}
+
+:root {
+  --ins-duration: 160ms;
+}

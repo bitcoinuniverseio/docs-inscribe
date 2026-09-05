@@ -1,0 +1,34 @@
+{
+  "walkthroughId": "vw-mezcal-mint",
+  "appCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+  "capturedAt": "2026-09-02T20:33:18.061Z",
+  "fixtureVersion": "1",
+  "steps": 3,
+  "altTexts": [
+    "The mezcal workspace opened with the mint action selected",
+    "The mint form fields for mezcal",
+    "The review end of the mint flow for mezcal"
+  ],
+  "stepInstructions": [
+    "Open /mezcal with the mint action. The workspace shows its form with the action preselected.",
+    "Fill the form fields. Every field shows the values that drive the quote; the fixture environment has no live fees, and the app says so.",
+    "The end of the form holds the fee and review sections. Nothing is signed in this capture environment; the live app shows its own review here."
+  ],
+  "files": [
+    {
+      "path": "step-01.webp",
+      "sha256": "f3143aebb78d37ef403b3cf40b951fad1362dec020bcbe314475173e35a0ab3f",
+      "bytes": 45630
+    },
+    {
+      "path": "step-02.webp",
+      "sha256": "f3143aebb78d37ef403b3cf40b951fad1362dec020bcbe314475173e35a0ab3f",
+      "bytes": 45630
+    },
+    {
+      "path": "step-03.webp",
+      "sha256": "c661293bbcc9df4b864573c808d69aa99121fc5ab84c57f9f37e21047b9dc1d8",
+      "bytes": 43372
+    }
+  ]
+}

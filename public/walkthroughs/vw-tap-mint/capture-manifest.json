@@ -1,0 +1,34 @@
+{
+  "walkthroughId": "vw-tap-mint",
+  "appCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+  "capturedAt": "2026-09-02T20:33:18.062Z",
+  "fixtureVersion": "1",
+  "steps": 3,
+  "altTexts": [
+    "The tap workspace opened with the mint action selected",
+    "The mint form fields for tap",
+    "The review end of the mint flow for tap"
+  ],
+  "stepInstructions": [
+    "Open /tap with the mint action. The workspace shows its form with the action preselected.",
+    "Fill the form fields. Every field shows the values that drive the quote; the fixture environment has no live fees, and the app says so.",
+    "The end of the form holds the fee and review sections. Nothing is signed in this capture environment; the live app shows its own review here."
+  ],
+  "files": [
+    {
+      "path": "step-01.webp",
+      "sha256": "d783815ce6c07180438609f612e1b1a025e2640352057c9af8359ef15a50aeba",
+      "bytes": 40344
+    },
+    {
+      "path": "step-02.webp",
+      "sha256": "d783815ce6c07180438609f612e1b1a025e2640352057c9af8359ef15a50aeba",
+      "bytes": 40344
+    },
+    {
+      "path": "step-03.webp",
+      "sha256": "2cca6e34632f9bffe71a2209a56bf2b0ccb01791713a121d55eaa2c071365a53",
+      "bytes": 37712
+    }
+  ]
+}

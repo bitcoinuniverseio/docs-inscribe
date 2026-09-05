@@ -1,0 +1,158 @@
+---
+title: Inscribe documentation
+description: 'How to make things on Bitcoin with Universe Inscribe: inscribe files and text, deploy and mint tokens, etch runes, transfer assets, and get an order back when something goes wrong. Every cost itemised before you sign.'
+template: splash
+ownHeading: true
+editUrl: false
+provenance: false
+# No `hero` key. Starlight's hero would render its own h1 from the title, and
+# the designed hero below carries the page's one h1. Two h1 elements is a real
+# defect, not a cosmetic one: it leaves the document with no single top-level
+# heading for anyone navigating by structure.
+---
+
+import coverage from '@data/protocol-coverage.json';
+import workspaces from '@data/workspaces.json';
+
+export const shipped = Object.values(workspaces.protocols).filter((p) => p.route !== null).length;
+export const gated = Object.values(workspaces.protocols).filter((p) => p.gated === true).length;
+
+<div class="bench-hero">
+  <p class="bench-kicker">Work in progress, permanently</p>
+  <h1 id="_top">Make it on Bitcoin, and know what it cost before you sign.</h1>
+
+  <p class="lede">
+    Inscribe is one workspace for creating Bitcoin-native assets: inscriptions from
+    files or text, token deploys and mints, rune etches, and transfers. Every action
+    that writes to the chain shows its full cost first, and no flow will spend an
+    output holding your assets to pay a fee.
+  </p>
+
+  <p class="bench-actions">
+    <a class="primary" href="https://inscribe.bitcoinuniverse.io">Open Inscribe</a>
+    <a href="/docs-inscribe/start/first-inscription/">Your first inscription</a>
+    <a href="/docs-inscribe/concepts/what-it-costs/">What it costs</a>
+  </p>
+</div>
+
+<ul class="bench-stats">
+  <li>
+    <span class="figure">{coverage.counts.protocolsWithInscribeSurface}</span>
+    <span class="label">protocols with a creation surface in the Core registry</span>
+  </li>
+  <li>
+    <span class="figure">{shipped}</span>
+    <span class="label">of those reachable in the shipped app</span>
+  </li>
+  <li>
+    <span class="figure">{gated}</span>
+    <span class="label">behind a release gate an operator must turn on</span>
+  </li>
+  <li>
+    <span class="figure">1</span>
+    <span class="label">chain you can spend on today: Bitcoin mainnet</span>
+  </li>
+</ul>
+
+## Start where you are
+
+<ul class="bench-grid">
+  <li class="bench-card">
+    <h3><a href="/docs-inscribe/start/before-you-spend/">I have never done this</a></h3>
+    <p>
+      Four things that cost people assets, and what Inscribe does about each. Read this
+      before you connect a wallet.
+    </p>
+  </li>
+  <li class="bench-card">
+    <h3><a href="/docs-inscribe/start/first-inscription/">I want to inscribe something</a></h3>
+    <p>
+      A file or a line of text, from an empty page to a confirmed inscription, with the
+      wallet screen you should expect at each signature.
+    </p>
+  </li>
+  <li class="bench-card">
+    <h3><a href="/docs-inscribe/create/deploy-a-token/">I want to launch a token</a></h3>
+    <p>
+      Deploy, mint and transfer across the token protocols Inscribe implements, and what
+      each one does differently.
+    </p>
+  </li>
+  <li class="bench-card">
+    <h3><a href="/docs-inscribe/manage/recovery/">Something went wrong</a></h3>
+    <p>
+      An unpaid order, a stuck transaction, a closed tab, sats trapped in padding. Every
+      recovery route, and the one situation that has none.
+    </p>
+  </li>
+</ul>
+
+## What this product is
+
+Inscribe is the creation half of [Bitcoin Universe](https://bitcoinuniverse.io). Core is
+where assets are discovered and traded; Inscribe is where they are made. The two are
+independent: a protocol you can create here may not be tradeable there, and the reverse
+is also true. Neither page borrows the other's availability.
+
+You do not need a wallet to explore the app, read live protocol data, or price an
+action. A wallet is asked for only when something needs a signature.
+
+<ul class="bench-grid">
+  <li class="bench-card">
+    <h3>Your assets are not fee fuel</h3>
+    <p>
+      No automatic funding flow will pick an output holding an inscription, a Rune
+      balance or a token balance to pay a network fee.
+      <a href="/docs-inscribe/concepts/asset-safety/">How output selection works</a>.
+    </p>
+  </li>
+  <li class="bench-card">
+    <h3>A source being down is never an empty wallet</h3>
+    <p>
+      Every read names its source. When one does not answer, the page says which one and
+      what is missing, instead of showing you nothing.
+      <a href="/docs-inscribe/concepts/source-freshness/">Data states</a>.
+    </p>
+  </li>
+  <li class="bench-card">
+    <h3>The cost is shown before the wallet opens</h3>
+    <p>
+      Network fee, service fee, and the output your inscription sits on, itemised and
+      totalled. Only two of the three are fees.
+      <a href="/docs-inscribe/concepts/what-it-costs/">Read a quote</a>.
+    </p>
+  </li>
+  <li class="bench-card">
+    <h3>An order survives a closed tab</h3>
+    <p>
+      Orders this browser started are listed on Home. Reopening one asks your wallet to
+      prove it owns the order first.
+      <a href="/docs-inscribe/manage/pending-orders/">Getting back to an order</a>.
+    </p>
+  </li>
+</ul>
+
+## Where things are
+
+| What | Where |
+| --- | --- |
+| Product | [inscribe.bitcoinuniverse.io](https://inscribe.bitcoinuniverse.io) |
+| Chains and networks | Bitcoin mainnet. Dogecoin protocols exist behind a release gate. See [status](/docs-inscribe/start/status/) |
+| Lifecycle and version | Stable, released continuously from a verified commit. See [release evidence](/docs-inscribe/about/release-evidence/) |
+| Protocol coverage | [The coverage matrix](/docs-inscribe/protocols/coverage/), generated from the Core protocol registry |
+| Current data status | [Where the data comes from](/docs-inscribe/concepts/source-freshness/) |
+| Changelog | [What changed](/docs-inscribe/about/changelog/) |
+| This documentation | [github.com/bitcoinuniverseio/docs-inscribe](https://github.com/bitcoinuniverseio/docs-inscribe) |
+| Support | [Open an issue](https://github.com/bitcoinuniverseio/docs-inscribe/issues) |
+| Security reporting | [SECURITY.md](https://github.com/bitcoinuniverseio/docs-inscribe/blob/main/SECURITY.md) |
+| Central platform | [docs.bitcoinuniverse.io](https://docs.bitcoinuniverse.io) |
+
+## What this documentation will not do
+
+It will not describe a feature that is written but switched off as though you can use it
+today. Where a workspace is release-gated, the page says so and says what you see
+instead. Where the product has no answer for a situation, the page says that too.
+
+The [coverage matrix](/docs-inscribe/protocols/coverage/) is generated from the Bitcoin
+Universe protocol registry rather than written by hand, and the build fails if a page
+claims an operation the registry does not record.

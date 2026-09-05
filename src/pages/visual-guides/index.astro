@@ -1,0 +1,118 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro'
+import { loadManifest } from '@universe/inscribe-learning'
+
+const manifest = loadManifest()
+const wfMap = new Map(manifest.workflows.map((w) => [w.id, w]))
+const protMap = new Map(manifest.protocols.map((p) => [p.id, p]))
+
+interface Section {
+  id: string
+  title: string
+  description: string
+  walkthroughs: typeof manifest.walkthroughs
+}
+
+const sections: Section[] = [
+  {
+    id: 'ordinals',
+    title: 'Ordinals and Inscriptions',
+    description: 'Step-by-step verified captures for creating, batching, transferring, and collecting Ordinals.',
+    walkthroughs: [],
+  },
+  {
+    id: 'tokens',
+    title: 'BRC-20 and Metaprotocols',
+    description: 'Deploy, mint, and transfer workflows for BRC-20, ARC-20, BLOCK-20, DUST-20, and TAP.',
+    walkthroughs: [],
+  },
+  {
+    id: 'runes',
+    title: 'Runes and OP_RETURN',
+    description: 'Etching, minting, and transfer captures for Runes, Mezcal, OP-20, OP_DROP, and Alkanes.',
+    walkthroughs: [],
+  },
+  {
+    id: 'stamps',
+    title: 'Bitcoin Stamps and SRC-20',
+    description: 'Direct UTXO data inscription and token workflows on Bitcoin Stamps and SRC-20.',
+    walkthroughs: [],
+  },
+  {
+    id: 'lifecycle',
+    title: 'Order Lifecycle and Recovery',
+    description: 'Follow orders through commit and reveal phases, and recover interrupted states safely.',
+    walkthroughs: [],
+  },
+]
+
+for (const w of manifest.walkthroughs) {
+  const wf = wfMap.get(w.workflowId)
+  const protId = wf?.protocolId || ''
+
+  if (w.id.includes('recovery') || w.id.includes('lifecycle')) {
+    sections[4].walkthroughs.push(w)
+  } else if (protId === 'ordinals' || w.id.includes('ordinals')) {
+    sections[0].walkthroughs.push(w)
+  } else if (['brc20', 'arc20', 'block20', 'dust20', 'tap'].includes(protId) || /brc20|arc20|block20|dust20|tap/.test(w.id)) {
+    sections[1].walkthroughs.push(w)
+  } else if (['runes', 'mezcal', 'op-drop', 'op20', 'alkanes'].includes(protId) || /runes|mezcal|op-|alkanes/.test(w.id)) {
+    sections[2].walkthroughs.push(w)
+  } else if (['stamps', 'src20'].includes(protId) || /stamps|src20/.test(w.id)) {
+    sections[3].walkthroughs.push(w)
+  } else {
+    sections[0].walkthroughs.push(w)
+  }
+}
+---
+
+<StarlightPage frontmatter={{ title: 'Visual walkthrough library', description: 'Deterministic captures of the real Inscribe interface, one walkthrough per core workflow, each with text equivalents and a safe practice route.', slug: 'visual-guides' }}>
+  <p>
+    Every capture is generated from a declared deterministic state of the real application, pinned to an exact app
+    commit and fixture version. Captures are refreshed automatically when the app changes; an outdated screenshot
+    fails the build instead of shipping. Essential instructions always exist as text next to the images.
+  </p>
+
+  <nav class="ins-vg-nav" aria-label="Walkthrough categories">
+    {sections.map((s) => (
+      <a href={`#${s.id}`} class="ins-vg-nav__link">
+        {s.title} ({s.walkthroughs.length})
+      </a>
+    ))}
+  </nav>
+
+  {sections.map((section) => (
+    <section id={section.id} class="ins-vg-section">
+      <h2>{section.title}</h2>
+      <p class="ins-vg-section__desc">{section.description}</p>
+      <ul class="ins-vg-grid">
+        {section.walkthroughs.map((w) => {
+          const wf = wfMap.get(w.workflowId)
+          const targetPath = w.path.startsWith('/docs-inscribe') ? w.path : `/docs-inscribe${w.path.startsWith('/') ? w.path : '/' + w.path}`
+          const cleanTitle = w.title.replace(/\s+walkthrough$/i, '')
+          const protocolLabel = protMap.get(wf?.protocolId || '')?.label || wf?.protocolId?.toUpperCase() || 'Protocol'
+          return (
+            <li key={w.id}>
+              <a href={targetPath} class="ins-vg-card">
+                <div class="ins-vg-card__header">
+                  <span class="ins-vg-pill">{protocolLabel}</span>
+                  <span class="ins-vg-steps">{w.steps} screens</span>
+                </div>
+                <div>
+                  <span class="ins-vg-card__title">{cleanTitle}</span>
+                  {wf?.workspace && (
+                    <span class="ins-vg-card__workspace">workspace /{wf.workspace}</span>
+                  )}
+                </div>
+                <div class="ins-vg-card__footer">
+                  <span class="ins-vg-card__provenance">Verified capture</span>
+                  <span class="ins-vg-card__cta">View walkthrough &rarr;</span>
+                </div>
+              </a>
+            </li>
+          )
+        })}
+      </ul>
+    </section>
+  ))}
+</StarlightPage>

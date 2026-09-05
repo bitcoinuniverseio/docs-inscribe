@@ -1,0 +1,34 @@
+{
+  "walkthroughId": "vw-block20-deploy",
+  "appCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+  "capturedAt": "2026-09-02T20:33:18.074Z",
+  "fixtureVersion": "1",
+  "steps": 3,
+  "altTexts": [
+    "The block20 workspace opened with the deploy action selected",
+    "The deploy form fields for block20",
+    "The review end of the deploy flow for block20"
+  ],
+  "stepInstructions": [
+    "Open /block20 with the deploy action. The workspace shows its form with the action preselected.",
+    "Fill the form fields. Every field shows the values that drive the quote; the fixture environment has no live fees, and the app says so.",
+    "The end of the form holds the fee and review sections. Nothing is signed in this capture environment; the live app shows its own review here."
+  ],
+  "files": [
+    {
+      "path": "step-01.webp",
+      "sha256": "0227a7ac49ca4f7bcb56850a2058958dcaa9e9338cddeb7b627133295450c1eb",
+      "bytes": 38484
+    },
+    {
+      "path": "step-02.webp",
+      "sha256": "0227a7ac49ca4f7bcb56850a2058958dcaa9e9338cddeb7b627133295450c1eb",
+      "bytes": 38484
+    },
+    {
+      "path": "step-03.webp",
+      "sha256": "70fef297754fc372c0ba2e3eb1d63cf6a2a97a5bcdf454cf912cccd14cc858ac",
+      "bytes": 36166
+    }
+  ]
+}
