@@ -41,6 +41,7 @@ Inscribe connects to UniSat, Xverse, OKX, Wizz, and the Bitcoin Universe wallet.
 | [Protocol data status and recovery](protocol-data-status.md) | Source health states, the status panel, portfolio source truth, order continuity |
 | [Performance and media](performance-and-media.md) | How the app loads fast and renders inscription media from Universe infrastructure |
 | [Release evidence](release-evidence.md) | How releases are built, sealed, and verified |
+| [Candidate workspace repairs](candidate-repair-status.md) | Local repair status, result meanings, and integration checks still outstanding; not a deployed release |
 | [Social previews](social-previews.md) | Route-aware link previews, and what is never published in them |
 | [Accessibility](accessibility.md) | Contrast, themes, display controls, and what every release is checked against |
 | [Inscribe Control Center](admin-control-center.md) | The restricted operations surface |
