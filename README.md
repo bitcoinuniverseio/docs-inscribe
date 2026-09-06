@@ -32,6 +32,8 @@ The documentation site provides nine interactive learning products built directl
 
 ## Core Guides & Reference
 
+[Candidate workspace repairs](candidate-repair-status.md) records local verification and outstanding integration checks. It is not a deployed release.
+
 | Section | Description |
 | :--- | :--- |
 | **[Start Here](https://bitcoinuniverseio.github.io/docs-inscribe/start/what-inscribe-is/)** | What Inscribe is, what you can create, and what to know before spending sats |
