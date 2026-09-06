@@ -92,8 +92,8 @@ app before your first one.
 
 | Workspace | What it is for |
 | --- | --- |
-| drops | Browse verified Drops: confirmed data artifacts with stable IDs and on-chain proof. Read-only; creation runs through Inscribe |
-| drop pacts | Design and launch Drop Pact agreements, with a resumable tutorial |
+| drops | Browse confirmed artifacts, search and review supported transfers. Creation runs through Inscribe; signing requires verified custody |
+| drop pacts | Reference tools and a resumable tutorial; no live contract execution or spend authority |
 | op-drop | Deploy, mint and transfer op-drop tokens. Every operation is a compact JSON inscription, funded wallet-only |
 
 **Collaborative and time**

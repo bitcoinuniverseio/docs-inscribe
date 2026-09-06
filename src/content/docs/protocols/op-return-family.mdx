@@ -48,16 +48,44 @@ Confirmed data artifacts with stable IDs and on-chain proof.
 | --- | --- |
 | Payload limit | **256 bytes.** Drops are deliberately small |
 | Operations | inscribe, transfer |
-| The `/drops` workspace | Browsing verified Drops, read-only |
+| The `/drops` workspace | Browse artifacts and review supported transfers; signing requires verified current custody |
 | Where creation happens | Through the Inscribe workspace |
 
-**Drop Pacts** is a related surface for designing and launching Drop Pact agreements, with
-a resumable tutorial.
+**Drop Pacts** provides reference tools and a resumable tutorial. These tools do not grant
+transaction signing, custody, or live contract execution authority.
 
-Drops carries an unusual verification requirement: it needs **two independent
-Universe-operated Bitcoin processes to agree on the finalized block hash**. If either
-verifier is unavailable or they disagree, readiness stays unavailable rather than falling
-back to a public blockchain provider.
+### Search and recovery
+
+The September 6 repair candidate adds the behavior below. It is under validation;
+this documentation does not establish a production deployment or a completed Signet journey.
+
+Use **Find** to search the complete confirmed index by Drop number, full Drop ID, mark,
+MIME type, or reveal transaction ID. An all-digit mark needs the `mark:` prefix so it is
+not interpreted as a Drop number. Search results retain their filtered total and pages,
+including transactions containing more than fifty artifacts. **Refresh** keeps the active
+search and page; **Browse all Drops** clears the search and returns to page one. Submitted
+searches remain in the URL for reload and browser back/forward navigation.
+
+**Checking**, **Unavailable**, **Degraded**, and **Disabled** are different from a successful
+search with no results. **Retry artifacts** retries the collection; **Retry verification**
+rechecks source readiness. An unavailable source cannot establish that no Drops exist.
+Metadata can remain visible while verification is unavailable, but transfers and proof
+links require the exact verified network.
+
+Choose the exact chain used by the order and wallet. Signet and Testnet can share address
+prefixes; matching prefixes do not prove the same chain. A connected wallet must report
+the selected chain before creating or funding a Drops order. Reloading a saved order
+retains its recorded network and requires the same chain before continuing.
+
+Only passive images and plain text preview inline. HTML, SVG, and unknown media remain
+downloads. A failed preview does not remove the metadata; **Refresh** retries it. **Copy**
+copies the full Drop ID, while the owner control copies the current owner address.
+
+Drops verifies its finalized checkpoint and custody evidence against the shared
+Universe-operated Bitcoin Core service. An unavailable verifier, stale checkpoint, or
+disagreement with the recorded chain evidence leaves readiness unavailable. There is no
+fallback to a public blockchain provider. This verification description does not establish
+Signet marketplace availability.
 
 Workspace: `/drops`. Released, and a deployment must switch it on.
 
