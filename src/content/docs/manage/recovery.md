@@ -222,51 +222,72 @@ Go to the order and, if it needs help, use Fix My Payment.
 At `/recover-sats`. Inscriptions sit on outputs with satoshis in them, and some of those
 satoshis can be reclaimed without disturbing the inscription.
 
-**No service fee is charged.**
+**Review both fees.** Asset Recovery's transaction quote includes a service fee
+and a network fee. The current service-fee policy is 1,500 sats; use the amount
+in the actual quote. The protected output stays with your assets and is not a
+fee. The net recovery figure already deducts the fees and any added funding.
+
+The flow below describes the local repair candidate. It has not been published
+or verified through a complete real-network recovery. Availability in the app
+depends on the deployed version, selected network, wallet, and required indexes.
 
 <ol class="steps">
 
 <li>
 
-**Connect your wallet.**
+**Connect your wallet and check the network.** A test-network address alone does
+not distinguish Signet from Testnet4. Use the network selected in the wallet.
 
 </li>
 
 <li>
 
-**Let it scan** for recoverable padding across your holdings.
+**Let it finish scanning** every page for the wallet addresses shown. A partial
+scan does not cover all your holdings.
 
 </li>
 
 <li>
 
-**Review what it found.** It validates the chain and mempool state before offering anything
-as recoverable, so a candidate here has been checked rather than guessed at.
+**Review the assets and any missing evidence.** Labels help you inspect an
+output. The recovery plan must still prove that it preserves the assets through
+the required indexes and protocol rules. An unknown asset is not verified plain
+bitcoin.
 
 </li>
 
 <li>
 
-**Select what to recover** and set a fee rate.
+**Choose inputs and destinations**, set the amount to retain with your assets,
+and review the protected amount, recovered amount, service fee, and network fee.
 
 </li>
 
 <li>
 
-**Sign.**
+**Sign and wait for validation.**
 
 *Expected wallet screen:* a transaction reclaiming the padding. Check that your inscription
-outputs are preserved in the outputs list.
+outputs are preserved in the outputs list. Signing does not submit the recovery.
 
 </li>
 
 <li>
 
-**Verify** that the inscriptions are still at your address afterwards.
+**Approve broadcast separately**, then follow the operation receipt. A network
+confirmation alone does not prove that the asset indexes show the expected
+result. Completion needs the protected assets and recovered output to match.
+Reconnect with the same wallet and network to read the saved receipt after a
+reload. If submission is uncertain, check that receipt before retrying.
 
 </li>
 
 </ol>
+
+The current readback path needs the protected output to remain unspent. Moving
+it again can prevent the receipt from rechecking ownership. Support for an
+asset label is not proof that its native transfer rules are implemented; any
+unresolved required protocol keeps the recovery from reporting completion.
 
 If this route returns the 404 page, the feature is switched off in this deployment. It is
 one of only two surfaces that 404 rather than loading and refusing.

@@ -84,12 +84,20 @@ service fee, so an asset-bearing output is not offered as split material.
 
 Reclaim satoshis locked in inscription padding, at `/recover-sats`.
 
-Inscriptions sit on outputs holding satoshis, and some of those can be reclaimed without
-disturbing the inscription. The tool validates the chain and mempool state before calling
-anything recoverable, so a candidate it offers has been checked rather than guessed at.
+Inscriptions sit on outputs holding satoshis, and some of those can be reclaimed
+while keeping the inscription in a protected output. A candidate still needs a
+valid plan backed by the required asset indexes and protocol rules. A detected
+label alone does not establish safe recovery.
 
-**No service fee is charged**, here or in Fix My Payment. You are repairing something, not
-buying something.
+**Asset Recovery includes a service fee and a network fee.** Read the actual
+quote; the current service-fee policy is 1,500 sats. The protected output stays
+yours, and net recovery already deducts both fees and any added funding. This
+does not change the separate fee policy for Fix My Payment.
+
+The local repair candidate adds separate final broadcast approval and a saved,
+authenticated operation receipt. Confirmation leads to asset-index checks;
+only matching final evidence permits a completion claim. That candidate has
+not been published or verified through a complete real-network recovery.
 
 If this route returns the 404 page, the feature is switched off in this deployment. It is
 one of only two surfaces that 404 rather than loading and refusing to act.
@@ -118,4 +126,4 @@ what is waiting to confirm, grouped by protocol family and sized by transaction 
 
 - [Asset safety](/docs-inscribe/concepts/asset-safety/)
 - [Recovery routes](/docs-inscribe/manage/recovery/)
-- [Workspace map](/docs-inscribe/reference/workspaces/)
+- [Workspace map](/docs-inscribe/create/workspaces/)
