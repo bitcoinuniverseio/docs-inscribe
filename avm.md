@@ -12,7 +12,11 @@ Protected methods require an AVM authorization signature over the exact transact
 
 ## Template terms
 
-The twenty templates remain available. Fixed source programs use `_v2` identities and do not upgrade old deployed instances. Four templates issue `_v3` identities: escrow, lock rewards, vesting and hash timelock swap. Their v2 `refund`, `claim` and `release` methods required a submitted current height to equal the block height at inclusion, so a mature call mined one or more blocks after it was prepared was rejected. The v3 methods take only the amount and read maturity from native block height. Existing v2 instances keep the exact-height requirement and are listed under each template as superseded programs.
+The twenty templates remain available. Fixed source programs use `_v2` identities and do not upgrade old deployed instances.
+
+Four templates issue `_v3` identities: escrow, lock rewards, vesting and hash timelock swap. Their v2 `refund`, `claim` and `release` methods required a submitted current height to equal the block height at inclusion, so a mature call mined one or more blocks after it was prepared was rejected.
+
+The v3 methods take only the amount and read maturity from native block height. Existing v2 instances keep the exact-height requirement and are listed under each template as superseded programs.
 
 | Template family | Terms to review |
 | --- | --- |
