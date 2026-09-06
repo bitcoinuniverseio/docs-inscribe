@@ -150,4 +150,6 @@ Some research protocols remain visible for documentation or controlled-network w
 
 CAT-20 transaction features remain fail-closed when the required Fractal data and signing dependencies are unavailable. Market discovery reports that dependency state directly instead of returning a misleading empty market.
 
-The marketplace is scoped to one explicit chain at a time. Signet, Testnet, and Testnet4 share the same address prefix, so the app carries the chain you selected on every request instead of guessing from an address, and a request that names no chain is rejected rather than treated as Mainnet. Before a listing or purchase, the Ordinals authority for that chain must show the asset at its outpoint and the Bitcoin data authority must confirm your funding is unspent and yours; a quote holds the order for ten minutes and is never a sale until the signed transaction confirms and the asset is seen at your address.
+The marketplace is scoped to one explicit chain at a time. Signet, Testnet, and Testnet4 share the same address prefix, so the app carries the chain you selected on every request instead of guessing from an address, and a request that names no chain is rejected rather than treated as Mainnet.
+
+Before a listing or purchase, the Ordinals authority for that chain must show the asset at its outpoint and the Bitcoin data authority must confirm your funding is unspent and yours. A quote holds the order for ten minutes and is never a sale until the signed transaction confirms and the asset is seen at your address.
