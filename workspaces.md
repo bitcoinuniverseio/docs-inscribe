@@ -119,6 +119,8 @@ app before your first one.
 | Pending TX Analyzer | Read one pending transaction in detail |
 | Bitcoin Tools | 33 focused tools: decoders, estimators, inspectors, planners |
 | Analytics | Longer-range activity across protocols |
+| Market | The durable order book for the chain you selected. It shows exactly which operator authority is missing or unreachable for that chain, and it never offers a purchase until both the Ordinals and Bitcoin data authorities answer for it |
+| Developer platform | API keys bound to your signed-in wallet: the secret is shown once, revocation takes effect immediately, and spend is capped per tier. Webhooks, agents, and billing report unavailable until their providers exist |
 
 ## Advanced
 
