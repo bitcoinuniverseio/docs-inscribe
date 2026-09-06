@@ -5,9 +5,8 @@ on:
     branches: [develop, main]
   pull_request:
 
-# This repository is public, so pull request jobs run on the organization's
-# ephemeral hosted fleet: fork pull requests must never reach the persistent
-# self-hosted machines.
+# This repository is public. Fork pull requests must never reach the
+# organisation-owned machines; the checks job guards for that.
 permissions:
   contents: read
 
@@ -17,6 +16,9 @@ concurrency:
 
 jobs:
   checks:
+    # Fork pull requests must never reach the organisation-owned machines.
+    # GitHub evaluates this condition before it assigns the job.
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: [self-hosted, linux, x64, universe-super]
     steps:
       - uses: actions/checkout@v4
