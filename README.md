@@ -34,6 +34,19 @@ The documentation site provides nine interactive learning products built directl
 
 [Candidate workspace repairs](candidate-repair-status.md) records local verification and outstanding integration checks. It is not a deployed release.
 
+| Page | What it covers |
+| --- | --- |
+| [Where things live](workspaces.md) | Every workspace, what it is for, and the three fastest ways to reach one |
+| [What a transaction costs](what-it-costs.md) | The network fee, the service fee, the inscription output, and how a fee tier is chosen |
+| [Asset safety](asset-safety.md) | How funding outputs are chosen, and why asset-bearing outputs are protected |
+| [AVM repair candidate](avm.md) | Template v2 terms, signing stages, network history and recovery limits; not deployed |
+| [Protocol data status and recovery](protocol-data-status.md) | Source health states, the status panel, portfolio source truth, order continuity |
+| [Performance and media](performance-and-media.md) | How the app loads fast and renders inscription media from Universe infrastructure |
+| [Release evidence](release-evidence.md) | How releases are built, sealed, and verified |
+| [Social previews](social-previews.md) | Route-aware link previews, and what is never published in them |
+| [Accessibility](accessibility.md) | Contrast, themes, display controls, and what every release is checked against |
+| [Inscribe Control Center](admin-control-center.md) | The restricted operations surface |
+
 | Section | Description |
 | :--- | :--- |
 | **[Start Here](https://bitcoinuniverseio.github.io/docs-inscribe/start/what-inscribe-is/)** | What Inscribe is, what you can create, and what to know before spending sats |
