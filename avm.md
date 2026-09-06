@@ -10,9 +10,9 @@ Compilation proves that a source package can be built. Simulation predicts a res
 
 Protected methods require an AVM authorization signature over the exact transaction, in addition to ordinary Bitcoin input signatures. A wallet that only signs Bitcoin PSBTs cannot automatically supply that authorization. Review every asset, amount, fee and recipient before signing. Resume the existing operation after an interruption; do not prepare another payment to replace a lost acknowledgement.
 
-## Template v2 terms
+## Template terms
 
-The twenty templates remain available. Fixed source programs use new `_v2` identities and do not upgrade old deployed instances.
+The twenty templates remain available. Fixed source programs use `_v2` identities and do not upgrade old deployed instances. Four templates issue `_v3` identities: escrow, lock rewards, vesting and hash timelock swap. Their v2 `refund`, `claim` and `release` methods required a submitted current height to equal the block height at inclusion, so a mature call mined one or more blocks after it was prepared was rejected. The v3 methods take only the amount and read maturity from native block height. Existing v2 instances keep the exact-height requirement and are listed under each template as superseded programs.
 
 | Template family | Terms to review |
 | --- | --- |
@@ -29,7 +29,7 @@ The twenty templates remain available. Fixed source programs use new `_v2` ident
 
 The vault and backed ledger use existing real ARC-20 inventory. The NFT ownership template records ownership claims and freeze state; it does not transfer or custody NFT outputs. Mint/burn accounting creates and destroys application units, not native ARC-20 supply. The rate-limited treasury has a per-call ceiling, not a rolling time limit.
 
-Schedules read native execution height. A submitted future height cannot unlock an earlier transaction. Committed recipient scripts are exact Bitcoin locking-script bytes and can represent the chosen wallet address format.
+Schedules read native execution height. No current template method accepts a submitted height, so a caller cannot fake maturity and a mature call stays valid however many blocks pass before it is mined. Committed recipient scripts are exact Bitcoin locking-script bytes and can represent the chosen wallet address format.
 
 ## History and recovery
 
