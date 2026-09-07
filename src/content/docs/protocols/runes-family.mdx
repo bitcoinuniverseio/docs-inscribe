@@ -8,7 +8,7 @@ provenance:
   chain: Bitcoin
   network: mainnet
   release: Continuous, from a verified commit
-  lifecycle: Runes and Mezcal are released and ungated. Alkanes is released
+  lifecycle: Runes and Alkanes are released. Mezcal is offered; its repair candidate has not been deployed or verified end to end
   lastVerified: 2026-09-01
 ---
 
@@ -43,7 +43,50 @@ Two practical consequences:
 - **Mezcal quotes its own service fee** rather than the flat 1,500 satoshis. The
   confirmation screen shows the amount that applies.
 
-Workspace: `/mezcal`. Released and ungated.
+Workspace: `/mezcal`. Etch, Mint and Transfer are offered. An audit found issues in
+discovery, validation, transfer safety and completion reporting. A local repair
+candidate dated **6 September 2026** addresses these paths; it has not been deployed
+or verified through a funded network journey. The guidance below describes that
+candidate and does not certify the running service.
+
+### Etch values
+
+- **Decimals:** a whole number from 0 to 18; leaving it empty uses 8.
+- **Symbol:** one Unicode character, such as `🌵`. A joined emoji or a sequence of
+  characters is not one protocol symbol.
+- **Mint cap:** the number of public mint transactions, not the number of tokens.
+- **Amount per mint** and **reserve allocation:** whole atomic units. With 8
+  decimals, 100,000,000 atomic units represent one token.
+- **Unlimited:** removes the mint cap while retaining the amount per mint and any
+  block limits. A capped supply preview includes the reserve allocation.
+
+Before payment, review the actual order total, network and receiver. A priced mint
+also lists its price recipients. Any amount added to meet Bitcoin output dust is
+included in the order total.
+
+### Reads, transfer status and recovery
+
+Discovery and balances show an inline error with a retry action when their data
+cannot be verified. Previous results can remain visible with their last check time;
+they are not a fresh balance or mint eligibility check. Partial wallet reads identify
+that some addresses were unavailable.
+
+Transfer amounts retain their exact decimals. Excess fractional digits are rejected
+before signing. Signing uses the address that holds the selected balance.
+
+**Submitted** means the transaction was sent. **Confirmed** means Bitcoin has
+confirmed it. **Indexed and delivered** requires Mezcal to recognize the intended
+transfer. An immediate balance refresh or a transaction id does not prove delivery.
+
+Save an encrypted recovery kit while the transfer is open. After a reload, select
+the reference under **Saved transfers** in the Transfer tab and restore its kit.
+The browser saves order references; access credentials remain in memory. Pending
+signatures can be resumed, and an uncertain submission can retry the saved
+transaction. A lost response during initial order creation still needs recovery
+before a reload; automatic restoration of an unknown order id is not established.
+
+The supported candidate profile is Bitcoin mainnet. A supported, isolated Signet
+profile and real network acceptance have not been established.
 
 ## Alkanes
 
