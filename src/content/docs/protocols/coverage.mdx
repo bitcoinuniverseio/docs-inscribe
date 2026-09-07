@@ -20,6 +20,18 @@ protocol are exactly the ones the registry records Inscribe implementing. Nothin
 typed by hand, and the build fails if a page on this site claims an operation the registry
 does not carry.
 
+Registry entries describe offered operations. They do not prove that a wallet,
+service, or transaction has completed that operation. Check the workspace's
+current availability before signing. An unavailable operation needs its provider
+connection and outcome checks before it can be used.
+
+A complete verified Signet journey counts as functional acceptance on Signet.
+It does not establish the state of an untested mainnet deployment.
+
+If you change accounts or networks while signing, restart the review with your
+current selection. A stale wallet request or mismatched search result must not
+appear as a completed operation.
+
 <ul class="bench-stats">
   <li>
     <span class="figure">{coverage.counts.protocolsTotal}</span>
