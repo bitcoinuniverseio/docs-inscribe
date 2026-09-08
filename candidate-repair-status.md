@@ -3,10 +3,17 @@
 **September 8, 2026: source consolidated; production deployment pending.**
 
 The application changes are on `main` and `develop` at
-`59b7dcaa99b22a6aa5bd61ddf5dcf88cb32e9325`. Deployment is authorized but has not
+`049f69103d23819d8122e918473d1cd2d0df3b8e`. Deployment is authorized but has not
 been verified. The full application remains **FUNCTIONAL NO-GO**: the catalog
 contains 2,363 operations and eight Composer actions still lack exact native
 bindings. Passing individual checks does not establish full readiness.
+
+The authenticated SRC-101 receiver repair passed isolated MariaDB insert,
+retry, transfer, rollback and concurrency checks. Its deployment is pending;
+durable transaction ordering and independent current-owner proof remain gaps.
+The directory now isolates unsafe URLs and search text, with readable mobile
+statistics, a visible Docs control and one clear-search control. Desktop and
+mobile checks passed in both themes.
 
 ## Verified repairs
 
