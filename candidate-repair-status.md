@@ -3,7 +3,7 @@
 **September 8, 2026: source consolidated; production deployment pending.**
 
 The application changes are on `main` and `develop` at
-`049f69103d23819d8122e918473d1cd2d0df3b8e`. Deployment is authorized but has not
+`a9e951d878a5cc60881adf1c6abce3613c9cf7d2`. Deployment is authorized but has not
 been verified. The full application remains **FUNCTIONAL NO-GO**: the catalog
 contains 2,363 operations and eight Composer actions still lack exact native
 bindings. Passing individual checks does not establish full readiness.
@@ -62,6 +62,9 @@ its current filters and pagination. Chainbloom Retry text retains full contrast.
 Focused desktop and mobile error, retry and readback checks passed in both themes.
 Backend compiler reuse requires authenticated prior output, identical source and
 toolchain inputs, and complete output verification; other checks remain required.
+Frontend compiler reuse also verifies that changed maintenance files produce no
+new Tailwind CSS. Browser shards consume the authenticated production artifact;
+the original compilation time and lineage remain recorded.
 
 ## Remaining limitations
 
