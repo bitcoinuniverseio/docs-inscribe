@@ -1,8 +1,19 @@
 # Candidate workspace repairs
 
-**September 5, 2026: local candidate changes, not deployed.** This page describes source repairs under validation. It does not establish that the public application has changed or that every workflow has completed successfully.
+**September 8, 2026: local candidate changes, not deployed.** This page describes source repairs under validation. It does not establish that the public application has changed or that every workflow has completed successfully.
 
 The candidate preserves the existing Authenticity, Creator Rights, Product Passports, and Bitcoin Compute workspaces. Their requests use the application's configured API connection. A failed request, HTML page, or incomplete response cannot stand in for an empty record list or a completed action. Loading, an empty result, and an unavailable service have separate visible states.
+
+## September 8 candidate checks
+
+The latest local candidate hardens custody recovery packages and corrects credit repayment allocation. These changes have not shipped and do not establish a complete recovery or repayment journey.
+
+- **Custody recovery:** export requires the verified vault owner and a separately saved random recovery secret. The encrypted package can be imported on the same network by its owner into a separate vault. That import restores policy metadata; it does not verify funds, hardware keys or the ability to spend. Historical packages protected only by public vault information are insecure. Keep original recovery material until a replacement has been verified. Unowned historical vaults require an ownership recovery procedure before export.
+- **Credit repayment:** the candidate allocates a payment to outstanding principal first, then accrued interest, and retains both paid totals. Invalid amounts and overpayments are rejected. Local repayment arithmetic is not evidence that a payment arrived or that collateral was released.
+- **Commerce access:** a real wallet signature is checked against a short-lived request bound to the store, wallet, policy and network. A valid signature does not establish holdings or ticket ownership; access remains blocked without entitlement evidence.
+- **Acceptance evidence:** the original audit contains 2,323 operation rows. The candidate adds four routes, bringing its current inventory to 2,327. Source references and component checks cannot become completed user journeys merely by appearing in the inventory.
+
+Four custody component tests, fourteen credit component tests and thirteen commerce cryptography tests passed in the local candidate. A separate recovery integration test used the real Rust compiler with freshly generated public keys and restored the exact policy and descriptor in a fresh service. This verifies encrypted policy metadata recovery, not funds or signing. No end-to-end acceptance is claimed from those checks. The whole-application status remains **NO-GO**.
 
 ## Reading a result
 
