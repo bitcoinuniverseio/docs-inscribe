@@ -3,7 +3,7 @@
 **September 8, 2026: source consolidated; production deployment pending.**
 
 The application changes are on `main` and `develop` at
-`a9e951d878a5cc60881adf1c6abce3613c9cf7d2`. Deployment is authorized but has not
+`039fa9862fc3eeabcb480adb5661525463d46378`. Deployment is authorized but has not
 been verified. The full application remains **FUNCTIONAL NO-GO**: the catalog
 contains 2,363 operations and eight Composer actions still lack exact native
 bindings. Passing individual checks does not establish full readiness.
