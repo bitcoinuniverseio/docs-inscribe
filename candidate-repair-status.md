@@ -3,9 +3,9 @@
 **September 8, 2026: source consolidated; production deployment pending.**
 
 The application changes are on `main` and `develop` at
-`e3d0524e233cf2c93dc71ca79d6f8210f177b331`. Deployment is authorized but has not
+`a402de1f40d80f0bd9a7cb6e5b75a7ba31e0d07c`. Deployment is authorized but has not
 been verified. The full application remains **FUNCTIONAL NO-GO**: the catalog
-contains 2,348 operations and eight Composer actions still lack exact native
+contains 2,363 operations and eight Composer actions still lack exact native
 bindings. Passing individual checks does not establish full readiness.
 
 ## Verified repairs
@@ -44,6 +44,12 @@ accessible Rune inputs, compact mobile controls, readable layer errors and
 scoped results after account or network changes. The Composer receipt now fits
 narrow screens. These UI checks do not replace missing funded journeys.
 
+The final Mempool status remains compact and stable during delayed errors at
+320 pixels. Accessibility checks wait for the real route content and completed
+animations, with the original contrast and visibility requirements retained.
+CI preserves verified application artifacts for reuse by schema checks,
+browser integration and deployment; unchanged components need no second build.
+
 ## Remaining limitations
 
 Borrowing, lender funding, collateral release, funded channel restoration,
@@ -53,7 +59,10 @@ restores policy metadata; it does not establish restored funds or hardware keys.
 
 Native Charms compilation and spell checks passed. A bounded optimized proof
 attempt timed out without proof bytes, so no proof-verification success is
-claimed. A separate native chain-fork rejection drill is still in progress.
+claimed. A separate native chain-fork drill passed 19 component checks and an
+independent verifier using historical public blocks in an isolated Bitcoin Core
+replay. It does not establish a public-network reorganization or funded event
+settlement.
 
 Original audit records, synthetic evidence quarantine and revision-bound native
 runs are preserved. Evidence from an older commit is not relabeled as current
