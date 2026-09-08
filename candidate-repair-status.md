@@ -69,3 +69,41 @@ hand-reviewed native evidence stages. The current revision is not full GO;
 funded paths and thousands of operation witnesses remain outstanding. Prior
 clean-revision custody-list evidence is preserved only for its actual revision.
 No deployment, public transaction, mainnet funds or production database change.
+
+## Fifth local repair batch
+
+Rune mint encoding now repeats Mint tag20 for both Rune ID values and validates
+exact u64/u32 bounds. The local decoder rejects incomplete or unconsumed even
+fields instead of treating the old malformed mint as valid. Native ordinals0.0.17
+confirmed the old script is a cenotaph and independently encodes the corrected
+script. Twenty-three native comparison vectors,112 focused builder/service/worker
+tests and47 extraction regressions pass (the test groups overlap). Historical
+signed/broadcast artifacts and database rows were not rewritten. A funded Rune
+mint and the Composer mint action remain unproven.
+
+Complimentary tickets now use durable issuer-owned Signet events, attendee grants,
+client-generated bearer credentials with server-side hash-only storage, atomic
+version rotation and issuer-authorized online check-in. Existing legacy rows are
+marked unverified. Four real SQL tests and13 Commerce regressions pass. Twenty-eight
+live checks cover separate actual issuer/attendee sessions, credential download,
+concurrent one-admission behavior, reload, copied-credential rejection and no
+secret disclosure in responses or runtime logs. This is explicit complimentary
+admission, not paid-order entitlement or offline uniqueness.
+
+The Blockspace template reader now uses immediate read-only getblocktemplate
+requests through the existing configured Core client. It pins the requested
+network and stable synchronized tip, checks native transaction bytes and IDs,
+dependencies, fees and weight, and leaves mining/DATUM/Signet-solution readiness
+unverified. Twenty-nine boundary regressions and three actual changed-source/Core
+checks pass. Ten live browser/API checks now pass, including exact native parent,
+mobile layout, delayed-response rejection on network change, wrong-network
+rejection and a fresh rendered snapshot after reload. The harness forwards real
+responses byte-for-byte and uses the control's actual accessible name. Earlier
+harness failures remain preserved. No mining job, share or block was submitted.
+
+The combined backend builds and85-migration schema check pass. The complete
+legacy ticket table and new credential contracts are declared explicitly. The
+catalog now includes2348 identities with8unresolved Composer actions. The earlier
+clean dc14060266b checkpoint has2accepted operation witnesses (custody list and
+Nostr publication); those witnesses do not automatically cover this newer source.
+Full GO remains false, and native funded/protocol journeys remain outstanding.
