@@ -1,15 +1,15 @@
 # Candidate workspace repairs
 
-**September 8, 2026: source consolidated; production deployment pending.**
+**September 8, 2026: consolidated source checkpoint.**
 
 The application changes are on `main` and `develop` at
-`039fa9862fc3eeabcb480adb5661525463d46378`. Deployment is authorized but has not
-been verified. The full application remains **FUNCTIONAL NO-GO**: the catalog
+`039fa9862fc3eeabcb480adb5661525463d46378`. Check the live identity using
+[release evidence](release-evidence.md). The full application remains **FUNCTIONAL NO-GO**: the catalog
 contains 2,363 operations and eight Composer actions still lack exact native
 bindings. Passing individual checks does not establish full readiness.
 
 The authenticated SRC-101 receiver repair passed isolated MariaDB insert,
-retry, transfer, rollback and concurrency checks. Its deployment is pending;
+retry, transfer, rollback and concurrency checks. Those checks do not prove deployment;
 durable transaction ordering and independent current-owner proof remain gaps.
 The directory now isolates unsafe URLs and search text, with readable mobile
 statistics, a visible Docs control and one clear-search control. Desktop and
