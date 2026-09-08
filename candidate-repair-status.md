@@ -107,3 +107,34 @@ catalog now includes2348 identities with8unresolved Composer actions. The earlie
 clean dc14060266b checkpoint has2accepted operation witnesses (custody list and
 Nostr publication); those witnesses do not automatically cover this newer source.
 Full GO remains false, and native funded/protocol journeys remain outstanding.
+
+## Ticket detail and selection repair
+
+Selecting a complimentary ticket now reads its authenticated detail endpoint,
+clears the previous credential while loading and rejects responses for an older
+selection or wallet session. Credential mutations disable ticket selection;
+downloads must match the selected ticket and version. The frontend typecheck
+passes. The actual browser/API regression passes 29 checks, including a held
+first response followed by another selection, a credential rotated independently
+before detail reload, disabled selection during a held credential response and
+an owner change that clears the previous details and download.
+
+These checks exercised the changed frontend against the unchanged isolated
+backend. They are component evidence; clean-revision operation recording must
+be repeated after committing the change. The earlier checkpoint's operation
+records remain tied to their original source revision. Full GO remains false.
+
+The functional gate now rejects current-checkout evaluation when tracked or
+untracked source is dirty, including frontend changes. Repository-root evidence
+outputs remain excluded consistently with the recorder. Explicit older-revision
+validation is labelled as pinned evidence and does not claim the current tree is
+clean. Five temporary-repository CLI regressions pass, including a complete
+fixture that passes before a source edit and fails after it. These fixture tests
+validate gate behavior only, not application operation readiness.
+
+Four missing source-test annotations were restored with relevant Lightning and
+Event boundary tests: protected readiness/rebalance rejection without side
+effects, stored market outcomes and network-scoped empty results. Eighteen Jest
+tests and 47 gate/ledger/recorder tests pass. The coverage floor remains unchanged
+at 277 source-qualified operations and zero runtime-verified operations; these
+source annotations do not establish funded native execution.
