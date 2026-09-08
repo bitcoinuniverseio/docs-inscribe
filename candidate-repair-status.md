@@ -49,3 +49,23 @@ Requests are cancelled when the relevant selection, verified account, or network
 Real credential signing, complete durable persistence and restart recovery, authenticated backend ownership enforcement, physical product verification, confirmed anchors, and complete compute execution still need their required integrations and end-to-end acceptance evidence. Local contract checks and browser checks do not substitute for those results.
 
 No deployment, production database change, or mainnet broadcast is authorized by these repairs. See [release evidence](release-evidence.md) for how an actual release is identified.
+
+## Fourth local repair checkpoint
+
+Custody inheritance now saves honest owner-scoped drafts; four real database tests
+and twelve live browser/API checks pass, with active policy unchanged. Rootstock
+Testnet EOA ownership passes twenty-five live HTTP/browser checks against the
+native read-only RPC; both wallet proofs persist while bridge/recovery remain
+blocked. A genuinely future Signet block321168 was announced, observed and signed
+by the native Event oracle; reconnect and ten API/browser checks pass. This is no
+DLC settlement or finality guarantee. Nostr exact Composer publication now reaches
+a separate persistent isolated relay with durable intent and ambiguous-outcome
+reconciliation; nine live checks pass through browser reload. NIP07 test signing
+does not establish a real extension interaction or truth of published content.
+
+The combined backend and84-migration schema checks pass. The catalog has2342
+identities and8remaining Composer gaps. Composer gate requirements now retain
+hand-reviewed native evidence stages. The current revision is not full GO;
+funded paths and thousands of operation witnesses remain outstanding. Prior
+clean-revision custody-list evidence is preserved only for its actual revision.
+No deployment, public transaction, mainnet funds or production database change.
