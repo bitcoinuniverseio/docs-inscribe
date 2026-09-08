@@ -3,7 +3,7 @@
 **September 8, 2026: source consolidated; production deployment pending.**
 
 The application changes are on `main` and `develop` at
-`a402de1f40d80f0bd9a7cb6e5b75a7ba31e0d07c`. Deployment is authorized but has not
+`59b7dcaa99b22a6aa5bd61ddf5dcf88cb32e9325`. Deployment is authorized but has not
 been verified. The full application remains **FUNCTIONAL NO-GO**: the catalog
 contains 2,363 operations and eight Composer actions still lack exact native
 bindings. Passing individual checks does not establish full readiness.
@@ -49,6 +49,12 @@ The final Mempool status remains compact and stable during delayed errors at
 animations, with the original contrast and visibility requirements retained.
 CI preserves verified application artifacts for reuse by schema checks,
 browser integration and deployment; unchanged components need no second build.
+
+Alkanes index failures now use one inline message with Retry; the request keeps
+its current filters and pagination. Chainbloom Retry text retains full contrast.
+Focused desktop and mobile error, retry and readback checks passed in both themes.
+Backend compiler reuse requires authenticated prior output, identical source and
+toolchain inputs, and complete output verification; other checks remain required.
 
 ## Remaining limitations
 
