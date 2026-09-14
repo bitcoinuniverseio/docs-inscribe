@@ -1,5 +1,22 @@
 # Candidate workspace repairs
 
+**September 14, 2026: Rights, Compute and Authenticity on Signet.**
+
+Pull request 192 on branch `agent/go-20260914` repairs Creator Rights signing
+and credential issuance (BIP-322 party signatures, Bitcoin Core payment
+evidence, Schnorr-signed credentials), replaces the Bitcoin Compute fixtures
+with a real RISC-V execution engine and a Core plus ord funding authority, and
+gives Content Authenticity wallet-funded anchor transactions, resilient
+observation and fingerprint-based recovery of signed media. The Creator Rights
+and Bitcoin Compute journeys passed end to end on Bitcoin Signet with wallet
+signatures and confirmed transactions; the Content Authenticity anchor was
+confirmed in a Signet block. No mainnet transaction was executed and nothing
+was deployed. Accessibility and browser suites ran in CI on the Linux runner
+fleet because the Windows build host terminates headless browsers by policy.
+The application remains **FUNCTIONAL NO-GO** as a whole: the catalog still
+holds operations without runtime evidence and two Composer actions without
+native bindings.
+
 ## September 9 local continuation
 
 The isolated `codex/continued-go-20260909` candidate adds native credential

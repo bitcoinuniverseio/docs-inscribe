@@ -2,7 +2,7 @@
 title: 'Workspace map'
 description: 'Every Inscribe workspace, what it does, and which ones have in-app guides.'
 category: create
-lastVerified: 2026-09-01
+lastVerified: 2026-09-14
 ---
 # Where things live
 
@@ -137,6 +137,25 @@ asset report for an output before you sign it.
 | Advanced TX Builder | Choose inputs and outputs yourself |
 | UTXO Split | Split one output into several |
 | Asset Recovery | Reclaim sats locked in inscription padding |
+
+## Provenance, rights and compute
+
+These workspaces sign and settle on Bitcoin with your own wallet. Each one
+shows the exact message or transaction it asks you to sign, and nothing is
+broadcast until you approve it.
+
+| Workspace | What it is for |
+| --- | --- |
+| Universe Content Authenticity & Media Provenance | Inspect media for C2PA credentials, sign a manifest for your own media with a BIP-322 wallet approval, anchor its commitment in a Bitcoin transaction built from your coins, and find a signed original again from a resized copy |
+| Universe Creator Rights, Licensing & Royalty Network | Register an asset, publish a license offer, have both parties sign the agreement with their wallets, and issue a verifiable credential once any payment is confirmed on Bitcoin |
+| Universe Digital Product Passports & Supply Chain Provenance | Manage GS1 Digital Link passports and supply chain custody events, with a public passport page per product |
+| Universe BitVM & Bitcoin Compute Studio | Run a RISC-V program with a verifiable step trace, review dispute and timeout scenarios, check a collateral output against Bitcoin Core and the ord index, and export a recovery package |
+
+The Compute studio runs programs locally and never executes on mainnet. Its
+collateral checks and the Bitcoin anchors use the network your wallet session
+is on. A network is available only when its Bitcoin data authority and ord
+index are configured for it; otherwise the workspace says so instead of
+guessing.
 
 ## Help
 
