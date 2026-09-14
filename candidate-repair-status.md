@@ -1,5 +1,61 @@
 # Candidate workspace repairs
 
+## September 9 local continuation
+
+The isolated `codex/continued-go-20260909` candidate adds native credential
+inspection for JPEG, PNG, WebP, AVIF, MP4 and MP3. Submitted media and public URLs are checked by the official
+C2PA verifier. Results distinguish valid signatures with an untrusted signer,
+unsigned files, changed bytes and invalid credentials. Inspection does not
+establish identity, factual truth, copyright ownership or a Bitcoin receipt.
+
+Bitcoin payment URI generation now validates addresses and whole-satoshi
+amounts. Payjoin review compares actual PSBTs and can check their inputs against
+the configured Bitcoin node. It reports observations without authorizing a
+payment. An isolated regtest check exercised real signatures, spendability and
+spent-input rejection; this is not a completed Signet Payjoin payment.
+
+Credential issuance uses a configured signer, actual media and wallet authorization
+of an exact saved plan. Database tests verify concurrent issuance, retries and
+reopening the signed media in a fresh process. Wallet browser completion remains
+unverified; no trusted creator identity or Bitcoin receipt is claimed.
+Immutable assertion redaction preserves the original and creates a separate
+signed version. An optional pinned certificate-root policy allows explicit
+signer trust checks; it does not establish creator identity or official certification.
+
+Owner-scoped Bitcoin receipts can now verify an existing transaction against an
+explicit native node. Regtest checks covered confirmation, a real reorg and
+restoration and re-mining with prior receipt history preserved. Public Signet
+acceptance remains open.
+Silent Payments public-key address generation and validation use the native
+BIP352 encoding; the browser reproduced a published vector. Scanning and payment
+execution remain unavailable. Local privacy helpers explain validated reported
+inputs without invented privacy scores or verified-protocol claims.
+
+Launchpad project records, whitelists and reservation holds now use
+authenticated, durable storage. Database and HTTP tests cover concurrent allocation,
+retries, rollback and reconnect. A reservation does not mint an asset.
+
+A Rune Composer mint now has a native adapter. An isolated test-chain run
+confirmed the exact transaction and allocation through Bitcoin Core and Ord.
+Ordinals data and asset commit/reveal also passed real Core/Ord content and
+recipient checks. Both paths also passed authenticated HTTP and real SQL restart,
+ownership, stale-artifact and replay checks through the full application. Five Composer
+bindings remain unresolved. All original catalog identities
+remain required; added redaction, receipt and address-validation routes bring
+the current count to 2,373.
+
+Exact chain selection now keeps Signet and Testnet4 separate from mainnet-backed
+tools and sibling links. Browser checks verified those unavailable states and
+the local byte tool's correct SHA-256 result across chain selections.
+
+An independent JPEG checker verifies ES256 credential signatures, assertion
+hashes and media binding without consuming the native verifier's report. Its
+scope does not include every C2PA format, identity or timestamp policy.
+
+These changes are local and have not been deployed. Full application GO remains
+unverified. The source and live-release statements below belong to the earlier
+checkpoint.
+
 **September 8, 2026: consolidated source checkpoint.**
 
 The application changes are on `main` and `develop` at
