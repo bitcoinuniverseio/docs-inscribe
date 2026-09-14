@@ -7,7 +7,7 @@ provenance:
   network: mainnet
   release: This documentation site
   lifecycle: Stable
-  lastVerified: 2026-09-01
+  lastVerified: 2026-09-14
 ---
 
 This is the changelog for **this documentation**, not for the Inscribe product.
@@ -16,6 +16,22 @@ Inscribe itself is released continuously from verified commits and does not carr
 number to quote. What identifies a build is its commit, and the footer of every page in the
 app names the build you are looking at. See
 [release evidence](/docs-inscribe/about/release-evidence/).
+
+## 2026-09-14: provenance, rights and compute workspaces
+
+### Added
+
+- The workspace map now lists the Content Authenticity, Creator Rights,
+  Digital Product Passports and Bitcoin Compute workspaces and states what each
+  one signs: a BIP-322 wallet message for manifests and agreements, a
+  transaction built from your own coins for a Bitcoin anchor.
+
+### Changed
+
+- The Compute studio description now separates program execution, which runs
+  locally with mainnet execution forbidden, from collateral checks, which run
+  against the Bitcoin data authority and ord index of your Signet, Testnet4 or
+  Regtest session.
 
 ## 2026-09-01: rebuilt as a documentation site
 
