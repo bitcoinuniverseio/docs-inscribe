@@ -1,8 +1,8 @@
 {
   "package": "@universe/inscribe-learning",
   "version": "0.1.0",
-  "sourceCommit": "ae8612704994ccf6e4fd64cda08c38183be00834",
+  "sourceCommit": "01c1e0274911dd257eac05c550129406368b742e",
   "archive": "inscribe-learning-0.1.0.tgz",
-  "archiveSha256": "4ac9e56e9470e00b8a717c2c1eb719bb065defc25d563a7a13d20829fb5651e6",
+  "archiveSha256": "07b8dd639a6fe6f8ed4cd5a4521fdb7ab50d327d05ebd62fddbab42cbdaf3d7a",
   "files": 48
 }
