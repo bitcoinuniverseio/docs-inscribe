@@ -1,5 +1,32 @@
 # Candidate workspace repairs
 
+**September 15, 2026: eleven-lane repair, Signet journeys and deployment.**
+
+Develop `f31b67d0952` (main `f976141225c`) merges the September 15 GO run.
+Sat Control gained the inscribe plan path on the commit and reveal pipeline and
+a real workspace; Nostr domain routes run against the isolated relay with
+browser-held keys; Creator Rights got a verified-authority path (BIP-322
+ownership through the ord authority or an issuer attestation); Product
+Passports verify registry attestations and physical bindings on real evidence;
+Launchpad continues a reservation into native ordinals, BRC-20 and Runes mints
+with durable settlement; Cashu, Bitcoin Compute and the Launchpad native
+authority carry explicit Signet identities; the acceptance catalog has zero
+unresolved contracts (85 reviewed blocked contracts name their missing native
+authority); the schema bridge branch is merged with a reviewed successor set
+for all 16 pending migrations; nineteen product defects found by the journeys
+were fixed with regression specs.
+
+Evidence at gate revision `cc117aa91aa` on Bitcoin Signet: 820 catalog
+identities PASS with retained run manifests and stage observations (42
+recorder runs, 691 HTTP journey runs, 87 browser route renders), three real
+Signet anchor transactions (`be984691`, `a1206017`, `721358cd`), 1,651
+identities NOT TESTED of which 245 are BLOCKED on native authorities absent
+from the host (Alkanes, BRC-2, Charms, OPNet, RGB, RGB++/Fiber, tapd/lnd, Ark,
+Babylon, Spark, Lightning, DLC, credit custody, bridges) and the rest on
+funded Signet wallets or mainnet-only data authorities. The application is
+therefore still **FUNCTIONAL NO-GO** as a whole; the release was deployed on
+the operator's explicit instruction.
+
 **September 14, 2026: Rights, Compute and Authenticity on Signet.**
 
 Pull request 192 on branch `agent/go-20260914` repairs Creator Rights signing
