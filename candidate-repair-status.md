@@ -1,5 +1,32 @@
 # Candidate workspace repairs
 
+**September 16, 2026: asset platforms on Signet.**
+
+Branch `agent/asset-platforms-20260915` (candidate `2b1da701f0d`, pull
+request #196) implements the September 15 asset-platform handoff. Taproot
+Assets now mints natively on Bitcoin Signet through the product: the
+operator gateway fronts the Universe Signet tapd and lnd, and two assets were
+issued with a real BIP-322 authorization, a Core-verified anchor fee, the
+tapd proof checked against the canonical chain and the issuance root read
+back through the Universe view (assets `ef7ddcd4...13fd` and
+`cf6c8583...9c9a`). Protocol Assurance reports ready with a pinned compiler
+and a durable issuer and accepts Signet artifacts. The Spark, Babylon and
+RGB++/Fiber workspaces show the live authority readiness the API observes
+instead of a fixed placeholder; their operations, RGB contracts, Lightning
+payments, Cashu, Fedimint and the Payjoin bridge stay blocked on authorities
+that do not exist on any Universe host, each named in the acceptance catalog
+(565 blocked contracts, zero unresolved). Evidence records now bind each
+journey step to the exact resource, owner and outcome it proves, and a
+prepared or unpaid order can no longer stand for a native transaction.
+
+Evidence at the candidate on Bitcoin Signet: 360 catalog identities PASS
+with retained run manifests (44 recorder runs, 316 resource-linked journey
+records), 565 BLOCKED, 1,546 NOT TESTED, 0 FAIL. The application is still
+**FUNCTIONAL NO-GO** as a whole; nothing was deployed and the production
+contract keeps the seven asset platforms disabled until their native
+authorities exist. Full report: `docs/repair-asset-platforms-20260915.md`
+in the application repository.
+
 **September 15, 2026: eleven-lane repair, Signet journeys and deployment.**
 
 Develop `f31b67d0952` (main `f976141225c`) merges the September 15 GO run.
