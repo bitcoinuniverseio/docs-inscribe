@@ -47,8 +47,14 @@ A native-funded mint ran end to end on Signet through this candidate with a
 real wallet authorization and a verified proof. Wallet-signed issuance,
 on-chain transfers of assets held by an external key and asset Lightning
 invoices, payments and channel opening remain unavailable; the workspace
-names each reason instead of offering a control that cannot complete. This
-candidate has not been deployed.
+names each reason instead of offering a control that cannot complete.
+
+The workspace now uses plain sections (Overview, Mint, Send, Receive,
+Lightning, Universe, Proofs). Each capability is shown as a short card with
+the technical reason behind a "Why" disclosure, every listed asset has its
+own Export proof button, and the mint form derives the asset key from your
+wallet's Taproot public key so nothing has to be computed by hand. This
+candidate is being deployed with the September 17 release.
 
 **September 17, 2026: Taproot Assets workspace access.**
 
