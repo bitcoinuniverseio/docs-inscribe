@@ -1,5 +1,29 @@
 # Candidate workspace repairs
 
+**September 17, 2026: Taproot Assets studio tools and readiness.**
+
+Branch `agent/taproot-go-20260917` (pull request #199) continues the
+workspace access repair. The Overview lists each gateway capability with
+the exact prerequisite it is missing, derived from live daemon probes rather
+than configuration: daemon reads, Universe, proof export, native-funded
+issuance, on-chain transfer, the wallet-signed builder and asset Lightning.
+The Proofs tab lists the assets the operator daemon tracks, exports and
+verifies the exact proof for a holding you name (asset, script key, anchor
+outpoint) and verifies a proof file someone hands you; verdicts and bytes
+come from the operator tapd and the anchor block is checked against the
+operator Bitcoin node. The Universe tab reads issuance leaves and can pull an
+asset's proofs from the federation Universe. The Lightning tab shows the
+channels the operator node actually holds. Mint and transfer quotes are
+priced from the operator node's fee estimate, and transfer recipients are
+decoded before a quote.
+
+A native-funded mint ran end to end on Signet through this candidate with a
+real wallet authorization and a verified proof. Wallet-signed issuance,
+on-chain transfers of assets held by an external key and asset Lightning
+invoices, payments and channel opening remain unavailable; the workspace
+names each reason instead of offering a control that cannot complete. This
+candidate has not been deployed.
+
 **September 17, 2026: Taproot Assets workspace access.**
 
 The repair candidate opens `/taproot-assets` and loads the service's current
