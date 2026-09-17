@@ -1,5 +1,33 @@
 # Candidate workspace repairs
 
+**September 16, 2026: mainnet-readiness repairs.**
+
+Branch `agent/mainnet-readiness-20260916` (pull request #197) implements the
+16 September read-only audit. The CI gates that had been red for weeks are
+repaired at their root: every dashboard view keeps a visible heading on
+phones, a busy control keeps its label readable, the throttled performance
+gate runs against the same deterministic API as the browser suites, and the
+admin mutation registry and AVM network specs assert the current source. The
+service status panel names the data sources it actually checked and lists
+the seven asset platforms (Taproot Assets, RGB, Spark, Babylon, Private
+Payments, RGB++/Fiber, Nostr) with their own state instead of letting a green
+core dot vouch for them. Private Payments health reports one state per rail;
+the Silent Payments address codec follows the chain shown in the header.
+Taproot Assets carries a reviewed mainnet chain entry that only an explicit
+mainnet flag plus the operator's mainnet authorization can enable; no mainnet
+mint has run. Twenty-seven more contracts are classified BLOCKED on their
+named native authority (592 blocked contracts, zero unresolved).
+
+Evidence at the candidate on Bitcoin Signet: 369 catalog identities PASS with retained run manifests (45 recorder runs and 324 resource-linked journey records from 22 write, restart and read cycles with 0 failures; two real Signet anchor transactions, `83c62264` and `9e3bcb4f`), 592 BLOCKED, 1,510 NOT TESTED, 0 FAIL at candidate `e8ce4ab52ce`. The
+application is still **FUNCTIONAL NO-GO** as a whole: Spark, Babylon, RGB,
+RGB++/Fiber, Cashu, Fedimint, the Payjoin bridge and NIP-47 Lightning
+settlement remain blocked on authorities that do not exist on any Universe
+host, and the Signet tapd holds a stalled batch that blocks a fresh native
+mint at this candidate (the earlier Signet mints stay retained with their own
+revision). Nothing was deployed and the production contract keeps the seven
+asset platforms disabled. Full report: `docs/repair-mainnet-readiness-20260916.md`
+in the application repository.
+
 **September 16, 2026: asset platforms on Signet.**
 
 Branch `agent/asset-platforms-20260915` (candidate `2b1da701f0d`, pull
