@@ -1,5 +1,20 @@
 # Candidate workspace repairs
 
+**September 17, 2026: Taproot Assets workspace access.**
+
+The repair candidate opens `/taproot-assets` and loads the service's current
+status even when transactions are disabled. Retry refreshes that status, and
+the page waits for a reported network instead of showing a guessed one.
+The Universe panel can read assets independently of transaction readiness.
+The native mint review names the actual network, including mainnet when the
+configured service reports it.
+
+Transaction controls still require the configured service and its network
+authorization. External-wallet issuance, transfers and asset Lightning remain
+unavailable until their native operations are connected and verified. These
+page and configuration repairs do not establish complete Signet or mainnet
+functionality. This candidate has not been deployed.
+
 **September 16, 2026: mainnet-readiness repairs.**
 
 Branch `agent/mainnet-readiness-20260916` (pull request #197) implements the
