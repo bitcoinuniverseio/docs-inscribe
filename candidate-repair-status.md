@@ -310,3 +310,13 @@ Original audit records, synthetic evidence quarantine and revision-bound native
 runs are preserved. Evidence from an older commit is not relabeled as current
 release evidence. See [release evidence](release-evidence.md) for release
 identification and production verification requirements.
+
+## Spark native-client candidate, 17 September 2026
+
+The development candidate opens the Spark workspace and reads its runtime configuration instead of stopping at a build-time disabled message. It adds a browser-held encrypted Spark identity, separate issuer identity, reviewed native operations and pending-operation tracking. The native SDK loads only when needed.
+
+These changes do not establish working Spark transfers, withdrawals, Lightning, token issuance or liquidity settlement. Real Signet acceptance has not completed. Native services, legacy API compatibility, ambiguous-operation recovery, pool-removal bounds and unilateral exits still have unresolved requirements. Do not fund the candidate based on a visible control, a configured endpoint or a READY label.
+
+Local checks cover native-client validation, encryption, quote and identity binding, blocked unsafe operations, dependency compatibility, build output and the unconfigured workspace. A native Signet workflow must also show its actual settlement, authoritative balance/state, and usable result after reload and reconnect. Component test totals are not end-to-end coverage.
+
+No deployment or mainnet transaction formed part of this repair. This page describes development work, not a change to the live site's supported capabilities. Track the implementation and its exact remaining scope in `bitcoinuniverseio/inscribe` issue 202.
