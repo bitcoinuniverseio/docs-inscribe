@@ -1,6 +1,6 @@
 ---
 title: Other protocols
-description: DUST-20, ChainBloom and CAT-20, plus the workspaces in Inscribe that are not finished and are not documented as usable.
+description: DUST-20, ChainBloom, CAT-20 and RGB, plus the workspaces in Inscribe that are not finished and are not documented as usable.
 protocols: [dust20, chainbloom, cat20]
 operations: [deploy, mint, inscribe, transfer]
 provenance:
@@ -61,6 +61,33 @@ not been verified.
 
 Workspaces: `/cat20` and `/fractal`. Both are **not released**; this candidate does not
 establish functional readiness.
+
+## RGB
+
+**Not released.** RGB keeps asset state off chain, in a private stock that only the
+owner holds; Bitcoin carries a commitment to each state change inside an ordinary
+transaction. An unreleased repair candidate runs RGB through a Universe-operated
+companion (rgb-api 0.11.1, the stable RGB line) rather than in the browser or with an
+in-memory stand-in.
+
+What the candidate does, on Bitcoin Signet:
+
+- Issues NIA, CFA, UDA, IFA and PFA contracts and imports contracts other people issue.
+- Creates invoices, prepares transfers and returns the witness transaction as a PSBT.
+  **Your wallet signs it**; the companion never holds a Bitcoin key. The signed
+  transaction is accepted only when its id matches the reviewed PSBT.
+- Validates and accepts consignments natively and records an acceptance receipt the
+  sender can attach to the transfer.
+- Backs the companion stock up as an encrypted envelope (AES-256-GCM, bound to your
+  wallet and chain) in the hosted vault, and restores it after device loss.
+
+Two limits are stated rather than hidden: PFA transfers need an issuer signature the
+candidate does not collect yet, so they are reported unavailable; and a transfer is only
+complete after its witness confirms and the recipient accepts, so a broadcast on its own
+never counts.
+
+Workspace: `/rgb`. Not released. Mainnet execution requires an explicit operator
+authorization and has not run; this candidate does not establish a deployed release.
 
 ## Workspaces that are not finished
 
