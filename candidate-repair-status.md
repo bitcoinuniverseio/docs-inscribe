@@ -1,5 +1,70 @@
 # Candidate workspace repairs
 
+**September 17, 2026: RGB native execution.**
+
+Branch `agent/rgb-go-20260917` implements the 17 September RGB audit. The
+in-memory stand-in engine is gone. A Universe-operated companion gateway (rgb-api
+0.11.1, the stable RGB line, Apache-2.0) holds each owner's private stock and
+serves issuance, invoices, transfer preparation, consignment validation and
+acceptance, stash reads and encrypted stock export and restore. The Bitcoin
+witness is returned as a PSBT for the owner's wallet; the companion never
+holds a Bitcoin key and accepts a signed transaction only when its id matches
+the reviewed PSBT. The vault stores a versioned AES-256-GCM envelope bound to
+the owner and chain, rejects stale revisions and plaintext, and stays
+readable while execution is unavailable. The `/rgb` workspace binds the
+companion wallet, issues every offered class, receives, sends, accepts,
+backs up and restores; each panel that cannot run names its reason.
+
+Evidence on Bitcoin Signet through the candidate API: five contract classes
+issued, a 250,000-unit transfer (witness `3e889549`, block 322468) validated
+and accepted by the recipient with a receipt, an encrypted vault backup and a
+device-loss restore, an onward spend from the restored stock (witness
+`04e151d1`), a Composer DAG that issued a contract and consigned a transfer
+through the same jobs (witnesses `b9c4f0e4` and, after a seal-selection fix,
+`6400de4a`), and the legacy `/rgb` routes bridged onto the same companion
+(witness `5980c880`). PFA transfers are
+reported unavailable because the issuer signature is not collected. No
+mainnet transaction ran; this candidate has not been deployed.
+
+**September 17, 2026: Taproot Assets studio tools and readiness.**
+
+Branch `agent/taproot-go-20260917` (pull request #199) continues the
+workspace access repair. The Overview lists each gateway capability with
+the exact prerequisite it is missing, derived from live daemon probes rather
+than configuration: daemon reads, Universe, proof export, native-funded
+issuance, on-chain transfer, the wallet-signed builder and asset Lightning.
+The Proofs tab lists the assets the operator daemon tracks, exports and
+verifies the exact proof for a holding you name (asset, script key, anchor
+outpoint) and verifies a proof file someone hands you; verdicts and bytes
+come from the operator tapd and the anchor block is checked against the
+operator Bitcoin node. The Universe tab reads issuance leaves and can pull an
+asset's proofs from the federation Universe. The Lightning tab shows the
+channels the operator node actually holds. Mint and transfer quotes are
+priced from the operator node's fee estimate, and transfer recipients are
+decoded before a quote.
+
+A native-funded mint ran end to end on Signet through this candidate with a
+real wallet authorization and a verified proof. Wallet-signed issuance,
+on-chain transfers of assets held by an external key and asset Lightning
+invoices, payments and channel opening remain unavailable; the workspace
+names each reason instead of offering a control that cannot complete. This
+candidate has not been deployed.
+
+**September 17, 2026: Taproot Assets workspace access.**
+
+The repair candidate opens `/taproot-assets` and loads the service's current
+status even when transactions are disabled. Retry refreshes that status, and
+the page waits for a reported network instead of showing a guessed one.
+The Universe panel can read assets independently of transaction readiness.
+The native mint review names the actual network, including mainnet when the
+configured service reports it.
+
+Transaction controls still require the configured service and its network
+authorization. External-wallet issuance, transfers and asset Lightning remain
+unavailable until their native operations are connected and verified. These
+page and configuration repairs do not establish complete Signet or mainnet
+functionality. This candidate has not been deployed.
+
 **September 16, 2026: mainnet-readiness repairs.**
 
 Branch `agent/mainnet-readiness-20260916` (pull request #197) implements the
