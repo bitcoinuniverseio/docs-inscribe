@@ -1,5 +1,31 @@
 # Candidate workspace repairs
 
+**September 17, 2026: RGB native execution.**
+
+Branch `agent/rgb-go-20260917` implements the 17 September RGB audit. The
+in-memory stand-in engine is gone. A Universe-operated companion gateway (rgb-api
+0.11.1, the stable RGB line, Apache-2.0) holds each owner's private stock and
+serves issuance, invoices, transfer preparation, consignment validation and
+acceptance, stash reads and encrypted stock export and restore. The Bitcoin
+witness is returned as a PSBT for the owner's wallet; the companion never
+holds a Bitcoin key and accepts a signed transaction only when its id matches
+the reviewed PSBT. The vault stores a versioned AES-256-GCM envelope bound to
+the owner and chain, rejects stale revisions and plaintext, and stays
+readable while execution is unavailable. The `/rgb` workspace binds the
+companion wallet, issues every offered class, receives, sends, accepts,
+backs up and restores; each panel that cannot run names its reason.
+
+Evidence on Bitcoin Signet through the candidate API: five contract classes
+issued, a 250,000-unit transfer (witness `3e889549`, block 322468) validated
+and accepted by the recipient with a receipt, an encrypted vault backup and a
+device-loss restore, an onward spend from the restored stock (witness
+`04e151d1`), a Composer DAG that issued a contract and consigned a transfer
+through the same jobs (witnesses `b9c4f0e4` and, after a seal-selection fix,
+`6400de4a`), and the legacy `/rgb` routes bridged onto the same companion
+(witness `5980c880`). PFA transfers are
+reported unavailable because the issuer signature is not collected. No
+mainnet transaction ran; this candidate has not been deployed.
+
 **September 17, 2026: Taproot Assets studio tools and readiness.**
 
 Branch `agent/taproot-go-20260917` (pull request #199) continues the
