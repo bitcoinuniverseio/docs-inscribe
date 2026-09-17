@@ -89,6 +89,34 @@ never counts.
 Workspace: `/rgb`. Not released. Mainnet execution requires an explicit operator
 authorization and has not run; this candidate does not establish a deployed release.
 
+## RGB++ and Fiber
+
+**Not released on mainnet.** RGB++ binds an asset cell on Nervos CKB to a Bitcoin UTXO: a
+Bitcoin transaction carries the commitment, the CKB side is unlocked with a Bitcoin SPV proof.
+Fiber is a Lightning-style payment channel network on CKB. An unreleased candidate replaces
+the earlier placeholder with native execution on the pinned rgbpp-sdk 0.7.4 and Fiber v0.9.1.
+
+What the candidate does, on the Bitcoin Testnet3 + CKB Pudge tuple:
+
+- Reads the RGB++ assets bound to your Bitcoin address and verifies a binding on both chains
+  (Bitcoin confirmation, CKB cell, lock and type match, SPV proof availability).
+- Issues xUDT and Spore assets, sends assets on Bitcoin and leaps them to CKB and back. The
+  operator funds the CKB launch cell and acts as paymaster; **your wallet signs the Bitcoin
+  transaction** and the API accepts the signed transaction only when it equals the reviewed
+  plan. A BTC→CKB leap becomes spendable on CKB after six Bitcoin confirmations (the RGB++
+  BTC time lock); the bridge view shows that maturity and nothing else is invented.
+- Opens and closes Fiber channels from the Universe node, creates and pays node-encoded
+  invoices, reads settlement from the node, and lists uncooperative closes with their CKB
+  settlement transaction. Cross-chain hub orders (Lightning ↔ Fiber) are created by the node
+  and refund by HTLC timeout when they fail.
+
+Every operation is persisted per wallet and network with an idempotency key, so a reload or
+reconnect resumes it from Bitcoin, CKB and Fiber readback rather than from memory.
+
+Workspace: . Not released. Mainnet needs Universe-owned CKB, Fiber and RGB++
+proof services that do not exist yet; the deployed health route names that blocker instead of
+reporting readiness.
+
 ## Workspaces that are not finished
 
 Four more workspaces exist in the app and are classified as incomplete by the production
