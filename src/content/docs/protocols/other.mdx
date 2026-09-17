@@ -117,6 +117,40 @@ Workspace: `/rgbpp-fiber`. Not released. Mainnet needs Universe-owned CKB, Fiber
 proof services that do not exist yet; the deployed health route names that blocker instead of
 reporting readiness.
 
+## Nostr Studio
+
+**Released on mainnet, 17 September 2026.** Nostr is a relay protocol for signed messages:
+your key signs an event in the browser, a relay stores it, and other people read it back.
+The Studio (`/nostr`) runs against a Universe-owned relay and a Universe-owned Lightning node;
+no third-party relay or payment service sits in the path.
+
+What it does:
+
+- **Identity.** Generate or import a key (it stays in this browser's session storage) or use a
+  NIP-07 signer extension. Publish a profile, a relay list and an inbox relay list; verify a
+  NIP-05 address against its domain.
+- **Publishing.** Notes, long-form articles and classified listings, each signed in the page.
+  An event counts only after the relay acknowledges it and the Studio reads the exact bytes
+  back; the receipt says `published`, `reconciled` (already held) or `superseded` (the relay
+  keeps another version of a replaceable event).
+- **Messages.** Private messages as NIP-17 gift wraps encrypted in the browser (NIP-44 v2); a
+  copy is wrapped for you so the conversation survives a reload. Decryption uses your local
+  key or your extension; the server never sees plaintext.
+- **Lightning.** Claim a Lightning address (`name@inscribe.bitcoinuniverse.io`), receive zaps
+  (NIP-57 receipts are signed by the Studio's zap signer after the owned node settles the
+  invoice), pay for a listing with an invoice bound to your order, connect a wallet through
+  Nostr Wallet Connect (NIP-47) with a daily budget, and let the Studio zap an author's new
+  notes automatically.
+
+What it does not do: a receipt proves the relay holds what you signed, never that a statement
+is true. Wallet Connect budgets and auto-zap rules spend from the owned node's ledger; the
+node's own liquidity, not a promise, decides whether a payment to the outside can be routed.
+Health (`/api/nostr/health`) reports the relay, database, node and worker state separately
+and is READY only when all four are.
+
+Workspace: `/nostr`. Route contract and acceptance evidence: the `docs/nostr-domain-routes.md`
+and `docs/repair-nostr-20260917.md` files of the application repository.
+
 ## Workspaces that are not finished
 
 Four more workspaces exist in the app and are classified as incomplete by the production
