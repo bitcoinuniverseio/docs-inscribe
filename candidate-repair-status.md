@@ -320,3 +320,5 @@ These changes do not establish working Spark transfers, withdrawals, Lightning, 
 Local checks cover native-client validation, encryption, quote and identity binding, blocked unsafe operations, dependency compatibility, build output and the unconfigured workspace. A native Signet workflow must also show its actual settlement, authoritative balance/state, and usable result after reload and reconnect. Component test totals are not end-to-end coverage.
 
 No deployment or mainnet transaction formed part of this repair. This page describes development work, not a change to the live site's supported capabilities. Track the implementation and its exact remaining scope in `bitcoinuniverseio/inscribe` issue 202.
+
+The candidate also replaces a newly introduced dependency-license conflict with the existing MIT user-agent parser version and tests the real SDK integration. Local license checks and the changed-input production build pass. This is a dependency repair, not native Spark settlement evidence or a live-site deployment.
