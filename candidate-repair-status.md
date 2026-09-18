@@ -322,3 +322,51 @@ Local checks cover native-client validation, encryption, quote and identity bind
 No deployment or mainnet transaction formed part of this repair. This page describes development work, not a change to the live site's supported capabilities. Track the implementation and its exact remaining scope in `bitcoinuniverseio/inscribe` issue 202.
 
 The candidate also replaces a newly introduced dependency-license conflict with the existing MIT user-agent parser version and tests the real SDK integration. Local license checks and the changed-input production build pass. This is a dependency repair, not native Spark settlement evidence or a live-site deployment.
+
+### 18 September 2026: Spark has no Signet network
+
+The acceptance target for this work asked for native Spark workflows on
+Bitcoin Signet. That target cannot be met, and the reason is in the SDK. Both
+the pinned @buildonspark/spark-sdk 0.9.0 and the current 0.12.0 define signing
+operators, a service provider and an electrs endpoint for three networks only:
+LOCAL, REGTEST and MAINNET. SIGNET is accepted as a name but falls through to
+the LOCAL defaults on 127.0.0.1, so a Signet run has no operators to talk to.
+Signet rows in the matrix were never reachable.
+
+Spark regtest is a live public network. Its wallet configuration uses the same
+three production signing operators as mainnet, with a hosted service provider
+and a hosted electrs. Using the pinned 0.9.0 SDK and a throwaway identity, the
+operators returned a Spark address, a native deposit address, a balance and a
+transfer list, so the client, the operator quorum and the service provider all
+answer. Nothing was funded and no transfer ran: the regtest faucet at
+app.lightspark.com/regtest-faucet requires a captcha, so a person has to
+request the coins.
+
+Spark remains **FUNCTIONAL NO-GO**. Reading a deposit address proves the client
+reaches the operators. It does not prove a deposit, a transfer, a withdrawal, a
+Lightning payment or token settlement. Those still need funded regtest coins.
+The acceptance procedure should name regtest, not Signet.
+
+### 18 September 2026: Spark workspace rebuilt
+
+The workspace now uses the same components as the rest of the app: its own
+inputs are gone, so every control has the mobile touch size and focus state
+the design system defines. An answer is shown as labelled rows with copy
+buttons, and an address or invoice gets a QR code to scan, with the full
+response one disclosure away. The wording is plain. The status dot reports
+whether Spark can actually be used here rather than repeating a readiness
+string, which keeps the rule that a READY response never stands in for
+configuration.
+
+The shared QR block now draws one path instead of a grid of elements. Grid
+tracks round independently, so at some widths a hairline of background showed
+between modules and a camera could read the seams as noise. Nostr and Spark
+share the fixed block.
+
+Two defects in the candidate are also repaired: the SDK compatibility test
+copied dependency files into the source tree, where a concurrent lint reported
+2,739 errors in them, and two endpoint variables the lane introduced were
+missing from the endpoint registry. Full frontend lint now reports 0 errors,
+the frontend suite passes 1,596 of 1,597 with 1 skipped, and the backend suite
+passes 5,939. This work was merged to develop and main and deployed on the
+operator's explicit instruction.
