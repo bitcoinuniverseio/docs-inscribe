@@ -219,7 +219,8 @@ Go to the order and, if it needs help, use Fix My Payment.
 
 ## Recover padding satoshis
 
-At `/recover-sats`. Inscriptions sit on outputs with satoshis in them, and some of those
+At `/asset-recovery` (also `/recover-sats`, and **Tools → Asset-safe padding
+recovery**). Inscriptions sit on outputs with satoshis in them, and some of those
 satoshis can be reclaimed without disturbing the inscription.
 
 **Review both fees.** Asset Recovery's transaction quote includes a service fee
@@ -254,6 +255,16 @@ output. The recovery plan must still prove that it preserves the assets through
 the required indexes and protocol rules. An unknown asset is not verified plain
 bitcoin.
 
+Some outputs cannot be recovered, and the scan says why:
+
+- an unused **BRC-20 transfer** inscription (moving it sends its tokens, even to
+  your own address; send or cancel the transfer first);
+- a **TAP** transfer or other TAP action (moving it can apply it);
+- other token inscriptions whose move rules recovery cannot confirm yet.
+
+BRC-20 and TAP **deploy** and **mint** inscriptions can be recovered: moving them
+changes no balances.
+
 </li>
 
 <li>
@@ -265,7 +276,9 @@ and review the protected amount, recovered amount, service fee, and network fee.
 
 <li>
 
-**Sign and wait for validation.**
+**Check the review, then sign.** The review says **Ready to sign** when every
+check that can run before signing has passed. Two more checks run on the exact
+transaction: one before your wallet opens and one after you sign.
 
 *Expected wallet screen:* a transaction reclaiming the padding. Check that your inscription
 outputs are preserved in the outputs list. Signing does not submit the recovery.
@@ -276,18 +289,20 @@ outputs are preserved in the outputs list. Signing does not submit the recovery.
 
 **Approve broadcast separately**, then follow the operation receipt. A network
 confirmation alone does not prove that the asset indexes show the expected
-result. Completion needs the protected assets and recovered output to match.
-Reconnect with the same wallet and network to read the saved receipt after a
-reload. If submission is uncertain, check that receipt before retrying.
+result. The receipt lists each asset as **Checking**, **Verified** or
+**Mismatch**. **Recovery complete** needs every asset verified in the protected
+output and the recovered output to match. Reconnect with the same wallet and
+network to read the saved receipt after a reload. If submission is uncertain,
+check that receipt before retrying.
 
 </li>
 
 </ol>
 
-The current readback path needs the protected output to remain unspent. Moving
-it again can prevent the receipt from rechecking ownership. Support for an
-asset label is not proof that its native transfer rules are implemented; any
-unresolved required protocol keeps the recovery from reporting completion.
+A completed receipt keeps its proof after you move the protected assets later;
+it notes that they moved. If the block that confirmed the recovery is replaced,
+the receipt checks the assets again. The first check needs the protected output
+unspent, so wait for **Recovery complete** before moving those assets.
 
 If this route returns the 404 page, the feature is switched off in this deployment. It is
 one of only two surfaces that 404 rather than loading and refusing.
