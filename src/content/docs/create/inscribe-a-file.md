@@ -182,7 +182,7 @@ derived preview and does not alter the original.
 | The payload exceeds the destination cap | Your file is fine for Ordinals but too big for the destination you picked | Use Ordinals, or reduce the file |
 | Still **Awaiting payment** after paying | The payment has not reached the commit address yet | Wait. Do not pay again. See recovery |
 | The payment will not confirm | Fee rate too low for current conditions | **Fix My Payment** or **Bump Stuck TX** |
-| The workspace says a source is unavailable | An index it reads is down or catching up | Reads and drafts still work; writes stay paused. Nothing signed is at risk |
+| The workspace says a read failed | An index it reads is down or catching up | What it shows may be missing or out of date. Inscribing still works. Nothing signed is at risk |
 
 ## Recovery route
 

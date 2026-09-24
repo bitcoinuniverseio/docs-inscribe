@@ -75,11 +75,14 @@ never holds your key. Before any transaction is sent, Inscribe rebuilds each one
 reviewed plan and rejects signed bytes that differ from it.
 
 An order reported as broadcast has only been submitted. Confirmation and CAT-20 indexing
-are checked separately, so a submitted transfer is not yet a credited balance.
+are checked separately, so a submitted transfer is not yet a credited balance. An encrypted
+recovery kit restores access to your orders after a reload; connecting a wallet alone does
+not.
 
 Inscribe builds and checks every transaction against Universe's own Fractal node, CAT-20
 tracker and funding inventory. If it cannot verify what a transaction spends, it refuses
-to build it and says why when you try. Universe does not use third-party Fractal data
+to build it and says why when you try. A CAT tracker that is only catching up does not
+block minting. Universe does not use third-party Fractal data
 services, including as a fallback.
 
 Workspaces: `/cat20` and `/fractal`. Both are **not released** on Fractal Mainnet.

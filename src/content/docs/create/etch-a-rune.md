@@ -171,7 +171,7 @@ transaction id verifiable on any explorer.
 | What you see | What it means | What to do |
 | --- | --- | --- |
 | The name is rejected | Already etched, or not valid under the Runes name rules | Choose another |
-| Confirmed, but the rune is not listed | The index has not read that block, or the etch was invalid | Check the service status panel first |
+| Confirmed, but the rune is not listed | The index has not read that block, or the etch was invalid | Confirm the transaction in a block explorer. Wait for the index to read that block, then refresh the rune list |
 | Normal and Fast quote the same rate | Blocks have room, or the protocol rounds to whole satoshis | Nothing to fix. Paying more would buy nothing |
 | The mint says the cap is reached | The supply was exhausted before your transaction | Nothing to do. The fee is spent |
 | Still awaiting payment | The payment has not reached the commit address | Wait. Do not pay again |

@@ -163,17 +163,12 @@ guessing.
 | --- | --- |
 | Docs & Guides | 63 in-app guides across getting started, create, protocols, workflows, wallet, intel, safety and troubleshooting |
 
-## What the availability labels mean
+## When a source is slow or down
 
-A workspace stays visible even when the index behind it is down or catching up.
-It says so instead of disappearing, because a missing workspace looks like a
-product that never had the feature.
+A workspace stays visible even when the index behind it is down or catching up,
+because a missing workspace looks like a product that never had the feature.
+Its reads may be missing or out of date until the index catches up. Its writes
+keep working.
 
-- **Available**: the source answered and is at the chain tip.
-- **Degraded**: the source answered but is behind, or one of several sources
-  did not answer. Reads still work, and the page names what is missing.
-- **Unsupported**: the source is not running for this network. Nothing is
-  guessed or filled in from elsewhere.
-
-[Protocol data status and recovery](/reference/protocol-data-status/) explains where
-these states come from and what each one blocks.
+[Protocol data status and recovery](/reference/protocol-data-status/) explains what
+a slow or missing source affects.

@@ -163,11 +163,11 @@ moved.
 
 | What you see | What it means | What to do |
 | --- | --- | --- |
-| Not enough bitcoin for the fee, but your balance looks fine | Asset-bearing outputs were withheld from fee funding | Send plain bitcoin to the payment address, or lower the fee rate |
+| Not enough bitcoin for the fee, but your balance looks fine | Asset-bearing outputs were withheld from fee funding. An output from a block the index has not read yet is also skipped | Send plain bitcoin to the payment address, or lower the fee rate. A skipped new output becomes usable once the index reads its block |
 | The destination is rejected | The address type cannot hold this asset | Use a Taproot address for inscriptions |
 | A warning that the paying address holds assets | Your wallet, not Inscribe, chooses the outputs for a wallet send | Pay from an address holding only bitcoin, or pick inputs yourself in the wallet |
 | A TAP balance did not move | Only the first of the two steps completed | Complete the second step in the TAP workspace |
-| The transfer confirmed but the balance is unchanged | The protocol index has not read that block, or rejected the transfer | Check the service status panel |
+| The transfer confirmed but the balance is unchanged | The protocol index has not read that block, or rejected the transfer | Confirm the transaction in a block explorer. Wait for the index to read that block, then refresh the balance view |
 | No transfer option for Bitmap or UNAT | Inscribe has no workspace for these | Use another tool |
 
 ## Recovery route

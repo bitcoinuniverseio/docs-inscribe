@@ -175,11 +175,6 @@ usage, the narrower sense is the one given.
 <dd>Not answering. Never presented as an authoritative empty result.</dd>
 </dl>
 
-<dl class="glossary">
-<dt><strong>Partial</strong></dt>
-<dd>The portfolio header when at least one source did not answer.</dd>
-</dl>
-
 ## Release states
 
 <dl class="glossary">
