@@ -80,8 +80,11 @@ A **DMINT item** is minted by anyone who holds the item file and its proof. The 
 the proof, the rule and whether the item is still free before you sign, so a claim that the
 index would reject never costs a fee.
 
-Items under a rule that asks for **commit Bitwork** are supported. Items under a rule that
-asks for a **payment** or for **reveal Bitwork** are refused with a clear message for now.
+Items under a rule that asks for **commit Bitwork** are minted in one step. Items under a
+rule that asks for a **payment** are claimed first, then paid with **Pay DMINT item**
+between 3 and 15 blocks after the claim; the item is yours once the payment confirms.
+Rules that ask for an ARC-20 payment or for **reveal Bitwork** are refused with a clear
+message for now.
 
 Workspaces: `/atomicals-containers` and `/atomicals-dmint`. Released, and a deployment
 must switch them on.
