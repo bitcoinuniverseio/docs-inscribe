@@ -77,10 +77,10 @@ reviewed plan and rejects signed bytes that differ from it.
 An order reported as broadcast has only been submitted. Confirmation and CAT-20 indexing
 are checked separately, so a submitted transfer is not yet a credited balance.
 
-Actions are available only while Universe's own Fractal node, CAT-20 tracker and funding
-inventory for the selected chain are verified. Until then the actions stay unavailable
-rather than guessing. Universe does not use third-party Fractal data services, including
-as a fallback. **Service details** in the workspace shows what is verified.
+Inscribe builds and checks every transaction against Universe's own Fractal node, CAT-20
+tracker and funding inventory. If it cannot verify what a transaction spends, it refuses
+to build it and says why when you try. Universe does not use third-party Fractal data
+services, including as a fallback.
 
 Workspaces: `/cat20` and `/fractal`. Both are **not released** on Fractal Mainnet.
 
