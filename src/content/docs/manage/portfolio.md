@@ -46,17 +46,12 @@ Portfolio reads several independent sources:
 
 They fail independently, which is why the page can be partly right and says so.
 
-## Live and Partial
+## When part of the portfolio could not be loaded
 
-The header reads **Live** when every source answered, and **Partial** when one did not.
+If some of your holdings could not be loaded, a notice above them says so. It says that
+they are missing from this page and that **nothing you own has changed**.
 
-When a source is silent, the page names it above your holdings and says three things:
-
-- anything held there is missing from this page;
-- what is shown is everything the sources that did answer reported;
-- **nothing you own has changed**.
-
-That last line matters. A missing index is a reporting problem, not a loss.
+That last point matters. A failed read is a reporting problem, not a loss.
 
 **An empty portfolio is never presented as an answer while a source is silent.** The page
 says nothing was found in the sources that answered and that this is not a complete

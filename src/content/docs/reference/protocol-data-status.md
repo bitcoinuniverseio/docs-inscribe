@@ -13,7 +13,7 @@ Universe Inscribe keeps protocol construction tools separate from live discovery
 - **Healthy** means the configured source is reachable, on the correct network, structurally valid, and within its freshness limit.
 - **Syncing** means a replacement index is being built and has not yet been promoted for production reads.
 - **Stale** means the last verified generation is available but is too old to be represented as current.
-- **Tip not verified** means the source answered and reported the block it reached, but the chain tip could not be read. Reads and new actions that depend on current data stay paused until the comparison is available.
+- **Tip not verified** means the source answered and reported the block it reached, but the chain tip could not be read. How current its reads are cannot be checked until the comparison is available. Writes keep working.
 - **Unavailable** means the source cannot currently provide trustworthy data. This state is never presented as an authoritative empty result.
 - **Disabled by policy** means the protocol is intentionally unavailable because its production safety requirements have not been satisfied.
 
@@ -60,26 +60,22 @@ health, drain, and smoke checks pass.
 
 Atomicals NFT and Realm browsing uses one unified generation so NFT, Realm, Subrealm, lookup, and resolver views agree at the same chain checkpoint. Drops and OP_DROP use one authoritative source for artifact and token state. BLOCK-20 reads are derived from a self-hosted Bitcoin Ordinals projection rather than an unbounded legacy worker.
 
-## What you see while a source is catching up or down
+## What changes while a source is catching up or down
 
-The app does not reduce this to one word. When a source cannot answer:
+Nothing in the app's top bar or banners announces it. The effect shows only
+where you read that source:
 
-- The banner names the source and says that everything which does not read it
-  is working normally. It does not claim the wait is short.
-- "See what is affected" opens the service status panel. Each source shows its
-  state, the block it has reached against the chain tip, how many blocks behind
-  that leaves it, and the workspaces that read it. Sources that are answering
-  are listed too, so it is clear what is unaffected.
-- A feature an operator switched off is listed separately from a source that is
-  down, because those are different problems with different fixes.
-- Actions that write to the chain stay paused, and the reason names the source
-  and states that nothing already signed or broadcast is at risk. Reading,
-  drafting, and your wallet keep working.
-
-When a source is rebuilding its index, the panel shows how fast it is reading
-blocks, measured from the heights your browser has actually seen since you
-opened the page, and what that pace implies for the rest. Until there is enough
-measurement it says so rather than showing a completion time it cannot support.
+- Reads from that source may be missing or out of date. Balances, token lists
+  and search results can trail the chain until the index reads the latest
+  blocks. A workspace can still say that a particular read failed.
+- Writes keep working. Minting, inscribing, etching, deploying, transferring
+  and every other write stay available, and none of them waits for an index.
+- When Inscribe picks outputs to pay fees, it never spends an output whose
+  inscriptions, runes or Atomicals it cannot verify. If an index has not
+  reached the block that created an output, that one output is skipped. Other
+  outputs still pay.
+- A feature an operator switched off is a different thing from a source that
+  is down, with a different fix.
 
 ## What the portfolio shows while a source is down
 
@@ -88,11 +84,9 @@ balance, the Ordinals index for inscriptions and Runes, and separate indexes
 for Mezcal, SRC-20, OP_DROP and OP_RETURN names. One of them being down does
 not empty the page; the rest still answer and what they report is still shown.
 
-When a source does not answer, the portfolio names it above your holdings and
-says that anything held there is missing from the page, that what is shown is
-everything the sources that did answer reported, and that nothing you own has
-changed. The header reads "Partial" rather than "Live" for as long as that is
-true.
+When a source does not answer, a notice above your holdings says that some of
+them could not be loaded, so they are missing from this page, and that nothing
+you own has changed.
 
 An empty portfolio is never presented as an answer while a source is silent.
 The page says that nothing was found in the sources that answered and that this
@@ -154,4 +148,4 @@ memory.
 
 Some research protocols remain visible for documentation or controlled-network work while production actions stay disabled. Universe does not turn these features on merely to make a status page appear healthy. Mainnet writes require the protocol's network profile, independent authorization, authoritative index, transaction safety checks, and a verified readiness canary.
 
-CAT-20 transaction features remain fail-closed when the required Fractal data and signing dependencies are unavailable. Market discovery reports that dependency state directly instead of returning a misleading empty market.
+CAT-20 transaction features remain fail-closed when the required Fractal data and signing dependencies are unavailable. A CAT tracker that is only catching up does not block minting. Market discovery reports that dependency state directly instead of returning a misleading empty market.
