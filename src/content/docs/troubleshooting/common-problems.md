@@ -105,8 +105,8 @@ Send plain bitcoin to your payment address, or lower the fee rate.
 
 ### My portfolio looks empty or incomplete
 
-Check the header. If it reads **Partial**, at least one source did not answer, and the page
-names which one. Nothing you own has changed.
+If a notice says some of your holdings could not be loaded, part of the portfolio is
+missing from this page. Nothing you own has changed. Try again later.
 
 "No assets found for this address" appears only when every source answered.
 
@@ -166,7 +166,6 @@ Enhanced focus rings, Screenshot safe, and Colour-blind safe.
 | "Creation in progress" after confirmation | Inscribe waits for indexer and wallet evidence |
 | Two fee tiers at the same price | They are the same purchase |
 | An order with no age on Home | It predates the list, and says so rather than showing a wrong age |
-| A workspace showing Degraded | Reads still work; the page names what is missing. Writes keep working |
 | A balance or list that trails the chain | An index is catching up. Writes keep working, and the list catches up with it |
 | An output marked Unclassified | Recognised as present but not placeable. Shown rather than dropped |
 

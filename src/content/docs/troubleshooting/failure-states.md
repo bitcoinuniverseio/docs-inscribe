@@ -70,10 +70,8 @@ still pay.
 
 ## Portfolio failure states
 
-| Header | Meaning |
-| --- | --- |
-| **Live** | Every source answered |
-| **Partial** | At least one did not. The page names it and says what is missing |
+If some holdings could not be loaded, a notice above them says so and says that nothing
+you own has changed.
 
 An empty portfolio is never presented as an answer while a source is silent. "No assets
 found for this address" appears only when every source answered.

@@ -69,8 +69,8 @@ The central platform is at
 - **Your assets are not fee fuel.** No automatic funding flow picks an output holding an
   inscription, Rune or token balance to pay a network fee.
   [How that works](/docs-inscribe/concepts/asset-safety/).
-- **A source being down is never shown as an empty wallet.** Every read names its source,
-  and the app tells you which source did not answer instead of showing you nothing.
+- **A source being down is never shown as an empty wallet.** When a read fails, the app
+  says the data could not be loaded instead of showing you nothing.
   [The six data states](/docs-inscribe/concepts/source-freshness/).
 - **Costs are shown before the wallet opens.** Itemised, then totalled.
   [Read a quote](/docs-inscribe/concepts/what-it-costs/).
