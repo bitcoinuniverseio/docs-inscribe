@@ -51,7 +51,8 @@ service's availability for the selected Fractal chain. An unavailable source is 
 from a verified empty result; cached data is labeled stale when its refresh fails.
 
 CAT-20 transaction features **stay fail-closed** until the required Fractal data and
-signing checks are verified. An order reported as broadcast has only been submitted:
+signing checks are verified. A CAT tracker that is only catching up does not block minting.
+An order reported as broadcast has only been submitted:
 confirmation and CAT-20 indexing must be checked separately before calling a mint complete.
 The candidate saves order references without credentials and provides protected order
 status. An encrypted recovery kit can restore access after a reload; connecting a wallet
