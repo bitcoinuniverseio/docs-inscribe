@@ -52,6 +52,10 @@ The app does not reduce this to one word.
 - **Actions that write to the chain stay paused**, and the reason names the source and
   states that nothing already signed or broadcast is at risk. Reading, drafting, and your
   wallet keep working.
+- **A new block does not flip ChainBloom to unavailable.** Its index reads each block a
+  few seconds after the node sees it. The status panel keeps it answering while it is at
+  most two blocks behind, but a ChainBloom contribution still waits until the index has
+  caught up exactly.
 
 When a source is rebuilding its index, the panel shows how fast it is reading blocks,
 measured from the heights your browser has actually seen since you opened the page, and
