@@ -70,8 +70,9 @@ different address is a different problem, and no amount of waiting fixes it.
 
 <li>
 
-**Check the service status panel.** If the source that reads addresses is unavailable or
-behind, detection is delayed rather than broken.
+**Give detection time.** If your payment is on the chain at the right address, the source
+that reads addresses may be down or behind. Detection is then delayed rather than broken.
+The commit address keeps being checked, so leave the order page open.
 
 </li>
 

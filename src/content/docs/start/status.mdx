@@ -72,8 +72,8 @@ like a product that never had the feature.
 <p>{byState('incomplete').join(', ')}.</p>
 
 These are reachable in the app and are not finished. CAT-20's transaction features stay
-fail-closed while the Fractal data and signing dependencies they need are unavailable, and
-market discovery reports that dependency state directly rather than returning an empty
+fail-closed while the Fractal data and signing dependencies they need are unavailable. A CAT
+tracker that is only catching up does not block minting. Market discovery reports that dependency state directly rather than returning an empty
 market that looks like an answer. AVM Studio's editor and academy are usable; deploying a
 contract is not a released operation.
 
@@ -99,14 +99,14 @@ output. Inscribe has no workspace for making them.
 Inscribe also has non-mainnet modes used in development. This documentation describes
 mainnet, because that is the network where a mistake costs money.
 
-## Live service status
+## Live data sources
 
-Release state is not the same as whether a source is answering right now. The app reports
-that itself: the service status panel names each source, the block it has reached against
-the chain tip, and the workspaces that read it.
+Release state is not the same as whether a source is answering right now. A source that is
+down or catching up affects only what the app can read: balances, token lists and search
+results may be missing or out of date. Writes keep working.
 
 Read [where the data comes from](/docs-inscribe/concepts/source-freshness/) for the six
-states a source can be in and what each one blocks.
+states a source can be in and what each one affects.
 
 ## How this page stays true
 

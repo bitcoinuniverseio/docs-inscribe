@@ -66,8 +66,8 @@ browser". Opening one asks your wallet to prove it owns the order.
 That is correct behaviour, not a stall. Inscribe waits for the indexer and your wallet to
 agree the asset exists before it calls an order done.
 
-If the indexer is behind, the service status panel says so and gives you the height it has
-reached against the chain tip.
+If the indexer is behind, the order finishes once the indexer reads your block. Check the transaction
+in a block explorer to confirm it is on the chain, then wait. Do not pay again.
 
 ## Money and fees
 
@@ -95,6 +95,9 @@ yours.
 
 Outputs holding assets were held back from fee funding. The message tells you how many
 outputs were withheld and how many satoshis they hold.
+
+An output created in a block the index has not read yet is also skipped, because Inscribe
+cannot verify what it carries. It becomes usable once the index reads that block.
 
 Send plain bitcoin to your payment address, or lower the fee rate.
 
@@ -163,7 +166,8 @@ Enhanced focus rings, Screenshot safe, and Colour-blind safe.
 | "Creation in progress" after confirmation | Inscribe waits for indexer and wallet evidence |
 | Two fee tiers at the same price | They are the same purchase |
 | An order with no age on Home | It predates the list, and says so rather than showing a wrong age |
-| A workspace showing Degraded | Reads still work; the page names what is missing |
+| A workspace showing Degraded | Reads still work; the page names what is missing. Writes keep working |
+| A balance or list that trails the chain | An index is catching up. Writes keep working, and the list catches up with it |
 | An output marked Unclassified | Recognised as present but not placeable. Shown rather than dropped |
 
 ## Still stuck
