@@ -116,8 +116,8 @@
       "workspace": "Atomicals",
       "production": "enabled",
       "gated": true,
-      "contractEntries": ["atomicals-nfts", "atomicals-realms"],
-      "note": "The production contract records the Atomicals family through its NFT and Realms entries rather than a general Atomicals one."
+      "contractEntries": ["atomicals-nfts", "atomicals-realms", "atomicals-subrealms", "atomicals-containers", "atomicals-dmint"],
+      "note": "The production contract records the Atomicals family through its NFT, Realms, Subrealms, Containers and DMINT entries rather than a general Atomicals one."
     },
     "atomicals_nft": {
       "route": "/atomicals-nfts",
@@ -134,13 +134,12 @@
       "contractEntries": ["atomicals-realms"]
     },
     "subrealms": {
-      "route": "/atomicals-realms",
-      "workspace": "Atomicals Realms",
+      "route": "/atomicals-subrealms",
+      "workspace": "Atomicals Subrealms",
       "production": "enabled",
       "gated": true,
-      "sharedWith": "realms",
-      "contractEntries": ["atomicals-realms"],
-      "note": "Subrealms have no workspace of their own. They are claimed and paid for inside the Realms workspace, which is where the production contract records those operations."
+      "contractEntries": ["atomicals-subrealms"],
+      "note": "Direct claims, rule claims and rule payments have their own page. The Realms page still offers them for links made before it existed."
     },
     "drops": {
       "route": "/drops",
