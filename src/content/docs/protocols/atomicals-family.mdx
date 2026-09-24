@@ -1,6 +1,6 @@
 ---
 title: Atomicals family
-description: Atomicals, ARC-20 coloured sats, Atomicals NFTs, Realms and Subrealms, and AVM Studio. What is released, what a deployment must switch on, and what is not finished.
+description: Atomicals, ARC-20 coloured sats, Atomicals NFTs, Realms, Subrealms, Containers and DMINT, and AVM Studio. What is released, what a deployment must switch on, and what is not finished.
 protocols: [atomicals, arc20, atomicals_nft, realms, subrealms, avm]
 operations: [deploy, mint, transfer]
 provenance:
@@ -9,7 +9,7 @@ provenance:
   network: mainnet
   release: Continuous, from a verified commit
   lifecycle: Released, and a deployment must switch these on. AVM is not released
-  lastVerified: 2026-09-01
+  lastVerified: 2026-09-24
 ---
 
 import ProtocolMatrix from '@components/ProtocolMatrix.astro';
@@ -49,8 +49,8 @@ Workspace: `/arc20`. Released, and a deployment must switch it on.
 `/atomicals` carries the general operations panel. `/atomicals-nfts` handles non-fungible
 assets, with explore, portfolio, transfer and mint, plus modification and event operations.
 
-The production contract records the Atomicals family through its NFT and Realms entries
-rather than a general Atomicals one.
+Every Atomicals page has three views: **Browse**, **My assets** and **Create / Manage**.
+Picking Transfer on one of your assets opens the transfer form with that asset filled in.
 
 Both are released, and a deployment must switch them on.
 
@@ -58,11 +58,33 @@ Both are released, and a deployment must switch them on.
 
 Names in the Atomicals namespace. A realm is a top-level name; a subrealm sits under one.
 
-**Subrealms have no workspace of their own.** They are claimed and paid for inside the
-Realms workspace, which runs a claim and then a payment as two parts of one sequence rather
-than a single mint.
+A **direct** subrealm claim is made by the parent owner and keeps the parent and the new
+child together on one output until you separate them. A **rule** claim follows the rules
+the parent owner published, and may need a payment after the claim, inside a fixed block
+window.
 
-Workspace: `/atomicals-realms` for both. Released, and a deployment must switch them on.
+Workspaces: `/atomicals-realms` for realms and `/atomicals-subrealms` for subrealms. The
+Realms page still offers subrealm claims for links made before the Subrealms page existed.
+Released, and a deployment must switch them on.
+
+## Containers and DMINT
+
+A **container** is a named collection. Its owner registers the name, publishes the DMINT
+setup (the start block, the Merkle root of the item list, and the rules each item name
+must follow), and then **seals** it.
+
+**Sealing is permanent.** A sealed container can never be moved or edited again, and its
+rules are locked. Items can be minted only after the seal.
+
+A **DMINT item** is minted by anyone who holds the item file and its proof. The app checks
+the proof, the rule and whether the item is still free before you sign, so a claim that the
+index would reject never costs a fee.
+
+Items under a rule that asks for **commit Bitwork** are supported. Items under a rule that
+asks for a **payment** or for **reveal Bitwork** are refused with a clear message for now.
+
+Workspaces: `/atomicals-containers` and `/atomicals-dmint`. Released, and a deployment
+must switch them on.
 
 ## AVM Studio
 
