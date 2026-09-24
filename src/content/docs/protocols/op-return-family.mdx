@@ -66,11 +66,10 @@ including transactions containing more than fifty artifacts. **Refresh** keeps t
 search and page; **Browse all Drops** clears the search and returns to page one. Submitted
 searches remain in the URL for reload and browser back/forward navigation.
 
-**Checking**, **Unavailable**, **Degraded**, and **Disabled** are different from a successful
-search with no results. **Retry artifacts** retries the collection; **Retry verification**
-rechecks source readiness. An unavailable source cannot establish that no Drops exist.
-Metadata can remain visible while verification is unavailable, but transfers and proof
-links require the exact verified network.
+A search that could not load is different from a successful search with no results.
+**Retry artifacts** retries the collection. A failed read cannot establish that no Drops
+exist. Transfers and proof links require the network you selected to match the Drops
+deployment.
 
 Choose the exact chain used by the order and wallet. Signet and Testnet can share address
 prefixes; matching prefixes do not prove the same chain. A connected wallet must report

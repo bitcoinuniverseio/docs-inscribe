@@ -70,6 +70,18 @@ they are how the protocol works.
 - **SRC-101** registers permanent Bitcoin domain names ending `.sats` or `.btc`, funded by
   one signature.
 
+## When an index is slow or not answering
+
+Minting does not wait for an index. The token list and the remaining supply may be missing
+or out of date while an index catches up, but the Mint form stays open:
+
+- **BRC-20**: if the index cannot look up the ticker's mint limit, you type the mint amount
+  yourself. Check the limit somewhere else first. An amount above it makes an invalid mint,
+  and the fee is still spent.
+- **SRC-101**: if the availability check cannot answer, registration stays open. The chain
+  decides whether the name is still free.
+- **CAT-20**: a CAT tracker that is catching up does not block minting.
+
 ## Prerequisites
 
 | Requirement | Detail |
@@ -171,15 +183,16 @@ A minted balance credited to your address by the protocol's index, visible in
 **If step 3 passes and step 2 does not**, the transaction is on the chain but the protocol
 did not credit it. The usual causes are that the supply ran out before your transaction was
 mined, that the amount exceeded the per-mint limit, or that the index has not read that
-block yet. Check the service status panel to tell the last case from the first two.
+block yet. To rule out the last case, wait for the index to read that block, then refresh
+the balance view.
 
 ## Common failure states
 
 | What you see | What it means | What to do |
 | --- | --- | --- |
-| Confirmed, but no balance | The mint was late, invalid, or the index is behind | Check the service status panel. If the index is current, the mint did not qualify. The fee is spent |
+| Confirmed, but no balance | The mint was late, invalid, or the index is behind | Confirm the transaction in a block explorer. Wait for the index to read that block, then refresh. If the balance is still missing after several more blocks, the mint did not qualify. The fee is spent |
 | The mint form rejects the amount | Above the token's per-mint limit | Reduce the amount to the limit |
-| The token is not listed | The index is behind, or the ticker does not exist on this protocol | Check the status panel, and check you are on the right protocol |
+| The token is not listed | The index is behind, or the ticker does not exist on this protocol | Check you are on the right protocol. Then wait for the index to catch up and refresh the list |
 | The workspace is visible but refuses to act | Its release gate is off in this deployment | Not a fault you can clear. See [status](/docs-inscribe/start/status/) |
 | CAT-20 features do not work | CAT-20 is not released and stays fail-closed | Do not plan around it |
 | The payment will not confirm | Fee rate too low, and on a mint this may cost you the claim | **Bump Stuck TX** immediately |

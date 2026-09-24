@@ -207,7 +207,7 @@ approved.
 | Payment below the quote | You sent less than the total | Top the same address up to the quoted amount. The flow resumes |
 | The hour ran out | The price quote expired | Start a new order at a current price. If you already paid, do not pay again, see recovery |
 | The payment is not confirming | Your fee rate was too low for current conditions | Use **Fix My Payment** or **Bump Stuck TX**. See [recovery routes](/docs-inscribe/manage/recovery/) |
-| A source is unavailable | An index the workspace reads is down or catching up | Reading and drafting keep working. Writes stay paused, and nothing already signed is at risk |
+| The workspace says a read failed | An index the workspace reads is down or catching up | What it shows may be missing or out of date. Inscribing keeps working, and nothing already signed is at risk |
 | The screen you clicked does not open | A release landed while your tab was open | Reload. Nothing you started is lost |
 
 ## Recovery route
