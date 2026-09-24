@@ -60,14 +60,6 @@ The effect shows only where you read that source.
 A workspace stays visible even when the index behind it is down or catching up, because a
 missing workspace looks like a product that never had the feature.
 
-## Availability labels on a workspace
-
-- **Available**: the source answered and is at the chain tip.
-- **Degraded**: the source answered but is behind, or one of several sources did not
-  answer. Reads still work, and the page names what is missing. Writes keep working.
-- **Unsupported**: the source is not running for this network. Nothing is guessed or
-  filled in from elsewhere.
-
 ## What the portfolio shows while a source is down
 
 The portfolio reads several independent sources: the Bitcoin node for your balance, the
@@ -75,10 +67,8 @@ Ordinals index for inscriptions and Runes, and separate indexes for Mezcal, SRC-
 OP_DROP and OP_RETURN names. One of them being down does not empty the page; the rest
 still answer and what they report is still shown.
 
-When a source does not answer, the portfolio names it above your holdings and says that
-anything held there is missing from the page, that what is shown is everything the sources
-that did answer reported, and that nothing you own has changed. The header reads
-**Partial** rather than **Live** for as long as that is true.
+When a source does not answer, a notice above your holdings says that some of them could
+not be loaded, so they are missing from this page, and that nothing you own has changed.
 
 An empty portfolio is never presented as an answer while a source is silent. The page says
 that nothing was found in the sources that answered, and that this is not a complete
