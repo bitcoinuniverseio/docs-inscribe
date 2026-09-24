@@ -1,6 +1,6 @@
 ---
 title: Where the data comes from
-description: The six states a data source can be in, how Inscribe reports a source that is down or catching up, why an empty result is never shown as an answer, and what stays working.
+description: The six states a data source can be in, what a source that is down or catching up affects, why an empty result is never shown as an answer, and why writes keep working.
 provenance:
   owner: bitcoinuniverseio/inscribe
   chain: Bitcoin
@@ -19,7 +19,7 @@ reported as a source that answered with nothing.**
 
 ## The six states
 
-A data source is in exactly one of these, and the app names which:
+A data source is in exactly one of these:
 
 | State | What it means |
 | --- | --- |
@@ -33,44 +33,38 @@ A data source is in exactly one of these, and the app names which:
 Two of those exist because a plain HTTP success is not proof of anything. A source can be
 up, reachable and returning valid data while being a thousand blocks behind, and a source
 can report a height while the chain tip it should be compared against is unreadable.
-Collapsing either into "healthy" would be a lie with a green dot next to it.
+Calling either one "healthy" would be false.
 
 Separately from all six, a capability an operator has switched off is reported as
 **switched off by the operator**, not as a source being down. They are different problems
 with different fixes, so they are never shown as the same thing.
 
-## What you actually see
+## What a slow or missing source affects
 
-The app does not reduce this to one word.
+Nothing in the app's top bar or banners announces a source that is down or catching up.
+The effect shows only where you read that source.
 
-- **A banner names the source** and says that everything which does not read it is working
-  normally. It does not claim the wait will be short.
-- **"See what is affected" opens the service status panel.** Each source shows its state,
-  the block it has reached against the chain tip, how many blocks behind that leaves it,
-  and the workspaces that read it. Sources that are answering are listed too, so it is
-  clear what is unaffected.
-- **Actions that write to the chain stay paused**, and the reason names the source and
-  states that nothing already signed or broadcast is at risk. Reading, drafting, and your
-  wallet keep working.
-- **A new block does not flip ChainBloom to unavailable.** Its index reads each block a
-  few seconds after the node sees it. The status panel keeps it answering while it is at
-  most two blocks behind, but a ChainBloom contribution still waits until the index has
-  caught up exactly.
+- **Reads from that source may be missing or out of date.** Balances, token lists and
+  search results can trail the chain until the index reads the latest blocks. A workspace
+  can still say that a particular read failed.
+- **Writes keep working.** Minting, inscribing, etching, deploying, transferring and every
+  other write stay available. None of them waits for an index to catch up or come back.
+- **Fee funding never spends what it cannot check.** When Inscribe picks outputs to pay
+  fees, it never spends an output whose inscriptions, runes or Atomicals it cannot verify.
+  If an index has not reached the block that created an output, that one output is
+  skipped. Other outputs still pay.
+- **A ChainBloom contribution does not wait for its index.** The index reads each block a
+  few seconds after the node sees it, and a contribution can go ahead while it is still
+  catching up. The inputs it spends are checked against the Bitcoin node.
 
-When a source is rebuilding its index, the panel shows how fast it is reading blocks,
-measured from the heights your browser has actually seen since you opened the page, and
-what that pace implies for the rest. Until there is enough measurement it says so rather
-than showing a completion time it cannot support.
-
-A workspace stays visible even when the index behind it is down or catching up. It says so
-instead of disappearing, because a missing workspace looks like a product that never had
-the feature.
+A workspace stays visible even when the index behind it is down or catching up, because a
+missing workspace looks like a product that never had the feature.
 
 ## Availability labels on a workspace
 
 - **Available**: the source answered and is at the chain tip.
 - **Degraded**: the source answered but is behind, or one of several sources did not
-  answer. Reads still work, and the page names what is missing.
+  answer. Reads still work, and the page names what is missing. Writes keep working.
 - **Unsupported**: the source is not running for this network. Nothing is guessed or
   filled in from elsewhere.
 
@@ -112,7 +106,8 @@ Two things follow from that, and both are stated rather than hidden:
   does not borrow a number from the node or an explorer to make the shape look complete.
 - **Readiness tolerates a small lag and no more.** The index is expected to sit a block or
   two behind a moving chain tip. Beyond the configured tolerance, or with a negative or
-  unreadable lag, readiness fails rather than rounding in its own favour.
+  unreadable lag, readiness fails rather than rounding in its own favour. This changes
+  what the health report says about reads. It does not stop writes.
 
 Some protocols require more than one independent source to agree before they are treated as
 ready. Where two verifiers disagree about a finalized block, readiness stays unavailable
@@ -127,8 +122,9 @@ authorization, an authoritative index, transaction safety checks, and a verified
 canary.
 
 CAT-20 transaction features remain fail-closed when the required Fractal data and signing
-dependencies are unavailable. Market discovery reports that dependency state directly
-instead of returning a misleading empty market.
+dependencies are unavailable. A CAT tracker that is only catching up does not block
+minting. Market discovery reports that dependency state directly instead of returning a
+misleading empty market.
 
 ## Fee data specifically
 

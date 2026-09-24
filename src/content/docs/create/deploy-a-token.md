@@ -147,16 +147,16 @@ a reveal transaction id you can verify on any explorer.
 3. Any Bitcoin explorer confirms the transaction independently of Inscribe.
 
 A transaction that confirmed but does not appear in the token list means the protocol index
-did not accept it, or has not read that block yet. Check the service status panel before
-assuming the deploy failed.
+did not accept it, or has not read that block yet. Before assuming the deploy failed, wait
+for the index to read the block, then refresh the workspace.
 
 ## Common failure states
 
 | What you see | What it means | What to do |
 | --- | --- | --- |
 | The ticker is rejected | Already deployed, or invalid for that protocol's rules | Choose another. Check length and character rules in the workspace |
-| The transaction confirmed but the token is not listed | The protocol index has not read that block, or rejected the deploy | Check the service status panel. If the index is behind, wait. If it is current, the deploy was invalid |
-| The workspace says its source is unavailable | The protocol index is down or catching up | Reads and drafts still work; writes stay paused. Nothing signed is at risk |
+| The transaction confirmed but the token is not listed | The protocol index has not read that block, or rejected the deploy | Confirm the transaction in a block explorer. Wait for the index to read that block, then refresh the workspace. If the token is still missing after several more blocks, the deploy was most likely invalid |
+| The workspace says a read failed | The protocol index is down or catching up | Token lists and balances may be missing or out of date. Writes still work. Nothing signed is at risk |
 | The workspace is visible but refuses to act | Its release gate is off in this deployment | It is not a fault you can clear. See [status](/docs-inscribe/start/status/) |
 | Still awaiting payment | The payment has not reached the commit address | Wait. Do not pay again |
 
