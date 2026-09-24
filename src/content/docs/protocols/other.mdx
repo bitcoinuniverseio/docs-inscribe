@@ -8,8 +8,8 @@ provenance:
   chain: Bitcoin
   network: mainnet
   release: Continuous, from a verified commit
-  lifecycle: DUST-20 is released. ChainBloom is released and a deployment must switch it on. CAT-20 is not released
-  lastVerified: 2026-09-01
+  lifecycle: DUST-20 is released. ChainBloom is released and a deployment must switch it on. CAT-20 is not released on Fractal Mainnet
+  lastVerified: 2026-09-24
 ---
 
 import ProtocolMatrix from '@components/ProtocolMatrix.astro';
@@ -41,26 +41,48 @@ Workspace: `/chainbloom`. Released, and a deployment must switch it on.
 
 ## CAT-20
 
-**Not released.** CAT-20 remains incomplete. An unreleased repair candidate uses the same
-workspace through `/cat20` and `/fractal`, with an explicit choice of Fractal Mainnet or
-Fractal Testnet for catalog, token and portfolio reads.
-Direct token links can specify the chain with `/cat20/<token-id>?network=fractal-testnet`.
+**Not released.** CAT-20 is a covenant token protocol on **Fractal Bitcoin**, a separate
+chain from Bitcoin. It is not the FAIR CAT-20 standard on Bitcoin. The `/cat20` workspace
+asks you to choose Fractal Mainnet or Fractal Testnet, and never mixes the two.
+Direct token links can name the chain with `/cat20/<token-id>?network=fractal-testnet`.
 
-The candidate separates those reads from mint construction and signing. It reports each
-service's availability for the selected Fractal chain. An unavailable source is different
-from a verified empty result; cached data is labeled stale when its refresh fails.
+The workspace has three views. **Explore** searches tokens by name, ticker or the full
+token ID. **My tokens** lists the CAT-20 balances of your connected Fractal wallet.
+**Activity** keeps every order you created on this device, with its status and recovery.
+From a token page or a balance you can:
 
-CAT-20 transaction features **stay fail-closed** until the required Fractal data and
-signing checks are verified. An order reported as broadcast has only been submitted:
-confirmation and CAT-20 indexing must be checked separately before calling a mint complete.
-The candidate saves order references without credentials and provides protected order
-status. An encrypted recovery kit can restore access after a reload; connecting a wallet
-alone does not restore it. Lost creation responses can retry the same order reference.
-Wallet signing remains unavailable. Native wallet execution and browser recovery have
-not been verified.
+- **Create token.** Deploy a new token with a name, ticker, decimals, maximum supply and
+  mint limit. You can reserve an optional premine for your own wallet.
+- **Premine.** The deploying wallet issues its reserved premine before public minting opens.
+- **Mint.** Mint up to the token's per-mint limit.
+- **Send.** Send to up to three recipients in one transaction.
+- **Burn.** Destroy part or all of a balance. You must confirm separately that a burn
+  cannot be undone.
 
-Workspaces: `/cat20` and `/fractal`. Both are **not released**; this candidate does not
-establish functional readiness.
+What the protocol allows, and what Inscribe therefore enforces:
+
+| Limit | Value |
+| --- | --- |
+| Decimals when creating a token | 0 to 9 |
+| Largest amount in one output | 2,147,483,647 base units |
+| Maximum supply and premine | Whole multiples of the mint limit |
+| Token inputs per transaction | Up to 4 |
+| Recipients per send | Up to 3, plus your change |
+
+Each action shows a review before your wallet signs. The review lists every transaction
+in the order, what each one spends and creates, and its fee. Your wallet signs; Inscribe
+never holds your key. Before any transaction is sent, Inscribe rebuilds each one from the
+reviewed plan and rejects signed bytes that differ from it.
+
+An order reported as broadcast has only been submitted. Confirmation and CAT-20 indexing
+are checked separately, so a submitted transfer is not yet a credited balance.
+
+Actions are available only while Universe's own Fractal node, CAT-20 tracker and funding
+inventory for the selected chain are verified. Until then the actions stay unavailable
+rather than guessing. Universe does not use third-party Fractal data services, including
+as a fallback. **Service details** in the workspace shows what is verified.
+
+Workspaces: `/cat20` and `/fractal`. Both are **not released** on Fractal Mainnet.
 
 ## RGB
 
