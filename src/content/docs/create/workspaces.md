@@ -109,7 +109,7 @@ app before your first one.
 | --- | --- |
 | runes | Mint open Runes, etch your own, or split a rune balance across outputs |
 | alkanes | Browse Alkane tokens ranked by live mempool minting, and mint them by ID |
-| cat-20 | Explore CAT-20 on Fractal, check balances, and prepare covenant mints. You pick the network yourself |
+| cat-20 | Explore CAT-20 on Fractal, see your balances, and create, mint, send or burn tokens. You pick the network yourself |
 | tap on doge | Mint TAP tokens indexed on Dogecoin, including Doge DMT blocks. Mint only |
 | dust-20 | Deploy and mint DUST-20, where the mint output's sat value encodes the amount |
 | mezcal | Mint, etch and transfer Mezcal, which writes JSON OP_RETURN records instead of runestones |
