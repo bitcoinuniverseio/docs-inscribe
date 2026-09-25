@@ -1,6 +1,6 @@
 ---
 title: Other protocols
-description: DUST-20, ChainBloom, CAT-20 and RGB, plus the workspaces in Inscribe that are not finished and are not documented as usable.
+description: DUST-20, ChainBloom, CAT-20, RGB and Spark, plus the workspaces in Inscribe that are not finished and are not documented as usable.
 protocols: [dust20, chainbloom, cat20]
 operations: [deploy, mint, inscribe, transfer]
 provenance:
@@ -175,3 +175,31 @@ screening applies.
 - [Status and lifecycle](/docs-inscribe/start/status/)
 - [Coverage matrix](/docs-inscribe/protocols/coverage/)
 - [Asset safety](/docs-inscribe/concepts/asset-safety/)
+
+## Spark
+
+Spark is a Bitcoin layer run by a small set of signing operators. Tokens on Spark move
+instantly and cost no network fee. Your Spark wallet has its own keys; they stay encrypted
+in your browser and never reach Universe.
+
+What the workspace does:
+
+- **Browse** every Spark token, with no wallet needed. Universe reads the operators' full
+  token record into its own database, so the list covers all tokens, not a curated set.
+  Each token shows its name, ticker, decimals, supply cap, what has been minted and
+  burned, and whether the issuer can freeze it. The page says how current the list is
+  and never shows a partial list as complete.
+- **My tokens**: hold, send and receive tokens with exact amounts. Amounts use the token's
+  decimals and are never rounded.
+- **Create & manage**: create a token (name, ticker, decimals, cap and freezing are
+  permanent), then mint, burn, freeze and unfreeze it. Only the issuer can mint, and
+  minted tokens go to the issuer wallet; sending them is a separate step.
+- **Activity**: an action waiting for confirmation is checked automatically. Nothing is
+  ever sent twice. If the network never received an action, the page says so once it is
+  safe to be sure.
+
+Every action is reviewed in plain words before you sign. Token actions were verified end
+to end on Spark's public test network. Bitcoin deposits, withdrawals, Lightning, and
+Flashnet trades could not be verified there yet, so they stay off on mainnet.
+
+Workspace: `/spark`.
