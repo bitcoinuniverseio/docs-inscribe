@@ -2,7 +2,7 @@
 title: 'Live protocol data status'
 description: 'Where live data comes from, what health means, and how order recovery works.'
 category: reference
-lastVerified: 2026-09-01
+lastVerified: 2026-09-25
 ---
 # Protocol data status and recovery
 
@@ -59,6 +59,24 @@ cannot apply an acknowledged event twice. Traffic moves only after schema, row,
 health, drain, and smoke checks pass.
 
 Atomicals NFT and Realm browsing uses one unified generation so NFT, Realm, Subrealm, lookup, and resolver views agree at the same chain checkpoint. Drops and OP_DROP use one authoritative source for artifact and token state. BLOCK-20 reads are derived from a self-hosted Bitcoin Ordinals projection rather than an unbounded legacy worker.
+
+## Reading the mempool map
+
+The mempool map shows which protocols fill Bitcoin blocks and the waiting
+mempool, from the last hour to the last 30 days. It reads only Universe-owned
+Bitcoin nodes, and every window fills in on its own: 1H can be complete while
+30D is still being read.
+
+| You see | It means |
+| --- | --- |
+| A number or a share | Measured from the blocks and waiting transactions read so far |
+| **0** or **0%** | The whole window was read and nothing of that kind was found |
+| **-** | That part has not been read yet, or the data is too old. It is not zero |
+| **≥3/14** | At least 3 of the 14 protocols seen so far; the window is still filling in |
+| Volume **Unavailable** | Economic volume needs each protocol's own records, so the map does not guess it |
+
+The map recognizes protocol payloads in transactions. It does not check token
+balances or whether a transfer was valid under that protocol's rules.
 
 ## What changes while a source is catching up or down
 

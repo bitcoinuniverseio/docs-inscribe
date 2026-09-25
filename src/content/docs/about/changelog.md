@@ -7,7 +7,7 @@ provenance:
   network: mainnet
   release: This documentation site
   lifecycle: Stable
-  lastVerified: 2026-09-14
+  lastVerified: 2026-09-25
 ---
 
 This is the changelog for **this documentation**, not for the Inscribe product.
@@ -16,6 +16,14 @@ Inscribe itself is released continuously from verified commits and does not carr
 number to quote. What identifies a build is its commit, and the footer of every page in the
 app names the build you are looking at. See
 [release evidence](/docs-inscribe/about/release-evidence/).
+
+## 2026-09-25: mempool map
+
+### Added
+
+- [Live data status](/docs-inscribe/reference/protocol-data-status/#reading-the-mempool-map)
+  now explains what a number, a zero, a dash and a lower bound such as ≥3/14
+  mean on the mempool map, and why volume shows as unavailable.
 
 ## 2026-09-14: provenance, rights and compute workspaces
 
