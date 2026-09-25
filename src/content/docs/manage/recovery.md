@@ -261,7 +261,13 @@ Some outputs cannot be recovered, and the scan says why:
 - an unused **BRC-20 transfer** inscription (moving it sends its tokens, even to
   your own address; send or cancel the transfer first);
 - a **TAP** transfer or other TAP action (moving it can apply it);
-- other token inscriptions whose move rules recovery cannot confirm yet.
+- other token inscriptions whose move rules recovery cannot confirm yet;
+- an output that also carries **Stamps**, other **Counterparty** assets or
+  **Atomicals** (recovery never moves them).
+
+Before an output can be selected, Universe's own indexers must answer for it:
+ord for inscriptions and Runes, Counterparty for Stamps, and the Atomicals
+index. If any of them has not answered, the output stays unselectable.
 
 BRC-20 and TAP **deploy** and **mint** inscriptions can be recovered: moving them
 changes no balances.
