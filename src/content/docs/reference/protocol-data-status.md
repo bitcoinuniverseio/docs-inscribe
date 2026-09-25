@@ -73,11 +73,14 @@ Bitcoin nodes, and every window fills in on its own: 1H can be complete while
 | **0** or **0%** | The whole window was read and nothing of that kind was found |
 | **-** | That part has not been read yet, or the data is too old. It is not zero |
 | **≥3/14** | At least 3 of the 14 protocols seen so far; the window is still filling in |
+| **partial** | Only part of the window has been read so far |
 | **not current** | The last reading is shown with its time, but collection has fallen behind |
-| Volume **Unavailable** | Economic volume needs each protocol's own records, so the map does not guess it |
+| **Others** | Many small tokens grouped into one grey tile |
+| No volume figure | Economic volume needs each protocol's own records, so the map does not show a guess |
 
-The map recognizes protocol payloads in transactions. It does not check token
-balances or whether a transfer was valid under that protocol's rules.
+**Detected** next to the window means the map recognizes protocol payloads in
+transactions. It does not check token balances or whether a transfer was valid
+under that protocol's rules.
 
 ## What changes while a source is catching up or down
 
