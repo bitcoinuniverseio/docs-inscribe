@@ -39,7 +39,7 @@ The documentation site provides nine interactive learning products built directl
 | [Where things live](workspaces.md) | Every workspace, what it is for, and the three fastest ways to reach one |
 | [What a transaction costs](what-it-costs.md) | The network fee, the service fee, the inscription output, and how a fee tier is chosen |
 | [Asset safety](asset-safety.md) | How funding outputs are chosen, and why asset-bearing outputs are protected |
-| [AVM repair candidate](avm.md) | Template v2 terms, signing stages, network history and recovery limits; not deployed |
+| [Atomicals Virtual Machine](avm.md) | Networks, template terms, signing stages, saved-contract states and recovery; mainnet not released |
 | [Protocol data status and recovery](protocol-data-status.md) | Source health states, the status panel, portfolio source truth, order continuity |
 | [Performance and media](performance-and-media.md) | How the app loads fast and renders inscription media from Universe infrastructure |
 | [Release evidence](release-evidence.md) | How releases are built, sealed, and verified |
