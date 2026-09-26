@@ -1,6 +1,6 @@
 ---
 title: Other protocols
-description: DUST-20, ChainBloom, CAT-20, RGB and Spark, plus the workspaces in Inscribe that are not finished and are not documented as usable.
+description: DUST-20, ChainBloom, CAT-20, RGB, Taproot Assets and Spark, plus the workspaces in Inscribe that are not finished and are not documented as usable.
 protocols: [dust20, chainbloom, cat20]
 operations: [deploy, mint, inscribe, transfer]
 provenance:
@@ -176,6 +176,18 @@ and is READY only when all four are.
 Workspace: `/nostr`. Route contract and acceptance evidence: the `docs/nostr-domain-routes.md`
 and `docs/repair-nostr-20260917.md` files of the application repository.
 
+## Taproot Assets
+
+**Not released on mainnet.** Signet acceptance is in progress. Taproot Assets are tokens
+and collectibles issued on Bitcoin, recorded in Taproot outputs and carried with a proof
+file. With a Taproot wallet you can mint (paid by Universe, or paid from your own wallet),
+hold, receive, send and prove assets, browse issuance records, and pay Lightning invoices
+from a hosted asset balance. Every asset is locked to your wallet's key, and nothing is
+published before you approve it.
+
+Workspace: `/taproot-assets`. The full guide, including what you sign, who pays the
+Bitcoin fee and what cannot be undone, is [Taproot Assets](/docs-inscribe/protocols/taproot-assets/).
+
 ## Workspaces that are not finished
 
 Four more workspaces exist in the app and are classified as incomplete by the production
@@ -198,6 +210,7 @@ screening applies.
 
 - [Status and lifecycle](/docs-inscribe/start/status/)
 - [Coverage matrix](/docs-inscribe/protocols/coverage/)
+- [Taproot Assets](/docs-inscribe/protocols/taproot-assets/)
 - [Asset safety](/docs-inscribe/concepts/asset-safety/)
 
 ## Spark
