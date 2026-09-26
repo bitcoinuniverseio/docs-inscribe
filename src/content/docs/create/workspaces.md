@@ -120,7 +120,6 @@ app before your first one.
 | --- | --- |
 | Mempool | What is waiting to confirm, grouped by protocol family and sized by transaction weight |
 | Ecosystem | The apps and indexes Universe runs, and whether each answers |
-| Ordinal Duels | Head-to-head comparisons between collections |
 | Meme Map | Where attention is going across meme assets |
 | Pending TX Analyzer | Read one pending transaction in detail |
 | Bitcoin Tools | 33 focused tools: decoders, estimators, inspectors, planners |
