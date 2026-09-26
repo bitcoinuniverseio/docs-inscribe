@@ -9,7 +9,7 @@ provenance:
   network: mainnet
   release: Continuous, from a verified commit
   lifecycle: DUST-20 is released. ChainBloom is released and a deployment must switch it on. CAT-20 is not released on Fractal Mainnet
-  lastVerified: 2026-09-24
+  lastVerified: 2026-09-26
 ---
 
 import ProtocolMatrix from '@components/ProtocolMatrix.astro';
@@ -236,8 +236,18 @@ What the workspace does:
   ever sent twice. If the network never received an action, the page says so once it is
   safe to be sure.
 
+- **Bitcoin**: deposit bitcoin to your Spark wallet and claim it, send it to another Spark
+  address, request an exact amount, pay a Spark request, and lock a payment to a secret
+  (HTLC) that returns to you if it is not claimed in time.
+- **Leave without the operators** (Advanced, Exit kit): if the operators stop responding,
+  the exit kit builds the transactions that take your bitcoin back on chain. You pay the
+  fee from a Bitcoin coin you control, submit each step from your own Bitcoin Core 29 or
+  newer node, and wait out each timelock. Exit sweep then sends the bitcoin to any address.
+  Your Spark balance stops working once the first step confirms.
+
 Every action is reviewed in plain words before you sign. Token actions were verified end
-to end on Spark's public test network. Bitcoin deposits, withdrawals, Lightning, and
-Flashnet trades could not be verified there yet, so they stay off on mainnet.
+to end on Spark's public test network, and bitcoin actions and the exit on a Spark network
+run by Universe. Withdrawals to a Bitcoin address, Lightning, and Flashnet trades depend on
+outside services that could not be tested, so they stay off on mainnet.
 
 Workspace: `/spark`.
