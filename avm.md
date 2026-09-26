@@ -1,14 +1,22 @@
 # Atomicals Virtual Machine
 
-**Source candidate, not deployed.** This page describes the proposed AVM repair. Local source and native tests do not establish a real-network pass. No supported, controlled test-wallet environment has been verified for a complete public-chain journey.
+**Status:** AVM Studio can build, test and simulate every template. Contract transactions are being validated on Bitcoin Testnet4 and are not yet open on mainnet. Mainnet deployment and calls stay switched off until that validation and the mainnet readiness checks are complete.
 
 AVM Studio and Guided use the existing Atomicals workspace. The intended flow is to choose a template, review its terms, compile a definition, register it, deploy an instance, then make authorized calls and read the resulting state and history.
+
+## Networks
+
+A service runs contracts on one network, shown in the Guided flow. Your wallet and every asset must use that same network. Testnet3, Signet and Testnet4 addresses look alike, so the app never guesses the network from an address.
 
 ## Review each stage
 
 Compilation proves that a source package can be built. Simulation predicts a result from supplied state. Bitcoin confirmation proves inclusion. Only an indexed native execution result can prove that the AVM operation ran, and usable asset outputs still require settlement verification. The interface must keep these stages separate.
 
-Protected methods require an AVM authorization signature over the exact transaction, in addition to ordinary Bitcoin input signatures. A wallet that only signs Bitcoin PSBTs cannot automatically supply that authorization. Review every asset, amount, fee and recipient before signing. Resume the existing operation after an interruption; do not prepare another payment to replace a lost acknowledgement.
+Protected methods require an AVM authorization signature over the exact transaction, in addition to ordinary Bitcoin input signatures.
+
+Current browser wallets sign Bitcoin transactions and messages but not this authorization, so the review screen shows the digest to sign with the contract authority key in a signer you control, and you paste the signature. The page checks it against the exact action before sending anything; a wallet that adds this capability is used automatically.
+
+Review every asset, amount, fee and recipient before signing. Resume the existing operation after an interruption; do not prepare another payment to replace a lost acknowledgement.
 
 ## Template terms
 
@@ -37,6 +45,6 @@ Schedules read native execution height. No current template method accepts a sub
 
 ## History and recovery
 
-Contract state, execution receipts and verification history must use the selected network. A source-verification badge does not certify successful execution. Legacy records without a proven network remain unknown rather than being assigned to an assumed chain.
+Contract state, execution receipts and verification history use the service network. A source-verification badge does not certify successful execution, and an older verification without full indexed evidence shows as unknown. Saved contracts show **Confirmed** only after the app reads them from the indexer in this visit; otherwise they show **Confirmed earlier**. Contracts saved before networks were recorded show **Saved earlier** and are never moved to the current network.
 
 If funding exists but the reveal cannot complete, use the operation's recovery path and review its exact destination. Recovery capability must exist before accepting funding. The source candidate includes a recovery request path, but no public-chain recovery pass is claimed here.
