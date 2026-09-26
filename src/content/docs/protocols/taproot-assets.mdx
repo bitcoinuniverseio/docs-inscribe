@@ -105,10 +105,12 @@ your mind before approving, select **Cancel mint**: nothing is published.
 
 Universe never pays for, signs or moves this mint.
 
-**Check the coins before you sign.** This flow takes the largest confirmed coins at your
-Taproot address and does **not** screen them for inscriptions or rune balances. If that
-address holds other assets, use **Paid by Universe**, or pay from a Taproot account that
-holds only plain bitcoin, and read every input in your wallet before you sign.
+**How coins are chosen.** Inscribe runs the same asset check it uses everywhere else before
+it picks coins: outputs where the scan found an inscription, a rune or a token balance are
+never used, coins the scan proved to hold only bitcoin come first, and coins the scan could
+not classify are used only after those. The scan can be incomplete, so if your Taproot
+address holds other assets, prefer **Paid by Universe** or a Taproot account that holds only
+plain bitcoin, and read every input in your wallet before you sign.
 
 ### After the mint
 
