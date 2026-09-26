@@ -12,7 +12,11 @@ A service runs contracts on one network, shown in the Guided flow. Your wallet a
 
 Compilation proves that a source package can be built. Simulation predicts a result from supplied state. Bitcoin confirmation proves inclusion. Only an indexed native execution result can prove that the AVM operation ran, and usable asset outputs still require settlement verification. The interface must keep these stages separate.
 
-Protected methods require an AVM authorization signature over the exact transaction, in addition to ordinary Bitcoin input signatures. Current browser wallets sign Bitcoin transactions and messages but not this authorization, so the review screen shows the digest to sign with the contract authority key in a signer you control, and you paste the signature. The page checks it against the exact action before sending anything; a wallet that adds this capability is used automatically. Review every asset, amount, fee and recipient before signing. Resume the existing operation after an interruption; do not prepare another payment to replace a lost acknowledgement.
+Protected methods require an AVM authorization signature over the exact transaction, in addition to ordinary Bitcoin input signatures.
+
+Current browser wallets sign Bitcoin transactions and messages but not this authorization, so the review screen shows the digest to sign with the contract authority key in a signer you control, and you paste the signature. The page checks it against the exact action before sending anything; a wallet that adds this capability is used automatically.
+
+Review every asset, amount, fee and recipient before signing. Resume the existing operation after an interruption; do not prepare another payment to replace a lost acknowledgement.
 
 ## Template terms
 
