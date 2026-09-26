@@ -4,9 +4,9 @@ description: Mint, hold, receive, send and prove Taproot Assets from your Taproo
 provenance:
   owner: bitcoinuniverseio/inscribe
   chain: Bitcoin
-  network: Signet
-  release: Not released on mainnet
-  lifecycle: Signet acceptance in progress. Not released on mainnet
+  network: Bitcoin mainnet and Signet
+  release: Released on mainnet on 2026-09-26
+  lifecycle: Released. Mainnet mints and sends are paid from your wallet; asset Lightning runs on Signet only
   lastVerified: 2026-09-26
 ---
 
@@ -18,9 +18,10 @@ key and its proof file holds the asset.
 The Taproot Assets workspace (`/taproot-assets`) lets you mint, hold, receive, send and
 prove these assets with your own wallet, and pay Lightning invoices with an asset balance.
 
-**Status.** Signet acceptance is in progress. Taproot Assets is **not released on mainnet**.
-Everything on this page describes the Signet workspace; the notes marked "when enabled on
-mainnet" describe how the same features will behave if a release switches mainnet on.
+**Status.** Released on mainnet on 2026-09-26, and available on Signet for trying things
+without real value. What differs between the two networks is listed in
+[Signet and mainnet](#signet-and-mainnet): in short, on mainnet you pay every Bitcoin fee
+from your own wallet and asset Lightning is not offered yet.
 
 ## Before you start
 
@@ -28,8 +29,8 @@ mainnet" describe how the same features will behave if a release switches mainne
 | --- | --- |
 | Wallet | A **Taproot account**: an address starting `bc1p` on mainnet or `tb1p` on Signet. Other address types cannot own Taproot Assets here |
 | Sign in | You sign a short message with your wallet (BIP-322). It proves you control the address and **spends nothing** |
-| Network | Signet while acceptance is in progress. Signet coins have no value |
-| Bitcoin | Only when you choose to pay a Bitcoin fee yourself |
+| Network | Bitcoin mainnet, or Signet (coins with no value) |
+| Bitcoin | On mainnet, always: you pay the fee of every mint and send. On Signet, only when you choose to pay yourself |
 | Reversible? | Minting and published transfers are not |
 
 **Your key owns the asset.** Every asset you mint or receive here is locked to your
@@ -41,7 +42,7 @@ it and builds transactions, but it cannot move your asset without your wallet si
 | Section | What you do there |
 | --- | --- |
 | **Overview** | Check the service status and see which features are available right now |
-| **Mint** | Create a new asset, paid by Universe or paid from your wallet |
+| **Mint** | Create a new asset, paid from your wallet (and, on Signet, optionally paid by Universe) |
 | **Send** | Send units to one or several Taproot Assets addresses |
 | **Receive** | Create a Taproot Assets address and watch transfers arrive |
 | **Proofs** | Export the proof file of an asset you hold, or check any proof file |
@@ -53,7 +54,8 @@ sections and survive a reload.
 
 ## Mint an asset
 
-There are two ways to pay for a mint. Both lock the new asset to your key.
+There are two ways to pay for a mint. Both lock the new asset to your key. **On mainnet only
+the second one is offered**: Universe does not pay Bitcoin fees there.
 
 | | Paid by Universe | Mint and pay from your wallet |
 | --- | --- | --- |
@@ -105,6 +107,15 @@ your mind before approving, select **Cancel mint**: nothing is published.
 
 Universe never pays for, signs or moves this mint.
 
+### Mint through Composer
+
+The same wallet-paid mint can run as a Composer step. Prepare it in **Mint and pay from your
+wallet**, then give Composer the mint's job ID and its unsigned digest. Composer shows the
+same transaction, asks you to approve the session with a message signature, then to sign
+the transaction with your wallet, and publishes it through the same checks. A mint handed to
+Composer can only be finished there. Composer marks the step complete once the mint has six
+confirmations and its proof is valid.
+
 **How coins are chosen.** Inscribe runs the same asset check it uses everywhere else before
 it picks coins: outputs where the scan found an inscription, a rune or a token balance are
 never used, coins the scan proved to hold only bitcoin come first, and coins the scan could
@@ -124,7 +135,7 @@ node: asset name, ID, amount and the Bitcoin output that anchors it.
 
 ## Receive
 
-1. Open **Receive** and choose the asset (or its group) and the amount.
+1. Open **Receive** and choose the asset and the amount.
 2. Inscribe creates a **Taproot Assets address** for exactly that asset and amount. It is
    locked to your key. Copy it or show its QR code to the sender.
 3. Incoming transfers appear under your addresses with their state, including whether the
@@ -133,18 +144,24 @@ node: asset name, ID, amount and the Bitcoin output that anchors it.
 A Taproot Assets address is not a Bitcoin address. Do not send bitcoin to it, and do not use
 it for a different asset: Inscribe refuses a transfer to an address made for another asset.
 
+Addresses are always for one asset and a fixed amount. Group addresses where the sender
+picks the amount (version 2) are not offered, because receiving on them would need Universe's
+node to hold your key. You can still send to a version 2 address that someone created
+elsewhere.
+
 ## Send
 
 1. Open **Send**, paste one or more recipient Taproot Assets addresses and the units for
    each.
 2. Choose who pays the Bitcoin fee:
-   - **Paid by Universe.** Universe's node pays, up to a fee cap (5,000 satoshis by
-     default). The review shows the fee before you sign.
+   - **Paid by Universe** (Signet only). Universe's node pays, up to a fee cap (5,000
+     satoshis by default). The review shows the fee before you sign.
    - **From your wallet.** You pay the fee from confirmed bitcoin at your Taproot address.
      The same caution about coins applies as for minting.
 3. Review the transfer. Your change comes back to your own key. Other assets that happen to
    share the same Bitcoin output (passive assets) are carried over to a new output for you
-   automatically, so they are not lost.
+   automatically, so they are not lost. If that output also carries an asset that belongs to
+   someone else, the transfer is refused before anything is signed.
 4. **Sign and send.** Your wallet signs an asset transaction. It looks like an ordinary
    PSBT with one Taproot input from your address, but **the input amount is asset units,
    not bitcoin**. Signing moves only the units shown.
@@ -173,7 +190,8 @@ here.
 ## Asset Lightning
 
 Asset Lightning lets you receive and pay Lightning invoices using an asset instead of
-bitcoin. It is **hosted**: Universe keeps an asset balance for your wallet on its own
+bitcoin. It runs on **Signet only** for now: on mainnet the workspace shows it as
+unavailable until Universe has an approved Lightning peer there. It is **hosted**: Universe keeps an asset balance for your wallet on its own
 Lightning node. That balance is held by Universe, not by your wallet key, until you use it.
 
 **Receive into your balance**
@@ -206,10 +224,11 @@ anything new or invents a result.
 | Action | Your wallet signs | Bitcoin fee paid by | Can it be undone? |
 | --- | --- | --- | --- |
 | Sign in | A message | Nobody | Not applicable |
-| Mint, paid by Universe | An authorization message | Universe | Cancel before you approve. Not after |
+| Mint, paid by Universe (Signet) | An authorization message | Universe | Cancel before you approve. Not after |
 | Mint, paid from your wallet | The mint transaction | You | Cancel before you sign. Not after |
+| Mint through Composer | A session message, then the mint transaction | You | Cancel before you sign. Not after |
 | Receive address | Nothing | Nobody | Not applicable |
-| Send | An asset transaction, plus your fee inputs if you pay | Universe (capped) or you | Cancel before publishing. Not after |
+| Send | An asset transaction, plus your fee inputs if you pay | You on mainnet; you or Universe (capped) on Signet | Cancel before publishing. Not after |
 | Lightning payment | Nothing; you confirm the quote | Paid from your asset balance | No |
 
 ## Limits
@@ -220,7 +239,8 @@ anything new or invents a result.
 | Supply groups | Universe holds the group key. Only the wallet that created a group can mint more into it |
 | Funding coins for a self-paid mint | Up to 8 confirmed coins |
 | Asset commitment output | 1,000 satoshis |
-| Fee cap when Universe pays for a send | 5,000 satoshis by default |
+| Fee cap when Universe pays for a send (Signet) | 5,000 satoshis by default |
+| Receive addresses | One asset and a fixed amount (version 1) |
 | Proof file size to check | 1 MiB |
 | Units in one send | Some wallets refuse to sign above 2,100,000,000,000,000 units (the 21 million bitcoin limit), because the asset transaction shows units where bitcoin amounts normally go |
 
@@ -230,10 +250,17 @@ On **Signet**, all features on this page run against Universe's own Signet node.
 coins and assets have no value, which makes it the place to try a full mint, transfer and
 proof round trip.
 
-**When enabled on mainnet**, the same workspace will run against a separate Universe
-mainnet node, and assets and fees will be real. Minting and published transfers will be
-just as final. Mainnet is switched on by a release, not by opening the workspace; until the
-workspace names mainnet as its network, nothing you do there touches real bitcoin.
+On **mainnet** the workspace runs against a separate Universe mainnet node, and assets and
+fees are real. Minting and published transfers are final.
+
+| Feature | Mainnet | Signet |
+| --- | --- | --- |
+| Holdings, proofs, Universe records | Yes | Yes |
+| Receive (version 1 addresses) | Yes | Yes |
+| Mint paid from your wallet, directly or through Composer | Yes | Yes |
+| Send with the fee paid from your wallet | Yes | Yes |
+| Mint or send paid by Universe | No | Yes |
+| Asset Lightning | Not yet | Yes |
 
 ## Common problems
 
@@ -241,6 +268,7 @@ workspace names mainnet as its network, nothing you do there touches real bitcoi
 | --- | --- | --- |
 | *Connect a Taproot wallet* | The connected account is not a Taproot account | Switch to a `bc1p` or `tb1p` account |
 | A feature is unavailable in **Overview** | The service reports that part is not ready | Try again later. Other sections keep working |
+| *Universe does not pay network fees on this network* | Universe-paid fees are off here (always on mainnet) | Choose **I pay from this wallet** |
 | You cannot add supply to a group | The group was created by another wallet | Use the wallet that created the group |
 | *This address is for a different asset* | The receive address names another asset | Ask the recipient for an address for this asset |
 | The quote expired | Lightning quotes are valid only for a short time | Select **New quote** |
