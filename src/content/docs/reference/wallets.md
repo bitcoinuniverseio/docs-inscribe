@@ -45,6 +45,10 @@ Ordinals address, because that is where inscriptions live.
 When a wallet exposes only one address, that address is used for both jobs, and Inscribe
 does not pretend otherwise.
 
+The Taproot Assets workspace needs the active account to be a Taproot account (`bc1p`, or
+`tb1p` on Signet), because assets are locked to that account's key. See
+[Taproot Assets](/docs-inscribe/protocols/taproot-assets/).
+
 The rule the product holds itself to:
 
 > Payment addresses fund orders. Destination and recipient addresses receive assets. A
@@ -60,6 +64,7 @@ The rule the product holds itself to:
 | ARC-20 | A direct transaction to sign, with no payment-address step |
 | SRC-20 | Your wallet signs pre-built transactions |
 | TAP transfer | Two steps by protocol design |
+| Taproot Assets | A sign-in message, then per action: a message to approve a mint Universe pays for, or the transaction itself when you pay. A send adds a second signature when you pay its fee |
 
 For the parent flow, the prepared transaction is good for **15 minutes**. If the window
 lapses the order asks again rather than losing anything.

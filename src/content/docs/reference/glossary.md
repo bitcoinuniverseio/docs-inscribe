@@ -126,6 +126,21 @@ usage, the narrower sense is the one given.
 <dd>Claiming an amount of a token or rune that already exists.</dd>
 </dl>
 
+<dl class="glossary">
+<dt><strong>Taproot Assets</strong></dt>
+<dd>Tokens and collectibles issued on Bitcoin and recorded in Taproot outputs, locked to your Taproot account key. Not the same protocol as TAP.</dd>
+</dl>
+
+<dl class="glossary">
+<dt><strong>Proof file</strong></dt>
+<dd>The file that shows a Taproot Asset's history back to its mint. Holding the asset means holding its key and its proof file, so keep a copy.</dd>
+</dl>
+
+<dl class="glossary">
+<dt><strong>Taproot Assets address</strong></dt>
+<dd>An address for receiving one specific Taproot Asset and amount. It is not a Bitcoin address.</dd>
+</dl>
+
 ## Classification and safety
 
 <dl class="glossary">

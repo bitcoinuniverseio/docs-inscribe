@@ -23,6 +23,7 @@ provenance:
 | An inscription, or an output you hold | **Send Inscriptions** workspace |
 | A token balance | The Transfer form in that protocol workspace |
 | Part of a rune balance | The Runes workspace, which can split a balance across outputs |
+| A Taproot Assets balance | **Send** in the Taproot Assets workspace (not released on mainnet) |
 
 ## Which address signs
 
@@ -142,6 +143,10 @@ workspace balance view for token transfers.
 - **ARC-20** signs directly with your wallet, with no payment-address step.
 - **OP_DROP** transfers are funded wallet-only, and both funding and settlement go through
   the asset screening described above.
+- **Taproot Assets** are not TAP. They move to a Taproot Assets address rather than a
+  Bitcoin address, your wallet signs an asset transaction whose input amount is asset
+  units, and the Bitcoin fee is paid by Universe or by you. See
+  [Taproot Assets](/docs-inscribe/protocols/taproot-assets/).
 - **Bitmap and UNAT** are recorded in the registry as transferable, but Inscribe has **no
   creation or transfer workspace** for them. They appear in your portfolio and in the asset
   inventory for an output, and that is all. Move them with a tool that supports them.
