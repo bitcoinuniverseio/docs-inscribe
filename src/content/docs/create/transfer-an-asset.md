@@ -23,7 +23,7 @@ provenance:
 | An inscription, or an output you hold | **Send Inscriptions** workspace |
 | A token balance | The Transfer form in that protocol workspace |
 | Part of a rune balance | The Runes workspace, which can split a balance across outputs |
-| A Taproot Assets balance | **Send** in the Taproot Assets workspace (not released on mainnet) |
+| A Taproot Assets balance | **Send** in the Taproot Assets workspace |
 
 ## Which address signs
 
