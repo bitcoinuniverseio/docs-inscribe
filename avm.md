@@ -1,6 +1,6 @@
 # Atomicals Virtual Machine
 
-**Status:** AVM Studio can build, test and simulate every template. Contract transactions are being validated on Bitcoin Testnet4 and are not yet open on mainnet. Mainnet deployment and calls stay switched off until that validation and the mainnet readiness checks are complete.
+**Status:** AVM Studio can build, test and simulate every template. Contract transactions are being validated on Bitcoin Signet and are not yet open on mainnet. Mainnet deployment and calls stay switched off until that validation and the mainnet readiness checks are complete.
 
 AVM Studio and Guided use the existing Atomicals workspace. The intended flow is to choose a template, review its terms, compile a definition, register it, deploy an instance, then make authorized calls and read the resulting state and history.
 
