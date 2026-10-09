@@ -40,10 +40,11 @@ origin. The API relays only reviewed read paths to the private Mempool service,
 so wallet and payment screens never connect to an indexer or public explorer
 directly.
 
-Drops and OP_DROP additionally require two private, Universe-operated Bitcoin
-Core processes to agree on the finalized block hash. If either verifier is
-unavailable or disagrees, their readiness stays unavailable instead of falling
-back to a public blockchain provider.
+Drops and OP_DROP also require verified protocol and custody data. A source
+can answer a network request while the custody of its artifacts remains
+unresolved. Those records must stay unavailable until their verification
+succeeds. A reachable source alone does not establish that an artifact can
+be used.
 
 Their authoritative index also runs on a private, loopback-only MySQL 8.4 service.
 Database migration is prepared beside the active service from a consistent
@@ -117,6 +118,13 @@ address" appears only when every source answered.
 
 This applies per source. If only the Ordinals index is behind, your Mezcal,
 SRC-20 and OP_DROP balances are still real numbers from indexes that answered.
+SRC-20 balance reads need their own source to answer; a different protocol
+index cannot confirm those balances. An unavailable read does not mean the
+address holds zero tokens.
+
+A catalog can also omit a metric that its source does not measure. An unknown
+mint or transaction count is not zero and should not be used to compare token
+activity. Token supply, holder counts and activity counts are different facts.
 
 ## Getting back to an order you left
 
@@ -150,15 +158,17 @@ An order started before this list existed still appears, because its reference
 was already in the browser. Those entries carry no time and say so rather than
 showing an age that would be wrong.
 
-## When a release lands while your tab is open
+## When a screen cannot load
 
-Every screen in Inscribe loads as its own file, and a release replaces those
-files. A tab that has been open across a release asks for a file that is no
-longer on the server, and the screen you clicked does not open.
+Each screen loads additional application files. An older tab may ask for a
+file replaced by a release. A dropped connection or a temporary server error
+can also prevent a current file from loading, even when the page frame appears.
+A recovery message alone does not establish which of these happened.
 
-Inscribe recognises that and says so, rather than reporting a crash: a new
-version was released, reload to fetch it. A dropped connection produces the
-same failure and the same fix, so the message covers both.
+Reload once to fetch the current files. If the same failure returns, wait and
+try later. Data requests may fail independently after a screen opens; follow
+the notice beside the affected read. Retrying a read does not require a new
+order, payment, signature or broadcast.
 
 Nothing you started is lost by the reload. The orders this browser recorded are
 listed on Home when it comes back, and your wallet reconnects the way it did
