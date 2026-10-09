@@ -12,6 +12,14 @@ Universe Inscribe is a comprehensive workspace for creating, minting, managing, 
 
 This repository powers the visual, task-oriented learning platform that accompanies the Inscribe application. It transforms traditional static documentation into an active learning studio with deterministic simulations, interactive decision engines, real-time fee estimators, and verifiable walkthroughs.
 
+### Shared Ord provider verification
+
+Inscribe keeps its existing private Ord connection while Universe reuses one
+compatible Ord 0.29 provider. Verified status checks the executable version and
+hash of the actual remote native process before and after each status read.
+Unavailable or changed identity fails closed; forwarding does not conceal
+indexing lag or establish full-history readiness.
+
 ---
 
 ## Interactive Learning Surfaces
