@@ -1,10 +1,21 @@
 ---
-title: 'Live protocol data status'
-description: 'Where live data comes from, what health means, and how order recovery works.'
+title: "Live protocol data status"
+description: "Where live data comes from, what health means, and how order recovery works."
 category: reference
-lastVerified: 2026-09-25
+lastVerified: 2026-10-09
 ---
+
 # Protocol data status and recovery
+
+On 9 October 2026, the home page passed desktop and mobile loading checks.
+The BRC-20 page still failed because live fees were unavailable. This is a
+limited operational check, not full functional acceptance or a new release.
+The API repair remains a candidate awaiting required source and release checks.
+
+The candidate keeps live fee quotes for 30 seconds. If the source cannot
+refresh an expired quote, fees become unavailable until a fresh read succeeds.
+Each Bitcoin network keeps its own quote. These candidate changes are not yet
+deployed.
 
 Universe Inscribe keeps protocol construction tools separate from live discovery data. A provider problem in one protocol does not disable unrelated pages, wallet access, or inscription workflows.
 
@@ -68,16 +79,16 @@ mempool, from the last hour to the last 30 days. It reads only Universe-owned
 Bitcoin nodes, and every window fills in on its own: 1H can be complete while
 30D is still being read.
 
-| You see | It means |
-| --- | --- |
-| A number or a share | Measured from the blocks and waiting transactions read so far |
-| **0** or **0%** | The whole window was read and nothing of that kind was found |
-| **-** | That part has not been read yet, or the data is too old. It is not zero |
-| **≥3/14** | At least 3 of the 14 protocols seen so far; the window is still filling in |
-| **partial** | Only part of the window has been read so far |
-| **not current** | The last reading is shown with its time, but collection has fallen behind |
-| **Others** | Many small tokens grouped into one grey tile |
-| No volume figure | Economic volume needs each protocol's own records, so the map does not show a guess |
+| You see             | It means                                                                            |
+| ------------------- | ----------------------------------------------------------------------------------- |
+| A number or a share | Measured from the blocks and waiting transactions read so far                       |
+| **0** or **0%**     | The whole window was read and nothing of that kind was found                        |
+| **-**               | That part has not been read yet, or the data is too old. It is not zero             |
+| **≥3/14**           | At least 3 of the 14 protocols seen so far; the window is still filling in          |
+| **partial**         | Only part of the window has been read so far                                        |
+| **not current**     | The last reading is shown with its time, but collection has fallen behind           |
+| **Others**          | Many small tokens grouped into one grey tile                                        |
+| No volume figure    | Economic volume needs each protocol's own records, so the map does not show a guess |
 
 **Detected** next to the window means the map recognizes protocol payloads in
 transactions. It does not check token balances or whether a transfer was valid
@@ -181,3 +192,17 @@ memory.
 Some research protocols remain visible for documentation or controlled-network work while production actions stay disabled. Universe does not turn these features on merely to make a status page appear healthy. Mainnet writes require the protocol's network profile, independent authorization, authoritative index, transaction safety checks, and a verified readiness canary.
 
 CAT-20 transaction features remain fail-closed when the required Fractal data and signing dependencies are unavailable. A CAT tracker that is only catching up does not block minting. Market discovery reports that dependency state directly instead of returning a misleading empty market.
+
+## Contributor validation infrastructure, 9 October 2026
+
+The API repair candidate removes GitHub-hosted runner routing. Protected
+`main` and `develop` push, schedule and manual runs retain the existing
+self-hosted fleet. Same-repository pull requests and other branch runs require
+a separate isolated self-hosted pool. Existing fork pull-request guards remain
+in place; external fork code is not admitted by this change.
+
+The isolated pool is a provisioning prerequisite. Contributor validation is
+awaiting that pool, and the existing fleet was offline during the current
+read-only inventory. Source checks do not qualify a workflow run. All required
+build, test, security and release gates remain required at the accepted commit.
+No PR, deployment or workflow dispatch was performed for this routing change.
