@@ -110,6 +110,11 @@ missing from this page. Nothing you own has changed. Try again later.
 
 "No assets found for this address" appears only when every source answered.
 
+SRC-20 balances have their own data source. If that source cannot answer, an
+unavailable balance is not a zero balance. Check the notice for the affected
+source and try the read again later. Reconnecting your wallet does not repair
+a data-source outage.
+
 ### My wallet will not stay connected
 
 If you use UniSat, sessions are dropped rather than revived when the extension cannot
@@ -133,11 +138,17 @@ approving.
 
 ### The screen I clicked will not open
 
-A release landed while your tab was open, or your connection dropped. Both produce the same
-failure and the same fix.
+A screen loads its own application files. It may fail to open after a release,
+when your connection drops, or when the server temporarily cannot deliver a
+file. The page frame can load while the screen itself fails.
 
-**Reload.** Nothing you started is lost. Your orders are listed on Home and your wallet
-reconnects.
+**Reload once.** If the same recovery message or loading failure returns, wait
+and try again later. Repeated failures can be a service problem that reloading
+cannot clear.
+
+Your existing orders remain recoverable from Home or your saved recovery
+route. Reopening an order may ask your wallet to prove ownership again. If you
+have paid, do not create another order or pay again to work around the screen.
 
 ### A workspace is visible but refuses to act
 
