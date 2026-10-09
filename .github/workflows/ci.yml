@@ -19,7 +19,7 @@ jobs:
     # Fork pull requests must never reach the organisation-owned machines.
     # GitHub evaluates this condition before it assigns the job.
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
-    runs-on: ${{ contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') && fromJSON('["self-hosted","universe-runners-1"]') || 'ubuntu-24.04' }}
+    runs-on: ${{ contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') && fromJSON('["self-hosted","universe-runners-1"]') || fromJSON('["self-hosted","Linux","X64","universe-contributor-ephemeral"]') }}
     steps:
       - uses: actions/checkout@v4
         with:
