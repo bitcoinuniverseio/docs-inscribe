@@ -7,6 +7,11 @@ lastVerified: 2026-10-09
 
 # Protocol data status and recovery
 
+When BRC-20 transaction counts are unavailable, the list shows no activity
+ranks or featured token. Unknown counts stay separate from zero. On phones,
+swipe the table for more details; mint and page controls keep a larger touch
+area. Search, sorting, paging and mint selection remain available.
+
 On 9 October 2026, the home page passed desktop and mobile loading checks.
 The BRC-20 page still failed because live fees were unavailable. This is a
 limited operational check, not full functional acceptance or a new release.
