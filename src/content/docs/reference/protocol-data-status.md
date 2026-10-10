@@ -56,6 +56,10 @@ current data. A matching source that is still behind remains syncing. This
 update has passed source tests and a read-only check against the owned services;
 production adoption and full functional acceptance remain separate steps.
 
+The release can switch the known older provider configuration to its verified
+replacement after checking the installed source. It keeps the previous settings
+for rollback. A different or split source configuration refuses that migration.
+
 The Ord service reports the block height it has reached. `/api/health` carries
 that height, the chain tip, and the difference between them for each source, so
 the difference between "not answering," "answering without a readable chain
