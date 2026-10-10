@@ -40,11 +40,15 @@ Empty results are shown only after a healthy source confirms that no records mat
 The production service uses independently monitored sources for OP-20, Drops and OP_DROP, ARC-20 and Atomicals, TAP on Dogecoin, BLOCK-20, ChainBloom, DUST-20, and other enabled explorers. Each source has its own liveness, readiness, freshness, network, schema, and checkpoint checks.
 
 Bitcoin fee, transaction, address, and UTXO reads use the Universe-operated
-Mempool service on the shared Indexers server. Inscription, content, Rune, and
-BRC-20 reads use the private Ord service on that same server. Inscribe reaches
-both services through persistent private tunnels, so node and indexer ports are
-never exposed to the browser and public blockchain providers are not used as
-fallbacks.
+Mempool service. Inscription, content and Rune reads use the shared private Ord
+service. BRC-20 catalogs use their own protocol reader. Inscribe reaches these
+services through private transports, so node and indexer ports are never exposed
+to the browser and public blockchain providers are not used as fallbacks.
+
+On 10 October 2026, current fee quotes were available again. The Ord identity
+check was repaired after a verified native software update. Ord still needs to
+catch up, so actions that require current inscription or Rune data remain paused.
+These checks do not establish full functional acceptance.
 
 The Ord service reports the block height it has reached. `/api/health` carries
 that height, the chain tip, and the difference between them for each source, so
