@@ -50,6 +50,12 @@ check was repaired after a verified native software update. Ord still needs to
 catch up, so actions that require current inscription or Rune data remain paused.
 These checks do not establish full functional acceptance.
 
+The prepared direct-source update checks that Ord and the owned Bitcoin node
+agree on the indexed block, then repeats the observations before reporting
+current data. A matching source that is still behind remains syncing. This
+update has passed source tests and a read-only check against the owned services;
+production adoption and full functional acceptance remain separate steps.
+
 The Ord service reports the block height it has reached. `/api/health` carries
 that height, the chain tip, and the difference between them for each source, so
 the difference between "not answering," "answering without a readable chain
