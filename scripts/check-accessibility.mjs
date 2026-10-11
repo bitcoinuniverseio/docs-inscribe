@@ -74,6 +74,10 @@ for (const theme of ['light', 'dark']) {
     bypassCSP: true,
   });
   const page = await context.newPage();
+  // The runner host is shared, and axe keeps a core busy for seconds per page.
+  // Under contention one local navigation has taken longer than Playwright's
+  // 30 second default, which failed the whole audit before it audited anything.
+  page.setDefaultNavigationTimeout(120_000);
 
   for (const path of paths) {
     const res = await page.goto(`${ORIGIN}${path}`, { waitUntil: 'load' });
