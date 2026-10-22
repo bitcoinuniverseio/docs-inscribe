@@ -15,6 +15,11 @@ Empty results are shown only after a healthy source confirms that no records mat
 
 ## Live data architecture
 
+The shared application monitor checks that Core's API process responds and
+serves the expected release before considering a restart. A Bitcoin data-source
+outage still reports unavailable data and alerts operators. It does not restart
+a responding API or establish functional acceptance.
+
 The production service uses independently monitored sources for OP-20, Drops and OP_DROP, ARC-20 and Atomicals, TAP on Dogecoin, BLOCK-20, ChainBloom, DUST-20, and other enabled explorers. Each source has its own liveness, readiness, freshness, network, schema, and checkpoint checks.
 
 Bitcoin fee, transaction, address, and UTXO reads use the Universe-operated

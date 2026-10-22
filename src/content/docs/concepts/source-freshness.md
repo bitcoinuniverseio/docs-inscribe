@@ -14,6 +14,11 @@ Inscribe keeps protocol construction tools separate from live discovery data. A 
 problem in one protocol does not disable unrelated pages, wallet access, or inscription
 workflows.
 
+The shared monitor checks that Core's API responds and serves the expected
+release before considering a restart. A Bitcoin data-source outage still
+reports unavailable data and alerts operators. It does not restart a responding
+API or establish functional acceptance.
+
 The rule underneath every state on this page: **a source that did not answer is never
 reported as a source that answered with nothing.**
 
