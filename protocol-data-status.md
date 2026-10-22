@@ -167,3 +167,13 @@ CAT-20 transaction features remain fail-closed when the required Fractal data an
 The marketplace is scoped to one explicit chain at a time. Signet, Testnet, and Testnet4 share the same address prefix, so the app carries the chain you selected on every request instead of guessing from an address, and a request that names no chain is rejected rather than treated as Mainnet.
 
 Before a listing or purchase, the Ordinals authority for that chain must show the asset at its outpoint and the Bitcoin data authority must confirm your funding is unspent and yours. A quote holds the order for ten minutes and is never a sale until the signed transaction confirms and the asset is seen at your address.
+
+## Prepared availability update, 22 October 2026
+
+This update is prepared for review and has not been deployed. Home, legal pages and local inscription editing do not poll platform health. An unavailable dependency pauses only the actions that need it. File and text drafts stay editable while transaction checks are unavailable.
+
+Before creation or payment, the service still verifies chain data, current spendable inputs, safe funding classification, fees, saved order state and execution availability. Unknown funding safety pauses creation. Parent ownership, asset positions and Rune state need their own current evidence. A saved order remains readable through its private recovery link; a paused step must never ask for another payment. A loaded order does not by itself establish that it can resume.
+
+Operator-disabled tools disappear from creation menus and navigation. Their deep links explain: "This feature is not enabled in this deployment." They do not start protocol polling or wallet actions. Enabled independent read surfaces can remain available while transaction controls are disabled.
+
+BLOCK-20 checkpoint reads can remain available during a live provider outage. Dated results identify their block height and age, and transaction controls stay paused. The application must receive the checkpoint evidence before it claims dated availability; missing evidence is never replaced with an empty balance or a current-data claim.

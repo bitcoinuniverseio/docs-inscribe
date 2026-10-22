@@ -2,7 +2,7 @@
 title: "Live protocol data status"
 description: "Where live data comes from, what health means, and how order recovery works."
 category: reference
-lastVerified: 2026-10-09
+lastVerified: 2026-10-22
 ---
 
 # Protocol data status and recovery
@@ -225,3 +225,13 @@ awaiting that pool, and the existing fleet was offline during the current
 read-only inventory. Source checks do not qualify a workflow run. All required
 build, test, security and release gates remain required at the accepted commit.
 No PR, deployment or workflow dispatch was performed for this routing change.
+
+## Prepared availability update, 22 October 2026
+
+This update is prepared for review and has not been deployed. Home, legal pages and local inscription editing do not poll platform health. An unavailable dependency pauses only the actions that need it. File and text drafts stay editable while transaction checks are unavailable.
+
+Before creation or payment, the service still verifies chain data, current spendable inputs, safe funding classification, fees, saved order state and execution availability. Unknown funding safety pauses creation. Parent ownership, asset positions and Rune state need their own current evidence. A saved order remains readable through its private recovery link; a paused step must never ask for another payment. A loaded order does not by itself establish that it can resume.
+
+Operator-disabled tools disappear from creation menus and navigation. Their deep links explain: "This feature is not enabled in this deployment." They do not start protocol polling or wallet actions. Enabled independent read surfaces can remain available while transaction controls are disabled.
+
+BLOCK-20 checkpoint reads can remain available during a live provider outage. Dated results identify their block height and age, and transaction controls stay paused. The application must receive the checkpoint evidence before it claims dated availability; missing evidence is never replaced with an empty balance or a current-data claim.
