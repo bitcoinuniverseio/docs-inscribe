@@ -98,4 +98,4 @@ isolated sandbox.
 
 - [Where the data comes from](/docs-inscribe/concepts/source-freshness/)
 - [Asset safety](/docs-inscribe/concepts/asset-safety/)
-- [Speed and media](/docs-inscribe/about/performance-and-media/)
+- [Speed and media](/docs-inscribe/reference/performance-and-media/)

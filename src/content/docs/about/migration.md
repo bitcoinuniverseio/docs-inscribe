@@ -19,15 +19,15 @@ different questions.
 | Was | Is now |
 | --- | --- |
 | `README.md` | [The homepage](/docs-inscribe/), and [what Inscribe is](/docs-inscribe/start/what-inscribe-is/) |
-| `workspaces.md` | [Workspace map](/docs-inscribe/reference/workspaces/) |
+| `workspaces.md` | [Workspace map](/docs-inscribe/create/workspaces/) |
 | `what-it-costs.md` | [What a transaction costs](/docs-inscribe/concepts/what-it-costs/), with [fee tiers](/docs-inscribe/reference/fee-tiers/) split out as reference |
 | `asset-safety.md` | [Asset safety and UTXO classification](/docs-inscribe/concepts/asset-safety/) |
 | `protocol-data-status.md` | Split three ways: [where the data comes from](/docs-inscribe/concepts/source-freshness/), [orders you started](/docs-inscribe/manage/pending-orders/), and [failure states](/docs-inscribe/troubleshooting/failure-states/) |
-| `accessibility.md` | [Accessibility](/docs-inscribe/about/accessibility/) |
-| `performance-and-media.md` | [Speed and media](/docs-inscribe/about/performance-and-media/) |
-| `release-evidence.md` | [Release evidence](/docs-inscribe/about/release-evidence/) |
-| `social-previews.md` | [Link previews](/docs-inscribe/about/social-previews/) |
-| `admin-control-center.md` | [Control Center](/docs-inscribe/about/control-center/) |
+| `accessibility.md` | [Accessibility](/docs-inscribe/reference/accessibility/) |
+| `performance-and-media.md` | [Speed and media](/docs-inscribe/reference/performance-and-media/) |
+| `release-evidence.md` | [Release evidence](/docs-inscribe/reference/release-evidence/) |
+| `social-previews.md` | [Link previews](/docs-inscribe/reference/social-previews/) |
+| `admin-control-center.md` | [Control Center](/docs-inscribe/reference/admin-control-center/) |
 | `assets/two-addresses.svg` | Redrawn inline in [wallets and the two addresses](/docs-inscribe/concepts/wallets-and-addresses/) |
 | `assets/order-lifecycle.svg` | Redrawn inline in [the life of an order](/docs-inscribe/concepts/order-lifecycle/) |
 
