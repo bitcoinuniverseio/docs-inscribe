@@ -15,7 +15,7 @@ This is the changelog for **this documentation**, not for the Inscribe product.
 Inscribe itself is released continuously from verified commits and does not carry a version
 number to quote. What identifies a build is its commit, and the footer of every page in the
 app names the build you are looking at. See
-[release evidence](/docs-inscribe/about/release-evidence/).
+[release evidence](/docs-inscribe/reference/release-evidence/).
 
 ## 2026-09-25: mempool map
 
@@ -116,5 +116,5 @@ Every page from the previous structure has a new home. See
 
 ## Related
 
-- [Release evidence](/docs-inscribe/about/release-evidence/)
+- [Release evidence](/docs-inscribe/reference/release-evidence/)
 - [Status and lifecycle](/docs-inscribe/start/status/)

@@ -29,7 +29,7 @@ assets, from a first inscription to advanced transaction construction.
   started even after closing the tab.
 
 The full list is in the [coverage matrix](/docs-inscribe/protocols/coverage/) and the
-[workspace map](/docs-inscribe/reference/workspaces/).
+[workspace map](/docs-inscribe/create/workspaces/).
 
 ## Who it is for
 
@@ -78,7 +78,7 @@ The central platform is at
   and indexes, not public third-party APIs, so the data path is accountable end to end.
 - **Verifiable releases.** Every production release is built from an exact commit with
   recorded evidence, and the footer of every page names the build you are looking at.
-  [Release evidence](/docs-inscribe/about/release-evidence/).
+  [Release evidence](/docs-inscribe/reference/release-evidence/).
 
 ## What it deliberately does not do
 
@@ -104,4 +104,4 @@ cover every string, and falls back to English where it does not.
 
 - [Before you spend anything](/docs-inscribe/start/before-you-spend/)
 - [Status and lifecycle](/docs-inscribe/start/status/)
-- [Workspace map](/docs-inscribe/reference/workspaces/)
+- [Workspace map](/docs-inscribe/create/workspaces/)

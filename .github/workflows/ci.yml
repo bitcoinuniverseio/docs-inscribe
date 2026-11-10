@@ -19,7 +19,7 @@ jobs:
     # Fork pull requests must never reach the organisation-owned machines.
     # GitHub evaluates this condition before it assigns the job.
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
-    runs-on: [self-hosted, universe-runners-1]
+    runs-on: [self-hosted, Linux, X64, universe]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -38,7 +38,7 @@ jobs:
       - name: Machine-readable index exists
         run: test -s dist/llms.txt
       - name: Install a browser for audits
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install chromium
       - name: Accessibility and horizontal overflow audit
         run: npm run check:a11y
       - name: E2E and reflow audit

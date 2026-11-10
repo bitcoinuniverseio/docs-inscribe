@@ -168,7 +168,7 @@ rather than loading and refusing. A 404 there is a switched-off feature, not a b
 Settings carries display controls: High contrast, Large text, Reduced motion, Density,
 Enhanced focus rings, Screenshot safe, and Colour-blind safe.
 
-[Accessibility](/docs-inscribe/about/accessibility/).
+[Accessibility](/docs-inscribe/reference/accessibility/).
 
 ## Things that are not problems
 
