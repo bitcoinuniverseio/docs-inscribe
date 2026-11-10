@@ -38,7 +38,7 @@ jobs:
       - name: Machine-readable index exists
         run: test -s dist/llms.txt
       - name: Install a browser for audits
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install chromium
       - name: Accessibility and horizontal overflow audit
         run: npm run check:a11y
       - name: E2E and reflow audit
