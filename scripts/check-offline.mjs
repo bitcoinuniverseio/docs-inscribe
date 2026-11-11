@@ -10,8 +10,6 @@ import { readFile } from 'node:fs/promises'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const BASE = '/docs-inscribe'
-const PORT = 4399
-const ORIGIN = `http://localhost:${PORT}`
 const TYPES = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.webp': 'image/webp', '.svg': 'image/svg+xml', '.txt': 'text/plain', '.jsonl': 'application/jsonl' }
 
 const server = createServer(async (req, res) => {
@@ -34,7 +32,8 @@ const server = createServer(async (req, res) => {
     }
   }
 })
-await new Promise((resolveBind) => server.listen(PORT, resolveBind))
+await new Promise((resolveBind) => server.listen(0, '127.0.0.1', resolveBind))
+const ORIGIN = `http://localhost:${server.address().port}`
 
 const CACHED_ROUTES = [
   `${BASE}/safety/order-recovery/`,
