@@ -5,9 +5,16 @@ import { chromium } from 'playwright'
 import { spawn } from 'node:child_process'
 import { join, resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { createServer } from 'node:net'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
-const PORT = 4323
+// Runners share hosts, so a fixed port can hit another job's preview server.
+const PORT = await new Promise((done) => {
+  const probe = createServer().listen(0, '127.0.0.1', () => {
+    const { port } = probe.address()
+    probe.close(() => done(port))
+  })
+})
 const BASE = '/docs-inscribe'
 const server = spawn('node', [join(root, 'scripts', 'serve-dist.mjs')], { env: { ...process.env, PORT: String(PORT) }, stdio: 'ignore' })
 await new Promise((r) => setTimeout(r, 1500))
