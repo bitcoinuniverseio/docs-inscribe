@@ -1,0 +1,34 @@
+{
+  "walkthroughId": "vw-brc20-deploy",
+  "appCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+  "capturedAt": "2026-09-02T20:33:18.050Z",
+  "fixtureVersion": "1",
+  "steps": 3,
+  "altTexts": [
+    "The BRC-20 workspace with the deploy action selected",
+    "The deploy form fields for ticker, supply, and limit",
+    "The deploy quote and review before paying"
+  ],
+  "stepInstructions": [
+    "Open the brc20 workspace and choose Deploy. Ticker, supply, and mint limit are permanent once deployed.",
+    "Fill ticker, total supply, and per-mint limit. Indexers enforce ticker rules first come, first served.",
+    "Review the deploy cost. Deployment is one inscription: fee plus postage, with the service fee shown if it applies."
+  ],
+  "files": [
+    {
+      "path": "step-01.webp",
+      "sha256": "a7bfbbde5ce9489fdc7ba8d49bda6598dc00d4b4a36d027e606060d8323e7583",
+      "bytes": 39006
+    },
+    {
+      "path": "step-02.webp",
+      "sha256": "a7bfbbde5ce9489fdc7ba8d49bda6598dc00d4b4a36d027e606060d8323e7583",
+      "bytes": 39006
+    },
+    {
+      "path": "step-03.webp",
+      "sha256": "f8e2c8ec197e75468092c1606b079326e90f6e1141a2f646c9825baed6091790",
+      "bytes": 36758
+    }
+  ]
+}

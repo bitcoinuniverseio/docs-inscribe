@@ -1,0 +1,228 @@
+# Live protocol data status
+
+Where live data comes from, what health means, and how order recovery works.
+
+# Protocol data status and recovery
+
+When BRC-20 transaction counts are unavailable, the list shows no activity
+ranks or featured token. Unknown counts stay separate from zero. On phones,
+swipe the table for more details; mint and page controls keep a larger touch
+area. Search, sorting, paging and mint selection remain available.
+
+On 9 October 2026, the home page passed desktop and mobile loading checks.
+The BRC-20 page still failed because live fees were unavailable. This is a
+limited operational check, not full functional acceptance or a new release.
+The API repair remains a candidate awaiting required source and release checks.
+
+The candidate keeps live fee quotes for 30 seconds. If the source cannot
+refresh an expired quote, fees become unavailable until a fresh read succeeds.
+Each Bitcoin network keeps its own quote. These candidate changes are not yet
+deployed.
+
+Universe Inscribe keeps protocol construction tools separate from live discovery data. A provider problem in one protocol does not disable unrelated pages, wallet access, or inscription workflows.
+
+## What each state means
+
+- **Healthy** means the configured source is reachable, on the correct network, structurally valid, and within its freshness limit.
+- **Syncing** means a replacement index is being built and has not yet been promoted for production reads.
+- **Stale** means the last verified generation is available but is too old to be represented as current.
+- **Tip not verified** means the source answered and reported the block it reached, but the chain tip could not be read. How current its reads are cannot be checked until the comparison is available. Writes keep working.
+- **Unavailable** means the source cannot currently provide trustworthy data. This state is never presented as an authoritative empty result.
+- **Disabled by policy** means the protocol is intentionally unavailable because its production safety requirements have not been satisfied.
+
+Empty results are shown only after a healthy source confirms that no records match the request. Retry controls repeat read-only requests and never replay mint, transfer, deploy, signing, or broadcast actions.
+
+## Live data architecture
+
+The production service uses independently monitored sources for OP-20, Drops and OP_DROP, ARC-20 and Atomicals, TAP on Dogecoin, BLOCK-20, ChainBloom, DUST-20, and other enabled explorers. Each source has its own liveness, readiness, freshness, network, schema, and checkpoint checks.
+
+Bitcoin fee, transaction, address, and UTXO reads use the Universe-operated
+Mempool service. Inscription, content and Rune reads use the shared private Ord
+service. BRC-20 catalogs use their own protocol reader. Inscribe reaches these
+services through private transports, so node and indexer ports are never exposed
+to the browser and public blockchain providers are not used as fallbacks.
+
+On 10 October 2026, current fee quotes were available again. The Ord identity
+check was repaired after a verified native software update. Ord still needs to
+catch up, so actions that require current inscription or Rune data remain paused.
+These checks do not establish full functional acceptance.
+
+The prepared direct-source update checks that Ord and the owned Bitcoin node
+agree on the indexed block, then repeats the observations before reporting
+current data. A matching source that is still behind remains syncing. This
+update has passed source tests and a read-only check against the owned services;
+production adoption and full functional acceptance remain separate steps.
+
+The release can switch the known older provider configuration to its verified
+replacement after checking the installed source. It keeps the previous settings
+for rollback. A different or split source configuration refuses that migration.
+
+The Ord service reports the block height it has reached. `/api/health` carries
+that height, the chain tip, and the difference between them for each source, so
+the difference between "not answering," "answering without a readable chain
+tip," and "still reading older blocks" is visible rather than inferred.
+
+Browser fee, transaction, address, and UTXO requests stay on the Inscribe
+origin. The API relays only reviewed read paths to the private Mempool service,
+so wallet and payment screens never connect to an indexer or public explorer
+directly.
+
+Drops and OP_DROP also require verified protocol and custody data. A source
+can answer a network request while the custody of its artifacts remains
+unresolved. Those records must stay unavailable until their verification
+succeeds. A reachable source alone does not establish that an artifact can
+be used.
+
+Their authoritative index also runs on a private, loopback-only MySQL 8.4 service.
+Database migration is prepared beside the active service from a consistent
+snapshot, verified for the complete table set and custody rules, and promoted
+only with an exact release candidate. A database version label alone is never
+treated as protocol readiness.
+
+The Inscribe application database follows the same no-interruption rule. The
+serving MariaDB database keeps accepting writes while a private MySQL 8.4
+candidate is loaded and checked. Transactional change capture records the exact
+events present in the snapshot and uses committed replay receipts, so a retry
+cannot apply an acknowledged event twice. Traffic moves only after schema, row,
+health, drain, and smoke checks pass.
+
+Atomicals NFT and Realm browsing uses one unified generation so NFT, Realm, Subrealm, lookup, and resolver views agree at the same chain checkpoint. Drops and OP_DROP use one authoritative source for artifact and token state. BLOCK-20 reads are derived from a self-hosted Bitcoin Ordinals projection rather than an unbounded legacy worker.
+
+## Reading the mempool map
+
+The mempool map shows which protocols fill Bitcoin blocks and the waiting
+mempool, from the last hour to the last 30 days. It reads only Universe-owned
+Bitcoin nodes, and every window fills in on its own: 1H can be complete while
+30D is still being read.
+
+| You see             | It means                                                                            |
+| ------------------- | ----------------------------------------------------------------------------------- |
+| A number or a share | Measured from the blocks and waiting transactions read so far                       |
+| **0** or **0%**     | The whole window was read and nothing of that kind was found                        |
+| **-**               | That part has not been read yet, or the data is too old. It is not zero             |
+| **≥3/14**           | At least 3 of the 14 protocols seen so far; the window is still filling in          |
+| **partial**         | Only part of the window has been read so far                                        |
+| **not current**     | The last reading is shown with its time, but collection has fallen behind           |
+| **Others**          | Many small tokens grouped into one grey tile                                        |
+| No volume figure    | Economic volume needs each protocol's own records, so the map does not show a guess |
+
+**Detected** next to the window means the map recognizes protocol payloads in
+transactions. It does not check token balances or whether a transfer was valid
+under that protocol's rules.
+
+## What changes while a source is catching up or down
+
+Nothing in the app's top bar or banners announces it. The effect shows only
+where you read that source:
+
+- Reads from that source may be missing or out of date. Balances, token lists
+  and search results can trail the chain until the index reads the latest
+  blocks. A workspace can still say that a particular read failed.
+- Writes keep working. Minting, inscribing, etching, deploying, transferring
+  and every other write stay available, and none of them waits for an index.
+- When Inscribe picks outputs to pay fees, it never spends an output whose
+  inscriptions, runes or Atomicals it cannot verify. If an index has not
+  reached the block that created an output, that one output is skipped. Other
+  outputs still pay.
+- A feature an operator switched off is a different thing from a source that
+  is down, with a different fix.
+
+## What the portfolio shows while a source is down
+
+The portfolio reads several independent sources: the Bitcoin node for your
+balance, the Ordinals index for inscriptions and Runes, and separate indexes
+for Mezcal, SRC-20, OP_DROP and OP_RETURN names. One of them being down does
+not empty the page; the rest still answer and what they report is still shown.
+
+When a source does not answer, a notice above your holdings says that some of
+them could not be loaded, so they are missing from this page, and that nothing
+you own has changed.
+
+An empty portfolio is never presented as an answer while a source is silent.
+The page says that nothing was found in the sources that answered and that this
+is not a complete picture of what the address holds. "No assets found for this
+address" appears only when every source answered.
+
+This applies per source. If only the Ordinals index is behind, your Mezcal,
+SRC-20 and OP_DROP balances are still real numbers from indexes that answered.
+SRC-20 balance reads need their own source to answer; a different protocol
+index cannot confirm those balances. An unavailable read does not mean the
+address holds zero tokens.
+
+A catalog can also omit a metric that its source does not measure. An unknown
+mint or transaction count is not zero and should not be used to compare token
+activity. Token supply, holder counts and activity counts are different facts.
+
+## Getting back to an order you left
+
+![The life of a commit-address order. You see the full cost, you pay the commit
+address once, Universe detects the payment and broadcasts the reveal, and the
+reveal confirms. Closing the tab after paying does not lose the order. An order
+with no payment inside one hour expires.](../../assets/order-lifecycle.svg)
+
+Access to an order is a secret Inscribe keeps in the browser's memory and never
+writes to storage. That is what stops another site reading it, and it means a
+reload lets it go. Reopening an order asks your wallet to prove it owns the
+order before any payment detail is shown, or accepts an encrypted recovery kit
+if you saved one.
+
+Home lists the orders this browser started under "Orders you started in this
+browser", newest first, with the workflow, the order reference, and how long
+ago it was recorded. Opening one takes you to its status page, where the
+ownership check above runs. You can forget an entry at any time, and an order
+that finishes drops off on its own.
+
+The list is a set of references. It holds the order id, the workflow, and the
+time this browser saw it. It never holds the order secret, an address, an
+amount, or anything about your wallet, and it is not sent anywhere. It is kept
+to the 50 most recent orders and to 30 days.
+
+Because it cannot read an order without the secret, the list does not show a
+status. It tells you the order exists and how to reach it; the status page,
+after the ownership check, tells you where the order stands.
+
+An order started before this list existed still appears, because its reference
+was already in the browser. Those entries carry no time and say so rather than
+showing an age that would be wrong.
+
+## When a screen cannot load
+
+Each screen loads additional application files. An older tab may ask for a
+file replaced by a release. A dropped connection or a temporary server error
+can also prevent a current file from loading, even when the page frame appears.
+A recovery message alone does not establish which of these happened.
+
+Reload once to fetch the current files. If the same failure returns, wait and
+try later. Data requests may fail independently after a screen opens; follow
+the notice beside the affected read. Retrying a read does not require a new
+order, payment, signature or broadcast.
+
+Nothing you started is lost by the reload. The orders this browser recorded are
+listed on Home when it comes back, and your wallet reconnects the way it did
+before. Reopening an order still asks your wallet to prove it owns the order,
+as it does after any reload, because the order secret is only ever held in
+memory.
+
+## Safety gates
+
+Some research protocols remain visible for documentation or controlled-network work while production actions stay disabled. Universe does not turn these features on merely to make a status page appear healthy. Mainnet writes require the protocol's network profile, independent authorization, authoritative index, transaction safety checks, and a verified readiness canary.
+
+CAT-20 transaction features remain fail-closed when the required Fractal data and signing dependencies are unavailable. A CAT tracker that is only catching up does not block minting. Market discovery reports that dependency state directly instead of returning a misleading empty market.
+
+## Contributor validation infrastructure, 9 October 2026
+
+The API repair candidate removes GitHub-hosted runner routing. Protected
+`main` and `develop` push, schedule and manual runs retain the existing
+self-hosted fleet. Same-repository pull requests and other branch runs require
+a separate isolated self-hosted pool. Existing fork pull-request guards remain
+in place; external fork code is not admitted by this change.
+
+The isolated pool is a provisioning prerequisite. Contributor validation is
+awaiting that pool, and the existing fleet was offline during the current
+read-only inventory. Source checks do not qualify a workflow run. All required
+build, test, security and release gates remain required at the accepted commit.
+No PR, deployment or workflow dispatch was performed for this routing change.
+
+---
+Source: bitcoinuniverseio/docs-inscribe@8923af4dbfa4 (2026-11-11T07:57:27.666Z)
+Last verified: 2026-10-09

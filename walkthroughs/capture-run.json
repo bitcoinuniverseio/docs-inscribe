@@ -1,0 +1,243 @@
+{
+  "appCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+  "capturedAt": "2026-09-02T20:33:18.077Z",
+  "overviews": [
+    {
+      "workspace": "inscribe",
+      "path": "overviews/inscribe.webp",
+      "sha256": "e3c50cafa959daab0acfc72b2dc7843ce77e82776e0804ce5e56cdd825ece301"
+    },
+    {
+      "workspace": "stamps",
+      "path": "overviews/stamps.webp",
+      "sha256": "6cfa4c20e97d69350d8f843460c897fd3258e941143ef7254fda4d8b70ad9661"
+    },
+    {
+      "workspace": "brc20",
+      "path": "overviews/brc20.webp",
+      "sha256": "0d9808a68bd5f7997f80cf1bcfcc2e247d80251f2da1fb08c204c9df41b666bc"
+    },
+    {
+      "workspace": "src20",
+      "path": "overviews/src20.webp",
+      "sha256": "a2b714e3072be19a106fb2c8301365eee750d43a734f9f7b439eb449f04074d1"
+    },
+    {
+      "workspace": "runes",
+      "path": "overviews/runes.webp",
+      "sha256": "b55c1eb55938447259df956f3d07ae862a8d3e6c0552c765f623b242ab309e94"
+    },
+    {
+      "workspace": "mezcal",
+      "path": "overviews/mezcal.webp",
+      "sha256": "f3143aebb78d37ef403b3cf40b951fad1362dec020bcbe314475173e35a0ab3f"
+    },
+    {
+      "workspace": "tap",
+      "path": "overviews/tap.webp",
+      "sha256": "d783815ce6c07180438609f612e1b1a025e2640352057c9af8359ef15a50aeba"
+    },
+    {
+      "workspace": "op-return",
+      "path": "overviews/op-return.webp",
+      "sha256": "b495b82f4190d5c7ce7aef138c606ca75009471b27dd76e18bc081ab6cf551ad"
+    },
+    {
+      "workspace": "op-drop",
+      "path": "overviews/op-drop.webp",
+      "sha256": "c22345e39f43ac47775d2188d7ba0fbc540c8adc8da20033aba17e91a0146d8f"
+    },
+    {
+      "workspace": "alkanes",
+      "path": "overviews/alkanes.webp",
+      "sha256": "75c2c184d106fd6f980746cb0156af74cd1fd4538ea6eb72ffbae7151b866e37"
+    },
+    {
+      "workspace": "arc20",
+      "path": "overviews/arc20.webp",
+      "sha256": "687653f4a2a09188c281e395008f4f0e4ec0063288a0e5eb24ef64bfd1a127df"
+    },
+    {
+      "workspace": "block20",
+      "path": "overviews/block20.webp",
+      "sha256": "21bdb0670158faf69ca2a55c2b7dec12e3d86c4757d953be6668fb098f467369"
+    },
+    {
+      "workspace": "dust20",
+      "path": "overviews/dust20.webp",
+      "sha256": "01994bf2773715c4dcdfa1b3e87ee2c3996cf16dbd50811312ad67cfd8841d24"
+    },
+    {
+      "workspace": "inscription-transfer",
+      "path": "overviews/inscription-transfer.webp",
+      "sha256": "f35abd9eb8d97c63ca0fa3722dc004027e03a7ad87f041f44508413e846a2e4b"
+    }
+  ],
+  "walkthroughs": [
+    {
+      "id": "vw-ordinals-inscribe-text",
+      "steps": 6
+    },
+    {
+      "id": "vw-ordinals-inscribe-file",
+      "steps": 3
+    },
+    {
+      "id": "vw-brc20-deploy",
+      "steps": 3
+    },
+    {
+      "id": "vw-runes-etch",
+      "steps": 3
+    },
+    {
+      "id": "vw-order-lifecycle",
+      "steps": 4
+    },
+    {
+      "id": "vw-payment-recovery",
+      "steps": 3
+    },
+    {
+      "id": "vw-ordinals-inscribe",
+      "steps": 3
+    },
+    {
+      "id": "vw-ordinals-transfer",
+      "steps": 3
+    },
+    {
+      "id": "vw-stamps-inscribe",
+      "steps": 3
+    },
+    {
+      "id": "vw-stamps-inscribe-file",
+      "steps": 3
+    },
+    {
+      "id": "vw-brc20-mint",
+      "steps": 3
+    },
+    {
+      "id": "vw-brc20-transfer",
+      "steps": 3
+    },
+    {
+      "id": "vw-src20-deploy",
+      "steps": 3
+    },
+    {
+      "id": "vw-src20-mint",
+      "steps": 3
+    },
+    {
+      "id": "vw-src20-transfer",
+      "steps": 3
+    },
+    {
+      "id": "vw-runes-mint",
+      "steps": 3
+    },
+    {
+      "id": "vw-runes-transfer",
+      "steps": 3
+    },
+    {
+      "id": "vw-mezcal-etch",
+      "steps": 3
+    },
+    {
+      "id": "vw-mezcal-mint",
+      "steps": 3
+    },
+    {
+      "id": "vw-mezcal-transfer",
+      "steps": 3
+    },
+    {
+      "id": "vw-tap-deploy",
+      "steps": 3
+    },
+    {
+      "id": "vw-tap-mint",
+      "steps": 3
+    },
+    {
+      "id": "vw-tap-transfer",
+      "steps": 3
+    },
+    {
+      "id": "vw-op-return-inscribe",
+      "steps": 3
+    },
+    {
+      "id": "vw-op-return-inscribe-file",
+      "steps": 3
+    },
+    {
+      "id": "vw-op-return-deploy",
+      "steps": 3
+    },
+    {
+      "id": "vw-op-return-mint",
+      "steps": 3
+    },
+    {
+      "id": "vw-op-return-transfer",
+      "steps": 3
+    },
+    {
+      "id": "vw-op-drop-deploy",
+      "steps": 3
+    },
+    {
+      "id": "vw-op-drop-mint",
+      "steps": 3
+    },
+    {
+      "id": "vw-alkanes-mint",
+      "steps": 3
+    },
+    {
+      "id": "vw-arc20-deploy",
+      "steps": 3
+    },
+    {
+      "id": "vw-arc20-mint",
+      "steps": 3
+    },
+    {
+      "id": "vw-arc20-transfer",
+      "steps": 3
+    },
+    {
+      "id": "vw-block20-deploy",
+      "steps": 3
+    },
+    {
+      "id": "vw-block20-mint",
+      "steps": 3
+    },
+    {
+      "id": "vw-block20-transfer",
+      "steps": 3
+    },
+    {
+      "id": "vw-dust20-deploy",
+      "steps": 3
+    },
+    {
+      "id": "vw-dust20-mint",
+      "steps": 3
+    },
+    {
+      "id": "vw-ordinals-inscribe-batch",
+      "steps": 3
+    },
+    {
+      "id": "vw-ordinals-collection",
+      "steps": 3
+    }
+  ],
+  "undeclaredRequests": 105
+}

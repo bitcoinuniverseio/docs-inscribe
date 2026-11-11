@@ -1,0 +1,320 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-vdxcvpsm"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Other protocols | Inscribe</title><link rel="canonical" href="https://bitcoinuniverseio.github.io/docs-inscribe/protocols/other/"/><link rel="sitemap" href="/docs-inscribe/sitemap-index.xml"/><link rel="shortcut icon" href="/docs-inscribe/favicon.svg" type="image/svg+xml"/><meta name="generator" content="Astro v7.2.10"/><meta name="generator" content="Starlight v0.41.11"/><meta property="og:title" content="Other protocols"/><meta property="og:type" content="article"/><meta property="og:url" content="https://bitcoinuniverseio.github.io/docs-inscribe/protocols/other/"/><meta property="og:locale" content="en"/><meta property="og:description" content="DUST-20, ChainBloom, CAT-20, RGB, Taproot Assets and Spark, plus the workspaces in Inscribe that are not finished and are not documented as usable."/><meta property="og:site_name" content="Inscribe"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="DUST-20, ChainBloom, CAT-20, RGB, Taproot Assets and Spark, plus the workspaces in Inscribe that are not finished and are not documented as usable."/><script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","author":{"@type":"Organization","name":"Bitcoin Universe"},"publisher":{"@type":"Organization","name":"Bitcoin Universe"}}</script><script type="module">`serviceWorker`in navigator&&location.protocol===`https:`&&window.addEventListener(`load`,()=>{navigator.serviceWorker.register(`/docs-inscribe/sw.js`).catch(()=>{})});</script><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg><svg aria-hidden="true" class="dark astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg><svg aria-hidden="true" class="auto astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg></template><link rel="stylesheet" href="/docs-inscribe/_astro/print.ehPL0gv-.css" media="print"><link rel="stylesheet" href="/docs-inscribe/_astro/middleware.BlA4sMJx.css"><script type="module" src="/docs-inscribe/_astro/page.Dwipeu-R.js"></script><style>.sr-only:where(.astro-6ff75wwh){clip:rect(0, 0, 0, 0);white-space:nowrap;border:0;width:1px;height:1px;margin:-1px;padding:0;position:absolute;overflow:hidden}.alias:where(.astro-6ff75wwh){color:var(--bench-ink-muted);font-size:max(.6875rem,.75em);font-weight:400;font-family:var(--sl-font-mono);display:block}.op:where(.astro-6ff75wwh){border:1px solid var(--bench-accent-edge);background:var(--bench-accent-wash);color:var(--bench-accent);font-family:var(--sl-font-mono);border-radius:3px;margin:0 .25rem .25rem 0;padding:.05rem .45rem;font-size:max(.6875rem,.78em);font-weight:600;display:inline-block}td:where(.astro-6ff75wwh) code:where(.astro-6ff75wwh){white-space:nowrap}.chip:where(.astro-6ff75wwh){margin:0 .35rem .25rem 0}.none:where(.astro-6ff75wwh){color:var(--bench-ink-muted)}.shared:where(.astro-6ff75wwh){color:var(--bench-ink-muted);margin-top:.2rem;font-size:max(.6875rem,.75em);display:block}
+</style></head><body class="astro-vdxcvpsm"><a class="sl-skip-link astro-vxeigawq" href="#_top">Skip to content</a><div class="page sl-flex astro-gqpr5s5a"><header class="header astro-gqpr5s5a"><div class="header astro-nczgtkxc"><div class="title-wrapper sl-flex astro-nczgtkxc"><a href="/docs-inscribe/" class="site-title sl-flex astro-clw6ags5"><span class="astro-clw6ags5" translate="no">Inscribe</span></a></div><div class="sl-flex print:hidden astro-nczgtkxc"><site-search class="astro-nczgtkxc astro-r5ar4xm7" data-translations="{&quot;placeholder&quot;:&quot;Search&quot;}"><button data-open-modal disabled aria-label="Search" aria-keyshortcuts="Control+K" class="astro-r5ar4xm7"><svg aria-hidden="true" class="astro-r5ar4xm7 astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg><span class="sl-hidden md:sl-block astro-r5ar4xm7" aria-hidden="true">Search</span><kbd class="sl-hidden md:sl-flex astro-r5ar4xm7" style="display: none;"><kbd class="astro-r5ar4xm7">Ctrl</kbd><kbd class="astro-r5ar4xm7">K</kbd></kbd></button><dialog style="padding:0" aria-label="Search" class="astro-r5ar4xm7"><div class="dialog-frame sl-flex astro-r5ar4xm7"><button data-close-modal class="sl-flex md:sl-hidden astro-r5ar4xm7">Cancel</button><div class="search-container astro-r5ar4xm7"><div id="starlight__search" class="astro-r5ar4xm7"></div></div></div></dialog></site-search><script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script><script type="module" src="/docs-inscribe/_astro/Search.astro_astro_type_script_index_0_lang.CDDAEABP.js"></script></div><div class="sl-hidden md:sl-flex print:hidden right-group astro-nczgtkxc"><div class="sl-flex social-icons astro-nczgtkxc"><a href="https://github.com/bitcoinuniverseio/docs-inscribe" rel="me" class="sl-flex astro-cg55etiy"><span class="sr-only astro-cg55etiy">GitHub</span><svg aria-hidden="true" class="astro-cg55etiy astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a><a href="https://inscribe.bitcoinuniverse.io" rel="me" class="sl-flex astro-cg55etiy"><span class="sr-only astro-cg55etiy">Open Inscribe</span><svg aria-hidden="true" class="astro-cg55etiy astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M19.33 10.18a1 1 0 0 1-.77 0 1 1 0 0 1-.62-.93l.01-1.83-8.2 8.2a1 1 0 0 1-1.41-1.42l8.2-8.2H14.7a1 1 0 0 1 0-2h4.25a1 1 0 0 1 1 1v4.25a1 1 0 0 1-.62.93Z"/><path d="M11 4a1 1 0 1 1 0 2H7a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-4a1 1 0 1 1 2 0v4a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h4Z"/></svg></a></div><script type="module">var e=`inscribe-docs-theme`;if(!localStorage.getItem(e)){let e=window.matchMedia(`(prefers-color-scheme: dark)`).matches?`dark`:`light`;document.documentElement.dataset.theme=e}document.addEventListener(`change`,t=>{let n=t.target;n instanceof HTMLSelectElement&&n.dataset.themeSelect!==void 0&&localStorage.setItem(e,n.value)});</script><script type="module">var e=class extends HTMLElement{constructor(){super();let e=this.querySelector(`select`);e&&(e.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&(window.location.pathname=e.currentTarget.value)}),window.addEventListener(`pageshow`,t=>{if(!t.persisted)return;let n=e.querySelector(`option[selected]`)?.index;n!==e.selectedIndex&&(e.selectedIndex=n??0)}))}};customElements.define(`starlight-lang-select`,e);</script></div></div></header><nav class="sidebar print:hidden astro-gqpr5s5a" aria-label="Main"><starlight-menu-button class="print:hidden astro-vvx7mffu"><button aria-expanded="false" aria-label="Menu" aria-controls="starlight__sidebar" class="sl-flex md:sl-hidden astro-vvx7mffu"><svg aria-hidden="true" class="open-menu astro-vvx7mffu astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg><svg aria-hidden="true" class="close-menu astro-vvx7mffu astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="m13.41 12 6.3-6.29a1.004 1.004 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 0 1.42.998.998 0 0 0 1.42 0l6.29-6.3 6.29 6.3a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.42L13.41 12Z"/></svg></button></starlight-menu-button><script type="module">var e=class extends HTMLElement{btn=this.querySelector(`button`);constructor(){super(),this.btn.addEventListener(`click`,()=>this.toggleExpanded());let e=this.closest(`nav`);e&&e.addEventListener(`keyup`,e=>this.closeOnEscape(e)),matchMedia(`(min-width: 50em)`).addEventListener(`change`,()=>this.setExpanded(!1))}setExpanded(e){this.setAttribute(`aria-expanded`,String(e)),document.body.toggleAttribute(`data-mobile-menu-expanded`,e),document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}toggleExpanded(){this.setExpanded(this.getAttribute(`aria-expanded`)!==`true`)}closeOnEscape(e){e.code===`Escape`&&(this.setExpanded(!1),this.btn.focus())}};customElements.define(`starlight-menu-button`,e);</script><div id="starlight__sidebar" class="sidebar-pane astro-gqpr5s5a"><div class="sidebar-content sl-flex astro-gqpr5s5a"><sl-sidebar-state-persist data-hash="1ozydt6" class="astro-f5yvicm7"><script aria-hidden="true">
+		(() => {
+			try {
+				if (!matchMedia('(min-width: 50em)').matches) return;
+				/** @type {HTMLElement | null} */
+				const target = document.querySelector('sl-sidebar-state-persist');
+				const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || '0');
+				if (!target || !state || target.dataset.hash !== state.hash) return;
+				window._starlightScrollRestore = state.scroll;
+				customElements.define(
+					'sl-sidebar-restore',
+					class SidebarRestore extends HTMLElement {
+						connectedCallback() {
+							try {
+								const idx = parseInt(this.dataset.index || '');
+								const details = this.closest('details');
+								if (details && typeof state.open[idx] === 'boolean') details.open = state.open[idx];
+							} catch {}
+						}
+					}
+				);
+			} catch {}
+		})();
+	</script><ul class="top-level astro-ojxuodky"><li class="astro-ojxuodky"><details open class="astro-ojxuodky"><summary class="astro-ojxuodky"><span class="group-label astro-ojxuodky"><span class="large astro-ojxuodky">Start here</span></span><svg aria-hidden="true" class="caret astro-ojxuodky astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="0"></sl-sidebar-restore><ul class="astro-ojxuodky"><li class="astro-ojxuodky"><a href="/docs-inscribe/start/what-you-can-create" class="astro-ojxuodky"><span class="astro-ojxuodky">What you can create</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/guided/" class="astro-ojxuodky"><span class="astro-ojxuodky">Guided plan</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/practice/" class="astro-ojxuodky"><span class="astro-ojxuodky">Practice without spending</span></a></li></ul></details></li><li class="astro-ojxuodky"><details open class="astro-ojxuodky"><summary class="astro-ojxuodky"><span class="group-label astro-ojxuodky"><span class="large astro-ojxuodky">Create</span></span><svg aria-hidden="true" class="caret astro-ojxuodky astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="1"></sl-sidebar-restore><ul class="astro-ojxuodky"><li class="astro-ojxuodky"><a href="/docs-inscribe/create/first-inscription" class="astro-ojxuodky"><span class="astro-ojxuodky">First inscription</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/create/what-it-costs" class="astro-ojxuodky"><span class="astro-ojxuodky">Cost anatomy</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/create/workspaces" class="astro-ojxuodky"><span class="astro-ojxuodky">Workspace map</span></a></li></ul></details></li><li class="astro-ojxuodky"><details open class="astro-ojxuodky"><summary class="astro-ojxuodky"><span class="group-label astro-ojxuodky"><span class="large astro-ojxuodky">Decide</span></span><svg aria-hidden="true" class="caret astro-ojxuodky astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="2"></sl-sidebar-restore><ul class="astro-ojxuodky"><li class="astro-ojxuodky"><a href="/docs-inscribe/labs/protocols/" class="astro-ojxuodky"><span class="astro-ojxuodky">Protocol Decision Lab</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/labs/transaction-review/" class="astro-ojxuodky"><span class="astro-ojxuodky">Transaction Review Lab</span></a></li></ul></details></li><li class="astro-ojxuodky"><details open class="astro-ojxuodky"><summary class="astro-ojxuodky"><span class="group-label astro-ojxuodky"><span class="large astro-ojxuodky">Visual guides</span></span><svg aria-hidden="true" class="caret astro-ojxuodky astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="3"></sl-sidebar-restore><ul class="astro-ojxuodky"><li class="astro-ojxuodky"><a href="/docs-inscribe/visual-guides/" class="astro-ojxuodky"><span class="astro-ojxuodky">Walkthrough library</span></a></li></ul></details></li><li class="astro-ojxuodky"><details open class="astro-ojxuodky"><summary class="astro-ojxuodky"><span class="group-label astro-ojxuodky"><span class="large astro-ojxuodky">Safety</span></span><svg aria-hidden="true" class="caret astro-ojxuodky astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="4"></sl-sidebar-restore><ul class="astro-ojxuodky"><li class="astro-ojxuodky"><a href="/docs-inscribe/safety/asset-safety" class="astro-ojxuodky"><span class="astro-ojxuodky">Asset and UTXO safety</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/safety/order-recovery" class="astro-ojxuodky"><span class="astro-ojxuodky">Recovery guide</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/recovery/navigator/" class="astro-ojxuodky"><span class="astro-ojxuodky">Recovery Navigator</span></a></li></ul></details></li><li class="astro-ojxuodky"><details open class="astro-ojxuodky"><summary class="astro-ojxuodky"><span class="group-label astro-ojxuodky"><span class="large astro-ojxuodky">Reference</span></span><svg aria-hidden="true" class="caret astro-ojxuodky astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="5"></sl-sidebar-restore><ul class="astro-ojxuodky"><li class="astro-ojxuodky"><a href="/docs-inscribe/reference/protocol-data-status" class="astro-ojxuodky"><span class="astro-ojxuodky">Live data status</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/reference/accessibility" class="astro-ojxuodky"><span class="astro-ojxuodky">Accessibility</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/reference/performance-and-media" class="astro-ojxuodky"><span class="astro-ojxuodky">Performance and media</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/reference/release-evidence" class="astro-ojxuodky"><span class="astro-ojxuodky">Release evidence</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/reference/agent-surfaces" class="astro-ojxuodky"><span class="astro-ojxuodky">For agents and LLMs</span></a></li></ul></details></li></ul><script aria-hidden="true">
+		(() => {
+			const scroller = document.getElementById('starlight__sidebar');
+			if (!window._starlightScrollRestore || !scroller) return;
+			scroller.scrollTop = window._starlightScrollRestore;
+			delete window._starlightScrollRestore;
+		})();
+	</script></sl-sidebar-state-persist><div class="md:sl-hidden"><div class="mobile-preferences sl-flex astro-b5gddk54"><div class="social-icons astro-b5gddk54"><a href="https://github.com/bitcoinuniverseio/docs-inscribe" rel="me" class="sl-flex astro-cg55etiy"><span class="sr-only astro-cg55etiy">GitHub</span><svg aria-hidden="true" class="astro-cg55etiy astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a><a href="https://inscribe.bitcoinuniverse.io" rel="me" class="sl-flex astro-cg55etiy"><span class="sr-only astro-cg55etiy">Open Inscribe</span><svg aria-hidden="true" class="astro-cg55etiy astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M19.33 10.18a1 1 0 0 1-.77 0 1 1 0 0 1-.62-.93l.01-1.83-8.2 8.2a1 1 0 0 1-1.41-1.42l8.2-8.2H14.7a1 1 0 0 1 0-2h4.25a1 1 0 0 1 1 1v4.25a1 1 0 0 1-.62.93Z"/><path d="M11 4a1 1 0 1 1 0 2H7a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-4a1 1 0 1 1 2 0v4a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h4Z"/></svg></a></div></div></div></div></div></nav><div class="main-frame astro-gqpr5s5a"><script type="module">var e=document.getElementById(`starlight__sidebar`),t=e?.querySelector(`sl-sidebar-state-persist`),n=`sl-sidebar-state`,r=()=>{let r=[],i=t?.dataset.hash||``;try{let e=sessionStorage.getItem(n),t=JSON.parse(e||`{}`);Array.isArray(t.open)&&t.hash===i&&(r=t.open)}catch{}return{hash:i,open:r,scroll:e?.scrollTop||0}},i=e=>{try{sessionStorage.setItem(n,JSON.stringify(e))}catch{}},a=()=>i(r()),o=(e,t)=>{let n=r();n.open[t]=e,i(n)};t?.addEventListener(`click`,e=>{if(!(e.target instanceof Element))return;let t=e.target.closest(`summary`)?.closest(`details`);if(!t)return;let n=t.querySelector(`sl-sidebar-restore`),r=parseInt(n?.dataset.index||``);isNaN(r)||o(!t.open,r)}),addEventListener(`visibilitychange`,()=>{document.visibilityState===`hidden`&&a()});</script><div class="lg:sl-flex astro-abfeecmu"><aside class="right-sidebar-container print:hidden astro-abfeecmu"><div class="right-sidebar astro-abfeecmu"><div class="lg:sl-hidden astro-q5mffni3"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-5ulgm6bh"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-5ulgm6bh"><details id="starlight__mobile-toc" class="astro-5ulgm6bh"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-5ulgm6bh"><span class="toggle sl-flex astro-5ulgm6bh">On this page<svg aria-hidden="true" class="caret astro-5ulgm6bh astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></span><span class="display-current astro-5ulgm6bh"></span></summary><div class="dropdown astro-5ulgm6bh"><ul class="isMobile astro-cxyftcne" style="--depth: 0;"><li style="--depth: 0;" class="astro-cxyftcne"><a href="#_top" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Overview</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#dust-20" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">DUST-20</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#chainbloom" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">ChainBloom</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#cat-20" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">CAT-20</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#rgb" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">RGB</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#rgb-and-fiber" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">RGB++ and Fiber</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#nostr-studio" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Nostr Studio</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#taproot-assets" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Taproot Assets</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#workspaces-that-are-not-finished" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Workspaces that are not finished</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#related" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Related</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#spark" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Spark</span></a></li></ul></div></details></nav></mobile-starlight-toc><script type="module" src="/docs-inscribe/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.BcSo_yiZ.js"></script></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-q5mffni3"><div class="sl-container astro-q5mffni3"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-cxyftcne" style="--depth: 0;"><li style="--depth: 0;" class="astro-cxyftcne"><a href="#_top" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Overview</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#dust-20" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">DUST-20</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#chainbloom" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">ChainBloom</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#cat-20" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">CAT-20</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#rgb" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">RGB</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#rgb-and-fiber" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">RGB++ and Fiber</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#nostr-studio" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Nostr Studio</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#taproot-assets" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Taproot Assets</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#workspaces-that-are-not-finished" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Workspaces that are not finished</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#related" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Related</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#spark" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Spark</span></a></li></ul></nav></starlight-toc><script type="module" src="/docs-inscribe/_astro/TableOfContents.astro_astro_type_script_index_0_lang.Csloo1VZ.js"></script></div></div></div></aside><div class="main-pane astro-abfeecmu"><main data-pagefind-body class="astro-vdxcvpsm" lang="en" dir="ltr"><div class="content-panel astro-oil7k7jf"><div class="sl-container astro-oil7k7jf"><h1 id="_top"></h1></div></div><div class="content-panel astro-oil7k7jf"><div class="sl-container astro-oil7k7jf"><div class="sl-markdown-content"><p>Protocols that do not sit in one of the larger families.</p>
+<div class="table-scroll astro-6ff75wwh" tabindex="0" role="region" aria-label="3 protocols in this family"><table class="astro-6ff75wwh"><caption class="sr-only astro-6ff75wwh">3 protocols in this family</caption><thead class="astro-6ff75wwh"><tr class="astro-6ff75wwh"><th scope="col" class="astro-6ff75wwh">Protocol</th><th scope="col" class="astro-6ff75wwh">Chain</th><th scope="col" class="astro-6ff75wwh">Creation operations</th><th scope="col" class="astro-6ff75wwh">Released</th><th scope="col" class="astro-6ff75wwh">Workspace</th></tr></thead><tbody class="astro-6ff75wwh"><tr class="astro-6ff75wwh"><th scope="row" class="astro-6ff75wwh">CAT-20<span class="alias astro-6ff75wwh">cat, cat-20</span></th><td class="astro-6ff75wwh">Bitcoin</td><td class="astro-6ff75wwh"><span class="op astro-6ff75wwh">mint</span></td><td class="astro-6ff75wwh"><span class="chip chip-no astro-6ff75wwh">Not released</span></td><td class="astro-6ff75wwh"><code class="astro-6ff75wwh">/cat20</code></td></tr><tr class="astro-6ff75wwh"><th scope="row" class="astro-6ff75wwh">ChainBloom<span class="alias astro-6ff75wwh">chain-bloom</span></th><td class="astro-6ff75wwh">Bitcoin</td><td class="astro-6ff75wwh"><span class="op astro-6ff75wwh">inscribe</span></td><td class="astro-6ff75wwh"><span class="chip chip-yes astro-6ff75wwh">Released</span><span class="chip chip-gated astro-6ff75wwh">A build must switch it on</span></td><td class="astro-6ff75wwh"><code class="astro-6ff75wwh">/chainbloom</code></td></tr><tr class="astro-6ff75wwh"><th scope="row" class="astro-6ff75wwh">DUST-20<span class="alias astro-6ff75wwh">dust-20</span></th><td class="astro-6ff75wwh">Bitcoin</td><td class="astro-6ff75wwh"><span class="op astro-6ff75wwh">deploy</span><span class="op astro-6ff75wwh">mint</span><span class="op astro-6ff75wwh">transfer</span></td><td class="astro-6ff75wwh"><span class="chip chip-yes astro-6ff75wwh">Released</span></td><td class="astro-6ff75wwh"><code class="astro-6ff75wwh">/dust20</code></td></tr></tbody></table></div>
+<div class="sl-heading-wrapper level-h2"><h2 id="dust-20">DUST-20</h2><a class="sl-anchor-link" href="#dust-20"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “DUST-20”</span></a></div>
+<p>Deploy, mint and transfer, with one idea at its centre: <strong>the mint output satoshi value
+encodes the amount</strong>. The value of the output is not padding, it is data.</p>
+<p>That makes the output size a protocol matter rather than a preference, so do not treat the
+546 and 330 satoshi choices here the way you would on an ordinary inscription.</p>
+<p>Workspace: <code dir="auto">/dust20</code>. Released.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="chainbloom">ChainBloom</h2><a class="sl-anchor-link" href="#chainbloom"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “ChainBloom”</span></a></div>
+<p><strong>Inscribe only.</strong> A shared world grown one contribution at a time, where each contribution
+is an inscription.</p>
+<p>ChainBloom is one of the flows that chooses funding outputs on your behalf, so its fee
+inputs pass through the asset screening described in
+<a href="/docs-inscribe/concepts/asset-safety/">asset safety</a>.</p>
+<p>Workspace: <code dir="auto">/chainbloom</code>. Released, and a deployment must switch it on.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="cat-20">CAT-20</h2><a class="sl-anchor-link" href="#cat-20"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “CAT-20”</span></a></div>
+<p><strong>Not released.</strong> CAT-20 is a covenant token protocol on <strong>Fractal Bitcoin</strong>, a separate
+chain from Bitcoin. It is not the FAIR CAT-20 standard on Bitcoin. The <code dir="auto">/cat20</code> workspace
+asks you to choose Fractal Mainnet or Fractal Testnet, and never mixes the two.
+Direct token links can name the chain with <code dir="auto">/cat20/&#x3C;token-id>?network=fractal-testnet</code>.</p>
+<p>The workspace has three views. <strong>Explore</strong> searches tokens by name, ticker or the full
+token ID. <strong>My tokens</strong> lists the CAT-20 balances of your connected Fractal wallet.
+<strong>Activity</strong> keeps every order you created on this device, with its status and recovery.
+From a token page or a balance you can:</p>
+<ul>
+<li><strong>Create token.</strong> Deploy a new token with a name, ticker, decimals, maximum supply and
+mint limit. You can reserve an optional premine for your own wallet.</li>
+<li><strong>Premine.</strong> The deploying wallet issues its reserved premine before public minting opens.</li>
+<li><strong>Mint.</strong> Mint up to the token’s per-mint limit.</li>
+<li><strong>Send.</strong> Send to up to three recipients in one transaction.</li>
+<li><strong>Burn.</strong> Destroy part or all of a balance. You must confirm separately that a burn
+cannot be undone.</li>
+</ul>
+<p>What the protocol allows, and what Inscribe therefore enforces:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="u-table-scroll" tabindex="0" role="region" aria-label="Table, scrollable"><table><thead><tr><th>Limit</th><th>Value</th></tr></thead><tbody><tr><td>Decimals when creating a token</td><td>0 to 9</td></tr><tr><td>Largest amount in one output</td><td>2,147,483,647 base units</td></tr><tr><td>Maximum supply and premine</td><td>Whole multiples of the mint limit</td></tr><tr><td>Token inputs per transaction</td><td>Up to 4</td></tr><tr><td>Recipients per send</td><td>Up to 3, plus your change</td></tr></tbody></table></div>
+<p>Each action shows a review before your wallet signs. The review lists every transaction
+in the order, what each one spends and creates, and its fee. Your wallet signs; Inscribe
+never holds your key. Before any transaction is sent, Inscribe rebuilds each one from the
+reviewed plan and rejects signed bytes that differ from it.</p>
+<p>An order reported as broadcast has only been submitted. Confirmation and CAT-20 indexing
+are checked separately, so a submitted transfer is not yet a credited balance. An encrypted
+recovery kit restores access to your orders after a reload; connecting a wallet alone does
+not.</p>
+<p>Inscribe builds and checks every transaction against Universe’s own Fractal node, CAT-20
+tracker and funding inventory. If it cannot verify what a transaction spends, it refuses
+to build it and says why when you try. A CAT tracker that is only catching up does not
+block minting. Universe does not use third-party Fractal data
+services, including as a fallback.</p>
+<p>Workspaces: <code dir="auto">/cat20</code> and <code dir="auto">/fractal</code>. Both are <strong>not released</strong> on Fractal Mainnet.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="rgb">RGB</h2><a class="sl-anchor-link" href="#rgb"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “RGB”</span></a></div>
+<p><strong>Not released.</strong> RGB keeps asset state off chain, in a private stock that only the
+owner holds; Bitcoin carries a commitment to each state change inside an ordinary
+transaction. An unreleased repair candidate runs RGB through a Universe-operated
+companion (rgb-api 0.11.1, the stable RGB line) rather than in the browser or with an
+in-memory stand-in.</p>
+<p>What the candidate does, on Bitcoin Signet:</p>
+<ul>
+<li>Issues NIA, CFA, UDA, IFA and PFA contracts and imports contracts other people issue.</li>
+<li>Creates invoices, prepares transfers and returns the witness transaction as a PSBT.
+<strong>Your wallet signs it</strong>; the companion never holds a Bitcoin key. The signed
+transaction is accepted only when its id matches the reviewed PSBT.</li>
+<li>Validates and accepts consignments natively and records an acceptance receipt the
+sender can attach to the transfer.</li>
+<li>Backs the companion stock up as an encrypted envelope (AES-256-GCM, bound to your
+wallet and chain) in the hosted vault, and restores it after device loss.</li>
+</ul>
+<p>Two limits are stated rather than hidden: PFA transfers need an issuer signature the
+candidate does not collect yet, so they are reported unavailable; and a transfer is only
+complete after its witness confirms and the recipient accepts, so a broadcast on its own
+never counts.</p>
+<p>Workspace: <code dir="auto">/rgb</code>. Not released. Mainnet execution requires an explicit operator
+authorization and has not run; this candidate does not establish a deployed release.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="rgb-and-fiber">RGB++ and Fiber</h2><a class="sl-anchor-link" href="#rgb-and-fiber"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “RGB++ and Fiber”</span></a></div>
+<p><strong>Not released on mainnet.</strong> RGB++ binds an asset cell on Nervos CKB to a Bitcoin UTXO: a
+Bitcoin transaction carries the commitment, the CKB side is unlocked with a Bitcoin SPV proof.
+Fiber is a Lightning-style payment channel network on CKB. An unreleased candidate replaces
+the earlier non-functional workspace with native execution on the pinned rgbpp-sdk 0.7.4 and Fiber v0.9.1.</p>
+<p>What the candidate does, on the Bitcoin Testnet3 + CKB Pudge tuple:</p>
+<ul>
+<li>Reads the RGB++ assets bound to your Bitcoin address and verifies a binding on both chains
+(Bitcoin confirmation, CKB cell, lock and type match, SPV proof availability).</li>
+<li>Issues xUDT and Spore assets, sends assets on Bitcoin and leaps them to CKB and back. The
+operator funds the CKB launch cell and acts as paymaster; <strong>your wallet signs the Bitcoin
+transaction</strong> and the API accepts the signed transaction only when it equals the reviewed
+plan. A BTC→CKB leap becomes spendable on CKB after six Bitcoin confirmations (the RGB++
+BTC time lock); the bridge view shows that maturity and nothing else is invented.</li>
+<li>Opens and closes Fiber channels from the Universe node, creates and pays node-encoded
+invoices, reads settlement from the node, and lists uncooperative closes with their CKB
+settlement transaction. Cross-chain hub orders (Lightning ↔ Fiber) are created by the node
+and refund by HTLC timeout when they fail.</li>
+</ul>
+<p>Every operation is persisted per wallet and network with an idempotency key, so a reload or
+reconnect resumes it from Bitcoin, CKB and Fiber readback rather than from memory.</p>
+<p>Workspace: <code dir="auto">/rgbpp-fiber</code>. Not released. Mainnet needs Universe-owned CKB, Fiber and RGB++
+proof services that do not exist yet; the deployed health route names that blocker instead of
+reporting readiness.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="nostr-studio">Nostr Studio</h2><a class="sl-anchor-link" href="#nostr-studio"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Nostr Studio”</span></a></div>
+<p><strong>Released on mainnet, 17 September 2026.</strong> Nostr is a relay protocol for signed messages:
+your key signs an event in the browser, a relay stores it, and other people read it back.
+The Studio (<code dir="auto">/nostr</code>) runs against a Universe-owned relay and a Universe-owned Lightning node;
+no third-party relay or payment service sits in the path.</p>
+<p>What it does:</p>
+<ul>
+<li><strong>Identity.</strong> Generate or import a key (it stays in this browser’s session storage) or use a
+NIP-07 signer extension. Publish a profile, a relay list and an inbox relay list; verify a
+NIP-05 address against its domain.</li>
+<li><strong>Publishing.</strong> Notes, long-form articles and classified listings, each signed in the page.
+An event counts only after the relay acknowledges it and the Studio reads the exact bytes
+back; the receipt says <code dir="auto">published</code>, <code dir="auto">reconciled</code> (already held) or <code dir="auto">superseded</code> (the relay
+keeps another version of a replaceable event).</li>
+<li><strong>Messages.</strong> Private messages as NIP-17 gift wraps encrypted in the browser (NIP-44 v2); a
+copy is wrapped for you so the conversation survives a reload. Decryption uses your local
+key or your extension; the server never sees plaintext.</li>
+<li><strong>Lightning.</strong> Claim a Lightning address (<code dir="auto">name@inscribe.bitcoinuniverse.io</code>), receive zaps
+(NIP-57 receipts are signed by the Studio’s zap signer after the owned node settles the
+invoice), pay for a listing with an invoice bound to your order, connect a wallet through
+Nostr Wallet Connect (NIP-47) with a daily budget, and let the Studio zap an author’s new
+notes automatically.</li>
+</ul>
+<p>What it does not do: a receipt proves the relay holds what you signed, never that a statement
+is true. Wallet Connect budgets and auto-zap rules spend from the owned node’s ledger; the
+node’s own liquidity, not a promise, decides whether a payment to the outside can be routed.
+Health (<code dir="auto">/api/nostr/health</code>) reports the relay, database, node and worker state separately
+and is READY only when all four are.</p>
+<p>Workspace: <code dir="auto">/nostr</code>. Route contract and acceptance evidence: the <code dir="auto">docs/nostr-domain-routes.md</code>
+and <code dir="auto">docs/repair-nostr-20260917.md</code> files of the application repository.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="taproot-assets">Taproot Assets</h2><a class="sl-anchor-link" href="#taproot-assets"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Taproot Assets”</span></a></div>
+<p><strong>Released on mainnet</strong> on 2026-09-26. Taproot Assets are tokens and collectibles issued
+on Bitcoin, recorded in Taproot outputs and carried with a proof file. With a Taproot wallet
+you can mint (paid from your own wallet, directly or through Composer), hold, receive, send
+and prove assets and browse issuance records. On Signet, mints and sends can also be paid by
+Universe, and you can pay Lightning invoices from a hosted asset balance; asset Lightning is
+not offered on mainnet yet. Every asset is locked to your wallet’s key, and nothing is
+published before you approve it.</p>
+<p>Workspace: <code dir="auto">/taproot-assets</code>. The full guide, including what you sign, who pays the
+Bitcoin fee and what cannot be undone, is <a href="/docs-inscribe/protocols/taproot-assets/">Taproot Assets</a>.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="workspaces-that-are-not-finished">Workspaces that are not finished</h2><a class="sl-anchor-link" href="#workspaces-that-are-not-finished"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Workspaces that are not finished”</span></a></div>
+<p>Four more workspaces exist in the app and are classified as incomplete by the production
+contract. They are listed here so their absence from the rest of this site is a stated
+decision rather than an oversight:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="u-table-scroll" tabindex="0" role="region" aria-label="Table, scrollable"><table><thead><tr><th>Workspace</th><th>What it is meant to become</th></tr></thead><tbody><tr><td><strong>Witness Circles</strong></td><td>Taproot outputs a group authorises together</td></tr><tr><td><strong>Tandem</strong></td><td>Building and changing one object together, with a signed record of each change</td></tr><tr><td><strong>Patina</strong></td><td>How long a value-carrying output has stayed where it is</td></tr><tr><td><strong>Drop Pacts</strong></td><td>Designing and launching Drop Pact agreements, with a resumable tutorial</td></tr></tbody></table></div>
+<p>None of these are documented on this site as things you can rely on. Tandem does have one
+effect worth knowing even so: <strong>Tandem state carriers cannot fund ordinary sends, mints,
+replacements or recovery plans at all</strong>, which is a firmer restriction than the usual asset
+screening applies.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="related">Related</h2><a class="sl-anchor-link" href="#related"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Related”</span></a></div>
+<ul>
+<li><a href="/docs-inscribe/start/status/">Status and lifecycle</a></li>
+<li><a href="/docs-inscribe/protocols/coverage/">Coverage matrix</a></li>
+<li><a href="/docs-inscribe/protocols/taproot-assets/">Taproot Assets</a></li>
+<li><a href="/docs-inscribe/concepts/asset-safety/">Asset safety</a></li>
+</ul>
+<div class="sl-heading-wrapper level-h2"><h2 id="spark">Spark</h2><a class="sl-anchor-link" href="#spark"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Spark”</span></a></div>
+<p>Spark is a Bitcoin layer run by a small set of signing operators. Tokens on Spark move
+instantly and cost no network fee. Your Spark wallet has its own keys; they stay encrypted
+in your browser and never reach Universe.</p>
+<p>What the workspace does:</p>
+<ul>
+<li>
+<p><strong>Browse</strong> every Spark token, with no wallet needed. Universe reads the operators’ full
+token record into its own database, so the list covers all tokens, not a curated set.
+Each token shows its name, ticker, decimals, supply cap, what has been minted and
+burned, and whether the issuer can freeze it. The page says how current the list is
+and never shows a partial list as complete.</p>
+</li>
+<li>
+<p><strong>My tokens</strong>: hold, send and receive tokens with exact amounts. Amounts use the token’s
+decimals and are never rounded.</p>
+</li>
+<li>
+<p><strong>Create &#x26; manage</strong>: create a token (name, ticker, decimals, cap and freezing are
+permanent), then mint, burn, freeze and unfreeze it. Only the issuer can mint, and
+minted tokens go to the issuer wallet; sending them is a separate step.</p>
+</li>
+<li>
+<p><strong>Activity</strong>: an action waiting for confirmation is checked automatically. Nothing is
+ever sent twice. If the network never received an action, the page says so once it is
+safe to be sure.</p>
+</li>
+<li>
+<p><strong>Bitcoin</strong>: deposit bitcoin to your Spark wallet and claim it, send it to another Spark
+address, request an exact amount, pay a Spark request, and lock a payment to a secret
+(HTLC) that returns to you if it is not claimed in time.</p>
+</li>
+<li>
+<p><strong>Leave without the operators</strong> (Advanced, Exit kit): if the operators stop responding,
+the exit kit builds the transactions that take your bitcoin back on chain. You pay the
+fee from a Bitcoin coin you control, submit each step from your own Bitcoin Core 29 or
+newer node, and wait out each timelock. Exit sweep then sends the bitcoin to any address.
+Your Spark balance stops working once the first step confirms.</p>
+</li>
+</ul>
+<p>Every action is reviewed in plain words before you sign. Token actions were verified end
+to end on Spark’s public test network, and bitcoin actions and the exit on a Spark network
+run by Universe. Withdrawals to a Bitcoin address, Lightning, and Flashnet trades depend on
+outside services that could not be tested, so they stay off on mainnet.</p>
+<p>Workspace: <code dir="auto">/spark</code>.</p></div><footer class="sl-flex astro-xhxjzfa7"><div class="meta sl-flex astro-xhxjzfa7"><p>Last updated: <time datetime="2026-11-11T07:56:17.000Z">Nov 11, 2026</time></p></div><div class="pagination-links print:hidden astro-jgq3vlii" dir="ltr"></div></footer></div></div></main></div></div></div></div></body></html>

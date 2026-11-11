@@ -1,0 +1,189 @@
+# Common problems
+
+The problems people actually hit in Inscribe, what each one means, and the shortest route to a fix. Ordered by how often they come up.
+
+If you have paid and something is wrong, go straight to
+[recovery routes](/docs-inscribe/manage/recovery/). This page is the wider list.
+
+**The rule that applies to most of these: do not pay again.**
+
+## Payment and orders
+
+### I paid but it still says awaiting payment
+
+Wait two minutes. The commit address is checked every ten seconds and an unconfirmed
+payment is enough, so a payment that is genuinely there usually appears quickly.
+
+Then check on an explorer that your payment went to the commit address the order gave you.
+A payment to a different address is a different problem.
+
+[Full steps](/docs-inscribe/manage/recovery/#payment-not-detected).
+
+### I sent less than the quote
+
+Top the same commit address up to the quoted amount. The flow resumes on its own. Nothing
+is cancelled.
+
+### I sent more than the quote
+
+The surplus comes back automatically in the reveal transaction, provided it is big enough
+to cover the extra bytes and still clear the dust threshold. If it is not, it is added to
+your inscription output, where you still own it.
+
+### My transaction is not confirming
+
+The fee rate was too low for conditions. Two tools:
+
+- **Fix My Payment** at `/fix-payment`, when the stuck transaction is your payment to a
+  commit address.
+- **Bump Stuck TX**, for any transaction of yours, comparing RBF against CPFP.
+
+Neither charges a service fee.
+
+### The hour ran out
+
+That hour is the life of the price quote, not the order. If you have not paid, start a fresh
+order at a current price. If you have paid, do not pay again: the address keeps being
+checked and a late payment is still found.
+
+### I closed the tab and cannot find my order
+
+Go to Home. Orders this browser started are listed under "Orders you started in this
+browser". Opening one asks your wallet to prove it owns the order.
+
+[The four routes back](/docs-inscribe/manage/recovery/#you-lost-the-order).
+
+### It has said "in progress" for a long time after confirming
+
+That is correct behaviour, not a stall. Inscribe waits for the indexer and your wallet to
+agree the asset exists before it calls an order done.
+
+If the indexer is behind, the order finishes once the indexer reads your block. Check the transaction
+in a block explorer to confirm it is on the chain, then wait. Do not pay again.
+
+## Money and fees
+
+### Normal and Fast show the same price
+
+Expected. Either blocks have room, or the protocol rounds to whole satoshis, or a protocol
+minimum lifted both. Two prices that are the same number are the same purchase, and the app
+says so on both tiers rather than selling one as faster.
+
+### It says "Cached fees"
+
+The rate source is not answering, so the number in front of you is not fresh. It is shown as
+stale rather than presented as live. Wait for it to recover before committing to a rate that
+matters.
+
+### The total is more than I expected
+
+Check which of the three lines grew. The network fee scales with the size of what you are
+inscribing; the service fee is flat; the inscription output is not a fee at all and stays
+yours.
+
+[Read a quote](/docs-inscribe/concepts/what-it-costs/).
+
+### Inscribe says I do not have enough bitcoin, but I do
+
+Outputs holding assets were held back from fee funding. The message tells you how many
+outputs were withheld and how many satoshis they hold.
+
+An output created in a block the index has not read yet is also skipped, because Inscribe
+cannot verify what it carries. It becomes usable once the index reads that block.
+
+Send plain bitcoin to your payment address, or lower the fee rate.
+
+## Assets and wallets
+
+### My portfolio looks empty or incomplete
+
+If a notice says some of your holdings could not be loaded, part of the portfolio is
+missing from this page. Nothing you own has changed. Try again later.
+
+"No assets found for this address" appears only when every source answered.
+
+SRC-20 balances have their own data source. If that source cannot answer, an
+unavailable balance is not a zero balance. Check the notice for the affected
+source and try the read again later. Reconnecting your wallet does not repair
+a data-source outage.
+
+### My wallet will not stay connected
+
+If you use UniSat, sessions are dropped rather than revived when the extension cannot
+confirm a live active account. Reconnect. This is deliberate: you never act against an
+address the wallet has not just confirmed.
+
+### A flow behaves oddly with Wizz
+
+Wizz exposes a single active address. A flow that needs two distinct addresses behaves
+differently, and Inscribe does not invent a second address to fill the gap.
+
+### I got a warning that my address holds assets
+
+Your wallet, not Inscribe, chooses which outputs pay for a wallet send. The warning lists
+what is at risk and then lets you proceed.
+
+Pay from an address holding only bitcoin, or pick the inputs yourself in your wallet before
+approving.
+
+## The app itself
+
+### The screen I clicked will not open
+
+A screen loads its own application files. It may fail to open after a release,
+when your connection drops, or when the server temporarily cannot deliver a
+file. The page frame can load while the screen itself fails.
+
+**Reload once.** If the same recovery message or loading failure returns, wait
+and try again later. Repeated failures can be a service problem that reloading
+cannot clear.
+
+Your existing orders remain recoverable from Home or your saved recovery
+route. Reopening an order may ask your wallet to prove ownership again. If you
+have paid, do not create another order or pay again to work around the screen.
+
+### A workspace is visible but refuses to act
+
+Its release gate is off in this deployment. It is not a fault you can clear, and the
+workspace stays visible on purpose so a switched-off feature does not look like a feature
+that never existed.
+
+[Which workspaces are gated](/docs-inscribe/start/status/).
+
+### I got a 404 on Recover Sats or the Dogecoin BlockPad
+
+Those are the only two surfaces that return the 404 page when their feature is switched off,
+rather than loading and refusing. A 404 there is a switched-off feature, not a broken link.
+
+### Text is too small, or contrast is poor
+
+Settings carries display controls: High contrast, Large text, Reduced motion, Density,
+Enhanced focus rings, Screenshot safe, and Colour-blind safe.
+
+[Accessibility](/docs-inscribe/reference/accessibility/).
+
+## Things that are not problems
+
+| What you see | Why it is fine |
+| --- | --- |
+| "Creation in progress" after confirmation | Inscribe waits for indexer and wallet evidence |
+| Two fee tiers at the same price | They are the same purchase |
+| An order with no age on Home | It predates the list, and says so rather than showing a wrong age |
+| A balance or list that trails the chain | An index is catching up. Writes keep working, and the list catches up with it |
+| An output marked Unclassified | Recognised as present but not placeable. Shown rather than dropped |
+
+## Still stuck
+
+[Open an issue](https://github.com/bitcoinuniverseio/docs-inscribe/issues). Say what you
+were doing, what you expected, and what you saw. If it is an accessibility barrier, say what
+you browse with; that is more useful than a rule number.
+
+## Related
+
+- [Recovery routes](/docs-inscribe/manage/recovery/)
+- [Failure states](/docs-inscribe/troubleshooting/failure-states/)
+- [Before you spend anything](/docs-inscribe/start/before-you-spend/)
+
+---
+Source: bitcoinuniverseio/docs-inscribe@8923af4dbfa4 (2026-11-11T07:57:27.666Z)
+Last verified: 2026-09-01

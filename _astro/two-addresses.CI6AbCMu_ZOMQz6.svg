@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 430" width="880" height="430" role="img" aria-labelledby="t d">
+  <title id="t">One Ordinals wallet, two addresses with different jobs</title>
+  <desc id="d">A wallet holds a payment address carrying spendable bitcoin and an Ordinals address carrying inscriptions, rune balances and token balances. Inscribe reads both, signs each action from the address that holds what it moves, and never adds the two balances together.</desc>
+
+  <rect x="0" y="0" width="880" height="430" rx="18" fill="#12101a"/>
+  <rect x="0.5" y="0.5" width="879" height="429" rx="18" fill="none" stroke="#3a2f45"/>
+
+  <text x="40" y="52" font-family="ui-sans-serif,Segoe UI,Helvetica,Arial,sans-serif" font-size="21" font-weight="700" fill="#f4f0f6">One wallet. Two addresses. Two jobs.</text>
+  <text x="40" y="78" font-family="ui-sans-serif,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" fill="#b7aec2">An Ordinals wallet exposes both. Inscribe reads both and keeps them apart.</text>
+
+  <!-- payment address -->
+  <rect x="40" y="106" width="378" height="176" rx="14" fill="#1b1726" stroke="#4a3f57"/>
+  <rect x="40" y="106" width="378" height="4" rx="2" fill="#5eb8a0"/>
+  <text x="64" y="142" font-family="ui-sans-serif,Segoe UI,Helvetica,Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="1.6" fill="#5eb8a0">PAYMENT ADDRESS</text>
+  <text x="64" y="170" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="15" fill="#f4f0f6">bc1q…</text>
+  <text x="64" y="202" font-family="ui-sans-serif,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" fill="#d7d1de">Holds spendable bitcoin.</text>
+  <text x="64" y="226" font-family="ui-sans-serif,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" fill="#d7d1de">Pays network fees and service fees.</text>
+  <text x="64" y="256" font-family="ui-sans-serif,Segoe UI,Helvetica,Arial,sans-serif" font-size="13" fill="#a79db3">This is the balance the BTC card reports.</text>
+
+  <!-- ordinals address -->
+  <rect x="462" y="106" width="378" height="176" rx="14" fill="#1b1726" stroke="#4a3f57"/>
+  <rect x="462" y="106" width="378" height="4" rx="2" fill="#ff5c9c"/>
+  <text x="486" y="142" font-family="ui-sans-serif,Segoe UI,Helvetica,Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="1.6" fill="#ff5c9c">ORDINALS ADDRESS</text>
+  <text x="486" y="170" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="15" fill="#f4f0f6">bc1p…</text>
+  <text x="486" y="202" font-family="ui-sans-serif,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" fill="#d7d1de">Holds inscriptions, rune balances,</text>
+  <text x="486" y="226" font-family="ui-sans-serif,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" fill="#d7d1de">and token balances.</text>
+  <text x="486" y="256" font-family="ui-sans-serif,Segoe UI,Helvetica,Arial,sans-serif" font-size="13" fill="#a79db3">Sats sitting here are not spendable from here.</text>
+
+  <!-- the forbidden sum -->
+  <g>
+    <line x1="418" y1="194" x2="462" y2="194" stroke="#7b6d8a" stroke-width="2"/>
+    <circle cx="440" cy="194" r="17" fill="#12101a" stroke="#e06a7a" stroke-width="2"/>
+    <line x1="430" y1="184" x2="450" y2="204" stroke="#e06a7a" stroke-width="2.4" stroke-linecap="round"/>
+    <text x="440" y="240" text-anchor="middle" font-family="ui-sans-serif,Segoe UI,Helvetica,Arial,sans-serif" font-size="12" fill="#e08f9b">never summed</text>
+  </g>
+
+  <!-- what inscribe does -->
+  <rect x="40" y="312" width="800" height="82" rx="14" fill="#181425" stroke="#3f3550"/>
+  <text x="64" y="344" font-family="ui-sans-serif,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#f4f0f6">What Inscribe does with them</text>
+  <text x="64" y="370" font-family="ui-sans-serif,Segoe UI,Helvetica,Arial,sans-serif" font-size="13.5" fill="#c8c1d2">Reads both when it shows your holdings. Signs each action from the address that actually holds what it moves.</text>
+  <text x="64" y="388" font-family="ui-sans-serif,Segoe UI,Helvetica,Arial,sans-serif" font-size="13.5" fill="#c8c1d2">Adding the two together would tell you that you can spend money you cannot, so it never does.</text>
+</svg>

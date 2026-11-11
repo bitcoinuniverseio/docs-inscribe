@@ -1,0 +1,41 @@
+{
+  "walkthroughId": "vw-order-lifecycle",
+  "appCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+  "capturedAt": "2026-09-02T20:33:18.051Z",
+  "fixtureVersion": "1",
+  "steps": 4,
+  "altTexts": [
+    "The practice studio scenario list with the order lifecycle scenario highlighted",
+    "The awaiting payment stage of the simulated order",
+    "The processing stage with payment detected",
+    "The revealed stage completing the simulated order"
+  ],
+  "stepInstructions": [
+    "Open the practice studio and start the order lifecycle scenario. The simulation cannot create transactions.",
+    "The order starts at awaiting payment: the commit address is funded by exactly one payment for the quoted total.",
+    "After payment detection the order moves to processing: the service funds the commit and prepares the reveal.",
+    "Revealed: the inscription exists on chain. In the live app the portfolio view shows it once indexes catch up."
+  ],
+  "files": [
+    {
+      "path": "step-01.webp",
+      "sha256": "4c14b6a8f2907575ab50c224f3a282c1c4d5151d719b6afd5b74f93fd37213b4",
+      "bytes": 22284
+    },
+    {
+      "path": "step-02.webp",
+      "sha256": "4c14b6a8f2907575ab50c224f3a282c1c4d5151d719b6afd5b74f93fd37213b4",
+      "bytes": 22284
+    },
+    {
+      "path": "step-03.webp",
+      "sha256": "4c14b6a8f2907575ab50c224f3a282c1c4d5151d719b6afd5b74f93fd37213b4",
+      "bytes": 22284
+    },
+    {
+      "path": "step-04.webp",
+      "sha256": "4c14b6a8f2907575ab50c224f3a282c1c4d5151d719b6afd5b74f93fd37213b4",
+      "bytes": 22284
+    }
+  ]
+}

@@ -1,0 +1,449 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-vdxcvpsm"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Workspace map | Inscribe</title><link rel="canonical" href="https://bitcoinuniverseio.github.io/docs-inscribe/create/workspaces/"/><link rel="sitemap" href="/docs-inscribe/sitemap-index.xml"/><link rel="shortcut icon" href="/docs-inscribe/favicon.svg" type="image/svg+xml"/><meta name="generator" content="Astro v7.2.10"/><meta name="generator" content="Starlight v0.41.11"/><meta property="og:title" content="Workspace map"/><meta property="og:type" content="article"/><meta property="og:url" content="https://bitcoinuniverseio.github.io/docs-inscribe/create/workspaces/"/><meta property="og:locale" content="en"/><meta property="og:description" content="Every Inscribe workspace, what it does, and which ones have in-app guides."/><meta property="og:site_name" content="Inscribe"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="Every Inscribe workspace, what it does, and which ones have in-app guides."/><script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","author":{"@type":"Organization","name":"Bitcoin Universe"},"publisher":{"@type":"Organization","name":"Bitcoin Universe"}}</script><script type="module">`serviceWorker`in navigator&&location.protocol===`https:`&&window.addEventListener(`load`,()=>{navigator.serviceWorker.register(`/docs-inscribe/sw.js`).catch(()=>{})});</script><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg><svg aria-hidden="true" class="dark astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg><svg aria-hidden="true" class="auto astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg></template><link rel="stylesheet" href="/docs-inscribe/_astro/print.ehPL0gv-.css" media="print"><link rel="stylesheet" href="/docs-inscribe/_astro/middleware.BlA4sMJx.css"><script type="module" src="/docs-inscribe/_astro/page.Dwipeu-R.js"></script></head><body class="astro-vdxcvpsm"><a class="sl-skip-link astro-vxeigawq" href="#_top">Skip to content</a><div class="page sl-flex astro-gqpr5s5a"><header class="header astro-gqpr5s5a"><div class="header astro-nczgtkxc"><div class="title-wrapper sl-flex astro-nczgtkxc"><a href="/docs-inscribe/" class="site-title sl-flex astro-clw6ags5"><span class="astro-clw6ags5" translate="no">Inscribe</span></a></div><div class="sl-flex print:hidden astro-nczgtkxc"><site-search class="astro-nczgtkxc astro-r5ar4xm7" data-translations="{&quot;placeholder&quot;:&quot;Search&quot;}"><button data-open-modal disabled aria-label="Search" aria-keyshortcuts="Control+K" class="astro-r5ar4xm7"><svg aria-hidden="true" class="astro-r5ar4xm7 astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg><span class="sl-hidden md:sl-block astro-r5ar4xm7" aria-hidden="true">Search</span><kbd class="sl-hidden md:sl-flex astro-r5ar4xm7" style="display: none;"><kbd class="astro-r5ar4xm7">Ctrl</kbd><kbd class="astro-r5ar4xm7">K</kbd></kbd></button><dialog style="padding:0" aria-label="Search" class="astro-r5ar4xm7"><div class="dialog-frame sl-flex astro-r5ar4xm7"><button data-close-modal class="sl-flex md:sl-hidden astro-r5ar4xm7">Cancel</button><div class="search-container astro-r5ar4xm7"><div id="starlight__search" class="astro-r5ar4xm7"></div></div></div></dialog></site-search><script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script><script type="module" src="/docs-inscribe/_astro/Search.astro_astro_type_script_index_0_lang.CDDAEABP.js"></script></div><div class="sl-hidden md:sl-flex print:hidden right-group astro-nczgtkxc"><div class="sl-flex social-icons astro-nczgtkxc"><a href="https://github.com/bitcoinuniverseio/docs-inscribe" rel="me" class="sl-flex astro-cg55etiy"><span class="sr-only astro-cg55etiy">GitHub</span><svg aria-hidden="true" class="astro-cg55etiy astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a><a href="https://inscribe.bitcoinuniverse.io" rel="me" class="sl-flex astro-cg55etiy"><span class="sr-only astro-cg55etiy">Open Inscribe</span><svg aria-hidden="true" class="astro-cg55etiy astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M19.33 10.18a1 1 0 0 1-.77 0 1 1 0 0 1-.62-.93l.01-1.83-8.2 8.2a1 1 0 0 1-1.41-1.42l8.2-8.2H14.7a1 1 0 0 1 0-2h4.25a1 1 0 0 1 1 1v4.25a1 1 0 0 1-.62.93Z"/><path d="M11 4a1 1 0 1 1 0 2H7a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-4a1 1 0 1 1 2 0v4a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h4Z"/></svg></a></div><script type="module">var e=`inscribe-docs-theme`;if(!localStorage.getItem(e)){let e=window.matchMedia(`(prefers-color-scheme: dark)`).matches?`dark`:`light`;document.documentElement.dataset.theme=e}document.addEventListener(`change`,t=>{let n=t.target;n instanceof HTMLSelectElement&&n.dataset.themeSelect!==void 0&&localStorage.setItem(e,n.value)});</script><script type="module">var e=class extends HTMLElement{constructor(){super();let e=this.querySelector(`select`);e&&(e.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&(window.location.pathname=e.currentTarget.value)}),window.addEventListener(`pageshow`,t=>{if(!t.persisted)return;let n=e.querySelector(`option[selected]`)?.index;n!==e.selectedIndex&&(e.selectedIndex=n??0)}))}};customElements.define(`starlight-lang-select`,e);</script></div></div></header><nav class="sidebar print:hidden astro-gqpr5s5a" aria-label="Main"><starlight-menu-button class="print:hidden astro-vvx7mffu"><button aria-expanded="false" aria-label="Menu" aria-controls="starlight__sidebar" class="sl-flex md:sl-hidden astro-vvx7mffu"><svg aria-hidden="true" class="open-menu astro-vvx7mffu astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg><svg aria-hidden="true" class="close-menu astro-vvx7mffu astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="m13.41 12 6.3-6.29a1.004 1.004 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 0 1.42.998.998 0 0 0 1.42 0l6.29-6.3 6.29 6.3a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.42L13.41 12Z"/></svg></button></starlight-menu-button><script type="module">var e=class extends HTMLElement{btn=this.querySelector(`button`);constructor(){super(),this.btn.addEventListener(`click`,()=>this.toggleExpanded());let e=this.closest(`nav`);e&&e.addEventListener(`keyup`,e=>this.closeOnEscape(e)),matchMedia(`(min-width: 50em)`).addEventListener(`change`,()=>this.setExpanded(!1))}setExpanded(e){this.setAttribute(`aria-expanded`,String(e)),document.body.toggleAttribute(`data-mobile-menu-expanded`,e),document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}toggleExpanded(){this.setExpanded(this.getAttribute(`aria-expanded`)!==`true`)}closeOnEscape(e){e.code===`Escape`&&(this.setExpanded(!1),this.btn.focus())}};customElements.define(`starlight-menu-button`,e);</script><div id="starlight__sidebar" class="sidebar-pane astro-gqpr5s5a"><div class="sidebar-content sl-flex astro-gqpr5s5a"><sl-sidebar-state-persist data-hash="1ozydt6" class="astro-f5yvicm7"><script aria-hidden="true">
+		(() => {
+			try {
+				if (!matchMedia('(min-width: 50em)').matches) return;
+				/** @type {HTMLElement | null} */
+				const target = document.querySelector('sl-sidebar-state-persist');
+				const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || '0');
+				if (!target || !state || target.dataset.hash !== state.hash) return;
+				window._starlightScrollRestore = state.scroll;
+				customElements.define(
+					'sl-sidebar-restore',
+					class SidebarRestore extends HTMLElement {
+						connectedCallback() {
+							try {
+								const idx = parseInt(this.dataset.index || '');
+								const details = this.closest('details');
+								if (details && typeof state.open[idx] === 'boolean') details.open = state.open[idx];
+							} catch {}
+						}
+					}
+				);
+			} catch {}
+		})();
+	</script><ul class="top-level astro-ojxuodky"><li class="astro-ojxuodky"><details open class="astro-ojxuodky"><summary class="astro-ojxuodky"><span class="group-label astro-ojxuodky"><span class="large astro-ojxuodky">Start here</span></span><svg aria-hidden="true" class="caret astro-ojxuodky astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="0"></sl-sidebar-restore><ul class="astro-ojxuodky"><li class="astro-ojxuodky"><a href="/docs-inscribe/start/what-you-can-create" class="astro-ojxuodky"><span class="astro-ojxuodky">What you can create</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/guided/" class="astro-ojxuodky"><span class="astro-ojxuodky">Guided plan</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/practice/" class="astro-ojxuodky"><span class="astro-ojxuodky">Practice without spending</span></a></li></ul></details></li><li class="astro-ojxuodky"><details open class="astro-ojxuodky"><summary class="astro-ojxuodky"><span class="group-label astro-ojxuodky"><span class="large astro-ojxuodky">Create</span></span><svg aria-hidden="true" class="caret astro-ojxuodky astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="1"></sl-sidebar-restore><ul class="astro-ojxuodky"><li class="astro-ojxuodky"><a href="/docs-inscribe/create/first-inscription" class="astro-ojxuodky"><span class="astro-ojxuodky">First inscription</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/create/what-it-costs" class="astro-ojxuodky"><span class="astro-ojxuodky">Cost anatomy</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/create/workspaces" aria-current="page" class="astro-ojxuodky"><span class="astro-ojxuodky">Workspace map</span></a></li></ul></details></li><li class="astro-ojxuodky"><details open class="astro-ojxuodky"><summary class="astro-ojxuodky"><span class="group-label astro-ojxuodky"><span class="large astro-ojxuodky">Decide</span></span><svg aria-hidden="true" class="caret astro-ojxuodky astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="2"></sl-sidebar-restore><ul class="astro-ojxuodky"><li class="astro-ojxuodky"><a href="/docs-inscribe/labs/protocols/" class="astro-ojxuodky"><span class="astro-ojxuodky">Protocol Decision Lab</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/labs/transaction-review/" class="astro-ojxuodky"><span class="astro-ojxuodky">Transaction Review Lab</span></a></li></ul></details></li><li class="astro-ojxuodky"><details open class="astro-ojxuodky"><summary class="astro-ojxuodky"><span class="group-label astro-ojxuodky"><span class="large astro-ojxuodky">Visual guides</span></span><svg aria-hidden="true" class="caret astro-ojxuodky astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="3"></sl-sidebar-restore><ul class="astro-ojxuodky"><li class="astro-ojxuodky"><a href="/docs-inscribe/visual-guides/" class="astro-ojxuodky"><span class="astro-ojxuodky">Walkthrough library</span></a></li></ul></details></li><li class="astro-ojxuodky"><details open class="astro-ojxuodky"><summary class="astro-ojxuodky"><span class="group-label astro-ojxuodky"><span class="large astro-ojxuodky">Safety</span></span><svg aria-hidden="true" class="caret astro-ojxuodky astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="4"></sl-sidebar-restore><ul class="astro-ojxuodky"><li class="astro-ojxuodky"><a href="/docs-inscribe/safety/asset-safety" class="astro-ojxuodky"><span class="astro-ojxuodky">Asset and UTXO safety</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/safety/order-recovery" class="astro-ojxuodky"><span class="astro-ojxuodky">Recovery guide</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/recovery/navigator/" class="astro-ojxuodky"><span class="astro-ojxuodky">Recovery Navigator</span></a></li></ul></details></li><li class="astro-ojxuodky"><details open class="astro-ojxuodky"><summary class="astro-ojxuodky"><span class="group-label astro-ojxuodky"><span class="large astro-ojxuodky">Reference</span></span><svg aria-hidden="true" class="caret astro-ojxuodky astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="5"></sl-sidebar-restore><ul class="astro-ojxuodky"><li class="astro-ojxuodky"><a href="/docs-inscribe/reference/protocol-data-status" class="astro-ojxuodky"><span class="astro-ojxuodky">Live data status</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/reference/accessibility" class="astro-ojxuodky"><span class="astro-ojxuodky">Accessibility</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/reference/performance-and-media" class="astro-ojxuodky"><span class="astro-ojxuodky">Performance and media</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/reference/release-evidence" class="astro-ojxuodky"><span class="astro-ojxuodky">Release evidence</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/reference/agent-surfaces" class="astro-ojxuodky"><span class="astro-ojxuodky">For agents and LLMs</span></a></li></ul></details></li></ul><script aria-hidden="true">
+		(() => {
+			const scroller = document.getElementById('starlight__sidebar');
+			if (!window._starlightScrollRestore || !scroller) return;
+			scroller.scrollTop = window._starlightScrollRestore;
+			delete window._starlightScrollRestore;
+		})();
+	</script></sl-sidebar-state-persist><div class="md:sl-hidden"><div class="mobile-preferences sl-flex astro-b5gddk54"><div class="social-icons astro-b5gddk54"><a href="https://github.com/bitcoinuniverseio/docs-inscribe" rel="me" class="sl-flex astro-cg55etiy"><span class="sr-only astro-cg55etiy">GitHub</span><svg aria-hidden="true" class="astro-cg55etiy astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a><a href="https://inscribe.bitcoinuniverse.io" rel="me" class="sl-flex astro-cg55etiy"><span class="sr-only astro-cg55etiy">Open Inscribe</span><svg aria-hidden="true" class="astro-cg55etiy astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M19.33 10.18a1 1 0 0 1-.77 0 1 1 0 0 1-.62-.93l.01-1.83-8.2 8.2a1 1 0 0 1-1.41-1.42l8.2-8.2H14.7a1 1 0 0 1 0-2h4.25a1 1 0 0 1 1 1v4.25a1 1 0 0 1-.62.93Z"/><path d="M11 4a1 1 0 1 1 0 2H7a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-4a1 1 0 1 1 2 0v4a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h4Z"/></svg></a></div></div></div></div></div></nav><div class="main-frame astro-gqpr5s5a"><script type="module">var e=document.getElementById(`starlight__sidebar`),t=e?.querySelector(`sl-sidebar-state-persist`),n=`sl-sidebar-state`,r=()=>{let r=[],i=t?.dataset.hash||``;try{let e=sessionStorage.getItem(n),t=JSON.parse(e||`{}`);Array.isArray(t.open)&&t.hash===i&&(r=t.open)}catch{}return{hash:i,open:r,scroll:e?.scrollTop||0}},i=e=>{try{sessionStorage.setItem(n,JSON.stringify(e))}catch{}},a=()=>i(r()),o=(e,t)=>{let n=r();n.open[t]=e,i(n)};t?.addEventListener(`click`,e=>{if(!(e.target instanceof Element))return;let t=e.target.closest(`summary`)?.closest(`details`);if(!t)return;let n=t.querySelector(`sl-sidebar-restore`),r=parseInt(n?.dataset.index||``);isNaN(r)||o(!t.open,r)}),addEventListener(`visibilitychange`,()=>{document.visibilityState===`hidden`&&a()});</script><div class="lg:sl-flex astro-abfeecmu"><aside class="right-sidebar-container print:hidden astro-abfeecmu"><div class="right-sidebar astro-abfeecmu"><div class="lg:sl-hidden astro-q5mffni3"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-5ulgm6bh"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-5ulgm6bh"><details id="starlight__mobile-toc" class="astro-5ulgm6bh"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-5ulgm6bh"><span class="toggle sl-flex astro-5ulgm6bh">On this page<svg aria-hidden="true" class="caret astro-5ulgm6bh astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></span><span class="display-current astro-5ulgm6bh"></span></summary><div class="dropdown astro-5ulgm6bh"><ul class="isMobile astro-cxyftcne" style="--depth: 0;"><li style="--depth: 0;" class="astro-cxyftcne"><a href="#_top" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Overview</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#workspace" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Workspace</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#account" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Account</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#protocols" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Protocols</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#market-intel" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Market intel</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#advanced" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Advanced</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#provenance-rights-and-compute" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Provenance, rights and compute</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#help" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Help</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#when-a-source-is-slow-or-down" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">When a source is slow or down</span></a></li></ul></div></details></nav></mobile-starlight-toc><script type="module" src="/docs-inscribe/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.BcSo_yiZ.js"></script></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-q5mffni3"><div class="sl-container astro-q5mffni3"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-cxyftcne" style="--depth: 0;"><li style="--depth: 0;" class="astro-cxyftcne"><a href="#_top" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Overview</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#workspace" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Workspace</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#account" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Account</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#protocols" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Protocols</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#market-intel" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Market intel</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#advanced" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Advanced</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#provenance-rights-and-compute" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Provenance, rights and compute</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#help" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Help</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#when-a-source-is-slow-or-down" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">When a source is slow or down</span></a></li></ul></nav></starlight-toc><script type="module" src="/docs-inscribe/_astro/TableOfContents.astro_astro_type_script_index_0_lang.Csloo1VZ.js"></script></div></div></div></aside><div class="main-pane astro-abfeecmu"><main data-pagefind-body class="astro-vdxcvpsm" lang="en" dir="ltr"><div class="content-panel astro-oil7k7jf"><div class="sl-container astro-oil7k7jf"><h1 id="_top"></h1></div></div><div class="content-panel astro-oil7k7jf"><div class="sl-container astro-oil7k7jf"><div class="sl-markdown-content"><div class="sl-heading-wrapper level-h1"><h1 id="where-things-live">Where things live</h1><a class="sl-anchor-link" href="#where-things-live"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Where things live”</span></a></div>
+<p>Inscribe has one workspace per job. This page lists all of them, in the order
+the sidebar shows them, so you can find the right one without opening each.</p>
+<p>If you already know what you want to do, four routes are faster than the
+sidebar:</p>
+<ul>
+<li>The search box in the header.</li>
+<li>The <strong>Mint</strong> menu beside it, which lists every workspace that creates
+something, with a line saying what each one does.</li>
+<li>The command palette, <code dir="auto">Ctrl</code> + <code dir="auto">K</code> on Windows and Linux, <code dir="auto">Cmd</code> + <code dir="auto">K</code> on macOS.</li>
+<li>The paste box on Home. Paste an address, a txid, an inscription ID or a
+ticker and Inscribe opens the workspace that handles it.</li>
+</ul>
+<p>All four read the same list, so a workspace appears in every one of them or in
+none, described the same way.</p>
+<p>Most workspaces also have a guide under <strong>Docs &#x26; Guides</strong> in the app, with the
+exact field names, the diagrams, and worked examples. This page is the map;
+those guides are the detail. Seven workspaces have no guide yet: ChainBloom,
+Witness Circles, Tandem, Patina, Atomicals NFTs, Atomicals Realms, and the
+Stamps protocol tab, though Stamps inscription is covered under Create.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="workspace">Workspace</h2><a class="sl-anchor-link" href="#workspace"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Workspace”</span></a></div>
+<div class="u-table-scroll" tabindex="0" role="region" aria-label="Table, scrollable">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Workspace</th><th>What it is for</th></tr></thead><tbody><tr><td>Home</td><td>The task picker, then live fees and unfinished work, then the paste box. The full catalogue, the protocol map and the live mempool view sit behind <strong>Browse all workflows</strong></td></tr><tr><td>Inscribe</td><td>Eight sub-tabs for putting content on Bitcoin: Text, Files, Names, Parent/Child, Delegate, Gallery, Stamps and Data Lab</td></tr><tr><td>Ord Studio</td><td>Full inscription-envelope control: live HTML sandbox, templates, and the ord spec fields (pointer, parent, metadata, gzip, metaprotocol)</td></tr><tr><td>AVM Studio</td><td>Build, test, deploy, call and verify Atomicals AVM contracts, with the academy alongside the editor</td></tr><tr><td>ChainBloom</td><td>Grow a shared world one contribution at a time</td></tr><tr><td>Witness Circles</td><td>Taproot outputs a group authorises together</td></tr><tr><td>Send Inscriptions</td><td>Move inscriptions or UTXOs you already hold</td></tr><tr><td>Search Txt</td><td>Find text inscriptions by their content</td></tr></tbody></table></div>
+<div class="sl-heading-wrapper level-h2"><h2 id="account">Account</h2><a class="sl-anchor-link" href="#account"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Account”</span></a></div>
+<div class="u-table-scroll" tabindex="0" role="region" aria-label="Table, scrollable">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Workspace</th><th>What it is for</th></tr></thead><tbody><tr><td>Portfolio</td><td>Everything your connected wallet holds, grouped by protocol</td></tr><tr><td>Explore</td><td>The same view for any address you paste, no wallet needed</td></tr><tr><td>Watchlist</td><td>Track wallets without connecting them</td></tr><tr><td>Activity</td><td>Orders this browser has started, and the recovery tools for them</td></tr></tbody></table></div>
+<div class="sl-heading-wrapper level-h2"><h2 id="protocols">Protocols</h2><a class="sl-anchor-link" href="#protocols"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Protocols”</span></a></div>
+<p>Most protocol workspaces share one shape: browse a token list, fill a Deploy,
+Mint or Transfer form, then pay through one checkout. Read
+<a href="https://inscribe.bitcoinuniverse.io/docs">How the protocol tabs work</a> in the
+app before your first one.</p>
+<p><strong>Ordinals</strong></p>
+<div class="u-table-scroll" tabindex="0" role="region" aria-label="Table, scrollable">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Workspace</th><th>What it is for</th></tr></thead><tbody><tr><td>brc-20</td><td>Deploy, mint and transfer BRC-20 tokens: JSON text inscriptions. Supports 4-byte, 5-byte self-issuance, and brc2.0</td></tr><tr><td>tap</td><td>Deploy, mint and transfer TAP tokens, or mint DMT tokens that claim block numbers. TAP transfers take two steps</td></tr><tr><td>block-20</td><td>Deploy, mint and transfer BLOCK-20 tokens. Each mint embeds the latest block hash, filled in at mint time</td></tr></tbody></table></div>
+<p><strong>Atomicals</strong></p>
+<div class="u-table-scroll" tabindex="0" role="region" aria-label="Table, scrollable">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Workspace</th><th>What it is for</th></tr></thead><tbody><tr><td>arc-20</td><td>Mint, deploy and transfer coloured-sat tokens with direct wallet signing. No payment-address step</td></tr><tr><td>atomicals nfts</td><td>Atomicals non-fungible assets</td></tr><tr><td>atomicals realms</td><td>Names and sub-realms in the Atomicals namespace</td></tr></tbody></table></div>
+<p><strong>Stamps</strong></p>
+<div class="u-table-scroll" tabindex="0" role="region" aria-label="Table, scrollable">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Workspace</th><th>What it is for</th></tr></thead><tbody><tr><td>stamps</td><td>Bitcoin Stamps: images encoded straight into the UTXO set, so the data cannot be pruned</td></tr><tr><td>src-20</td><td>Deploy, mint and transfer SRC-20. Data lives in 330-sat P2WSH outputs; your wallet signs pre-built PSBTs</td></tr><tr><td>src-101</td><td>Register permanent Bitcoin domain names ending in <code dir="auto">.sats</code> or <code dir="auto">.btc</code>, funded by one signature</td></tr></tbody></table></div>
+<p><strong>OP_RETURN family</strong></p>
+<div class="u-table-scroll" tabindex="0" role="region" aria-label="Table, scrollable">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Workspace</th><th>What it is for</th></tr></thead><tbody><tr><td>op_return inscriptions</td><td>Free-form OP_RETURN inscriptions, with an optional file</td></tr><tr><td>op20</td><td>OP-20 token deploy, mint and transfer, plus OP_Names registration and transfer</td></tr></tbody></table></div>
+<p><strong>Drops and OP_DROP</strong></p>
+<div class="u-table-scroll" tabindex="0" role="region" aria-label="Table, scrollable">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Workspace</th><th>What it is for</th></tr></thead><tbody><tr><td>drops</td><td>Browse confirmed artifacts, search and review supported transfers. Creation runs through Inscribe; signing requires verified custody</td></tr><tr><td>drop pacts</td><td>Reference tools and a resumable tutorial; no live contract execution or spend authority</td></tr><tr><td>op-drop</td><td>Deploy, mint and transfer op-drop tokens. Every operation is a compact JSON inscription, funded wallet-only</td></tr></tbody></table></div>
+<p><strong>Collaborative and time</strong></p>
+<div class="u-table-scroll" tabindex="0" role="region" aria-label="Table, scrollable">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Workspace</th><th>What it is for</th></tr></thead><tbody><tr><td>Tandem</td><td>Build and change one object together, with a signed record of each change</td></tr><tr><td>Patina</td><td>How long a value-carrying output has stayed where it is</td></tr></tbody></table></div>
+<p><strong>Other protocols</strong></p>
+<div class="u-table-scroll" tabindex="0" role="region" aria-label="Table, scrollable">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Workspace</th><th>What it is for</th></tr></thead><tbody><tr><td>runes</td><td>Mint open Runes, etch your own, or split a rune balance across outputs</td></tr><tr><td>alkanes</td><td>Browse Alkane tokens ranked by live mempool minting, and mint them by ID</td></tr><tr><td>cat-20</td><td>Explore CAT-20 on Fractal, see your balances, and create, mint, send or burn tokens. You pick the network yourself</td></tr><tr><td>tap on doge</td><td>Mint TAP tokens indexed on Dogecoin, including Doge DMT blocks. Mint only</td></tr><tr><td>dust-20</td><td>Deploy and mint DUST-20, where the mint output’s sat value encodes the amount</td></tr><tr><td>mezcal</td><td>Mint, etch and transfer Mezcal, which writes JSON OP_RETURN records instead of runestones</td></tr></tbody></table></div>
+<div class="sl-heading-wrapper level-h2"><h2 id="market-intel">Market intel</h2><a class="sl-anchor-link" href="#market-intel"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Market intel”</span></a></div>
+<div class="u-table-scroll" tabindex="0" role="region" aria-label="Table, scrollable">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Workspace</th><th>What it is for</th></tr></thead><tbody><tr><td>Mempool</td><td>What is waiting to confirm, grouped by protocol family and sized by transaction weight</td></tr><tr><td>Ecosystem</td><td>The apps and indexes Universe runs, and whether each answers</td></tr><tr><td>Meme Map</td><td>Where attention is going across meme assets</td></tr><tr><td>Pending TX Analyzer</td><td>Read one pending transaction in detail</td></tr><tr><td>Bitcoin Tools</td><td>33 focused tools: decoders, estimators, inspectors, planners</td></tr><tr><td>Analytics</td><td>Longer-range activity across protocols</td></tr></tbody></table></div>
+<div class="sl-heading-wrapper level-h2"><h2 id="advanced">Advanced</h2><a class="sl-anchor-link" href="#advanced"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Advanced”</span></a></div>
+<p>Use these when a normal flow will not do what you need. Each one shows the
+asset report for an output before you sign it.</p>
+<div class="u-table-scroll" tabindex="0" role="region" aria-label="Table, scrollable">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Workspace</th><th>What it is for</th></tr></thead><tbody><tr><td>Bump Stuck TX</td><td>Compare RBF and CPFP for a transaction that is not confirming</td></tr><tr><td>Advanced TX Builder</td><td>Choose inputs and outputs yourself</td></tr><tr><td>UTXO Split</td><td>Split one output into several</td></tr><tr><td>Asset Recovery</td><td>Reclaim sats locked in inscription padding</td></tr></tbody></table></div>
+<div class="sl-heading-wrapper level-h2"><h2 id="provenance-rights-and-compute">Provenance, rights and compute</h2><a class="sl-anchor-link" href="#provenance-rights-and-compute"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Provenance, rights and compute”</span></a></div>
+<p>These workspaces sign and settle on Bitcoin with your own wallet. Each one
+shows the exact message or transaction it asks you to sign, and nothing is
+broadcast until you approve it.</p>
+<div class="u-table-scroll" tabindex="0" role="region" aria-label="Table, scrollable">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Workspace</th><th>What it is for</th></tr></thead><tbody><tr><td>Universe Content Authenticity &#x26; Media Provenance</td><td>Inspect media for C2PA credentials, sign a manifest for your own media with a BIP-322 wallet approval, anchor its commitment in a Bitcoin transaction built from your coins, and find a signed original again from a resized copy</td></tr><tr><td>Universe Creator Rights, Licensing &#x26; Royalty Network</td><td>Register an asset, publish a license offer, have both parties sign the agreement with their wallets, and issue a verifiable credential once any payment is confirmed on Bitcoin</td></tr><tr><td>Universe Digital Product Passports &#x26; Supply Chain Provenance</td><td>Manage GS1 Digital Link passports and supply chain custody events, with a public passport page per product</td></tr><tr><td>Universe BitVM &#x26; Bitcoin Compute Studio</td><td>Run a RISC-V program with a verifiable step trace, review dispute and timeout scenarios, check a collateral output against Bitcoin Core and the ord index, and export a recovery package</td></tr></tbody></table></div>
+<p>The Compute studio runs programs locally and never executes on mainnet. Its
+collateral checks and the Bitcoin anchors use the network your wallet session
+is on. A network is available only when its Bitcoin data authority and ord
+index are configured for it; otherwise the workspace says so instead of
+guessing.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="help">Help</h2><a class="sl-anchor-link" href="#help"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Help”</span></a></div>
+<div class="u-table-scroll" tabindex="0" role="region" aria-label="Table, scrollable">
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Workspace</th><th>What it is for</th></tr></thead><tbody><tr><td>Docs &#x26; Guides</td><td>63 in-app guides across getting started, create, protocols, workflows, wallet, intel, safety and troubleshooting</td></tr></tbody></table></div>
+<div class="sl-heading-wrapper level-h2"><h2 id="when-a-source-is-slow-or-down">When a source is slow or down</h2><a class="sl-anchor-link" href="#when-a-source-is-slow-or-down"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “When a source is slow or down”</span></a></div>
+<p>A workspace stays visible even when the index behind it is down or catching up,
+because a missing workspace looks like a product that never had the feature.
+Its reads may be missing or out of date until the index catches up. Its writes
+keep working.</p>
+<p><a href="/reference/protocol-data-status/">Protocol data status and recovery</a> explains what
+a slow or missing source affects.</p></div><footer class="sl-flex astro-xhxjzfa7"><div class="meta sl-flex astro-xhxjzfa7"><p>Last updated: <time datetime="2026-11-11T07:56:17.000Z">Nov 11, 2026</time></p></div><div class="pagination-links print:hidden astro-jgq3vlii" dir="ltr"><a href="/docs-inscribe/create/what-it-costs" rel="prev" class="astro-jgq3vlii"><svg aria-hidden="true" class="astro-jgq3vlii astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17 11H9.41l3.3-3.29a1.004 1.004 0 1 0-1.42-1.42l-5 5a1 1 0 0 0-.21.33 1 1 0 0 0 0 .76 1 1 0 0 0 .21.33l5 5a1.002 1.002 0 0 0 1.639-.325 1 1 0 0 0-.219-1.095L9.41 13H17a1 1 0 0 0 0-2Z"/></svg><span class="astro-jgq3vlii">Previous<br class="astro-jgq3vlii"><span class="link-title astro-jgq3vlii">Cost anatomy</span></span></a><a href="/docs-inscribe/labs/protocols/" rel="next" class="astro-jgq3vlii"><svg aria-hidden="true" class="astro-jgq3vlii astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg><span class="astro-jgq3vlii">Next<br class="astro-jgq3vlii"><span class="link-title astro-jgq3vlii">Protocol Decision Lab</span></span></a></div></footer></div></div></main></div></div></div></div></body></html>

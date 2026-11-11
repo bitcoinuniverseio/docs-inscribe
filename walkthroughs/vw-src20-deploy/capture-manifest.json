@@ -1,0 +1,34 @@
+{
+  "walkthroughId": "vw-src20-deploy",
+  "appCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+  "capturedAt": "2026-09-02T20:33:18.058Z",
+  "fixtureVersion": "1",
+  "steps": 3,
+  "altTexts": [
+    "The src20 workspace opened with the deploy action selected",
+    "The deploy form fields for src20",
+    "The review end of the deploy flow for src20"
+  ],
+  "stepInstructions": [
+    "Open /src20 with the deploy action. The workspace shows its form with the action preselected.",
+    "Fill the form fields. Every field shows the values that drive the quote; the fixture environment has no live fees, and the app says so.",
+    "The end of the form holds the fee and review sections. Nothing is signed in this capture environment; the live app shows its own review here."
+  ],
+  "files": [
+    {
+      "path": "step-01.webp",
+      "sha256": "a87e9cd83dea3e50ae494b23ad9fc7ad8d370c29aea38e956a9cd6d533ae2d2e",
+      "bytes": 38840
+    },
+    {
+      "path": "step-02.webp",
+      "sha256": "a87e9cd83dea3e50ae494b23ad9fc7ad8d370c29aea38e956a9cd6d533ae2d2e",
+      "bytes": 38840
+    },
+    {
+      "path": "step-03.webp",
+      "sha256": "1a4fe2a4fecca0338eedc32870c40d72389d6b5853eb6f1eacdb354d2ec9694a",
+      "bytes": 36562
+    }
+  ]
+}

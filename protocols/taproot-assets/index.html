@@ -1,0 +1,529 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-vdxcvpsm"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Taproot Assets | Inscribe</title><link rel="canonical" href="https://bitcoinuniverseio.github.io/docs-inscribe/protocols/taproot-assets/"/><link rel="sitemap" href="/docs-inscribe/sitemap-index.xml"/><link rel="shortcut icon" href="/docs-inscribe/favicon.svg" type="image/svg+xml"/><meta name="generator" content="Astro v7.2.10"/><meta name="generator" content="Starlight v0.41.11"/><meta property="og:title" content="Taproot Assets"/><meta property="og:type" content="article"/><meta property="og:url" content="https://bitcoinuniverseio.github.io/docs-inscribe/protocols/taproot-assets/"/><meta property="og:locale" content="en"/><meta property="og:description" content="Mint, hold, receive, send and prove Taproot Assets from your Taproot wallet, and pay over Lightning with an asset balance. What you sign, who pays the Bitcoin fee, and what cannot be undone."/><meta property="og:site_name" content="Inscribe"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="Mint, hold, receive, send and prove Taproot Assets from your Taproot wallet, and pay over Lightning with an asset balance. What you sign, who pays the Bitcoin fee, and what cannot be undone."/><script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","author":{"@type":"Organization","name":"Bitcoin Universe"},"publisher":{"@type":"Organization","name":"Bitcoin Universe"}}</script><script type="module">`serviceWorker`in navigator&&location.protocol===`https:`&&window.addEventListener(`load`,()=>{navigator.serviceWorker.register(`/docs-inscribe/sw.js`).catch(()=>{})});</script><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg><svg aria-hidden="true" class="dark astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg><svg aria-hidden="true" class="auto astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg></template><link rel="stylesheet" href="/docs-inscribe/_astro/print.ehPL0gv-.css" media="print"><link rel="stylesheet" href="/docs-inscribe/_astro/middleware.BlA4sMJx.css"><script type="module" src="/docs-inscribe/_astro/page.Dwipeu-R.js"></script></head><body class="astro-vdxcvpsm"><a class="sl-skip-link astro-vxeigawq" href="#_top">Skip to content</a><div class="page sl-flex astro-gqpr5s5a"><header class="header astro-gqpr5s5a"><div class="header astro-nczgtkxc"><div class="title-wrapper sl-flex astro-nczgtkxc"><a href="/docs-inscribe/" class="site-title sl-flex astro-clw6ags5"><span class="astro-clw6ags5" translate="no">Inscribe</span></a></div><div class="sl-flex print:hidden astro-nczgtkxc"><site-search class="astro-nczgtkxc astro-r5ar4xm7" data-translations="{&quot;placeholder&quot;:&quot;Search&quot;}"><button data-open-modal disabled aria-label="Search" aria-keyshortcuts="Control+K" class="astro-r5ar4xm7"><svg aria-hidden="true" class="astro-r5ar4xm7 astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg><span class="sl-hidden md:sl-block astro-r5ar4xm7" aria-hidden="true">Search</span><kbd class="sl-hidden md:sl-flex astro-r5ar4xm7" style="display: none;"><kbd class="astro-r5ar4xm7">Ctrl</kbd><kbd class="astro-r5ar4xm7">K</kbd></kbd></button><dialog style="padding:0" aria-label="Search" class="astro-r5ar4xm7"><div class="dialog-frame sl-flex astro-r5ar4xm7"><button data-close-modal class="sl-flex md:sl-hidden astro-r5ar4xm7">Cancel</button><div class="search-container astro-r5ar4xm7"><div id="starlight__search" class="astro-r5ar4xm7"></div></div></div></dialog></site-search><script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script><script type="module" src="/docs-inscribe/_astro/Search.astro_astro_type_script_index_0_lang.CDDAEABP.js"></script></div><div class="sl-hidden md:sl-flex print:hidden right-group astro-nczgtkxc"><div class="sl-flex social-icons astro-nczgtkxc"><a href="https://github.com/bitcoinuniverseio/docs-inscribe" rel="me" class="sl-flex astro-cg55etiy"><span class="sr-only astro-cg55etiy">GitHub</span><svg aria-hidden="true" class="astro-cg55etiy astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a><a href="https://inscribe.bitcoinuniverse.io" rel="me" class="sl-flex astro-cg55etiy"><span class="sr-only astro-cg55etiy">Open Inscribe</span><svg aria-hidden="true" class="astro-cg55etiy astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M19.33 10.18a1 1 0 0 1-.77 0 1 1 0 0 1-.62-.93l.01-1.83-8.2 8.2a1 1 0 0 1-1.41-1.42l8.2-8.2H14.7a1 1 0 0 1 0-2h4.25a1 1 0 0 1 1 1v4.25a1 1 0 0 1-.62.93Z"/><path d="M11 4a1 1 0 1 1 0 2H7a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-4a1 1 0 1 1 2 0v4a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h4Z"/></svg></a></div><script type="module">var e=`inscribe-docs-theme`;if(!localStorage.getItem(e)){let e=window.matchMedia(`(prefers-color-scheme: dark)`).matches?`dark`:`light`;document.documentElement.dataset.theme=e}document.addEventListener(`change`,t=>{let n=t.target;n instanceof HTMLSelectElement&&n.dataset.themeSelect!==void 0&&localStorage.setItem(e,n.value)});</script><script type="module">var e=class extends HTMLElement{constructor(){super();let e=this.querySelector(`select`);e&&(e.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&(window.location.pathname=e.currentTarget.value)}),window.addEventListener(`pageshow`,t=>{if(!t.persisted)return;let n=e.querySelector(`option[selected]`)?.index;n!==e.selectedIndex&&(e.selectedIndex=n??0)}))}};customElements.define(`starlight-lang-select`,e);</script></div></div></header><nav class="sidebar print:hidden astro-gqpr5s5a" aria-label="Main"><starlight-menu-button class="print:hidden astro-vvx7mffu"><button aria-expanded="false" aria-label="Menu" aria-controls="starlight__sidebar" class="sl-flex md:sl-hidden astro-vvx7mffu"><svg aria-hidden="true" class="open-menu astro-vvx7mffu astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg><svg aria-hidden="true" class="close-menu astro-vvx7mffu astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="m13.41 12 6.3-6.29a1.004 1.004 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 0 1.42.998.998 0 0 0 1.42 0l6.29-6.3 6.29 6.3a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.42L13.41 12Z"/></svg></button></starlight-menu-button><script type="module">var e=class extends HTMLElement{btn=this.querySelector(`button`);constructor(){super(),this.btn.addEventListener(`click`,()=>this.toggleExpanded());let e=this.closest(`nav`);e&&e.addEventListener(`keyup`,e=>this.closeOnEscape(e)),matchMedia(`(min-width: 50em)`).addEventListener(`change`,()=>this.setExpanded(!1))}setExpanded(e){this.setAttribute(`aria-expanded`,String(e)),document.body.toggleAttribute(`data-mobile-menu-expanded`,e),document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}toggleExpanded(){this.setExpanded(this.getAttribute(`aria-expanded`)!==`true`)}closeOnEscape(e){e.code===`Escape`&&(this.setExpanded(!1),this.btn.focus())}};customElements.define(`starlight-menu-button`,e);</script><div id="starlight__sidebar" class="sidebar-pane astro-gqpr5s5a"><div class="sidebar-content sl-flex astro-gqpr5s5a"><sl-sidebar-state-persist data-hash="1ozydt6" class="astro-f5yvicm7"><script aria-hidden="true">
+		(() => {
+			try {
+				if (!matchMedia('(min-width: 50em)').matches) return;
+				/** @type {HTMLElement | null} */
+				const target = document.querySelector('sl-sidebar-state-persist');
+				const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || '0');
+				if (!target || !state || target.dataset.hash !== state.hash) return;
+				window._starlightScrollRestore = state.scroll;
+				customElements.define(
+					'sl-sidebar-restore',
+					class SidebarRestore extends HTMLElement {
+						connectedCallback() {
+							try {
+								const idx = parseInt(this.dataset.index || '');
+								const details = this.closest('details');
+								if (details && typeof state.open[idx] === 'boolean') details.open = state.open[idx];
+							} catch {}
+						}
+					}
+				);
+			} catch {}
+		})();
+	</script><ul class="top-level astro-ojxuodky"><li class="astro-ojxuodky"><details open class="astro-ojxuodky"><summary class="astro-ojxuodky"><span class="group-label astro-ojxuodky"><span class="large astro-ojxuodky">Start here</span></span><svg aria-hidden="true" class="caret astro-ojxuodky astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="0"></sl-sidebar-restore><ul class="astro-ojxuodky"><li class="astro-ojxuodky"><a href="/docs-inscribe/start/what-you-can-create" class="astro-ojxuodky"><span class="astro-ojxuodky">What you can create</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/guided/" class="astro-ojxuodky"><span class="astro-ojxuodky">Guided plan</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/practice/" class="astro-ojxuodky"><span class="astro-ojxuodky">Practice without spending</span></a></li></ul></details></li><li class="astro-ojxuodky"><details open class="astro-ojxuodky"><summary class="astro-ojxuodky"><span class="group-label astro-ojxuodky"><span class="large astro-ojxuodky">Create</span></span><svg aria-hidden="true" class="caret astro-ojxuodky astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="1"></sl-sidebar-restore><ul class="astro-ojxuodky"><li class="astro-ojxuodky"><a href="/docs-inscribe/create/first-inscription" class="astro-ojxuodky"><span class="astro-ojxuodky">First inscription</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/create/what-it-costs" class="astro-ojxuodky"><span class="astro-ojxuodky">Cost anatomy</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/create/workspaces" class="astro-ojxuodky"><span class="astro-ojxuodky">Workspace map</span></a></li></ul></details></li><li class="astro-ojxuodky"><details open class="astro-ojxuodky"><summary class="astro-ojxuodky"><span class="group-label astro-ojxuodky"><span class="large astro-ojxuodky">Decide</span></span><svg aria-hidden="true" class="caret astro-ojxuodky astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="2"></sl-sidebar-restore><ul class="astro-ojxuodky"><li class="astro-ojxuodky"><a href="/docs-inscribe/labs/protocols/" class="astro-ojxuodky"><span class="astro-ojxuodky">Protocol Decision Lab</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/labs/transaction-review/" class="astro-ojxuodky"><span class="astro-ojxuodky">Transaction Review Lab</span></a></li></ul></details></li><li class="astro-ojxuodky"><details open class="astro-ojxuodky"><summary class="astro-ojxuodky"><span class="group-label astro-ojxuodky"><span class="large astro-ojxuodky">Visual guides</span></span><svg aria-hidden="true" class="caret astro-ojxuodky astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="3"></sl-sidebar-restore><ul class="astro-ojxuodky"><li class="astro-ojxuodky"><a href="/docs-inscribe/visual-guides/" class="astro-ojxuodky"><span class="astro-ojxuodky">Walkthrough library</span></a></li></ul></details></li><li class="astro-ojxuodky"><details open class="astro-ojxuodky"><summary class="astro-ojxuodky"><span class="group-label astro-ojxuodky"><span class="large astro-ojxuodky">Safety</span></span><svg aria-hidden="true" class="caret astro-ojxuodky astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="4"></sl-sidebar-restore><ul class="astro-ojxuodky"><li class="astro-ojxuodky"><a href="/docs-inscribe/safety/asset-safety" class="astro-ojxuodky"><span class="astro-ojxuodky">Asset and UTXO safety</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/safety/order-recovery" class="astro-ojxuodky"><span class="astro-ojxuodky">Recovery guide</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/recovery/navigator/" class="astro-ojxuodky"><span class="astro-ojxuodky">Recovery Navigator</span></a></li></ul></details></li><li class="astro-ojxuodky"><details open class="astro-ojxuodky"><summary class="astro-ojxuodky"><span class="group-label astro-ojxuodky"><span class="large astro-ojxuodky">Reference</span></span><svg aria-hidden="true" class="caret astro-ojxuodky astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="5"></sl-sidebar-restore><ul class="astro-ojxuodky"><li class="astro-ojxuodky"><a href="/docs-inscribe/reference/protocol-data-status" class="astro-ojxuodky"><span class="astro-ojxuodky">Live data status</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/reference/accessibility" class="astro-ojxuodky"><span class="astro-ojxuodky">Accessibility</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/reference/performance-and-media" class="astro-ojxuodky"><span class="astro-ojxuodky">Performance and media</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/reference/release-evidence" class="astro-ojxuodky"><span class="astro-ojxuodky">Release evidence</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/reference/agent-surfaces" class="astro-ojxuodky"><span class="astro-ojxuodky">For agents and LLMs</span></a></li></ul></details></li></ul><script aria-hidden="true">
+		(() => {
+			const scroller = document.getElementById('starlight__sidebar');
+			if (!window._starlightScrollRestore || !scroller) return;
+			scroller.scrollTop = window._starlightScrollRestore;
+			delete window._starlightScrollRestore;
+		})();
+	</script></sl-sidebar-state-persist><div class="md:sl-hidden"><div class="mobile-preferences sl-flex astro-b5gddk54"><div class="social-icons astro-b5gddk54"><a href="https://github.com/bitcoinuniverseio/docs-inscribe" rel="me" class="sl-flex astro-cg55etiy"><span class="sr-only astro-cg55etiy">GitHub</span><svg aria-hidden="true" class="astro-cg55etiy astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a><a href="https://inscribe.bitcoinuniverse.io" rel="me" class="sl-flex astro-cg55etiy"><span class="sr-only astro-cg55etiy">Open Inscribe</span><svg aria-hidden="true" class="astro-cg55etiy astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M19.33 10.18a1 1 0 0 1-.77 0 1 1 0 0 1-.62-.93l.01-1.83-8.2 8.2a1 1 0 0 1-1.41-1.42l8.2-8.2H14.7a1 1 0 0 1 0-2h4.25a1 1 0 0 1 1 1v4.25a1 1 0 0 1-.62.93Z"/><path d="M11 4a1 1 0 1 1 0 2H7a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-4a1 1 0 1 1 2 0v4a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h4Z"/></svg></a></div></div></div></div></div></nav><div class="main-frame astro-gqpr5s5a"><script type="module">var e=document.getElementById(`starlight__sidebar`),t=e?.querySelector(`sl-sidebar-state-persist`),n=`sl-sidebar-state`,r=()=>{let r=[],i=t?.dataset.hash||``;try{let e=sessionStorage.getItem(n),t=JSON.parse(e||`{}`);Array.isArray(t.open)&&t.hash===i&&(r=t.open)}catch{}return{hash:i,open:r,scroll:e?.scrollTop||0}},i=e=>{try{sessionStorage.setItem(n,JSON.stringify(e))}catch{}},a=()=>i(r()),o=(e,t)=>{let n=r();n.open[t]=e,i(n)};t?.addEventListener(`click`,e=>{if(!(e.target instanceof Element))return;let t=e.target.closest(`summary`)?.closest(`details`);if(!t)return;let n=t.querySelector(`sl-sidebar-restore`),r=parseInt(n?.dataset.index||``);isNaN(r)||o(!t.open,r)}),addEventListener(`visibilitychange`,()=>{document.visibilityState===`hidden`&&a()});</script><div class="lg:sl-flex astro-abfeecmu"><aside class="right-sidebar-container print:hidden astro-abfeecmu"><div class="right-sidebar astro-abfeecmu"><div class="lg:sl-hidden astro-q5mffni3"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-5ulgm6bh"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-5ulgm6bh"><details id="starlight__mobile-toc" class="astro-5ulgm6bh"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-5ulgm6bh"><span class="toggle sl-flex astro-5ulgm6bh">On this page<svg aria-hidden="true" class="caret astro-5ulgm6bh astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></span><span class="display-current astro-5ulgm6bh"></span></summary><div class="dropdown astro-5ulgm6bh"><ul class="isMobile astro-cxyftcne" style="--depth: 0;"><li style="--depth: 0;" class="astro-cxyftcne"><a href="#_top" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Overview</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#before-you-start" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Before you start</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#the-workspace" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">The workspace</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#mint-an-asset" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Mint an asset</span></a><ul class="isMobile astro-cxyftcne" style="--depth: 1;"><li style="--depth: 1;" class="astro-cxyftcne"><a href="#what-you-choose" style="--depth: 1;" class="astro-cxyftcne"><span style="--depth: 1;" class="astro-cxyftcne">What you choose</span></a></li><li style="--depth: 1;" class="astro-cxyftcne"><a href="#paid-by-universe" style="--depth: 1;" class="astro-cxyftcne"><span style="--depth: 1;" class="astro-cxyftcne">Paid by Universe</span></a></li><li style="--depth: 1;" class="astro-cxyftcne"><a href="#mint-and-pay-from-your-wallet" style="--depth: 1;" class="astro-cxyftcne"><span style="--depth: 1;" class="astro-cxyftcne">Mint and pay from your wallet</span></a></li><li style="--depth: 1;" class="astro-cxyftcne"><a href="#mint-through-composer" style="--depth: 1;" class="astro-cxyftcne"><span style="--depth: 1;" class="astro-cxyftcne">Mint through Composer</span></a></li><li style="--depth: 1;" class="astro-cxyftcne"><a href="#after-the-mint" style="--depth: 1;" class="astro-cxyftcne"><span style="--depth: 1;" class="astro-cxyftcne">After the mint</span></a></li></ul></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#holdings" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Holdings</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#receive" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Receive</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#send" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Send</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#proofs" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Proofs</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#universe" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Universe</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#asset-lightning" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Asset Lightning</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#history-and-recovery" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">History and recovery</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#what-you-sign-who-pays-what-is-final" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">What you sign, who pays, what is final</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#limits" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Limits</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#signet-and-mainnet" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Signet and mainnet</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#common-problems" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Common problems</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#related" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Related</span></a></li></ul></div></details></nav></mobile-starlight-toc><script type="module" src="/docs-inscribe/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.BcSo_yiZ.js"></script></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-q5mffni3"><div class="sl-container astro-q5mffni3"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-cxyftcne" style="--depth: 0;"><li style="--depth: 0;" class="astro-cxyftcne"><a href="#_top" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Overview</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#before-you-start" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Before you start</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#the-workspace" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">The workspace</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#mint-an-asset" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Mint an asset</span></a><ul class="astro-cxyftcne" style="--depth: 1;"><li style="--depth: 1;" class="astro-cxyftcne"><a href="#what-you-choose" style="--depth: 1;" class="astro-cxyftcne"><span style="--depth: 1;" class="astro-cxyftcne">What you choose</span></a></li><li style="--depth: 1;" class="astro-cxyftcne"><a href="#paid-by-universe" style="--depth: 1;" class="astro-cxyftcne"><span style="--depth: 1;" class="astro-cxyftcne">Paid by Universe</span></a></li><li style="--depth: 1;" class="astro-cxyftcne"><a href="#mint-and-pay-from-your-wallet" style="--depth: 1;" class="astro-cxyftcne"><span style="--depth: 1;" class="astro-cxyftcne">Mint and pay from your wallet</span></a></li><li style="--depth: 1;" class="astro-cxyftcne"><a href="#mint-through-composer" style="--depth: 1;" class="astro-cxyftcne"><span style="--depth: 1;" class="astro-cxyftcne">Mint through Composer</span></a></li><li style="--depth: 1;" class="astro-cxyftcne"><a href="#after-the-mint" style="--depth: 1;" class="astro-cxyftcne"><span style="--depth: 1;" class="astro-cxyftcne">After the mint</span></a></li></ul></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#holdings" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Holdings</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#receive" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Receive</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#send" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Send</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#proofs" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Proofs</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#universe" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Universe</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#asset-lightning" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Asset Lightning</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#history-and-recovery" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">History and recovery</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#what-you-sign-who-pays-what-is-final" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">What you sign, who pays, what is final</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#limits" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Limits</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#signet-and-mainnet" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Signet and mainnet</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#common-problems" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Common problems</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#related" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Related</span></a></li></ul></nav></starlight-toc><script type="module" src="/docs-inscribe/_astro/TableOfContents.astro_astro_type_script_index_0_lang.Csloo1VZ.js"></script></div></div></div></aside><div class="main-pane astro-abfeecmu"><main data-pagefind-body class="astro-vdxcvpsm" lang="en" dir="ltr"><div class="content-panel astro-oil7k7jf"><div class="sl-container astro-oil7k7jf"><h1 id="_top"></h1></div></div><div class="content-panel astro-oil7k7jf"><div class="sl-container astro-oil7k7jf"><div class="sl-markdown-content"><p>Taproot Assets are tokens and collectibles issued on Bitcoin. The asset itself is recorded
+in a Taproot output: Bitcoin carries a small commitment to it, and a <strong>proof file</strong> that
+travels with the asset shows its whole history back to the mint. Whoever holds the asset’s
+key and its proof file holds the asset.</p>
+<p>The Taproot Assets workspace (<code dir="auto">/taproot-assets</code>) lets you mint, hold, receive, send and
+prove these assets with your own wallet, and pay Lightning invoices with an asset balance.</p>
+<p><strong>Status.</strong> Released on mainnet on 2026-09-26, and available on Signet for trying things
+without real value. What differs between the two networks is listed in
+<a href="#signet-and-mainnet">Signet and mainnet</a>: in short, on mainnet you pay every Bitcoin fee
+from your own wallet and asset Lightning is not offered yet.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="before-you-start">Before you start</h2><a class="sl-anchor-link" href="#before-you-start"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Before you start”</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="u-table-scroll" tabindex="0" role="region" aria-label="Table, scrollable"><table><thead><tr><th>Requirement</th><th>Detail</th></tr></thead><tbody><tr><td>Wallet</td><td>A <strong>Taproot account</strong>: an address starting <code dir="auto">bc1p</code> on mainnet or <code dir="auto">tb1p</code> on Signet. Other address types cannot own Taproot Assets here</td></tr><tr><td>Sign in</td><td>You sign a short message with your wallet (BIP-322). It proves you control the address and <strong>spends nothing</strong></td></tr><tr><td>Network</td><td>Bitcoin mainnet, or Signet (coins with no value)</td></tr><tr><td>Bitcoin</td><td>On mainnet, always: you pay the fee of every mint and send. On Signet, only when you choose to pay yourself</td></tr><tr><td>Reversible?</td><td>Minting and published transfers are not</td></tr></tbody></table></div>
+<p><strong>Your key owns the asset.</strong> Every asset you mint or receive here is locked to your
+wallet’s Taproot key (the BIP-86 key behind your address). Universe’s node keeps track of
+it and builds transactions, but it cannot move your asset without your wallet signing.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="the-workspace">The workspace</h2><a class="sl-anchor-link" href="#the-workspace"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “The workspace”</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="u-table-scroll" tabindex="0" role="region" aria-label="Table, scrollable"><table><thead><tr><th>Section</th><th>What you do there</th></tr></thead><tbody><tr><td><strong>Overview</strong></td><td>Your assets, with Send and Proof buttons for each, and the network</td></tr><tr><td><strong>Mint</strong></td><td>Create a new asset, paid from your wallet (and, on Signet, optionally paid by Universe)</td></tr><tr><td><strong>Send</strong></td><td>Send units to one or several Taproot Assets addresses</td></tr><tr><td><strong>Receive</strong></td><td>Create a Taproot Assets address and watch transfers arrive</td></tr><tr><td><strong>Proofs</strong></td><td>Export the proof file of an asset you hold, or check any proof file</td></tr><tr><td><strong>Index</strong></td><td>Browse issuance records and sync the latest ones for an asset</td></tr><tr><td><strong>Lightning</strong></td><td>Receive and pay Lightning invoices with a hosted asset balance</td></tr></tbody></table></div>
+<p>Your holdings, mints, addresses, transfers, invoices and payments are listed in their
+sections and survive a reload.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="mint-an-asset">Mint an asset</h2><a class="sl-anchor-link" href="#mint-an-asset"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Mint an asset”</span></a></div>
+<p>There are two ways to pay for a mint. Both lock the new asset to your key. <strong>On mainnet only
+the second one is offered</strong>: Universe does not pay Bitcoin fees there.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="u-table-scroll" tabindex="0" role="region" aria-label="Table, scrollable"><table><thead><tr><th></th><th>Paid by Universe</th><th>Mint and pay from your wallet</th></tr></thead><tbody><tr><td>Who pays the Bitcoin fee</td><td>Universe’s node, from its own wallet</td><td>You, from confirmed bitcoin at your Taproot address</td></tr><tr><td>What your wallet signs</td><td>An authorization message. It spends nothing</td><td>The exact Bitcoin transaction of the mint</td></tr><tr><td>Groups (mint more later)</td><td>Yes</td><td>No, one fixed-supply asset</td></tr><tr><td>Decimal places shown</td><td>Yes</td><td>No</td></tr></tbody></table></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="what-you-choose">What you choose</h3><a class="sl-anchor-link" href="#what-you-choose"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “What you choose”</span></a></div>
+<ul>
+<li><strong>Type.</strong> <em>Token</em> (many units) or <em>Collectible (one)</em>.</li>
+<li><strong>Name and supply.</strong> A name of up to 27 characters (a short ID is added to it) and the
+number of units to create. A collectible has one unit.</li>
+<li><strong>Decimals (display)</strong> (optional, tokens only). Only changes how amounts are
+displayed: 100 units with 2 places show as 1.00. Units are always whole numbers
+underneath.</li>
+<li><strong>Description or note</strong> (optional). Stored with the asset forever. Do not put anything
+private in it.</li>
+<li><strong>Supply</strong> (paid by Universe only). <em>Fixed</em> gives a fixed supply. <em>Can mint more later</em>
+lets you mint more of the same asset later. You can add supply only to a group you
+created with the wallet you are using now.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="paid-by-universe">Paid by Universe</h3><a class="sl-anchor-link" href="#paid-by-universe"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Paid by Universe”</span></a></div>
+<ol>
+<li>Open <strong>Mint</strong>, choose <strong>Universe pays</strong>, enter the asset details and, under <strong>Fees</strong>, the <strong>Max fee</strong>. The mint is
+cancelled if the fee would be higher.</li>
+<li>Select <strong>Prepare mint</strong>. Universe builds the mint and shows a review: the asset, the
+supply, your owner key and the Bitcoin fee Universe will pay.</li>
+<li>Under <strong>Approve</strong>, select <strong>Sign</strong>, then <strong>Mint</strong>. Your wallet signs the review as a
+message. This authorizes this one mint and spends nothing of yours. If your wallet is
+elsewhere, <strong>Sign elsewhere</strong> shows the message to sign.</li>
+<li>Universe publishes the mint and shows it under <strong>My mints</strong> until it confirms.</li>
+</ol>
+<p><strong>Nothing is published before you approve</strong>, even if a Universe node restarts in between.
+The node refuses to sign a mint that has no recorded approval from its owner. If you change
+your mind before approving, select <strong>Cancel mint</strong>: nothing is published.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="mint-and-pay-from-your-wallet">Mint and pay from your wallet</h3><a class="sl-anchor-link" href="#mint-and-pay-from-your-wallet"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Mint and pay from your wallet”</span></a></div>
+<ol>
+<li>In <strong>Mint</strong>, choose <strong>You pay</strong> (on mainnet it is the only form) and enter the asset details.</li>
+<li>Select <strong>Prepare</strong>. Inscribe builds the funding from up to 8 of your confirmed coins at
+your Taproot address. The transaction pays a 1,000-satoshi output that carries the asset
+commitment and returns your change to your address; the rest is the network fee.</li>
+<li>Review the transaction, then select <strong>Sign and mint</strong>. Your wallet signs that exact
+transaction, and Universe publishes it only if it matches what you reviewed.</li>
+<li>Until you sign, you can select <strong>Cancel</strong>. Nothing is published and your coins stay
+unspent.</li>
+</ol>
+<p>Universe never pays for, signs or moves this mint.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="mint-through-composer">Mint through Composer</h3><a class="sl-anchor-link" href="#mint-through-composer"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Mint through Composer”</span></a></div>
+<p>The same wallet-paid mint can run as a Composer step. Prepare it in <strong>Mint and pay from your
+wallet</strong>, then give Composer the mint’s job ID and its unsigned digest. Composer shows the
+same transaction, asks you to approve the session with a message signature, then to sign
+the transaction with your wallet, and publishes it through the same checks. A mint handed to
+Composer can only be finished there. Composer marks the step complete once the mint has six
+confirmations and its proof is valid.</p>
+<p><strong>How coins are chosen.</strong> Inscribe runs the same asset check it uses everywhere else before
+it picks coins: outputs where the scan found an inscription, a rune or a token balance are
+never used, coins the scan proved to hold only bitcoin come first, and coins the scan could
+not classify are used only after those. The scan can be incomplete, so if your Taproot
+address holds other assets, prefer <strong>Universe pays</strong> (Signet) or a Taproot account that holds only
+plain bitcoin, and read every input in your wallet before you sign.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="after-the-mint">After the mint</h3><a class="sl-anchor-link" href="#after-the-mint"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “After the mint”</span></a></div>
+<p>Minting cannot be undone. Once the mint confirms, the asset appears in your holdings.
+Export its proof file from <strong>Proofs</strong> and keep a copy.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="holdings">Holdings</h2><a class="sl-anchor-link" href="#holdings"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Holdings”</span></a></div>
+<p><strong>My assets</strong> in <strong>Overview</strong> lists the assets held by your Taproot key, as reported by Universe’s
+node: asset name, ID, amount and the Bitcoin output that anchors it.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="receive">Receive</h2><a class="sl-anchor-link" href="#receive"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Receive”</span></a></div>
+<ol>
+<li>Open <strong>Receive</strong> and choose the asset and the amount.</li>
+<li>Inscribe creates a <strong>Taproot Assets address</strong> for exactly that asset and amount. It is
+locked to your key. Copy it or show its QR code to the sender.</li>
+<li>Incoming transfers appear under your addresses with their state, including whether the
+proof file has been delivered. A transfer counts only once its proof has arrived.</li>
+</ol>
+<p>A Taproot Assets address is not a Bitcoin address. Do not send bitcoin to it, and do not use
+it for a different asset: Inscribe refuses a transfer to an address made for another asset.</p>
+<p>Addresses are always for one asset and a fixed amount. Group addresses where the sender
+picks the amount (version 2) are not offered, because receiving on them would need Universe’s
+node to hold your key. You can still send to a version 2 address that someone created
+elsewhere.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="send">Send</h2><a class="sl-anchor-link" href="#send"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Send”</span></a></div>
+<ol>
+<li>Open <strong>Send</strong> (or <strong>Send</strong> next to an asset in <strong>Overview</strong>), paste one or more recipient Taproot Assets addresses and the units for
+each.</li>
+<li>Choose who pays the Bitcoin fee:
+<ul>
+<li><strong>Universe pays</strong> (Signet only). Universe’s node pays, up to a fee cap (5,000
+satoshis by default). The review shows the fee before you sign.</li>
+<li><strong>You pay.</strong> You pay the fee from confirmed bitcoin at your Taproot address.
+The same caution about coins applies as for minting.</li>
+</ul>
+</li>
+<li>Review the transfer. Your change comes back to your own key. Other assets that happen to
+share the same Bitcoin output (passive assets) are carried over to a new output for you
+automatically, so they are not lost. If that output also carries an asset that belongs to
+someone else, the transfer is refused before anything is signed.</li>
+<li><strong>Sign and send.</strong> Your wallet signs an asset transaction. It looks like an ordinary
+PSBT with one Taproot input from your address, but <strong>the input amount is asset units,
+not bitcoin</strong>. Signing moves only the units shown.</li>
+<li>If you pay the fee yourself, your wallet then asks you to <strong>sign the fee payment</strong>: your
+Bitcoin inputs of the transaction that carries the transfer.</li>
+<li>The transfer is published once, for that one approval, and shows <em>Sent, waiting for a
+block</em>, then delivered once the recipient has the asset and its proof.</li>
+</ol>
+<p><strong>Before publishing you can cancel.</strong> A cancelled transfer moves nothing. <strong>After
+publishing, a transfer is final.</strong> Universe never reverses it.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="proofs">Proofs</h2><a class="sl-anchor-link" href="#proofs"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Proofs”</span></a></div>
+<ul>
+<li><strong>Export proof</strong> checks and shows the proof of an asset you hold, and <strong>Download</strong> saves it as a <code dir="auto">.proof</code> file. Keep a copy somewhere
+safe: the proof file is part of owning the asset.</li>
+<li><strong>Check a proof</strong> verifies any proof file you choose (up to 1 MiB; pasting hex also works) and shows the asset and the
+Bitcoin output it is anchored to.</li>
+</ul>
+<div class="sl-heading-wrapper level-h2"><h2 id="universe">Universe</h2><a class="sl-anchor-link" href="#universe"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Universe”</span></a></div>
+<p>A Taproot Assets <em>Universe</em> is a public record of issuances. The <strong>Index</strong> section lets
+you browse the issuance records Universe’s node holds for an asset (<strong>Show</strong>), and <strong>Sync</strong>
+fetches an asset’s issuance proofs from the wider Universe network so they can be checked
+here.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="asset-lightning">Asset Lightning</h2><a class="sl-anchor-link" href="#asset-lightning"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Asset Lightning”</span></a></div>
+<p>Asset Lightning lets you receive and pay Lightning invoices using an asset instead of
+bitcoin. It runs on <strong>Signet only</strong> for now: on mainnet the workspace shows it as
+unavailable until Universe has an approved Lightning peer there. It is <strong>hosted</strong>: Universe keeps an asset balance for your wallet on its own
+Lightning node. That balance is held by Universe, not by your wallet key, until you use it.</p>
+<p><strong>Receive into your balance</strong></p>
+<ol>
+<li>In <strong>Receive</strong>, create an asset invoice for an amount.</li>
+<li>The price comes from Universe’s price service, and a quote is agreed with Universe’s
+approved Lightning peer. The invoice shows how long the quote is valid.</li>
+<li>When the invoice is paid, the amount is added to your Lightning balance.</li>
+</ol>
+<p><strong>Pay an invoice with your balance</strong></p>
+<ol>
+<li>In <strong>Lightning</strong>, paste a Lightning invoice and pick the asset to pay with.</li>
+<li>Set <strong>Max units</strong> (optional) and select <strong>Get quote</strong>. The review shows the <strong>Max cost</strong> in units.</li>
+<li>Confirm <strong>Pay</strong>. The payment is sent only within those limits. If the quote
+expires, ask for a new one.</li>
+</ol>
+<p>Universe opens the Lightning channels for this service itself. There is no way to open a
+channel from the workspace, and prices never come from a stand-in or test price source: if
+there is no reviewed price for an asset, no quote is given.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="history-and-recovery">History and recovery</h2><a class="sl-anchor-link" href="#history-and-recovery"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “History and recovery”</span></a></div>
+<p>Every mint, transfer, invoice and payment is saved as a record tied to your wallet. If a
+Universe service restarts in the middle of an operation, a background process picks up
+unfinished records and brings them to their real state from the node. It never signs
+anything new or invents a result.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="what-you-sign-who-pays-what-is-final">What you sign, who pays, what is final</h2><a class="sl-anchor-link" href="#what-you-sign-who-pays-what-is-final"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “What you sign, who pays, what is final”</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="u-table-scroll" tabindex="0" role="region" aria-label="Table, scrollable"><table><thead><tr><th>Action</th><th>Your wallet signs</th><th>Bitcoin fee paid by</th><th>Can it be undone?</th></tr></thead><tbody><tr><td>Sign in</td><td>A message</td><td>Nobody</td><td>Not applicable</td></tr><tr><td>Mint, paid by Universe (Signet)</td><td>An authorization message</td><td>Universe</td><td>Cancel before you approve. Not after</td></tr><tr><td>Mint, paid from your wallet</td><td>The mint transaction</td><td>You</td><td>Cancel before you sign. Not after</td></tr><tr><td>Mint through Composer</td><td>A session message, then the mint transaction</td><td>You</td><td>Cancel before you sign. Not after</td></tr><tr><td>Receive address</td><td>Nothing</td><td>Nobody</td><td>Not applicable</td></tr><tr><td>Send</td><td>An asset transaction, plus your fee inputs if you pay</td><td>You on mainnet; you or Universe (capped) on Signet</td><td>Cancel before publishing. Not after</td></tr><tr><td>Lightning payment</td><td>Nothing; you confirm the quote</td><td>Paid from your asset balance</td><td>No</td></tr></tbody></table></div>
+<div class="sl-heading-wrapper level-h2"><h2 id="limits">Limits</h2><a class="sl-anchor-link" href="#limits"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Limits”</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="u-table-scroll" tabindex="0" role="region" aria-label="Table, scrollable"><table><thead><tr><th>Limit</th><th>Value</th></tr></thead><tbody><tr><td>Account type</td><td>Taproot only (<code dir="auto">bc1p</code>, <code dir="auto">tb1p</code>)</td></tr><tr><td>Supply groups</td><td>Universe holds the group key. Only the wallet that created a group can mint more into it</td></tr><tr><td>Funding coins for a self-paid mint</td><td>Up to 8 confirmed coins</td></tr><tr><td>Asset commitment output</td><td>1,000 satoshis</td></tr><tr><td>Fee cap when Universe pays for a send (Signet)</td><td>5,000 satoshis by default</td></tr><tr><td>Receive addresses</td><td>One asset and a fixed amount (version 1)</td></tr><tr><td>Proof file size to check</td><td>1 MiB</td></tr><tr><td>Units in one send</td><td>Some wallets refuse to sign above 2,100,000,000,000,000 units (the 21 million bitcoin limit), because the asset transaction shows units where bitcoin amounts normally go</td></tr></tbody></table></div>
+<div class="sl-heading-wrapper level-h2"><h2 id="signet-and-mainnet">Signet and mainnet</h2><a class="sl-anchor-link" href="#signet-and-mainnet"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Signet and mainnet”</span></a></div>
+<p>On <strong>Signet</strong>, all features on this page run against Universe’s own Signet node. Signet
+coins and assets have no value, which makes it the place to try a full mint, transfer and
+proof round trip.</p>
+<p>On <strong>mainnet</strong> the workspace runs against a separate Universe mainnet node, and assets and
+fees are real. Minting and published transfers are final.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="u-table-scroll" tabindex="0" role="region" aria-label="Table, scrollable"><table><thead><tr><th>Feature</th><th>Mainnet</th><th>Signet</th></tr></thead><tbody><tr><td>Holdings, proofs, Universe records</td><td>Yes</td><td>Yes</td></tr><tr><td>Receive (version 1 addresses)</td><td>Yes</td><td>Yes</td></tr><tr><td>Mint paid from your wallet, directly or through Composer</td><td>Yes</td><td>Yes</td></tr><tr><td>Send with the fee paid from your wallet</td><td>Yes</td><td>Yes</td></tr><tr><td>Mint or send paid by Universe</td><td>No</td><td>Yes</td></tr><tr><td>Asset Lightning</td><td>Not yet</td><td>Yes</td></tr></tbody></table></div>
+<div class="sl-heading-wrapper level-h2"><h2 id="common-problems">Common problems</h2><a class="sl-anchor-link" href="#common-problems"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Common problems”</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="u-table-scroll" tabindex="0" role="region" aria-label="Table, scrollable"><table><thead><tr><th>What you see</th><th>What it means</th><th>What to do</th></tr></thead><tbody><tr><td><em>Connect a Taproot wallet</em></td><td>The connected account is not a Taproot account</td><td>Switch to a <code dir="auto">bc1p</code> or <code dir="auto">tb1p</code> account</td></tr><tr><td>An action fails with a service error</td><td>That part of the service is not ready</td><td>Try again later. Other sections keep working</td></tr><tr><td><em>Universe does not pay network fees on this network</em></td><td>Universe-paid fees are off here (always on mainnet)</td><td>Choose <strong>You pay</strong></td></tr><tr><td>You cannot add supply to a group</td><td>The group was created by another wallet</td><td>Use the wallet that created the group</td></tr><tr><td><em>This address is for a different asset</em></td><td>The receive address names another asset</td><td>Ask the recipient for an address for this asset</td></tr><tr><td>The quote expired</td><td>Lightning quotes are valid only for a short time</td><td>Select <strong>New quote</strong></td></tr><tr><td><em>The wallet changed</em></td><td>You switched accounts during an operation</td><td>Start again with the connected wallet</td></tr><tr><td>Your wallet refuses the asset transaction</td><td>The amount is above what your wallet accepts in one transaction</td><td>Send the units in smaller transfers</td></tr></tbody></table></div>
+<div class="sl-heading-wrapper level-h2"><h2 id="related">Related</h2><a class="sl-anchor-link" href="#related"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Related”</span></a></div>
+<ul>
+<li><a href="/docs-inscribe/protocols/other/">Other protocols</a></li>
+<li><a href="/docs-inscribe/concepts/wallets-and-addresses/">Wallets and the two addresses</a></li>
+<li><a href="/docs-inscribe/concepts/asset-safety/">Asset safety</a></li>
+<li><a href="/docs-inscribe/start/status/">Status and lifecycle</a></li>
+</ul></div><footer class="sl-flex astro-xhxjzfa7"><div class="meta sl-flex astro-xhxjzfa7"><p>Last updated: <time datetime="2026-11-11T07:56:17.000Z">Nov 11, 2026</time></p></div><div class="pagination-links print:hidden astro-jgq3vlii" dir="ltr"></div></footer></div></div></main></div></div></div></div></body></html>

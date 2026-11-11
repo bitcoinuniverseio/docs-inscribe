@@ -1,0 +1,345 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-vdxcvpsm"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Recovery routes | Inscribe</title><link rel="canonical" href="https://bitcoinuniverseio.github.io/docs-inscribe/manage/recovery/"/><link rel="sitemap" href="/docs-inscribe/sitemap-index.xml"/><link rel="shortcut icon" href="/docs-inscribe/favicon.svg" type="image/svg+xml"/><meta name="generator" content="Astro v7.2.10"/><meta name="generator" content="Starlight v0.41.11"/><meta property="og:title" content="Recovery routes"/><meta property="og:type" content="article"/><meta property="og:url" content="https://bitcoinuniverseio.github.io/docs-inscribe/manage/recovery/"/><meta property="og:locale" content="en"/><meta property="og:description" content="Every route back from an unpaid, underpaid, stuck or interrupted order, the two dedicated repair tools, and the one situation with no recovery at all."/><meta property="og:site_name" content="Inscribe"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="Every route back from an unpaid, underpaid, stuck or interrupted order, the two dedicated repair tools, and the one situation with no recovery at all."/><script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","author":{"@type":"Organization","name":"Bitcoin Universe"},"publisher":{"@type":"Organization","name":"Bitcoin Universe"}}</script><script type="module">`serviceWorker`in navigator&&location.protocol===`https:`&&window.addEventListener(`load`,()=>{navigator.serviceWorker.register(`/docs-inscribe/sw.js`).catch(()=>{})});</script><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg><svg aria-hidden="true" class="dark astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg><svg aria-hidden="true" class="auto astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg></template><link rel="stylesheet" href="/docs-inscribe/_astro/print.ehPL0gv-.css" media="print"><link rel="stylesheet" href="/docs-inscribe/_astro/middleware.BlA4sMJx.css"><script type="module" src="/docs-inscribe/_astro/page.Dwipeu-R.js"></script></head><body class="astro-vdxcvpsm"><a class="sl-skip-link astro-vxeigawq" href="#_top">Skip to content</a><div class="page sl-flex astro-gqpr5s5a"><header class="header astro-gqpr5s5a"><div class="header astro-nczgtkxc"><div class="title-wrapper sl-flex astro-nczgtkxc"><a href="/docs-inscribe/" class="site-title sl-flex astro-clw6ags5"><span class="astro-clw6ags5" translate="no">Inscribe</span></a></div><div class="sl-flex print:hidden astro-nczgtkxc"><site-search class="astro-nczgtkxc astro-r5ar4xm7" data-translations="{&quot;placeholder&quot;:&quot;Search&quot;}"><button data-open-modal disabled aria-label="Search" aria-keyshortcuts="Control+K" class="astro-r5ar4xm7"><svg aria-hidden="true" class="astro-r5ar4xm7 astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg><span class="sl-hidden md:sl-block astro-r5ar4xm7" aria-hidden="true">Search</span><kbd class="sl-hidden md:sl-flex astro-r5ar4xm7" style="display: none;"><kbd class="astro-r5ar4xm7">Ctrl</kbd><kbd class="astro-r5ar4xm7">K</kbd></kbd></button><dialog style="padding:0" aria-label="Search" class="astro-r5ar4xm7"><div class="dialog-frame sl-flex astro-r5ar4xm7"><button data-close-modal class="sl-flex md:sl-hidden astro-r5ar4xm7">Cancel</button><div class="search-container astro-r5ar4xm7"><div id="starlight__search" class="astro-r5ar4xm7"></div></div></div></dialog></site-search><script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script><script type="module" src="/docs-inscribe/_astro/Search.astro_astro_type_script_index_0_lang.CDDAEABP.js"></script></div><div class="sl-hidden md:sl-flex print:hidden right-group astro-nczgtkxc"><div class="sl-flex social-icons astro-nczgtkxc"><a href="https://github.com/bitcoinuniverseio/docs-inscribe" rel="me" class="sl-flex astro-cg55etiy"><span class="sr-only astro-cg55etiy">GitHub</span><svg aria-hidden="true" class="astro-cg55etiy astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a><a href="https://inscribe.bitcoinuniverse.io" rel="me" class="sl-flex astro-cg55etiy"><span class="sr-only astro-cg55etiy">Open Inscribe</span><svg aria-hidden="true" class="astro-cg55etiy astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M19.33 10.18a1 1 0 0 1-.77 0 1 1 0 0 1-.62-.93l.01-1.83-8.2 8.2a1 1 0 0 1-1.41-1.42l8.2-8.2H14.7a1 1 0 0 1 0-2h4.25a1 1 0 0 1 1 1v4.25a1 1 0 0 1-.62.93Z"/><path d="M11 4a1 1 0 1 1 0 2H7a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-4a1 1 0 1 1 2 0v4a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h4Z"/></svg></a></div><script type="module">var e=`inscribe-docs-theme`;if(!localStorage.getItem(e)){let e=window.matchMedia(`(prefers-color-scheme: dark)`).matches?`dark`:`light`;document.documentElement.dataset.theme=e}document.addEventListener(`change`,t=>{let n=t.target;n instanceof HTMLSelectElement&&n.dataset.themeSelect!==void 0&&localStorage.setItem(e,n.value)});</script><script type="module">var e=class extends HTMLElement{constructor(){super();let e=this.querySelector(`select`);e&&(e.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&(window.location.pathname=e.currentTarget.value)}),window.addEventListener(`pageshow`,t=>{if(!t.persisted)return;let n=e.querySelector(`option[selected]`)?.index;n!==e.selectedIndex&&(e.selectedIndex=n??0)}))}};customElements.define(`starlight-lang-select`,e);</script></div></div></header><nav class="sidebar print:hidden astro-gqpr5s5a" aria-label="Main"><starlight-menu-button class="print:hidden astro-vvx7mffu"><button aria-expanded="false" aria-label="Menu" aria-controls="starlight__sidebar" class="sl-flex md:sl-hidden astro-vvx7mffu"><svg aria-hidden="true" class="open-menu astro-vvx7mffu astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg><svg aria-hidden="true" class="close-menu astro-vvx7mffu astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="m13.41 12 6.3-6.29a1.004 1.004 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 0 1.42.998.998 0 0 0 1.42 0l6.29-6.3 6.29 6.3a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.42L13.41 12Z"/></svg></button></starlight-menu-button><script type="module">var e=class extends HTMLElement{btn=this.querySelector(`button`);constructor(){super(),this.btn.addEventListener(`click`,()=>this.toggleExpanded());let e=this.closest(`nav`);e&&e.addEventListener(`keyup`,e=>this.closeOnEscape(e)),matchMedia(`(min-width: 50em)`).addEventListener(`change`,()=>this.setExpanded(!1))}setExpanded(e){this.setAttribute(`aria-expanded`,String(e)),document.body.toggleAttribute(`data-mobile-menu-expanded`,e),document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}toggleExpanded(){this.setExpanded(this.getAttribute(`aria-expanded`)!==`true`)}closeOnEscape(e){e.code===`Escape`&&(this.setExpanded(!1),this.btn.focus())}};customElements.define(`starlight-menu-button`,e);</script><div id="starlight__sidebar" class="sidebar-pane astro-gqpr5s5a"><div class="sidebar-content sl-flex astro-gqpr5s5a"><sl-sidebar-state-persist data-hash="1ozydt6" class="astro-f5yvicm7"><script aria-hidden="true">
+		(() => {
+			try {
+				if (!matchMedia('(min-width: 50em)').matches) return;
+				/** @type {HTMLElement | null} */
+				const target = document.querySelector('sl-sidebar-state-persist');
+				const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || '0');
+				if (!target || !state || target.dataset.hash !== state.hash) return;
+				window._starlightScrollRestore = state.scroll;
+				customElements.define(
+					'sl-sidebar-restore',
+					class SidebarRestore extends HTMLElement {
+						connectedCallback() {
+							try {
+								const idx = parseInt(this.dataset.index || '');
+								const details = this.closest('details');
+								if (details && typeof state.open[idx] === 'boolean') details.open = state.open[idx];
+							} catch {}
+						}
+					}
+				);
+			} catch {}
+		})();
+	</script><ul class="top-level astro-ojxuodky"><li class="astro-ojxuodky"><details open class="astro-ojxuodky"><summary class="astro-ojxuodky"><span class="group-label astro-ojxuodky"><span class="large astro-ojxuodky">Start here</span></span><svg aria-hidden="true" class="caret astro-ojxuodky astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="0"></sl-sidebar-restore><ul class="astro-ojxuodky"><li class="astro-ojxuodky"><a href="/docs-inscribe/start/what-you-can-create" class="astro-ojxuodky"><span class="astro-ojxuodky">What you can create</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/guided/" class="astro-ojxuodky"><span class="astro-ojxuodky">Guided plan</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/practice/" class="astro-ojxuodky"><span class="astro-ojxuodky">Practice without spending</span></a></li></ul></details></li><li class="astro-ojxuodky"><details open class="astro-ojxuodky"><summary class="astro-ojxuodky"><span class="group-label astro-ojxuodky"><span class="large astro-ojxuodky">Create</span></span><svg aria-hidden="true" class="caret astro-ojxuodky astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="1"></sl-sidebar-restore><ul class="astro-ojxuodky"><li class="astro-ojxuodky"><a href="/docs-inscribe/create/first-inscription" class="astro-ojxuodky"><span class="astro-ojxuodky">First inscription</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/create/what-it-costs" class="astro-ojxuodky"><span class="astro-ojxuodky">Cost anatomy</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/create/workspaces" class="astro-ojxuodky"><span class="astro-ojxuodky">Workspace map</span></a></li></ul></details></li><li class="astro-ojxuodky"><details open class="astro-ojxuodky"><summary class="astro-ojxuodky"><span class="group-label astro-ojxuodky"><span class="large astro-ojxuodky">Decide</span></span><svg aria-hidden="true" class="caret astro-ojxuodky astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="2"></sl-sidebar-restore><ul class="astro-ojxuodky"><li class="astro-ojxuodky"><a href="/docs-inscribe/labs/protocols/" class="astro-ojxuodky"><span class="astro-ojxuodky">Protocol Decision Lab</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/labs/transaction-review/" class="astro-ojxuodky"><span class="astro-ojxuodky">Transaction Review Lab</span></a></li></ul></details></li><li class="astro-ojxuodky"><details open class="astro-ojxuodky"><summary class="astro-ojxuodky"><span class="group-label astro-ojxuodky"><span class="large astro-ojxuodky">Visual guides</span></span><svg aria-hidden="true" class="caret astro-ojxuodky astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="3"></sl-sidebar-restore><ul class="astro-ojxuodky"><li class="astro-ojxuodky"><a href="/docs-inscribe/visual-guides/" class="astro-ojxuodky"><span class="astro-ojxuodky">Walkthrough library</span></a></li></ul></details></li><li class="astro-ojxuodky"><details open class="astro-ojxuodky"><summary class="astro-ojxuodky"><span class="group-label astro-ojxuodky"><span class="large astro-ojxuodky">Safety</span></span><svg aria-hidden="true" class="caret astro-ojxuodky astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="4"></sl-sidebar-restore><ul class="astro-ojxuodky"><li class="astro-ojxuodky"><a href="/docs-inscribe/safety/asset-safety" class="astro-ojxuodky"><span class="astro-ojxuodky">Asset and UTXO safety</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/safety/order-recovery" class="astro-ojxuodky"><span class="astro-ojxuodky">Recovery guide</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/recovery/navigator/" class="astro-ojxuodky"><span class="astro-ojxuodky">Recovery Navigator</span></a></li></ul></details></li><li class="astro-ojxuodky"><details open class="astro-ojxuodky"><summary class="astro-ojxuodky"><span class="group-label astro-ojxuodky"><span class="large astro-ojxuodky">Reference</span></span><svg aria-hidden="true" class="caret astro-ojxuodky astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="5"></sl-sidebar-restore><ul class="astro-ojxuodky"><li class="astro-ojxuodky"><a href="/docs-inscribe/reference/protocol-data-status" class="astro-ojxuodky"><span class="astro-ojxuodky">Live data status</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/reference/accessibility" class="astro-ojxuodky"><span class="astro-ojxuodky">Accessibility</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/reference/performance-and-media" class="astro-ojxuodky"><span class="astro-ojxuodky">Performance and media</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/reference/release-evidence" class="astro-ojxuodky"><span class="astro-ojxuodky">Release evidence</span></a></li><li class="astro-ojxuodky"><a href="/docs-inscribe/reference/agent-surfaces" class="astro-ojxuodky"><span class="astro-ojxuodky">For agents and LLMs</span></a></li></ul></details></li></ul><script aria-hidden="true">
+		(() => {
+			const scroller = document.getElementById('starlight__sidebar');
+			if (!window._starlightScrollRestore || !scroller) return;
+			scroller.scrollTop = window._starlightScrollRestore;
+			delete window._starlightScrollRestore;
+		})();
+	</script></sl-sidebar-state-persist><div class="md:sl-hidden"><div class="mobile-preferences sl-flex astro-b5gddk54"><div class="social-icons astro-b5gddk54"><a href="https://github.com/bitcoinuniverseio/docs-inscribe" rel="me" class="sl-flex astro-cg55etiy"><span class="sr-only astro-cg55etiy">GitHub</span><svg aria-hidden="true" class="astro-cg55etiy astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a><a href="https://inscribe.bitcoinuniverse.io" rel="me" class="sl-flex astro-cg55etiy"><span class="sr-only astro-cg55etiy">Open Inscribe</span><svg aria-hidden="true" class="astro-cg55etiy astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M19.33 10.18a1 1 0 0 1-.77 0 1 1 0 0 1-.62-.93l.01-1.83-8.2 8.2a1 1 0 0 1-1.41-1.42l8.2-8.2H14.7a1 1 0 0 1 0-2h4.25a1 1 0 0 1 1 1v4.25a1 1 0 0 1-.62.93Z"/><path d="M11 4a1 1 0 1 1 0 2H7a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-4a1 1 0 1 1 2 0v4a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h4Z"/></svg></a></div></div></div></div></div></nav><div class="main-frame astro-gqpr5s5a"><script type="module">var e=document.getElementById(`starlight__sidebar`),t=e?.querySelector(`sl-sidebar-state-persist`),n=`sl-sidebar-state`,r=()=>{let r=[],i=t?.dataset.hash||``;try{let e=sessionStorage.getItem(n),t=JSON.parse(e||`{}`);Array.isArray(t.open)&&t.hash===i&&(r=t.open)}catch{}return{hash:i,open:r,scroll:e?.scrollTop||0}},i=e=>{try{sessionStorage.setItem(n,JSON.stringify(e))}catch{}},a=()=>i(r()),o=(e,t)=>{let n=r();n.open[t]=e,i(n)};t?.addEventListener(`click`,e=>{if(!(e.target instanceof Element))return;let t=e.target.closest(`summary`)?.closest(`details`);if(!t)return;let n=t.querySelector(`sl-sidebar-restore`),r=parseInt(n?.dataset.index||``);isNaN(r)||o(!t.open,r)}),addEventListener(`visibilitychange`,()=>{document.visibilityState===`hidden`&&a()});</script><div class="lg:sl-flex astro-abfeecmu"><aside class="right-sidebar-container print:hidden astro-abfeecmu"><div class="right-sidebar astro-abfeecmu"><div class="lg:sl-hidden astro-q5mffni3"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-5ulgm6bh"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-5ulgm6bh"><details id="starlight__mobile-toc" class="astro-5ulgm6bh"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-5ulgm6bh"><span class="toggle sl-flex astro-5ulgm6bh">On this page<svg aria-hidden="true" class="caret astro-5ulgm6bh astro-n5k4ipy7" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></span><span class="display-current astro-5ulgm6bh"></span></summary><div class="dropdown astro-5ulgm6bh"><ul class="isMobile astro-cxyftcne" style="--depth: 0;"><li style="--depth: 0;" class="astro-cxyftcne"><a href="#_top" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Overview</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#find-your-situation" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Find your situation</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#what-is-never-thrown-away" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">What is never thrown away</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#payment-not-detected" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Payment not detected</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#you-underpaid" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">You underpaid</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#you-overpaid" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">You overpaid</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#the-payment-is-stuck" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">The payment is stuck</span></a><ul class="isMobile astro-cxyftcne" style="--depth: 1;"><li style="--depth: 1;" class="astro-cxyftcne"><a href="#fix-my-payment" style="--depth: 1;" class="astro-cxyftcne"><span style="--depth: 1;" class="astro-cxyftcne">Fix My Payment</span></a></li><li style="--depth: 1;" class="astro-cxyftcne"><a href="#bump-stuck-tx" style="--depth: 1;" class="astro-cxyftcne"><span style="--depth: 1;" class="astro-cxyftcne">Bump Stuck TX</span></a></li></ul></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#you-lost-the-order" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">You lost the order</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#the-quote-expired" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">The quote expired</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#recover-padding-satoshis" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Recover padding satoshis</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#the-recovery-queue" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">The recovery queue</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#failed-reveals" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Failed reveals</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#the-situation-with-no-route" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">The situation with no route</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#related" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Related</span></a></li></ul></div></details></nav></mobile-starlight-toc><script type="module" src="/docs-inscribe/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.BcSo_yiZ.js"></script></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-q5mffni3"><div class="sl-container astro-q5mffni3"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-cxyftcne" style="--depth: 0;"><li style="--depth: 0;" class="astro-cxyftcne"><a href="#_top" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Overview</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#find-your-situation" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Find your situation</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#what-is-never-thrown-away" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">What is never thrown away</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#payment-not-detected" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Payment not detected</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#you-underpaid" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">You underpaid</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#you-overpaid" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">You overpaid</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#the-payment-is-stuck" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">The payment is stuck</span></a><ul class="astro-cxyftcne" style="--depth: 1;"><li style="--depth: 1;" class="astro-cxyftcne"><a href="#fix-my-payment" style="--depth: 1;" class="astro-cxyftcne"><span style="--depth: 1;" class="astro-cxyftcne">Fix My Payment</span></a></li><li style="--depth: 1;" class="astro-cxyftcne"><a href="#bump-stuck-tx" style="--depth: 1;" class="astro-cxyftcne"><span style="--depth: 1;" class="astro-cxyftcne">Bump Stuck TX</span></a></li></ul></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#you-lost-the-order" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">You lost the order</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#the-quote-expired" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">The quote expired</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#recover-padding-satoshis" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Recover padding satoshis</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#the-recovery-queue" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">The recovery queue</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#failed-reveals" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Failed reveals</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#the-situation-with-no-route" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">The situation with no route</span></a></li><li style="--depth: 0;" class="astro-cxyftcne"><a href="#related" style="--depth: 0;" class="astro-cxyftcne"><span style="--depth: 0;" class="astro-cxyftcne">Related</span></a></li></ul></nav></starlight-toc><script type="module" src="/docs-inscribe/_astro/TableOfContents.astro_astro_type_script_index_0_lang.Csloo1VZ.js"></script></div></div></div></aside><div class="main-pane astro-abfeecmu"><main data-pagefind-body class="astro-vdxcvpsm" lang="en" dir="ltr"><div class="content-panel astro-oil7k7jf"><div class="sl-container astro-oil7k7jf"><h1 id="_top"></h1></div></div><div class="content-panel astro-oil7k7jf"><div class="sl-container astro-oil7k7jf"><div class="sl-markdown-content"><p>Start here when something has gone wrong after you paid.</p>
+<p><strong>The first rule: do not pay again.</strong> Almost every problem on this page is made worse by a
+second payment, and none is fixed by one.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="find-your-situation">Find your situation</h2><a class="sl-anchor-link" href="#find-your-situation"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Find your situation”</span></a></div>
+<div class="u-table-scroll" tabindex="0" role="region" aria-label="Table, scrollable">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>What happened</th><th>Where to go</th></tr></thead><tbody><tr><td>You paid, but the order still says awaiting payment</td><td><a href="#payment-not-detected">Payment not detected</a></td></tr><tr><td>You sent less than the quote</td><td><a href="#you-underpaid">You underpaid</a></td></tr><tr><td>You sent more than the quote</td><td><a href="#you-overpaid">You overpaid</a></td></tr><tr><td>Your payment is not confirming</td><td><a href="#the-payment-is-stuck">The payment is stuck</a></td></tr><tr><td>You closed the tab and lost the order</td><td><a href="#you-lost-the-order">You lost the order</a></td></tr><tr><td>The hour ran out</td><td><a href="#the-quote-expired">The quote expired</a></td></tr><tr><td>Satoshis are trapped in inscription padding</td><td><a href="#recover-padding-satoshis">Recover padding satoshis</a></td></tr><tr><td>You sent an asset to the wrong address</td><td><a href="#the-situation-with-no-route">No route</a></td></tr></tbody></table></div>
+<div class="sl-heading-wrapper level-h2"><h2 id="what-is-never-thrown-away">What is never thrown away</h2><a class="sl-anchor-link" href="#what-is-never-thrown-away"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “What is never thrown away”</span></a></div>
+<p>Before the individual cases, the guarantee they all rest on.</p>
+<p>An order signing key is discarded in exactly two situations: after a confirmed successful
+spend, or after an explicit recovery that hands control somewhere else.</p>
+<p>It is <strong>never</strong> discarded because:</p>
+<ul>
+<li>a data provider timed out;</li>
+<li>a lookup returned nothing;</li>
+<li>a retry limit was reached;</li>
+<li>an hour passed.</li>
+</ul>
+<p>There is no expired or cancelled state for an inscribe order. An order that looks dead on
+screen still has its key.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="payment-not-detected">Payment not detected</h2><a class="sl-anchor-link" href="#payment-not-detected"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Payment not detected”</span></a></div>
+<p><strong>What is happening.</strong> Universe checks the commit address every ten seconds and accepts an
+unconfirmed payment, so a payment that is genuinely there usually appears within a minute.</p>
+<p><strong>What to do.</strong></p>
+<ol class="steps">
+<li>
+<p><strong>Wait two minutes.</strong> The most common cause is impatience.</p>
+</li>
+<li>
+<p><strong>Check where your payment actually went.</strong> Look up your transaction on any explorer and
+compare the recipient against the commit address the order gave you. A payment to a
+different address is a different problem, and no amount of waiting fixes it.</p>
+</li>
+<li>
+<p><strong>Give detection time.</strong> If your payment is on the chain at the right address, the source
+that reads addresses may be down or behind. Detection is then delayed rather than broken.
+The commit address keeps being checked, so leave the order page open.</p>
+</li>
+<li>
+<p><strong>Do not send a second payment.</strong> If several payments land on the address, Inscribe uses
+the one matching the quote, or the smallest that covers it. Your second payment is not
+consumed and is not automatically returned either.</p>
+</li>
+</ol>
+<div class="sl-heading-wrapper level-h2"><h2 id="you-underpaid">You underpaid</h2><a class="sl-anchor-link" href="#you-underpaid"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “You underpaid”</span></a></div>
+<p>The order is not lost. It records that the payment was below the quote and keeps checking.</p>
+<p><strong>Top the same commit address up to the quoted amount.</strong> The flow resumes on its own.
+Nothing is cancelled and no key is discarded.</p>
+<p>If you can no longer reach the order page, recover access first: see
+<a href="#you-lost-the-order">you lost the order</a>.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="you-overpaid">You overpaid</h2><a class="sl-anchor-link" href="#you-overpaid"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “You overpaid”</span></a></div>
+<p>The surplus comes back to you automatically. The reveal transaction adds an output sending
+the extra to the address that funded the order.</p>
+<p>Two conditions apply, and they are about physics rather than policy:</p>
+<ul>
+<li>The surplus must be large enough to cover the extra bytes the refund output costs.</li>
+<li>What remains must clear the dust threshold for the address type.</li>
+</ul>
+<p>If the surplus is too small to send back, <strong>it is added to your inscription output
+instead</strong>, where you still own it. Nothing is kept.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="the-payment-is-stuck">The payment is stuck</h2><a class="sl-anchor-link" href="#the-payment-is-stuck"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “The payment is stuck”</span></a></div>
+<p>Your transaction is broadcast but not confirming, because the fee rate was too low for
+conditions at the time.</p>
+<p>Inscribe has two tools, and they solve different halves of the problem.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="fix-my-payment">Fix My Payment</h3><a class="sl-anchor-link" href="#fix-my-payment"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Fix My Payment”</span></a></div>
+<p>At <code dir="auto">/fix-payment</code>. Use this when the payment to the commit address is the transaction that
+is stuck.</p>
+<p><strong>No service fee is charged.</strong> You are paying to repair something, not to buy something.</p>
+<ol class="steps">
+<li>
+<p><strong>Enter the order ID</strong> and prove ownership.</p>
+</li>
+<li>
+<p><strong>Review the diagnosis.</strong> The tool reads the current state of your payment and says what is
+wrong with it.</p>
+</li>
+<li>
+<p><strong>Choose the repair</strong> it offers for your case.</p>
+</li>
+<li>
+<p><strong>Set a fee rate that reflects current conditions</strong>, not the one that failed.</p>
+</li>
+<li>
+<p><strong>Sign the repair transaction.</strong></p>
+<p><em>Expected wallet screen:</em> a transaction fixing the original payment. Check the amount and
+the recipient before approving.</p>
+</li>
+</ol>
+<div class="sl-heading-wrapper level-h3"><h3 id="bump-stuck-tx">Bump Stuck TX</h3><a class="sl-anchor-link" href="#bump-stuck-tx"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Bump Stuck TX”</span></a></div>
+<p>The fee-bumping workspace. Use this for a transaction of your own that is not confirming.</p>
+<p>It compares <strong>RBF</strong> (replace-by-fee, sending a replacement of the same transaction at a
+higher rate) against <strong>CPFP</strong> (child-pays-for-parent, spending an output of the stuck
+transaction at a high enough rate to pull the parent in), and shows the asset report for
+every output before you sign.</p>
+<p>The workspace is <strong>marked Beta in the app</strong>. It is released and reachable, and that label
+is the product own assessment rather than something this documentation is adding.</p>
+<p>RBF only works if the original transaction signalled that it could be replaced. Where it
+did not, CPFP is the route, and the tool says which applies.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="you-lost-the-order">You lost the order</h2><a class="sl-anchor-link" href="#you-lost-the-order"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “You lost the order”</span></a></div>
+<p>Access to an order is a secret Inscribe keeps in the browser memory and never writes to
+storage. That is what stops another site reading it, and it means a reload lets it go.</p>
+<p>There are four routes back.</p>
+<div class="u-table-scroll" tabindex="0" role="region" aria-label="Table, scrollable">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Route</th><th>What you need</th></tr></thead><tbody><tr><td><strong>The order URL</strong></td><td>The exact <code dir="auto">/inscribe/&#x3C;id></code> link, if you still have it</td></tr><tr><td><strong>Home</strong></td><td>Nothing. Home lists the orders this browser started</td></tr><tr><td><strong>A recovery kit</strong></td><td>The encrypted kit, if you saved one when the order was created</td></tr><tr><td><strong>Wallet signature</strong></td><td>The order id, plus the same wallet and network used at creation</td></tr></tbody></table></div>
+<p><strong>Start with Home.</strong> Under “Orders you started in this browser” it lists them newest first,
+with the workflow, the order reference, and how long ago it was recorded. Opening one takes
+you to its status page.</p>
+<p>Reopening an order asks your wallet to prove it owns the order before any payment detail is
+shown. That check runs after any reload, because the order secret only ever lives in
+memory.</p>
+<p>The list holds an order id, its workflow, and when this browser saw it. Never a key, an
+address, an amount, or anything about your wallet, and it is not sent anywhere. It keeps
+the 50 most recent orders, for 30 days.</p>
+<p>It does not show a status, because reading one requires the secret and any status shown
+there would be invented.</p>
+<p>See <a href="/docs-inscribe/manage/pending-orders/">orders you started</a> for more.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="the-quote-expired">The quote expired</h2><a class="sl-anchor-link" href="#the-quote-expired"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “The quote expired”</span></a></div>
+<p>The hour on the screen is the life of the <strong>price</strong>, not the life of the order.</p>
+<p><strong>If you have not paid:</strong> start a fresh order at a current price. The old fee rate may no
+longer get your transaction mined.</p>
+<p><strong>If you have already paid:</strong> do not pay again and do not start a new order. The address
+keeps being checked on a slowing schedule, so a late payment is still found and reconciled.
+Go to the order and, if it needs help, use Fix My Payment.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="recover-padding-satoshis">Recover padding satoshis</h2><a class="sl-anchor-link" href="#recover-padding-satoshis"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Recover padding satoshis”</span></a></div>
+<p>At <code dir="auto">/asset-recovery</code> (also <code dir="auto">/recover-sats</code>, and <strong>Tools → Asset-safe padding
+recovery</strong>). Inscriptions sit on outputs with satoshis in them, and some of those
+satoshis can be reclaimed without disturbing the inscription.</p>
+<p><strong>Review both fees.</strong> Asset Recovery’s transaction quote includes a service fee
+and a network fee. The current service-fee policy is 1,500 sats; use the amount
+in the actual quote. The protected output stays with your assets and is not a
+fee. The net recovery figure already deducts the fees and any added funding.</p>
+<p>The flow below describes the local repair candidate. It has not been published
+or verified through a complete real-network recovery. Availability in the app
+depends on the deployed version, selected network, wallet, and required indexes.</p>
+<ol class="steps">
+<li>
+<p><strong>Connect your wallet and check the network.</strong> A test-network address alone does
+not distinguish Signet from Testnet4. Use the network selected in the wallet.</p>
+</li>
+<li>
+<p><strong>Let it finish scanning</strong> every page for the wallet addresses shown. A partial
+scan does not cover all your holdings.</p>
+</li>
+<li>
+<p><strong>Review the assets and any missing evidence.</strong> Labels help you inspect an
+output. The recovery plan must still prove that it preserves the assets through
+the required indexes and protocol rules. An unknown asset is not verified plain
+bitcoin.</p>
+<p>Some outputs cannot be recovered, and the scan says why:</p>
+<ul>
+<li>an unused <strong>BRC-20 transfer</strong> inscription (moving it sends its tokens, even to
+your own address; send or cancel the transfer first);</li>
+<li>a <strong>TAP</strong> transfer or other TAP action (moving it can apply it);</li>
+<li>other token inscriptions whose move rules recovery cannot confirm yet;</li>
+<li>an output that also carries <strong>Stamps</strong>, other <strong>Counterparty</strong> assets or
+<strong>Atomicals</strong> (recovery never moves them).</li>
+</ul>
+<p>Before an output can be selected, Universe’s own indexers must answer for it:
+ord for inscriptions and Runes, Counterparty for Stamps, and the Atomicals
+index. If any of them has not answered, the output stays unselectable.</p>
+<p>BRC-20 and TAP <strong>deploy</strong> and <strong>mint</strong> inscriptions can be recovered: moving them
+changes no balances.</p>
+</li>
+<li>
+<p><strong>Choose inputs and destinations</strong>, set the amount to retain with your assets,
+and review the protected amount, recovered amount, service fee, and network fee.</p>
+</li>
+<li>
+<p><strong>Check the review, then sign.</strong> The review says <strong>Ready to sign</strong> when every
+check that can run before signing has passed. Two more checks run on the exact
+transaction: one before your wallet opens and one after you sign.</p>
+<p><em>Expected wallet screen:</em> a transaction reclaiming the padding. Check that your inscription
+outputs are preserved in the outputs list. Signing does not submit the recovery.</p>
+</li>
+<li>
+<p><strong>Approve broadcast separately</strong>, then follow the operation receipt. A network
+confirmation alone does not prove that the asset indexes show the expected
+result. The receipt lists each asset as <strong>Checking</strong>, <strong>Verified</strong> or
+<strong>Mismatch</strong>. <strong>Recovery complete</strong> needs every asset verified in the protected
+output and the recovered output to match. Reconnect with the same wallet and
+network to read the saved receipt after a reload. If submission is uncertain,
+check that receipt before retrying.</p>
+</li>
+</ol>
+<p>A completed receipt keeps its proof after you move the protected assets later;
+it notes that they moved. If the block that confirmed the recovery is replaced,
+the receipt checks the assets again. The first check needs the protected output
+unspent, so wait for <strong>Recovery complete</strong> before moving those assets.</p>
+<p>If this route returns the 404 page, the feature is switched off in this deployment. It is
+one of only two surfaces that 404 rather than loading and refusing.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="the-recovery-queue">The recovery queue</h2><a class="sl-anchor-link" href="#the-recovery-queue"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “The recovery queue”</span></a></div>
+<p><strong>Activity</strong> carries a recovery queue that ranks anything needing attention across your
+orders and offers one action per item. It is the right place to look when you are not sure
+what state something is in.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="failed-reveals">Failed reveals</h2><a class="sl-anchor-link" href="#failed-reveals"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Failed reveals”</span></a></div>
+<p>You do not need to do anything about these. A reveal that fails to broadcast is retried
+with backoff, from 30 seconds upward.</p>
+<p>The safety property that makes automatic retry acceptable: <strong>the exact signed transaction
+is written down before the first network call is made</strong>, so a retry can only ever resend
+the same transaction. There is no version of the retry that spends your money twice.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="the-situation-with-no-route">The situation with no route</h2><a class="sl-anchor-link" href="#the-situation-with-no-route"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “The situation with no route”</span></a></div>
+<p><strong>A transaction you signed that did what you told it to.</strong> If you sent an asset to the
+wrong address, deliberately spent an asset-bearing output in the Advanced TX Builder, or
+approved a wallet send from an address holding assets after being warned, the result is
+final.</p>
+<p>The fee is spent, the asset has moved, and no operator can reverse it. This is a property
+of Bitcoin, not a limitation of Inscribe.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="related">Related</h2><a class="sl-anchor-link" href="#related"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Related”</span></a></div>
+<ul>
+<li><a href="/docs-inscribe/manage/pending-orders/">Orders you started</a></li>
+<li><a href="/docs-inscribe/concepts/order-lifecycle/">The life of an order</a></li>
+<li><a href="/docs-inscribe/manage/advanced-transactions/">Advanced transaction tools</a></li>
+<li><a href="/docs-inscribe/troubleshooting/common-problems/">Common problems</a></li>
+</ul></div><footer class="sl-flex astro-xhxjzfa7"><div class="meta sl-flex astro-xhxjzfa7"><p>Last updated: <time datetime="2026-11-11T07:56:17.000Z">Nov 11, 2026</time></p></div><div class="pagination-links print:hidden astro-jgq3vlii" dir="ltr"></div></footer></div></div></main></div></div></div></div></body></html>
