@@ -20,3 +20,7 @@ Browser route validation also treats an already-dismissed consent choice as the
 successful state. A consent control that disappears while the test is
 interacting with it does not block release evidence, while a control that
 remains visible after an interaction error still fails the validation.
+
+A queued check has not verified its candidate. A runner shortage or artifact-upload failure remains a failed or incomplete release check even when the build tests passed. CI and deployment jobs use the approved Universe self-hosted runner class.
+
+Dependency repairs must preserve the same audit and license checks. The current repair candidate reports no high or critical dependency findings in either development-inclusive or runtime-only audits. This result does not replace the same candidate's clean installation, build, browser checks or deployment evidence.
